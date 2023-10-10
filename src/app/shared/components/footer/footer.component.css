@@ -1,0 +1,72 @@
+footer
+{
+    background-color: rgb(124, 155, 233);
+}
+
+.container{
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    gap: 10rem;
+}
+
+
+.links
+{
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: .5 rem;
+    gap: 2rem;
+}
+
+.links a {
+    font-size: 1rem;
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}
+
+
+
+.socials
+{
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    padding: .5rem;
+}
+
+.copy
+{
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: .5rem;
+    gap: 2rem;
+}
+
+.utn
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;  
+    box-sizing: border-box;  
+}
+
+.utn img
+{   
+    width: auto;
+    height: 30px;
+}
+
+img{
+    width: 30px;
+    height: 30px;
+}
