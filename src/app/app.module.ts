@@ -12,7 +12,11 @@ import { AppComponent } from './app.component';
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [], // SERVICIOS EXTERNOS QUE SE PUEDEN CONSUMIR DESDE NUESTRA APP
+  bootstrap: [AppComponent] // COMPONENTE PRINCIPAL
 })
-export class AppModule { }
+export class AppModule { 
+
+  
+
+}

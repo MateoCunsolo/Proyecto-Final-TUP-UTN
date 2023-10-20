@@ -6,10 +6,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./landingpage.component.css']
 })
 export class LandingpageComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+  path: string = '/signup';
+ 
+ constructor() { }
+ 
+ ngOnInit(): void { }
+ 
+ onSignUpClick() {
+   window.location.href = this.path;
+ }
 }
