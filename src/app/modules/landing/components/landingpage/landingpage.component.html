@@ -1,7 +1,7 @@
 <header> 
     <h2><img class="logo" src="./assets/[removal.ai]_be5a1f4e-38f7-4edc-8d6b-650faaeb6f36-formulario-de-registro-ingrese.png" alt="">Flick Finder</h2>
     <div class="conteiner-bt">
-        <button>Sign in</button>
+        <button (click)="onSignInClick()">Sign in</button>
         <button (click)="onSignUpClick()" id="singUp">Sign up</button>
     </div>
 </header>
@@ -9,5 +9,5 @@
 <div class="conteiner">
     <h2 class="title">Instantly Craft Your Favorite Movie Lists</h2>
     <p class="subtitle">Explore, organize, and review your favorite films</p>
-    <button id="free" class="button">Start Free</button>
+    <button (click)="onSignUpClick()" id="free" class="button">Start Free</button>
 </div>

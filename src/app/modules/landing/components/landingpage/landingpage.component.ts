@@ -1,18 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-landingpage',
   templateUrl: './landingpage.component.html',
   styleUrls: ['./landingpage.component.css']
 })
-export class LandingpageComponent implements OnInit {
-  path: string = '/signup';
- 
- constructor() { }
- 
- ngOnInit(): void { }
- 
- onSignUpClick() {
-   window.location.href = this.path;
- }
+export class LandingpageComponent {
+  constructor(private router: Router) {}
+
+  onSignUpClick() {
+    this.router.navigate(['/signup']);
+  }
+  
+  onSignInClick() {
+    this.router.navigate(['/signin']);
+  }
 }
