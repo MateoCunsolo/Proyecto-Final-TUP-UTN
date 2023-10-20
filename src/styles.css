@@ -1,1 +1,19 @@
-/* You can add global styles to this file, and also import other style files */
+
+:root {
+    --color-azul-claro: #2D335b;
+    --color-blanco-claro: #f1eaea;
+}
+
+body{
+    color: white;
+    background-image: url(./assets/cinema.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+    margin: 0;
+    background-position-x: center;
+    background-position-y:bottom; 
+    font-family: 'Poppins', sans-serif;
+
+    
+}
