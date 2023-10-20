@@ -4,6 +4,16 @@
     --color-blanco-claro: #f1eaea;
 }
 
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:after, :before{
+    box-sizing: inherit;
+}
+
 body{
     color: white;
     background-image: url(./assets/cinema.png);
@@ -14,6 +24,6 @@ body{
     background-position-x: center;
     background-position-y:bottom; 
     font-family: 'Poppins', sans-serif;
-
-    
+    padding: 0rem 0rem 0rem 0rem;   
 }
+

@@ -6,7 +6,6 @@ header
     flex-direction: row;
     width: 100%;
     border: solid black;
-    box-sizing: border-box;
     padding: 0rem .5rem 0rem .5rem;
 }
 
