@@ -1,1 +1,53 @@
-<p>register works!</p>
+<section class="seccion">
+    <fieldset> <!--se usa para agrupar varios controles y etiquetas 'label' dentro de un formulario web-->
+        <h3>Create Account</h3>
+        <p>Embark on your cinematic journey !</p>
+        <form id="formulario" (ngSubmit)="saveUser()" [formGroup]="formulario">
+            <div class="campo">
+                <label for="userName">User name :</label>
+                <input type="text" id="userName" formControlName="userName" placeholder="User Name">
+                <div class="error">
+                    <span *ngIf="formulario.controls['userName'].getError('required') && formulario.touched">
+                        Error
+                        <!--la condicion para q aparezca, es que el campo haya sido tocado y que este vacio, ahi aparece el mensaje de error-->
+                    </span>
+                </div>
+            </div>
+            <div class="campo">
+                <label for="email">Email :</label>
+                <input type="email" id="email" formControlName="email">
+                <div class="error">
+                    <span *ngIf="formulario.controls['email'].getError('email') && formulario.touched"> <!--NO ANDAN Y NO SE XQ-->
+                        Error
+                    </span>
+                </div>
+            </div>
+            <div class="campo">
+                <label for="password">Password :</label>
+                <input type="password" id="password" formControlName="password">
+                <div class="error">
+                    <span *ngIf="formulario.controls['password'].getError('minLength') && formulario.touched">
+                        Error
+                    </span>
+                </div>
+            </div>
+            <div class="campo">
+                <label for="passwordTwo">Repeat password :</label>
+                <input type="password" id="passwordTwo" formControlName="passwordTwo">
+                <div class="error">
+                    <span *ngIf="formulario.controls['passwordTwo'].getError('minLength') && formulario.touched">
+                        Error
+                    </span>
+                </div>
+            </div>
+            <div class="campo">
+                <!--para guardar el id del usuario, que no lo tiene que ver, pero si lo necesitamos para la bdd-->
+                <input type="hidden" id="id" formControlName="id">
+            </div>
+            <div class="campo">
+                <input type="submit" value="Sign Up" id="signUp">
+            </div>
+        </form>
+    </fieldset>
+
+</section>

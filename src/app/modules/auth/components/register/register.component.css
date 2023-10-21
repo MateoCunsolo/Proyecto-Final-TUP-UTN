@@ -1,0 +1,33 @@
+.campo,h3,p{
+    display: flex;
+    justify-content: center; /*centrar horizontalmente*/
+    align-items: center; /*centrar verticalmente*/
+}
+
+.campo label{
+    flex-basis: 12rem;
+}
+
+.campo[type="text"]
+.campo[type="email"]
+.campo[type="password"]{
+    margin-bottom: 1rem;
+    border: 0.8px solid; 
+}
+
+.campo input[type="submit"]{
+    margin-bottom: 1rem;
+}
+
+.seccion fieldset{
+    margin-left: auto;
+    margin-right: auto;
+    border : 4px solid;
+    width: 30rem;
+    height: 12rem;
+}
+
+.error{
+    color : red;
+    text-align: center;
+}
