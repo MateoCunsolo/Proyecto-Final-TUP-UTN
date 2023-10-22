@@ -14,7 +14,8 @@ import { AuthModule } from '../auth/auth.module';
   imports: [
     CommonModule,
     LandingRoutingModule,
-    AuthModule
+    AuthModule,
+    SharedModule
   ]
 })
 export class LandingModule { }

@@ -17,9 +17,9 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     CommonModule,
     SharedRoutingModule
   ],
-  exports: 
-  [
+  exports:[
     FooterComponent,
+    NavbarComponent,
     HeaderComponent
   ]
 })

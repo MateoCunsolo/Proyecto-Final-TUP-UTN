@@ -1,19 +1,18 @@
-body {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: auto 1fr auto;
-    grid-template-areas:
-        "header"
-        "content"
-        "footer";
-    gap: 2rem;
-    padding: 1rem;
-    background-size: auto;
-    background-repeat: none;
-    gap: 2rem;
-    padding: 1rem;
-    height: auto;
-}
+    body {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 1fr auto; /* Filas automáticas y luego el botón "Load More" */
+        grid-template-areas:
+            "header"
+            "content"
+            "footer";
+        gap: 2rem;
+        padding: 1rem;
+        background-size: auto;
+        background-repeat: none;
+        gap: 2rem;
+        padding: 1rem       
+    }
 
 h1 {
     text-align: center;
