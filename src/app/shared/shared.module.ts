@@ -19,7 +19,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
   ],
   exports:[
     FooterComponent,
-    NavbarComponent
+    NavbarComponent,
+    HeaderComponent
   ]
 })
 
