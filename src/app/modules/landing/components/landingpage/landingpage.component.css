@@ -36,6 +36,7 @@ button:hover{
 
 #free
 {
+    margin-top: 1rem;
     background-color: var(--color-blanco-claro);
     color: #000000;
     width: 15%;
