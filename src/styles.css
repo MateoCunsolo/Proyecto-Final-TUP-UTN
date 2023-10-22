@@ -1,1 +1,29 @@
-/* You can add global styles to this file, and also import other style files */
+
+:root {
+    --color-azul-claro: #2D335b;
+    --color-blanco-claro: #f1eaea;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:after, :before{
+    box-sizing: inherit;
+}
+
+body{
+    color: white;
+    background-image: url(./assets/cinema.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+    margin: 0;
+    background-position-x: center;
+    background-position-y:bottom; 
+    font-family: 'Poppins', sans-serif;
+    padding: 0rem 0rem 0rem 0rem;   
+}
+

@@ -1,0 +1,106 @@
+header
+{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+    width: 100%;
+    border: solid black;
+    padding: 0rem .5rem 0rem .5rem;
+}
+
+.conteiner-bt
+{
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    gap: 1rem;
+}
+
+button{
+    border-radius: 2rem;
+    border: solid var(--color-blanco-claro) 1px;
+    padding: .5rem;
+    width: 25%;
+    background-color: rgba(255, 255, 255, 0);
+    color: var(--color-blanco-claro);
+    cursor: pointer;
+    font-weight: bold;
+
+}
+
+button:hover{
+    background-color: #3b3b3b;
+}
+
+#free
+{
+    background-color: var(--color-blanco-claro);
+    color: #000000;
+    width: 15%;
+}
+
+#singUp:hover
+{
+    background-color: #5c68b4;
+}
+#singUp
+{
+    background-color: var(--color-azul-claro);
+}
+
+#free:hover
+{
+    background-color: #3b3b3b;
+    color: var(--color-blanco-claro);
+}
+
+
+.conteiner
+{   
+    
+    padding: 5rem 2rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 5fr auto auto;
+    grid-template-areas: "title" 
+                        "subtitle" 
+                        "button";
+    gap: 0rem;    
+}
+
+.title
+{
+    grid-area: title;
+    font-size: 4rem;
+    width: 80%;
+    font-weight: bold;
+    color: var(--color-blanco-claro);
+    margin: 0;
+}
+
+.subtitle
+{
+    grid-area: subtitle;
+    font-size: 1.5rem;
+    color: white;
+}
+
+.button
+{
+    grid-area: button;
+}
+
+.logo
+{
+    width: 102px;	
+    height: 62px;
+}
+
+h2
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
