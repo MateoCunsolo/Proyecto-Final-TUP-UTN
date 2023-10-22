@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { User } from 'src/app/core/Interfaces';
+import { User } from 'src/app/core/Models';
 import { UserService } from 'src/app/services/services/user.service';
 
 @Component({
@@ -18,13 +18,13 @@ export class RegisterComponent implements OnInit {
     userName:['', [Validators.required, Validators.minLength(4)]], //digo que es requerido y que necesita como minimo cuatro campos
     email:['', [Validators.required, Validators.email]],
     password:['', [Validators.required, Validators.minLength(6)]],
-    passwordTwo:['', [Validators.required, Validators.minLength(6)]],
-    id:0
+    passwordTwo:['', [Validators.required, Validators.minLength(6)]]
   })
 
 
   //inyecto el objeto que cree arriba
   //formBuilder es una clase de angular que se inyecta
+  //para poder inyectar el POST, inyecto el servicio de usuarios
   constructor(private formBuilder: FormBuilder, 
               private userService: UserService
              ) { }
@@ -43,12 +43,12 @@ export class RegisterComponent implements OnInit {
       userName: this.formulario.controls['userName'].value,
       email: this.formulario.controls['email'].value,
       password: this.formulario.controls['password'].value,
-      id: this.formulario.controls['id'].value
+      id: 0
     } //capturo los datos del formulario y creo el objeto con ellos
     
     this.userService.postUser(user);
+    
     //console.log(registeredUser);
   }
-
   
 }

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { User } from 'src/app/core/Interfaces';
+import { User } from 'src/app/core/Models';
 
 @Injectable({
   providedIn: 'root'
@@ -25,4 +25,6 @@ export class UserService {
       console.log(error);
     }
   }
+
+
 }
