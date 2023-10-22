@@ -1,0 +1,62 @@
+.conteiner
+{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-area: conteiner;
+    gap: 2rem;
+}
+
+
+.movie-poster
+{
+    border-radius: 2rem;
+}
+
+.movie-card
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    flex-direction: column;
+    background-color: #20233de6;
+    border-radius: 1rem;
+    width: auto;
+    padding: 1rem;
+}
+
+
+button
+{
+    grid-area: button;
+    width: 50%;
+    background-color: var(--color-azul-claro);
+    cursor: pointer;
+    padding: 0rem;
+    border-radius: 1rem;
+    border: solid white 1px;
+    color: white;
+}
+
+button:hover
+{
+    background-color: #5a67b8;
+    color: var(--color-azul-claro);
+    transition: 0.5s;
+    color: white;
+    
+}
+
+
+body {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 90fr 1fr;
+    grid-template-areas: "conteiner" "button";
+    height: auto;
+    background-size: auto;
+    background-repeat: none;
+  }
+
+
+  

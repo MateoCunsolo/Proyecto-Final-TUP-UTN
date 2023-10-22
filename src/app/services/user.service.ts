@@ -7,7 +7,7 @@ import { User } from 'src/app/core/Interfaces';
 })
 export class UserService {
 
-  url:string = 'http://localhost:4000/users'
+  url:string = 'http://localhost:4200/users'
 
   constructor(private router: Router) { }
 
