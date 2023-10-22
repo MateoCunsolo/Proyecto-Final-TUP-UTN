@@ -1,0 +1,62 @@
+
+.contenedor-input{
+    background-color: hsla(232, 34%, 27%, 0.7); /* Fondo rojo 50% transparente */
+    text-align: center;
+    align-items: center;
+    display: flex; /* Utiliza flexbox para centrar los elementos */
+    flex-direction: column; /* Apila los elementos verticalmente */
+    justify-content: center; 
+    height: 21rem;
+    width: 30rem;
+    border-radius: 15px; /* Redondea las esquinas del botón */
+}
+
+.center-button {
+    display: flex;
+    justify-content: center;
+  }
+
+.contenedor{
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    height: 100vh;
+    backdrop-filter: blur(5px); /* Aplica un desenfoque de 5 píxeles (ajusta según tus preferencias) */
+}
+
+input{
+    display: block;
+    margin: 5px;
+    height: 45px;
+    border: none;   
+    border-radius: 20px; /* Redondea las esquinas del botón */
+    margin-bottom: 10px;
+    margin-top: 15px;
+}
+
+::placeholder {
+    color: var(--color-azul);
+    font-weight: bold;
+    font-size: 15px;
+  }
+
+#pass, #username{
+    padding-left: 30px;;
+    opacity: 0.7; 
+    width: 230px;
+    opacity: 0.6;
+}
+
+#login{
+    font-weight: bold;
+    color: var(--color-azul);
+    width: 100px;   
+    font-size: 15px;
+   
+}
+
+
+
+h2{
+    font-size: 35px;
+}
