@@ -1,25 +1,5 @@
 
-.boton-retroceso {
-    background-color:transparent; /* Fondo azul semitransparente */
 
-    padding: 10px 20px; /* Espaciado del botón */
-    border: none; /* Elimina el borde del botón */
-    cursor: pointer; /* Cambia el cursor al pasar por encima */
-    border: solid green;
-    position: absolute;
-    left: 10%; /* Posiciona el elemento en el centro horizontalmente */
-    top: 120px;
-    width: 200px;
-    height: 50px;
-}
-  
-  .boton-retroceso::before {
-    content: "◄ ";/* Carácter Unicode de la flecha hacia atrás */
-    background-image: url('/src/assets/flecha-correcta.png');
-
-    color: aliceblue;
-  }
-  
 .seccion{
 
     background-color: hsla(232, 34%, 27%, 0.7); /* Fondo rojo 50% transparente */
@@ -40,7 +20,6 @@
     justify-content: center; /* Centra horizontalmente */
     align-items: center; /* Centra verticalmente */
     height: 100vh;
-    border: solid red;
     backdrop-filter: blur(5px); /* Aplica un desenfoque de 5 píxeles (ajusta según tus preferencias) */  
 }
 
@@ -106,6 +85,12 @@ h2{
     opacity: 0.7; 
     opacity: 0.6;
 }
+
+.error-message {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+  }
 
 
 
