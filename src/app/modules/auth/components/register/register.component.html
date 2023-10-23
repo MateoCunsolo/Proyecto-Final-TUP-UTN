@@ -13,6 +13,7 @@
             <div class="campo">
                 <label for="userName">User name :</label>
                 <input type="text" id="userName" formControlName="userName" placeholder="User Name">
+
               
                 <span *ngIf= "registerForm.controls['userName'].hasError('minlength') && 
                 registerForm.get('userName')!.touched" 
@@ -21,6 +22,7 @@
             </span>
 
                     
+
             </div>
 
             <div class="campo">
