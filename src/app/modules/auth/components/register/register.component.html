@@ -1,60 +1,62 @@
 
 
 <div class="contenedor ">
-    <button class="boton-retroceso"></button>
-
+ 
 <section class="seccion">
     <h2>Create Account</h2>
     <p>Embark on your cinematic journey !</p>
 
     <fieldset> <!--se usa para agrupar varios controles y etiquetas 'label' dentro de un formulario web-->
        
-        <form id="formulario" (ngSubmit)="saveUser()" [formGroup]="formulario">
+        <form id="formulario" [formGroup]="registerForm">
             
             <div class="campo">
                 <label for="userName">User name :</label>
                 <input type="text" id="userName" formControlName="userName" placeholder="User Name">
-                <div class="error">
-                    <span *ngIf="(formulario.controls['userName'].value == '' && formulario.touched)">
-                        Error
-                    </span>
-                </div>
+
+              
+                <span *ngIf= "registerForm.controls['userName'].hasError('minlength') && 
+                registerForm.get('userName')!.touched" 
+                class="error-message">
+                Mínimo 4 caracteres.
+            </span>
+
+                    
+
             </div>
 
             <div class="campo">
                 <label for="email">Email :</label>
                 <input type="email" id="email" formControlName="email" placeholder="Email">
-                <div class="error">
-                    <span *ngIf="formulario.controls['email'].getError('email') && formulario.touched"> <!--NO ANDAN Y NO SE XQ-->
-                        Error
-                    </span>
-                </div>
+            
+                  <span
+                    *ngIf=
+                    "registerForm.controls['email'].hasError('pattern') &&
+                    registerForm.get('email')!.touched
+                    "
+                    class="error-message">
+                    Formato de emal invalido
+                  </span>
             </div>
 
             <div class="campo">
                 <label for="password">Password :</label>
                 <input type="password" id="password" formControlName="password" placeholder="Password">
-                <div class="error">
-                    <span *ngIf="formulario.controls['password'].getError('minLength') && formulario.touched">
-                        Error
-                    </span>
-                </div>
+
+                <span *ngIf= "registerForm.controls['password'].hasError('minlength') && 
+                registerForm.get('password')!.touched" 
+                class="error-message">
+                Mínimo 6 caracteres.
+            </span>
             </div>
 
             <div class="campo">
                 <label for="passwordTwo">Repeat password :</label>
-                <input type="password" id="passwordTwo" formControlName="passwordTwo" placeholder="Repeat Password">
-                <div class="error">
-                    <span *ngIf="formulario.controls['passwordTwo'].getError('minLength') && formulario.touched">
-                        Error
-                    </span>
-                </div>
+                <input type="password" id="passwordTwo"  placeholder="Repeat Password">
+                
+               
             </div>
 
-            <div class="campo">
-                <!--para guardar el id del usuario, que no lo tiene que ver, pero si lo necesitamos para la bdd-->
-                <input type="hidden" id="id" formControlName="id">
-            </div>
             <div id="div-submit">
                 <input type="submit" value="Sign Up" id="signUp">
             </div>
@@ -64,6 +66,7 @@
     </fieldset>
 
 </section>
+
 </div>
 
 <app-footer></app-footer>
