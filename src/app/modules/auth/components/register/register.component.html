@@ -15,9 +15,8 @@
                 <label for="userName">User name :</label>
                 <input type="text" id="userName" formControlName="userName" placeholder="User Name">
                 <div class="error">
-                    <span *ngIf="formulario.controls['userName'].getError('required') && formulario.touched">
+                    <span *ngIf="(formulario.controls['userName'].value == '' && formulario.touched)">
                         Error
-                        <!--la condicion para q aparezca, es que el campo haya sido tocado y que este vacio, ahi aparece el mensaje de error-->
                     </span>
                 </div>
             </div>
