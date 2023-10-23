@@ -1,0 +1,18 @@
+footer{
+    bottom: 0; 
+    width: 100%;
+    height: auto;
+    background-color: black;
+    color: var(--color-gris-claro);
+    text-align: center;
+    align-items: center; /* Alinea los elementos en el centro verticalmente */
+    padding: 10px; /* Agrega espacio alrededor del contenido del footer (ajusta según tu preferencia) */
+
+}
+
+footer a, footer p{
+    display: inline;
+    color: var(--color-gris-claro);
+    margin-left: .5rem;
+
+}

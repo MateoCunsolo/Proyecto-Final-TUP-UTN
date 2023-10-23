@@ -2,6 +2,8 @@
 :root {
     --color-azul-claro: #2D335b;
     --color-blanco-claro: #f1eaea;
+    --color-gris-claro: #BFBFBF;
+    --color-azul: #1D2249;
 }
 
 *{
@@ -19,7 +21,7 @@ body{
     background-image: url(./assets/cinema.png);
     background-size: cover;
     background-repeat: no-repeat;
-    height: 100vh;
+    height: auto;
     margin: 0;
     background-position-x: center;
     background-position-y:bottom; 
