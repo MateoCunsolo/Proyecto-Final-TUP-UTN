@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserService } from 'src/app/services/user.service';
 import { Router } from '@angular/router';
+import { User } from 'src/app/core/Models';
 
 
 
@@ -22,6 +23,7 @@ export class RegisterComponent implements OnInit {
     email: new FormControl('', [Validators.required, Validators.pattern(this.emailPattern)]),
     password: new FormControl('', [Validators.required, Validators.minLength(6)])
   })
+  userService: any;
 
 
   constructor(private fb: FormBuilder, private router: Router) { }
@@ -34,14 +36,14 @@ export class RegisterComponent implements OnInit {
 
     //this.formulario.reset() limpia el formulario, lo vuelve a cero
 
-    if(this.formulario.invalid) return; //si el formulario es invalido, que no me retorne el objeto (osea nada)
+    if(this.registerForm.invalid) return; //si el formulario es invalido, que no me retorne el objeto (osea nada)
     
     //metodo de comparacion de contraseñas, que despues lleve a la creacion del objeto usuario
 
     const user : User = {
-      userName: this.formulario.controls['userName'].value,
-      email: this.formulario.controls['email'].value,
-      password: this.formulario.controls['password'].value,
+      userName: this.registerForm.controls['userName'].value,
+      email: this.registerForm.controls['email'].value,
+      password: this.registerForm.controls['password'].value,
       id: 0
     } //capturo los datos del formulario y creo el objeto con ellos
     
@@ -52,6 +54,5 @@ export class RegisterComponent implements OnInit {
   
   
 
+  }
 }
-  
-
