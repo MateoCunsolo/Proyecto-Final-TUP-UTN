@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-
-import { User } from '../core/Models';
+import { User } from 'src/app/core/Models';
 
 
 @Injectable({
@@ -13,9 +12,8 @@ export class UserService {
 
   constructor(private router: Router) { }
 
-  async postUser(user : User | undefined) {
+  async postUser(user : User){
     try{
-      console.log(user)
       await fetch (this.url, 
                  {
                    method: 'POST',
@@ -31,4 +29,3 @@ export class UserService {
 
 
 }
-
