@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { UserService } from 'src/app/services/user.service';
 import { Router } from '@angular/router';
-import { User } from 'src/app/core/Models';
+import { IUser } from 'src/app/core/Interfaces';
+
 
 @Component({
   selector: 'app-register',
@@ -10,7 +11,7 @@ import { User } from 'src/app/core/Models';
   styleUrls: ['./register.component.css']
 })
 
-export class RegisterComponent{
+export class RegisterComponent implements OnInit{
 
   private email: string = '';
   
@@ -23,9 +24,12 @@ export class RegisterComponent{
     confirmPassword: new FormControl('', [Validators.required])
   }, [this.passwordMatch("password", "confirmPassword")])
 
-  userService: any;
-
-  constructor(private fb: FormBuilder, private router: Router) { }
+ 
+  constructor(private fb: FormBuilder, private router: Router, private userService: UserService) { }
+  
+  ngOnInit(): void {
+   
+  }
 
   getControl(name: any): AbstractControl | null {
 
@@ -51,22 +55,16 @@ export class RegisterComponent{
 
   saveUser(){
 
-    //this.formulario.reset() limpia el formulario, lo vuelve a cero
-
     if(this.registerForm.invalid) return; //si el formulario es invalido, que no me retorne el objeto (osea nada)
     
-    //metodo de comparacion de contraseñas, que despues lleve a la creacion del objeto usuario
-
-    const user : User = {
+    const user : IUser = {
       userName: this.registerForm.controls['userName'].value,
       email: this.registerForm.controls['email'].value,
-      password: this.registerForm.controls['password'].value,
-      id: 0
+      password: this.registerForm.controls['password'].value
     } //capturo los datos del formulario y creo el objeto con ellos
     
     this.userService.postUser(user);
-    
-    //console.log(registeredUser);
+    console.log(user);
 
   }
 
