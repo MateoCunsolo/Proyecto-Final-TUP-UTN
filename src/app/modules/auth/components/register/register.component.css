@@ -1,5 +1,4 @@
 
-
 .seccion{
 
     background-color: hsla(232, 34%, 27%, 0.7); /* Fondo rojo 50% transparente */
@@ -39,16 +38,10 @@ label {
 
 }
 
-.error{
-    color : red;
-    text-align: center;
-    font-weight: 700;
-}
 
 fieldset {
-    /*border: none ; /* Elimina los bordes del fieldset */
+    border: none ; /* Elimina los bordes del fieldset */
     width: 300px; /* Ajusta el ancho del fieldset según tus necesidades */
-
 }
 
 fieldset input{
@@ -87,9 +80,11 @@ h2{
 }
 
 .error-message {
-    color: red;
+    color: rgb(252, 252, 252);
     font-size: 14px;
-    margin-top: 5px;
+    font-weight: bold;
+    margin-right: 2rem;
+    background-color: rgb(165, 13, 13);
   }
 
 
