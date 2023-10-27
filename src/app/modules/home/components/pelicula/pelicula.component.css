@@ -32,10 +32,14 @@ h1 {
     align-items: center;
     justify-content: center;
     background-color: #20233de6;
+    color: white;
+    border: none;
     border-radius: 1rem;
     padding: 1rem;
     text-align: center;
+    gap: 1rem;
     grid-row: auto / span 1;
+    cursor: pointer;
 }
 
 .movie-poster {
@@ -43,7 +47,7 @@ h1 {
     max-width: 100%;
 }
 
-button {
+.load {
     width: 100%;
     background-color: var(--color-azul-claro);
     cursor: pointer;
@@ -55,7 +59,7 @@ button {
     transition: background-color 0.5s, color 0.5s;
 }
 
-button:hover {
+load:hover {
     background-color: #5a67b8;
     color: var(--color-azul-claro);
 }

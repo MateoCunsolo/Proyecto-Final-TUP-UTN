@@ -23,6 +23,18 @@
       "email": "jamoncito@gmail.com",
       "password": "jamoncito",
       "id": 4
+    },
+    {
+      "userName": "MATEO",
+      "email": "cunsolo73@gmail.com",
+      "password": "poolday10",
+      "id": 5
+    },
+    {
+      "userName": "MATEO",
+      "email": "cunsolo73@gmail.com",
+      "password": "123456",
+      "id": 6
     }
   ]
 }

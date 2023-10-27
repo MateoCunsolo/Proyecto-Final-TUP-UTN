@@ -4,15 +4,15 @@
   <h1>Movie List</h1>
 
   <div class="conteiner">
-  <div class="movie-card" *ngFor="let movie of movies">
+  <button class="movie-card" *ngFor="let movie of movies">
     <img class="movie-poster"
       [src]="'https://image.tmdb.org/t/p/w200' + movie.poster_path"
       alt="{{ movie.title }}"
     />
     <h2>{{ movie.title }}</h2>
-  </div>
+  </button>
 </div>
 
-<button (click)="loadNextPage()">Load More</button>
+<button class="load" (click)="loadNextPage()">Load More</button>
 
 </body>
