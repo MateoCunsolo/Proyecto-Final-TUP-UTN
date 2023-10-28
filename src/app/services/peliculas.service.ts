@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { MovieData } from '../core/movie.interface';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -28,5 +29,10 @@ export class PeliculasService {
           reject(error);
         });
     });
+  }
+
+  getMovieDetails(movieId: number): Observable<any> {
+    const url = `${this.apiUrl}/movie/${movieId}?api_key=79f8e563e8d26768e3277cdf102fd1b1`;
+    return this.http.get(url);
   }
 }
