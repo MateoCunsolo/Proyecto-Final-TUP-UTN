@@ -18,7 +18,7 @@ export class RegisterComponent implements OnInit{
   private emailPattern: RegExp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   
   registerForm = new FormGroup({
-    userName: new FormControl('', [Validators.required, Validators.minLength(4)]),//digo que es requerido y que necesita como minimo cuatro campos
+    userName: new FormControl('', [Validators.required, Validators.minLength(4)]),//digo que es requerido y que necesita como minimo cuatro caracteres
     email: new FormControl('', [Validators.required, Validators.pattern(this.emailPattern)]),
     password: new FormControl('', [Validators.required, Validators.minLength(6)]),
     confirmPassword: new FormControl('', [Validators.required])
@@ -31,10 +31,8 @@ export class RegisterComponent implements OnInit{
    
   }
 
-  getControl(name: any): AbstractControl | null {
-
+  getControl(name: any): AbstractControl | null { 
     return this.registerForm.get(name)
-
   }
 
   passwordMatch(password: string, confirm_password: string) {
