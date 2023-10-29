@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { UserService } from 'src/app/services/user.service';
 import { Router } from '@angular/router';
-import { IUser } from 'src/app/core/Interfaces';
+import { IList, IMovie, IUser } from 'src/app/core/Interfaces';
 
 
 @Component({
@@ -56,22 +56,32 @@ export class RegisterComponent implements OnInit{
   saveUser(){
 
     if(this.registerForm.invalid) return; //si el formulario es invalido, que no me retorne el objeto (osea nada)
+  
     
+    const ToWatch: IList = {
+      name: "To Watch",
+      id: 1,
+      movies: null
+      };
+    
+      const Watched: IList = {
+        name: "Watched",
+        id: 2,
+        movies: null
+      };
+
     const user : IUser = {
       userName: this.registerForm.controls['userName'].value,
       email: this.registerForm.controls['email'].value,
-      password: this.registerForm.controls['password'].value
+      password: this.registerForm.controls['password'].value,
+      lists: [ToWatch, Watched],
+      comments: null
     } //capturo los datos del formulario y creo el objeto con ellos
     
     this.userService.postUser(user);
     console.log(user);
 
   }
-
- 
-
-
-
-  
   
 }
+
