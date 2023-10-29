@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { IUser } from '../core/Interfaces';
+import { Observable, from } from 'rxjs';
 
 
 @Injectable({
@@ -13,6 +14,12 @@ export class UserService {
 
   constructor(private router: Router){}
 
+  getUsers(): Observable<IUser[]>{
+    return from(fetch(this.url).then(response => response.json()));
+
+  }
+
+ 
   public async postUser(user: IUser){
     try {
       await fetch(this.url,
