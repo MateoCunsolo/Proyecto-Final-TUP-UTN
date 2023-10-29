@@ -31,7 +31,10 @@ export class LoginComponent implements OnInit {
     const user : IUser = {
       userName: this.loginForm.controls['userName'].value,
       email: null,
-      password: this.loginForm.controls['password'].value
+      password: this.loginForm.controls['password'].value,
+      lists: null,
+      comments: null
+
     } //capturo los datos del formulario y creo el objeto con ellos
     
     this.userService.getUsers().subscribe((listUsers: IUser[]) => {
@@ -40,6 +43,7 @@ export class LoginComponent implements OnInit {
 
       if(users.length > 0){
         console.log('Usuario logueado');
+        //cargar los atributos del usuario con el jsonserver
         this.router.navigate(['home'])
       }else
       {

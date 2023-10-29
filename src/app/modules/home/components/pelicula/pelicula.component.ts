@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Movie, MovieData } from 'src/app/core/movie.interface';
 import { PeliculasService } from 'src/app/services/peliculas.service';
+import { Router } from '@angular/router'; // Importa el módulo Router
 
 @Component({
   selector: 'app-pelicula',
@@ -11,7 +12,8 @@ export class PeliculaComponent implements OnInit {
   private page = 1;
   public movies: Movie[] = [];
 
-  constructor(private moviesService: PeliculasService) { }
+  constructor(private moviesService: PeliculasService, private router: Router) {
+  }
 
   ngOnInit() {
     this.loadMovies();
@@ -31,5 +33,9 @@ export class PeliculaComponent implements OnInit {
   loadNextPage() {
     this.page++;
     this.loadMovies();
+  }
+
+  redirectToMovieDetail(movieId: number) {
+    this.router.navigate(['/movie-detail/' + movieId]);
   }
 }
