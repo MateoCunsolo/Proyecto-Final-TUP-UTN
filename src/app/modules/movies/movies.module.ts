@@ -5,12 +5,14 @@ import { MoviesRoutingModule } from './movies-routing.module';
 import { PeliculaComponent } from './components/pelicula/pelicula.component';
 import { PeliculaDetalleComponent } from './components/peliculadetalle/peliculadetalle.component';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { CommentsComponent } from './components/comments/comments.component';
 
 
 @NgModule({
   declarations: [
     PeliculaComponent,
-    PeliculaDetalleComponent
+    PeliculaDetalleComponent,
+    CommentsComponent
   ],
   imports: [
     CommonModule,
@@ -19,7 +21,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
   ],
   exports:[
     PeliculaComponent,
-    PeliculaDetalleComponent
+    PeliculaDetalleComponent,
+    CommentsComponent
   ]
 })
 export class MoviesModule { }

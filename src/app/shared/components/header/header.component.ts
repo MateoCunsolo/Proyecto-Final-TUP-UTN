@@ -7,9 +7,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
+  name:string= "";
   constructor() { }
 
   ngOnInit(): void {
-  }
+    const userSesion = sessionStorage.getItem('user');
+    if (userSesion) {
+    this.name = JSON.parse(userSesion).email;
+    
+
+    }
+}
 
 }

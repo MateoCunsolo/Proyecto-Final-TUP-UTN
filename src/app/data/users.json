@@ -94,6 +94,25 @@
       ],
       "comments": null,
       "id": 5
+    },
+    {
+      "userName": "MATEO",
+      "email": "M@GMAIL.COM",
+      "password": "123456",
+      "lists": [
+        {
+          "name": "To Watch",
+          "id": 1,
+          "movies": null
+        },
+        {
+          "name": "Watched",
+          "id": 2,
+          "movies": null
+        }
+      ],
+      "comments": null,
+      "id": 6
     }
   ]
 }

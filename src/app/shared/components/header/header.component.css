@@ -15,6 +15,12 @@ button
     cursor: pointer;
     width: 36px;
     height: 36px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    width: auto;
 }
 
 header img
@@ -44,6 +50,8 @@ header input
 
 .contenedor-input
 {
+    position: absolute;
+    margin-left: 33.333333333333333333333%;
     display: flex;
     align-items: center;
     justify-content: space-between;

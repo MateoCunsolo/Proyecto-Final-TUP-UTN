@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit {
 
       if(users.length > 0){
         console.log('Usuario logueado');
-        //cargar los atributos del usuario con el jsonserver 
+        sessionStorage.setItem('user', JSON.stringify(users[0]));
         this.router.navigate(['home'])
       }else
       {
