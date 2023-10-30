@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit {
 
       if(users.length > 0){
         console.log('Usuario logueado');
-        //cargar los atributos del usuario con el jsonserver
+        //cargar los atributos del usuario con el jsonserver 
         this.router.navigate(['home'])
       }else
       {
@@ -51,7 +51,8 @@ export class LoginComponent implements OnInit {
         let p: HTMLElement | null = document.getElementById("msj-login");
         if(p != null)
         {
-          p.innerHTML = "Usuario y/o contraseña incorrectos";
+          p.classList.add("show");
+          //p.innerHTML = "Usuario y/o contraseña incorrectos";
         }
 
       }
