@@ -43,8 +43,9 @@ export class LoginComponent implements OnInit {
 
       if(users.length > 0){
         console.log('Usuario logueado');
-        sessionStorage.setItem('user', JSON.stringify(users[0]));
+        sessionStorage.setItem('user', JSON.stringify(users[0])
         this.router.navigate(['home'])
+      
       }else
       {
         console.log('Usuario no logueado');
