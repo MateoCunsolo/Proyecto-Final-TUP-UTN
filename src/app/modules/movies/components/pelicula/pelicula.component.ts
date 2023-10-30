@@ -36,6 +36,7 @@ export class PeliculaComponent implements OnInit {
   }
 
   redirectToMovieDetail(movieId: number) {
-    this.router.navigate(['/movie-detail/' + movieId]);
+    this.router.navigate(['home/movie/' + movieId]);
+
   }
 }

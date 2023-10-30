@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { PeliculaDetalleComponent } from './modules/home/components/peliculadetalle/peliculadetalle.component';
+import { PeliculaDetalleComponent } from './modules/movies/components/peliculadetalle/peliculadetalle.component';
 
 const routes: Routes = [ 
   {
@@ -10,10 +10,6 @@ const routes: Routes = [
   {
     path:'home',
     loadChildren: ()=> import('./modules/home/home.module').then(m=>m.HomeModule)
-  },
-  { 
-    path: 'movie-detail/:id', 
-    component: PeliculaDetalleComponent 
   }
 ];
 

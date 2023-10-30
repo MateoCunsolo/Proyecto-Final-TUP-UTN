@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
     password: new FormControl('',[Validators.required])
   })
   
-  
+  flag = false;
 
   constructor(private fb: FormBuilder, private router: Router, private userService: UserService) { }
 
@@ -48,6 +48,7 @@ export class LoginComponent implements OnInit {
       }else
       {
         console.log('Usuario no logueado');
+
         let p: HTMLElement | null = document.getElementById("msj-login");
         if(p != null)
         {
@@ -62,6 +63,7 @@ export class LoginComponent implements OnInit {
             });
           }
         }
+
 
       }
 
