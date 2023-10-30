@@ -1,0 +1,68 @@
+body
+{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.container
+{
+    display: grid;
+    width: 80%;
+    grid-template-columns: 1fr 6fr;
+    grid-template-rows: 1fr;
+    grid-template-areas:  "poster info";
+    background-color: rgba(0, 0, 0, 0.866);
+    border: solid var(--color-azul) 1rem;
+    border-radius: 4rem 0rem 4rem 0rem;
+}
+
+.poster
+{
+    grid-area: poster;
+    width: 100%;
+}
+
+.poster img
+{
+    width: 15rem;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 3rem 0rem 0rem 0rem;
+}
+
+.info
+{
+    display: flex;
+    flex-direction: column;
+    grid-area: info;
+    padding: 1rem 2rem;
+    font-size: larger;
+    gap: 1rem;
+    text-align: justify;
+
+}
+
+#back
+{
+    background-color: rgba(255, 255, 255, 0);
+    border: none;
+    position: absolute;
+    border-radius: 50%;
+    top: 1rem;
+    left: 1rem;
+}
+
+#back img
+{
+    width: 3rem;
+    height: 3rem;
+}
+
+#back:hover
+{
+    cursor: pointer;
+    background-color: var(--color-blanco-claro);
+}

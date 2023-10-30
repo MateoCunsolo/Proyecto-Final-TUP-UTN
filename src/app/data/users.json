@@ -1,40 +1,61 @@
 {
   "users": [
     {
-      "id": 1,
-      "userName": "admin",
-      "email": "admin@gmail.com",
-      "password": "admin123"
+      "userName": "MATEO",
+      "email": "CUNSOLO73@GMAIL.COM",
+      "password": "123456",
+      "lists": [
+        {
+          "name": "To Watch",
+          "id": 1,
+          "movies": null
+        },
+        {
+          "name": "Watched",
+          "id": 2,
+          "movies": null
+        }
+      ],
+      "comments": null,
+      "id": 1
     },
     {
-      "userName": "Magali",
-      "email": "yojaja@gmail.com",
-      "password": "yoyoyo",
+      "userName": "JUAN",
+      "email": "JUAN@GMAIL.COM",
+      "password": "123456",
+      "lists": [
+        {
+          "name": "To Watch",
+          "id": 1,
+          "movies": null
+        },
+        {
+          "name": "Watched",
+          "id": 2,
+          "movies": null
+        }
+      ],
+      "comments": null,
       "id": 2
     },
     {
-      "userName": "pepe",
-      "email": "pepe@gmail.com",
-      "password": "yoyoyo",
-      "id": 3
-    },
-    {
-      "userName": "jamon",
-      "email": "jamoncito@gmail.com",
-      "password": "jamoncito",
-      "id": 4
-    },
-    {
-      "userName": "MATEO",
-      "email": "cunsolo73@gmail.com",
-      "password": "poolday10",
-      "id": 5
-    },
-    {
-      "userName": "MATEO",
-      "email": "cunsolo73@gmail.com",
+      "userName": "PEDRO",
+      "email": "PEDRO@GMAIL.COM",
       "password": "123456",
-      "id": 6
+      "lists": [
+        {
+          "name": "To Watch",
+          "id": 1,
+          "movies": null
+        },
+        {
+          "name": "Watched",
+          "id": 2,
+          "movies": null
+        }
+      ],
+      "comments": null,
+      "id": 3
     }
   ]
 }
