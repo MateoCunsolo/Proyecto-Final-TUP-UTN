@@ -1,8 +1,8 @@
 {
   "users": [
     {
-      "userName": "MATEO",
-      "email": "CUNSOLO73@GMAIL.COM",
+      "userName": "mate",
+      "email": "cunsolo73@gmail.com",
       "password": "123456",
       "lists": [
         {
@@ -16,12 +16,18 @@
           "movies": null
         }
       ],
-      "comments": null,
+      "comments": [
+        {
+          "comment": "COMENTARIO PREDETERMINADO PARA REALIZAR PRUEBAS -> BY MATE :D",
+          "id": 0,
+          "idMovie": 507089
+        }
+      ],
       "id": 1
     },
     {
-      "userName": "JUAN",
-      "email": "JUAN@GMAIL.COM",
+      "userName": "juan",
+      "email": "juan@gmail.com",
       "password": "123456",
       "lists": [
         {
@@ -35,84 +41,15 @@
           "movies": null
         }
       ],
-      "comments": null,
+      "comments": [
+        {
+          "name": "",
+          "comment": "COMENTARIO PREDETERMINADO PARA REALIZAR PRUEBAS -> BY JUAN :D",
+          "id": 0,
+          "idMovie": 507089
+        }
+      ],
       "id": 2
-    },
-    {
-      "userName": "PEDRO",
-      "email": "PEDRO@GMAIL.COM",
-      "password": "123456",
-      "lists": [
-        {
-          "name": "To Watch",
-          "id": 1,
-          "movies": null
-        },
-        {
-          "name": "Watched",
-          "id": 2,
-          "movies": null
-        }
-      ],
-      "comments": null,
-      "id": 3
-    },
-    {
-      "userName": "mateo",
-      "email": "cunsolo73@gmail.com",
-      "password": "poolday10",
-      "lists": [
-        {
-          "name": "To Watch",
-          "id": 1,
-          "movies": null
-        },
-        {
-          "name": "Watched",
-          "id": 2,
-          "movies": null
-        }
-      ],
-      "comments": null,
-      "id": 4
-    },
-    {
-      "userName": "MATEO",
-      "email": "M@GMAIL.COM",
-      "password": "123456",
-      "lists": [
-        {
-          "name": "To Watch",
-          "id": 1,
-          "movies": null
-        },
-        {
-          "name": "Watched",
-          "id": 2,
-          "movies": null
-        }
-      ],
-      "comments": null,
-      "id": 5
-    },
-    {
-      "userName": "MATEO",
-      "email": "M@GMAIL.COM",
-      "password": "123456",
-      "lists": [
-        {
-          "name": "To Watch",
-          "id": 1,
-          "movies": null
-        },
-        {
-          "name": "Watched",
-          "id": 2,
-          "movies": null
-        }
-      ],
-      "comments": null,
-      "id": 6
     }
   ]
 }

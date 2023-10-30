@@ -1,15 +1,10 @@
 <body>
-
   <div class="conteiner">
-  <div (click)="redirectToMovieDetail(movie.id)" class="movie-card" *ngFor="let movie of movies">
-    <img class="movie-poster"
-      [src]="'https://image.tmdb.org/t/p/w200' + movie.poster_path"
-      alt="{{ movie.title }}"
-    />
-    <h2>{{ movie.title }}</h2>
+    <div (click)="redirectToMovieDetail(movie.id)" class="movie-card" *ngFor="let movie of movies">
+      <img class="movie-poster" [src]="'https://image.tmdb.org/t/p/original' + movie.poster_path"
+        alt="{{ movie.title }}" />
+      <h2>{{ movie.title }}</h2>
+    </div>
   </div>
-</div>
-
-<button class="load" (click)="loadNextPage()">Load More</button>
-
+  <button class="load" (click)="loadNextPage()">Load More</button>
 </body>

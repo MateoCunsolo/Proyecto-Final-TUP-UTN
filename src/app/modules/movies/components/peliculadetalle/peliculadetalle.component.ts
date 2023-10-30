@@ -38,6 +38,10 @@ export class PeliculaDetalleComponent implements OnInit {
       this.loadMovieDetails();
     });
   }
+  
+  extractYear(date: string): string {
+    return date.substr(0, 4);
+  }
 
   loadMovieDetails() {
     this.moviesService.getMovieDetails(this.movieId)
