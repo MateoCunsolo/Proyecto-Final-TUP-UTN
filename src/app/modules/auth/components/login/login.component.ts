@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit {
 
       if(users.length > 0){
         console.log('Usuario logueado');
-        //cargar los atributos del usuario con el jsonserver y cargar el user en .ocal storage param que persista la sesion
+        sessionStorage.setItem('user', JSON.stringify(users[0])
         this.router.navigate(['home'])
       
       }else

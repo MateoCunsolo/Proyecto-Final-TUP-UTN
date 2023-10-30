@@ -28,7 +28,7 @@ export class RegisterComponent implements OnInit {
       userName: new FormControl('', [
         Validators.required,
         Validators.minLength(4),
-      ]), //digo que es requerido y que necesita como minimo cuatro campos
+      ]), // asincronas:  vlaidators-> angular defect. sincronas:CustomValidator hechos por mua digo que es requerido y que necesita como minimo cuatro campos
       email: new FormControl('', [
         Validators.required,
         Validators.pattern(this.emailPattern),
