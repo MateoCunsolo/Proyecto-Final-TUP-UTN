@@ -9,11 +9,8 @@
     height: 25rem;
     width: 28rem;
     border-radius: 15px; /* Redondea las esquinas del botón */
-    border: 2px solid rgb(0, 255, 119);
 }
-
-
-
+ 
 #login-form
 {
     display: flex; 
@@ -22,14 +19,13 @@
     align-items: center;
     margin-top: 1rem;
 }
-
-
+ 
+ 
 .center-button {
     display: flex;
     justify-content: center;
-    border: 2px solid red;
   }
-
+ 
 .contenedor{
     display: flex;
     justify-content: center; /* Centra horizontalmente */
@@ -37,7 +33,7 @@
     height: 100vh;
     backdrop-filter: blur(5px); /* Aplica un desenfoque de 5 píxeles (ajusta según tus preferencias) */
 }
-
+ 
 input{
     display: block;
     margin: 5px;
@@ -45,42 +41,43 @@ input{
     border: none;
     border-radius: 20px; /* Redondea las esquinas del botón */
     margin-bottom: 10px;
-    margin-top: 15px;
+    margin-top: 10px;
  
 }
-
+ 
 ::placeholder {
     color: var(--color-azul);
     font-weight: bold;
     font-size: 15px;
   }
-
+ 
 #pass, #username{
     padding-left: 30px;;
     opacity: 0.7; 
     width: 230px;
     opacity: 0.6;
 }
-
+ 
 #login{
     font-weight: bold;
     color: var(--color-azul);
     width: 100px;   
     font-size: 15px; 
 }
-
+ 
 h2{
     font-size: 35px;
 }
-
+ 
 #msj-login{
     font-weight: bold;
     margin-top: 10px;  
     visibility: hidden;
 }
-
-
+ 
+ 
 .show
 {
     visibility:visible !important; 
 }
+ 
