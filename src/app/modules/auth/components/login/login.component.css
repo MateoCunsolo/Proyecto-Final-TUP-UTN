@@ -9,11 +9,13 @@
     height: 25rem;
     width: 28rem;
     border-radius: 15px; /* Redondea las esquinas del botón */
+    border: 2px solid rgb(0, 255, 119);
 }
 
 .center-button {
     display: flex;
     justify-content: center;
+    border: 2px solid red;
   }
 
 .contenedor{
@@ -32,6 +34,7 @@ input{
     border-radius: 20px; /* Redondea las esquinas del botón */
     margin-bottom: 10px;
     margin-top: 15px;
+    border: 2px solid red;
     
 }
 

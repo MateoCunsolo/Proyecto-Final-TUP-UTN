@@ -18,12 +18,15 @@
     <input type="password" name="" id="pass" formControlName="password" placeholder="Password"  pattern="^(?!\s*$).+" title="It cannot be blank">
 
     <span class="error-message" *ngIf="validate('password', 'required')"> El campo es requerido</span>
+    
+    <span *ngIf="flag && loginForm.controls['userName'].touched" id="msj-login">
+        Usuario y/o contraseña incorrectos</span>
     </div>
     
-    <p id="msj-login"></p>
+    
 
     <div class="center-button">
-    <input type="submit" name="" id="login"  [disabled]="loginForm.invalid" value="Login">
+    <input type="submit" id="login"  [disabled]="loginForm.invalid" value="Login">
     </div>
 </form>
 
