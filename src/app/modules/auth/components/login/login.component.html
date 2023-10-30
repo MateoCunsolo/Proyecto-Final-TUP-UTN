@@ -6,6 +6,7 @@
 
 <form id="login-form" [formGroup]="loginForm" (ngSubmit)="loginUser()">
 
+
     <div class="campo">
     <label for="username"></label>
     <input type="text" name="" id="username" formControlName="userName" placeholder="User Name" pattern="^(?!\s*$).+" title="It cannot be blank">
@@ -20,7 +21,7 @@
     <span class="error-message" *ngIf="validate('password', 'required')"> El campo es requerido</span>
     </div>
     
-    <p id="msj-login"></p>
+    <p id="msj-login">Usuario y/o contraseña incorrectos</p>
 
     <div class="center-button">
     <input type="submit" name="" id="login"  [disabled]="loginForm.invalid" value="Login">
