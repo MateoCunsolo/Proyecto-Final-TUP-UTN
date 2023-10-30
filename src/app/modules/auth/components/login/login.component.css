@@ -12,6 +12,18 @@
     border: 2px solid rgb(0, 255, 119);
 }
 
+
+
+#login-form
+{
+    display: flex; 
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+
 .center-button {
     display: flex;
     justify-content: center;
@@ -34,8 +46,7 @@ input{
     border-radius: 20px; /* Redondea las esquinas del botón */
     margin-bottom: 10px;
     margin-top: 15px;
-    border: 2px solid red;
-    
+ 
 }
 
 ::placeholder {
@@ -65,4 +76,11 @@ h2{
 #msj-login{
     font-weight: bold;
     margin-top: 10px;  
+    visibility: hidden;
+}
+
+
+.show
+{
+    visibility:visible !important; 
 }

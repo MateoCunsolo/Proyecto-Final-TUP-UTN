@@ -14,7 +14,7 @@ export interface IList
 
 export interface IComment
 {
-    comment: string;
+    comment: string | null;
     id: number;
     idMovie: number;
 }

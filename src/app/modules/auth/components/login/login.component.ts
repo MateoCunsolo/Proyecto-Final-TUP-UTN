@@ -43,18 +43,33 @@ export class LoginComponent implements OnInit {
 
       if(users.length > 0){
         console.log('Usuario logueado');
-        //cargar los atributos del usuario con el jsonserver
+        //cargar los atributos del usuario con el jsonserver 
         this.router.navigate(['home'])
       }else
       {
         console.log('Usuario no logueado');
 
-        this.flag = true;
+        let p: HTMLElement | null = document.getElementById("msj-login");
+        if(p != null)
+        {
+        
+          p.classList.add("show");
+          
+          let formAfterSumbit : HTMLElement | null = document.getElementById("login-form");
+          if(formAfterSumbit != null)
+          {
+            formAfterSumbit.addEventListener("click", function(){
+              p?.classList.remove("show");
+            });
+          }
+        }
+
 
       }
+
     })
 
-
+     
   }
 
   validate(field: string, error: string){
@@ -63,3 +78,4 @@ export class LoginComponent implements OnInit {
   }
 
 }
+
