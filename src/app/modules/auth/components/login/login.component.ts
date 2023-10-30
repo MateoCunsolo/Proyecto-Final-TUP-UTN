@@ -51,14 +51,23 @@ export class LoginComponent implements OnInit {
         let p: HTMLElement | null = document.getElementById("msj-login");
         if(p != null)
         {
+        
           p.classList.add("show");
-          //p.innerHTML = "Usuario y/o contraseña incorrectos";
+          
+          let formAfterSumbit : HTMLElement | null = document.getElementById("login-form");
+          if(formAfterSumbit != null)
+          {
+            formAfterSumbit.addEventListener("click", function(){
+              p?.classList.remove("show");
+            });
+          }
         }
 
       }
+
     })
 
-
+     
   }
 
   validate(field: string, error: string){
@@ -67,3 +76,4 @@ export class LoginComponent implements OnInit {
   }
 
 }
+

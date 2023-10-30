@@ -81,6 +81,7 @@ export class RegisterComponent implements OnInit {
       movies: null,
     };
 
+
     const user: IUser = {
       userName: this.registerForm.controls['userName'].value,
       email: this.registerForm.controls['email'].value,
