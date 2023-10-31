@@ -47,7 +47,6 @@ export class AddlistComponent implements OnInit {
     { 
       this.user = JSON.parse(userSstr); //lo paso a formato json
      
-
       if(this.user)
       {
         console.log(this.user.id);
@@ -60,8 +59,8 @@ export class AddlistComponent implements OnInit {
         { 
           for(let i = 0; i< this.lists.length; i++ )
           {
-            const poslistaPeli = 1; //esta es la lista que selecciona el usuario
-            if(this.lists[i].id == poslistaPeli) //aca encontre el id de la lista a la que quiero agregar la peli
+            const idlistaPeli = 1; //esta es la lista que selecciona el usuario
+            if(this.lists[i].id == idlistaPeli) //aca encontre el id de la lista a la que quiero agregar la peli
             {
               console.log(this.lists[i]);
               console.log("lista encontrada");
@@ -69,12 +68,12 @@ export class AddlistComponent implements OnInit {
               //console.log(this.lists[i].idMovies);
 
               // public async addMovieToList(userId: number, listId: number, movieId: number) 
-              if (this.user?.id !== undefined) {
-                
-                console.log("id" + this.user.id + "pos lista" + i +  "mov id" + this.movieId);
-                this.userService.addMovieToList(this.user.id, i, this.movieId);
-                
-              }else
+              if (this.user?.id !== undefined) 
+              {
+                console.log("id" + this.user.id + "id lista" + i +  "mov id" + this.movieId);
+                this.userService.addMovieToList(this.user.id, i , this.movieId);
+              }
+              else
               {
                 console.log("algo malio sal");
               }
