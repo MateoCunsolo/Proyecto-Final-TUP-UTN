@@ -72,13 +72,13 @@ export class RegisterComponent implements OnInit {
     const ToWatch: IList = {
       name: 'To Watch',
       id: 1,
-      movies: null,
+      movies: [],
     };
 
     const Watched: IList = {
       name: 'Watched',
       id: 2,
-      movies: null,
+      movies: [],
     };
     
     const comment: IComment = {

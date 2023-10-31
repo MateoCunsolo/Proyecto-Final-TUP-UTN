@@ -49,6 +49,10 @@ export class UserService {
       console.log(error);
     }
   }
+  
+
+  //public async addMovieToList(userId: number, listId: number, movieId: number) 
+
 
 }
 
