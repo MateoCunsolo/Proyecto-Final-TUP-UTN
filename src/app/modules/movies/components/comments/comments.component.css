@@ -59,6 +59,8 @@ button
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 3rem;
+    height: 3rem;
 }
 
 button img
@@ -69,16 +71,15 @@ button img
 
 button:hover
 {
-    background-color: var(--color-azul-claro);
+    background-color: rgb(65, 65, 65);
     transition: 0.5s;
-    
 }
 
 p{
     color: black;
     font-size: 10px;
     padding: 1rem 0rem;
-    background-color: rgb(185, 185, 185);
+    background-color: rgb(201, 201, 201);
     padding: .5rem;
     border-radius: 1rem;
 }
