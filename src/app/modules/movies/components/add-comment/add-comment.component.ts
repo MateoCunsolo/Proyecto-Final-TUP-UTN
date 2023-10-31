@@ -48,7 +48,7 @@ export class AddCommentComponent implements OnInit {
       
       this.userService.addCommentToUser(this.user.id, comment);
     }
-    
+
     area.value = '';
     
     // pushear a la lista d comentarios d una peli en especifico
