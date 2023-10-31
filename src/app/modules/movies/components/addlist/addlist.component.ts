@@ -45,22 +45,7 @@ export class AddlistComponent implements OnInit {
 
 
     let userSstr = sessionStorage.getItem('user');
-    if(userSstr!=null)
-    { 
-      this.user = JSON.parse(userSstr);
-      if(this.user)
-      {
-        this.lists = this.user.lists;
-        
-        if(this.lists)
-        {
-          this.list.movies.movie.push(this.movieId);
-        }
-        //console.log(this.lists);
-      }    
     
-      
-    }
 
   }
 
