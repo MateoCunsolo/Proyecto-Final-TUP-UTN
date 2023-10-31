@@ -1,5 +1,92 @@
 {
   "users": [
-
+    {
+      "userName": "MATEO",
+      "email": "MATEO@GMAIL.COM",
+      "password": "123456",
+      "lists": [
+        {
+          "name": "To Watch",
+          "id": 1,
+          "idMovies": [
+            507089,
+            968051,
+            1173558,
+            937249,
+            980489,
+            939335,
+            565770,
+            459003,
+            807172,
+            926393,
+            1039690,
+            951491
+          ]
+        },
+        {
+          "name": "Watched",
+          "id": 2,
+          "idMovies": []
+        }
+      ],
+      "comments": [
+        {
+          "name": "",
+          "comment": "COMENTARIO PREDETERMINADO PARA REALIZAR PRUEBAS -> BY JUAN :D",
+          "idMovie": 507089
+        },
+        {
+          "name": "MATEO",
+          "comment": "holaaaaaaaaaaaa",
+          "idMovie": 937249
+        },
+        {
+          "name": "MATEO",
+          "comment": "matematejamon",
+          "idMovie": 937249
+        },
+        {
+          "name": "MATEO",
+          "comment": "pochoclo",
+          "idMovie": 937249
+        },
+        {
+          "name": "MATEO",
+          "comment": "river plate",
+          "idMovie": 937249
+        },
+        {
+          "name": "MATEO",
+          "comment": "HOLA ",
+          "idMovie": 937249
+        },
+        {
+          "name": "MATEO",
+          "comment": "MORISTE EN MADRID BOSTERO CULIADO",
+          "idMovie": 937249
+        },
+        {
+          "name": "MATEO",
+          "comment": "HOLA SOY MATEO, ESTA PELICULA NO ME GUSTO MUCHO.",
+          "idMovie": 968051
+        },
+        {
+          "name": "MATEO",
+          "comment": "MUY BUENA PELI",
+          "idMovie": 968051
+        },
+        {
+          "name": "MATEO",
+          "comment": "asdasdasd",
+          "idMovie": 968051
+        },
+        {
+          "name": "MATEO",
+          "comment": "xd\n",
+          "idMovie": 968051
+        }
+      ],
+      "id": 1
+    }
   ]
 }
