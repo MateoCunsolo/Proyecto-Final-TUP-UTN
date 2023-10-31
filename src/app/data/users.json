@@ -18,9 +18,14 @@
       ],
       "comments": [
         {
-          "comment": "COMENTARIO PREDETERMINADO PARA REALIZAR PRUEBAS -> BY MATE :D",
-          "id": 0,
-          "idMovie": 507089
+          "name": "mate",
+          "comment": "HOLA ESTO E UN COMMENT 2",
+          "idMovie": 0
+        },
+        {
+          "name": "mate",
+          "comment": "HOLA ESTO E UN COMMENT 4",
+          "idMovie": 299054
         }
       ],
       "id": 1

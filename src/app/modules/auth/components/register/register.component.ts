@@ -84,7 +84,6 @@ export class RegisterComponent implements OnInit {
     const comment: IComment = {
       name: "",
       comment:  "COMENTARIO PREDETERMINADO PARA REALIZAR PRUEBAS -> BY JUAN :D",
-      id: 0,
       idMovie: 507089,
     };
 
