@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { IUser } from 'src/app/core/Interfaces';
 import { IList } from 'src/app/core/Interfaces';
 import { IMovie } from 'src/app/core/Interfaces';
+import { ActivatedRoute } from '@angular/router';
+
 @Component({
   selector: 'app-addlist',
   templateUrl: './addlist.component.html',
@@ -14,6 +16,7 @@ export class AddlistComponent implements OnInit {
   user: IUser | null = null;
   lists: IList[] = [];
   movies: IMovie [] = [];
+  movieId: number = 0;
 
   list: IList = {
     "name": " ",
@@ -32,9 +35,14 @@ export class AddlistComponent implements OnInit {
     this.isVisibilityActive = !this.isVisibilityActive;
   }
   
-  constructor() { }
+  constructor(private route : ActivatedRoute) { }
 
   ngOnInit(): void {
+
+    this.route.params.subscribe(params =>{
+      this.movieId=+params ['id']
+    })
+
 
     let userSstr = sessionStorage.getItem('user');
     if(userSstr!=null)
@@ -44,7 +52,11 @@ export class AddlistComponent implements OnInit {
       {
         this.lists = this.user.lists;
         
-        console.log(this.lists);
+        if(this.lists)
+        {
+          this.list.movies.movie.push(this.movieId);
+        }
+        //console.log(this.lists);
       }    
     
       
