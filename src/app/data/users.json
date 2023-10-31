@@ -1,5 +1,31 @@
 {
   "users": [
-
+    {
+      "userName": "pedro",
+      "email": "pepe@gmail.com",
+      "password": "123456",
+      "lists": [
+        {
+          "name": "To Watch",
+          "id": 1,
+          "idMovies": [
+            951491
+          ]
+        },
+        {
+          "name": "Watched",
+          "id": 2,
+          "idMovies": []
+        }
+      ],
+      "comments": [
+        {
+          "name": "",
+          "comment": "COMENTARIO PREDETERMINADO PARA REALIZAR PRUEBAS -> BY JUAN :D",
+          "idMovie": 507089
+        }
+      ],
+      "id": 1
+    }
   ]
 }
