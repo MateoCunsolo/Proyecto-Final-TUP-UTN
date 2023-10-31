@@ -51,7 +51,7 @@ export class AddCommentComponent implements OnInit {
     
     area.value = '';
     
-    
+    // pushear a la lista d comentarios d una peli en especifico
 
     this.visibility();
     alert('Comment added successfully');
