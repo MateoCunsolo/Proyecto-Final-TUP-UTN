@@ -15,10 +15,14 @@
     <div id="title-year">
       <h2 id="title">{{ movie.title }}</h2>
       <h4 id="year">{{extractYear(movie.release_date)}}</h4>
-      <button>Add to List</button>
+      <app-addlist></app-addlist>
     </div>
-    
+  <section>
     <p>{{ movie.overview }}</p>
+    <p>{{ movie.original_language}}</p>
+    <p></p>
+  </section>
+
   </div>
 </div>
 
@@ -26,6 +30,7 @@
   <p>Cargando detalles de la película...</p>
 </div>
 
+<app-add-comment></app-add-comment>
 <app-comments> </app-comments>
 <app-footer></app-footer>
 </div>

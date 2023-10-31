@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
       userName: this.loginForm.controls['userName'].value,
       email: null,
       password: this.loginForm.controls['password'].value,
-      lists: null,
+      lists: [],
       comments: null
 
     } //capturo los datos del formulario y creo el objeto con ellos

@@ -10,7 +10,7 @@ import {
 } from '@angular/forms';
 import { UserService } from 'src/app/services/user.service';
 import { Router } from '@angular/router';
-import { IComment, IList, IMovie, IUser } from 'src/app/core/Interfaces';
+import { IComment, IList, IUser } from 'src/app/core/Interfaces';
 
 @Component({
   selector: 'app-register',
@@ -72,19 +72,18 @@ export class RegisterComponent implements OnInit {
     const ToWatch: IList = {
       name: 'To Watch',
       id: 1,
-      movies: null,
+      idMovies: [],
     };
 
     const Watched: IList = {
       name: 'Watched',
       id: 2,
-      movies: null,
+      idMovies: [],
     };
     
     const comment: IComment = {
       name: "",
       comment:  "COMENTARIO PREDETERMINADO PARA REALIZAR PRUEBAS -> BY JUAN :D",
-      id: 0,
       idMovie: 507089,
     };
 
@@ -97,8 +96,9 @@ export class RegisterComponent implements OnInit {
       lists: [ToWatch, Watched],
       comments: comments,
     }; //capturo los datos del formulario y creo el objeto con ellos
-
+  
+    
     this.userService.postUser(user);
-    console.log(user);
+    
   }
 }

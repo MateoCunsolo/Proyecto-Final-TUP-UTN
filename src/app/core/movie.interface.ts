@@ -26,3 +26,8 @@ export interface Movie {
     total_results: number;
   }
   
+
+export interface Genre {
+  id: number;
+  name: string;
+}

@@ -1,55 +1,5 @@
 {
   "users": [
-    {
-      "userName": "mate",
-      "email": "cunsolo73@gmail.com",
-      "password": "123456",
-      "lists": [
-        {
-          "name": "To Watch",
-          "id": 1,
-          "movies": null
-        },
-        {
-          "name": "Watched",
-          "id": 2,
-          "movies": null
-        }
-      ],
-      "comments": [
-        {
-          "comment": "COMENTARIO PREDETERMINADO PARA REALIZAR PRUEBAS -> BY MATE :D",
-          "id": 0,
-          "idMovie": 507089
-        }
-      ],
-      "id": 1
-    },
-    {
-      "userName": "juan",
-      "email": "juan@gmail.com",
-      "password": "123456",
-      "lists": [
-        {
-          "name": "To Watch",
-          "id": 1,
-          "movies": null
-        },
-        {
-          "name": "Watched",
-          "id": 2,
-          "movies": null
-        }
-      ],
-      "comments": [
-        {
-          "name": "",
-          "comment": "COMENTARIO PREDETERMINADO PARA REALIZAR PRUEBAS -> BY JUAN :D",
-          "id": 0,
-          "idMovie": 507089
-        }
-      ],
-      "id": 2
-    }
+
   ]
 }
