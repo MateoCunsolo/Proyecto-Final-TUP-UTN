@@ -1,14 +1,9 @@
 
-export interface IMovie
-{
-    idMovie: number;
-}
-
 export interface IList
 {
     name: string;
     id: number;
-    movies: IMovie[];
+    idMovies: number[];
 }
 
 export interface IComment
