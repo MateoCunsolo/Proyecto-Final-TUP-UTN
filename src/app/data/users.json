@@ -113,6 +113,56 @@
       ],
       "comments": null,
       "id": 6
+    },
+    {
+      "userName": "MATEO",
+      "email": "MATE@GMAIL.COM",
+      "password": "123456",
+      "lists": [
+        {
+          "name": "To Watch",
+          "id": 1,
+          "movies": null
+        },
+        {
+          "name": "Watched",
+          "id": 2,
+          "movies": null
+        }
+      ],
+      "comments": [
+        {
+          "comment": "COMENTARIO PREDETERMINADO PARA REALIZAR PRUEBAS -> BY MATE :D",
+          "id": 0,
+          "idMovie": 0
+        }
+      ],
+      "id": 7
+    },
+    {
+      "userName": "MESSI",
+      "email": "MESSI@GMAIL.COM",
+      "password": "123456",
+      "lists": [
+        {
+          "name": "To Watch",
+          "id": 1,
+          "movies": null
+        },
+        {
+          "name": "Watched",
+          "id": 2,
+          "movies": null
+        }
+      ],
+      "comments": [
+        {
+          "comment": "COMENTARIO PREDETERMINADO PARA REALIZAR PRUEBAS -> BY MATE :D",
+          "id": 0,
+          "idMovie": 0
+        }
+      ],
+      "id": 8
     }
   ]
 }
