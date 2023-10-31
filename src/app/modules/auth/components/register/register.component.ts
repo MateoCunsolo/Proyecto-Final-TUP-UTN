@@ -96,8 +96,9 @@ export class RegisterComponent implements OnInit {
       lists: [ToWatch, Watched],
       comments: comments,
     }; //capturo los datos del formulario y creo el objeto con ellos
-
+  
+    
     this.userService.postUser(user);
-    console.log(user);
+    
   }
 }

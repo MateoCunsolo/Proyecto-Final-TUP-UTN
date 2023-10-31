@@ -33,18 +33,29 @@ export class AddCommentComponent implements OnInit {
 
 
   postComment() {
-    console.log(this.user);
-    console.log(this.user?.id); 
+    if(this.user != null) { ;
+    console.log(this.user); 
 
+    const area = document.getElementById(`textarea`) as HTMLTextAreaElement;
     const comment : IComment = {
       name: this.user?.userName ?? null,
-      comment: "HOLA ESTO E UN COMMENT 4",//extrear del input,
+      comment: area.value ?? null,
       idMovie: this.movieId
-    }
+    }  
+  
     
     if (this.user?.id !== undefined) {
+      
       this.userService.addCommentToUser(this.user.id, comment);
     }
+
+    area.value = '';
     
+    // pushear a la lista d comentarios d una peli en especifico
+
+    this.visibility();
+    alert('Comment added successfully');
+  }
+
   }
 }
