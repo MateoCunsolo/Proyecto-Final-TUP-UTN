@@ -1,122 +1,8 @@
 {
   "users": [
     {
-      "userName": "MATEO",
-      "email": "CUNSOLO73@GMAIL.COM",
-      "password": "123456",
-      "lists": [
-        {
-          "name": "To Watch",
-          "id": 1,
-          "movies": null
-        },
-        {
-          "name": "Watched",
-          "id": 2,
-          "movies": null
-        }
-      ],
-      "comments": null,
-      "id": 1
-    },
-    {
-      "userName": "JUAN",
-      "email": "JUAN@GMAIL.COM",
-      "password": "123456",
-      "lists": [
-        {
-          "name": "To Watch",
-          "id": 1,
-          "movies": null
-        },
-        {
-          "name": "Watched",
-          "id": 2,
-          "movies": null
-        }
-      ],
-      "comments": null,
-      "id": 2
-    },
-    {
-      "userName": "PEDRO",
-      "email": "PEDRO@GMAIL.COM",
-      "password": "123456",
-      "lists": [
-        {
-          "name": "To Watch",
-          "id": 1,
-          "movies": null
-        },
-        {
-          "name": "Watched",
-          "id": 2,
-          "movies": null
-        }
-      ],
-      "comments": null,
-      "id": 3
-    },
-    {
       "userName": "mateo",
-      "email": "cunsolo73@gmail.com",
-      "password": "poolday10",
-      "lists": [
-        {
-          "name": "To Watch",
-          "id": 1,
-          "movies": null
-        },
-        {
-          "name": "Watched",
-          "id": 2,
-          "movies": null
-        }
-      ],
-      "comments": null,
-      "id": 4
-    },
-    {
-      "userName": "MATEO",
-      "email": "M@GMAIL.COM",
-      "password": "123456",
-      "lists": [
-        {
-          "name": "To Watch",
-          "id": 1,
-          "movies": null
-        },
-        {
-          "name": "Watched",
-          "id": 2,
-          "movies": null
-        }
-      ],
-      "comments": null,
-      "id": 5
-    },
-    {
-      "userName": "MATEO",
-      "email": "M@GMAIL.COM",
-      "password": "123456",
-      "lists": [
-        {
-          "name": "To Watch",
-          "id": 1,
-          "movies": null
-        },
-        {
-          "name": "Watched",
-          "id": 2,
-          "movies": null
-        }
-      ],
-      "comments": null,
-      "id": 6
-    },
-    {
-      "userName": "MATEO",
-      "email": "MATE@GMAIL.COM",
+      "email": "m@gmail.com",
       "password": "123456",
       "lists": [
         {
@@ -132,37 +18,17 @@
       ],
       "comments": [
         {
-          "comment": "COMENTARIO PREDETERMINADO PARA REALIZAR PRUEBAS -> BY MATE :D",
-          "id": 0,
-          "idMovie": 0
-        }
-      ],
-      "id": 7
-    },
-    {
-      "userName": "MESSI",
-      "email": "MESSI@GMAIL.COM",
-      "password": "123456",
-      "lists": [
-        {
-          "name": "To Watch",
-          "id": 1,
-          "movies": null
+          "name": "",
+          "comment": "COMENTARIO PREDETERMINADO PARA REALIZAR PRUEBAS -> BY JUAN :D",
+          "idMovie": 507089
         },
         {
-          "name": "Watched",
-          "id": 2,
-          "movies": null
+          "name": "mateo",
+          "comment": "vamos river",
+          "idMovie": 507089
         }
       ],
-      "comments": [
-        {
-          "comment": "COMENTARIO PREDETERMINADO PARA REALIZAR PRUEBAS -> BY MATE :D",
-          "id": 0,
-          "idMovie": 0
-        }
-      ],
-      "id": 8
+      "id": 1
     }
   ]
 }

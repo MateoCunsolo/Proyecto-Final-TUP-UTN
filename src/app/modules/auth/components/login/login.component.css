@@ -1,6 +1,6 @@
 
 .contenedor-input{
-    background-color: hsla(232, 34%, 27%, 0.7); 
+    background-color: hwb(231 18% 64% / 0.702); 
     text-align: center;
     align-items: center;
     display: flex; /* Utiliza flexbox para centrar los elementos */
@@ -52,7 +52,7 @@ input{
   }
  
 #pass, #username{
-    padding-left: 30px;;
+    padding-left: 30px;
     opacity: 0.7; 
     width: 230px;
     opacity: 0.6;

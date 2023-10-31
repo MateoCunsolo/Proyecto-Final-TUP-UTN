@@ -1,0 +1,7 @@
+<div class="container">
+  <button (click)="visibility()" id="btn-add" class="btn">Add my comment</button>
+  <div class="sumbit-btn-container">
+    <input  *ngIf="flag" (click)="postComment()" id="sumbit-comment" class="btn" type="submit" value="Submit">
+  </div>
+  <textarea *ngIf="flag" id="textarea"  class="fade" placeholder="Write here..."></textarea>
+</div>

@@ -1,27 +1,37 @@
+<div class="pageFull">
 
-<app-header class="a"></app-header>
-<body>
+<app-header></app-header>
 
-  <div class="container" *ngIf="movie">
-    <div class="poster">
-      <img
-        [src]="'https://image.tmdb.org/t/p/w200' + movie.poster_path"
-        alt="{{ movie.title }}"
-      />
-    </div>
-    <div class="info">
-      <h2>{{ movie.title }}</h2>
-      <p>Fecha de estreno: {{ movie.release_date }}</p>
-      <p>Descripción: {{ movie.overview }}</p>
-    </div>
+<div class="container" *ngIf="movie">
+
+  <div class="poster">
+    <img
+      [src]="'https://image.tmdb.org/t/p/original' + movie.poster_path"
+      alt="{{ movie.title }}"
+    />
   </div>
 
-  <div *ngIf="!movie">
-    <p>Cargando detalles de la película...</p>
-  </div>
-  
-  <button id="back">
-    <a routerLink="/home"><img src="assets/atras (3).png" alt=""></a>
-  </button>
+  <div class="info">
+    <div id="title-year">
+      <h2 id="title">{{ movie.title }}</h2>
+      <h4 id="year">{{extractYear(movie.release_date)}}</h4>
+      <button>Add to List</button>
+    </div>
+    
+  <section>
+    <p>{{ movie.overview }}</p>
+    <p>{{ movie.original_language}}</p>
+    <p></p>
+  </section>
 
-</body>
+  </div>
+</div>
+
+<div *ngIf="!movie">
+  <p>Cargando detalles de la película...</p>
+</div>
+
+<app-add-comment></app-add-comment>
+<app-comments> </app-comments>
+<app-footer></app-footer>
+</div>

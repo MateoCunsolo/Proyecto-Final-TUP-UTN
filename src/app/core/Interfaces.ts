@@ -14,8 +14,8 @@ export interface IList
 
 export interface IComment
 {
+    name: string | null;
     comment: string | null;
-    id: number;
     idMovie: number;
 }
 
@@ -25,6 +25,7 @@ export interface IUser {
     password: string | null;
     lists: IList[] | null;
     comments: IComment[] | null;
+    id?: number;
   }
 
 

@@ -9,6 +9,7 @@ import { PeliculasService } from 'src/app/services/peliculas.service';
   styleUrls: ['./peliculadetalle.component.css']
 })
 export class PeliculaDetalleComponent implements OnInit {
+  filtros: string = "";
   movieId: number = 0;
   movie: Movie = {
     adult: false,
@@ -26,7 +27,7 @@ export class PeliculaDetalleComponent implements OnInit {
     vote_average: 0,
     vote_count: 0
   };
-
+  
   constructor(
     private route: ActivatedRoute,
     private moviesService: PeliculasService
@@ -38,6 +39,11 @@ export class PeliculaDetalleComponent implements OnInit {
       this.loadMovieDetails();
     });
   }
+  
+  extractYear(date: string): string {
+    return date.substr(0, 4);
+  }
+
 
   loadMovieDetails() {
     this.moviesService.getMovieDetails(this.movieId)

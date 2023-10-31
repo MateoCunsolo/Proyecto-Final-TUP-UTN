@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { IUser } from '../core/Interfaces';
+import { IComment, IUser } from '../core/Interfaces';
 import { Observable, from } from 'rxjs';
 
 
@@ -29,12 +29,26 @@ export class UserService {
           headers: {'Content-type': 'application/json'}
         })
 
-      this.router.navigate(['home'])
+      this.router.navigate(['signin']);
     } catch (error) {
       console.log(error);
     }
   }
  
+  
+  public async addCommentToUser(userId: number, comment: IComment) {
+    try {
+      const user = await fetch(`${this.url}/${userId}`).then(response => response.json());
+      user.comments.push(comment);
+      await fetch(`${this.url}/${userId}`, {
+        method: 'PATCH',
+        body: JSON.stringify(user),
+        headers: {'Content-type': 'application/json'}
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
 }
 
