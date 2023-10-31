@@ -29,7 +29,7 @@ export class UserService {
           headers: {'Content-type': 'application/json'}
         })
 
-      this.router.navigate(['home'])
+      this.router.navigate(['signin']);
     } catch (error) {
       console.log(error);
     }

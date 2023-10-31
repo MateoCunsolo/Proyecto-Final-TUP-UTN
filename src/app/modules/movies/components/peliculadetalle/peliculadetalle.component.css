@@ -68,7 +68,7 @@ img {
     font-weight: normal;
 }
 
-.info p{
+.info section{
     background-color: var(--color-azul);
     border-radius: 1rem;
     padding: 1rem;
