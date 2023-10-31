@@ -1,0 +1,20 @@
+#boton {
+    background-color: var(--color-azul-claro);
+    color: var(--var-blanco);
+    padding: .5rem 1rem;
+    border-radius: 1rem;
+    border: none;
+    cursor: pointer;
+    
+}
+
+/* Estilo para ocultar el menú desplegable por defecto */
+.dropdown {
+    display: none;
+  }
+
+/* Estilos para el menú desplegable cuando está visible */
+  .dropdown.show {
+    display: block;
+  }
+  

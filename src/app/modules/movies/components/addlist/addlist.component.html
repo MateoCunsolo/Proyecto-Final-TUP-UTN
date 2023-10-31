@@ -1,0 +1,7 @@
+<button id="boton" *ngIf="isVisibilityActive"   (click)="toggleDropdown()" (click)="visibility()">addToList</button>
+
+  <select [ngClass]="{'dropdown': true, 'show': isDropdownOpen}">
+    <option value="ToWatch">ToWatch</option>
+    <option value="Watched">Watched</option>
+  </select>
+
