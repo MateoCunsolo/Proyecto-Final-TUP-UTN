@@ -31,12 +31,18 @@ ul li{
   li:hover
   {
     background-color: var(--color-azul-claro);
+
   }
 
 #browse{
     font-weight: bold;
     border: none;
     padding-right: 10px;   
+}
+
+#browse:hover
+{
+  background-color:black;
 }
 
 .dropdown {
@@ -46,6 +52,7 @@ ul li{
     justify-content: center !important;
     flex-direction: row !important;
     gap: .5rem;
+    
   }
 
 .submenu {
@@ -53,8 +60,9 @@ ul li{
     position: absolute;
     list-style: none;
     padding: 10px;
-    top: 45px;
+    top: 35px;
     left: 0;
+
   }
 
   .dropdown:hover .submenu {
@@ -63,7 +71,7 @@ ul li{
     justify-content: center;
     flex-direction: column;
     gap: .5rem;
-    background-color: rgb(24, 24, 24);
+    background-color: rgb(0, 0, 0);
     border: none;
 
   }

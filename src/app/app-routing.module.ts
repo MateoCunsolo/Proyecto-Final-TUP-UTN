@@ -5,18 +5,14 @@ import { CommentsComponent } from './modules/movies/components/comments/comments
 
 const routes: Routes = [ 
   {
-  path: '',
-  loadChildren: ()=> import('./modules/landing/landing.module').then(m=>m.LandingModule)
+    path: '',
+    loadChildren: ()=> import('./modules/landing/landing.module').then(m=>m.LandingModule)
   },
   {
     path:'home',
     loadChildren: ()=> import('./modules/home/home.module').then(m=>m.HomeModule)
-  }
-  ,
-  {
-    path:'co',
-    component:CommentsComponent
-  }
+  },
+
 ];
 
 @NgModule({

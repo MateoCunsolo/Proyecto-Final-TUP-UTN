@@ -9,18 +9,35 @@
             <ul class="submenu">
                 <li>2010</li>
                 <li>2011</li>
-                <!-- Agrega más años según sea necesario -->
             </ul>
         </li>
 
-        <li class="dropdown">
-            <p>Genre</p>
+        <li  #genreHeader class="dropdown" [style.background-color]="headerBackgroundColor">
+            <p >{{title}}</p>
             <img src="assets/flecha-hacia-abajo-.png" alt="">
+
+            <ul class="submenu">
+                <li (click)="onGenreClick('Romance')">Romance</li>
+                <li (click)="onGenreClick('Comedy')">Comedy</li>
+                <li (click)="onGenreClick('Horror')">Horror</li>
+                <li (click)="onGenreClick('Thriller')">Thriller</li>
+                <li (click)="onGenreClick('Sci-Fi')">Sci-Fi</li>
+                <li (click)="onGenreClick('Action')">Action</li>
+                <li (click)="onGenreClick('Drama')">Drama</li>
+            </ul>
          </li>
 
         <li class="dropdown">
             <p>Rating</p>
             <img src="assets/flecha-hacia-abajo-.png" alt="">
+            
+            <ul class="submenu">
+                <li>1 - 2</li>
+                <li>3 - 4</li>
+                <li>5 - 6</li>
+                <li>7 - 8</li>
+                <li>9- 10</li>
+            </ul>
         </li>  
 
     </ul>
