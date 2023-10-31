@@ -10,7 +10,7 @@ import {
 } from '@angular/forms';
 import { UserService } from 'src/app/services/user.service';
 import { Router } from '@angular/router';
-import { IComment, IList, IMovie, IUser } from 'src/app/core/Interfaces';
+import { IComment, IList, IUser } from 'src/app/core/Interfaces';
 
 @Component({
   selector: 'app-register',
@@ -72,13 +72,13 @@ export class RegisterComponent implements OnInit {
     const ToWatch: IList = {
       name: 'To Watch',
       id: 1,
-      movies: [],
+      idMovies: [],
     };
 
     const Watched: IList = {
       name: 'Watched',
       id: 2,
-      movies: [],
+      idMovies: [],
     };
     
     const comment: IComment = {

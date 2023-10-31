@@ -8,12 +8,14 @@
         {
           "name": "To Watch",
           "id": 1,
-          "movies": []
+          "idMovies": [
+        
+          ]
         },
         {
           "name": "Watched",
           "id": 2,
-          "movies": []
+          "idMovies": []
         }
       ],
       "comments": [

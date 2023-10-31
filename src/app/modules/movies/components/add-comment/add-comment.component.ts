@@ -46,7 +46,5 @@ export class AddCommentComponent implements OnInit {
       this.userService.addCommentToUser(this.user.id, comment);
     }
     
-    
-
   }
 }
