@@ -19,14 +19,16 @@
     </div>
   <section>
     <p>{{ movie.overview}}</p>
-    <p>{{ movie.original_language}}</p>
-    <p></p>
+    <br>
+    <p> Original Lenguage: {{ lenguageReturn(movie.original_language)}}</p>
+    <p>Genres: {{ getGenres(movie.genre_ids).join(', ') }}</p> 
+    <p> Adult Content: {{ movie.adult ? 'Yes' : 'No' }}</p>
   </section>
 
   </div>
 </div>
 
-<div *ngIf="!movie">
+<div class="container" *ngIf="!movie">
   <p>Cargando detalles de la película...</p>
 </div>
 

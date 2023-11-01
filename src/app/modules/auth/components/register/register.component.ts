@@ -81,20 +81,12 @@ export class RegisterComponent implements OnInit {
       idMovies: [],
     };
     
-    const comment: IComment = {
-      name: "",
-      comment:  "COMENTARIO PREDETERMINADO PARA REALIZAR PRUEBAS -> BY JUAN :D",
-      idMovie: 507089,
-    };
-
-    const comments = [comment];
-
     const user: IUser = {
       userName: this.registerForm.controls['userName'].value,
       email: this.registerForm.controls['email'].value,
       password: this.registerForm.controls['password'].value,
       lists: [ToWatch, Watched],
-      comments: comments,
+      comments: [],
     }; //capturo los datos del formulario y creo el objeto con ellos
   
     
