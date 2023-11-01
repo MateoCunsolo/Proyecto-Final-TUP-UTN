@@ -10,12 +10,16 @@
 }
 
 .btn {
-    background-color: var(--color-azul-claro);
+    background-color: rgb(133, 133, 133);
     color: var(--var-blanco);
     padding: .5rem 1rem;
     border-radius: 1rem;
     border: none;
     cursor: pointer;
+}
+
+.btn:hover {
+    background-color: #5a67b8;
 }
 
 .sumbit-btn-container {
