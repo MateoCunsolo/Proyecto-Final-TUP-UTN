@@ -30,6 +30,7 @@ input{
     border-radius: 20px; /* Redondea las esquinas del botón */
     margin-bottom: 10px;
     margin-top: 15px;
+    padding: 0rem 1rem 0rem 1rem;
 }
 
 label {
@@ -59,6 +60,7 @@ h2{
 }
 
 #signUp{
+    
     width: 50%;
     font-weight: bold;
     color: var(--color-azul);
@@ -69,8 +71,6 @@ h2{
     color: var(--color-azul);
     font-weight: bold;
     font-size: 15px;
-    padding-left: 30px;
-
 }
 
 .campo{

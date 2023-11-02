@@ -1,0 +1,50 @@
+.container {
+    display: flex;
+    align-items: flex-start;
+    justify-content: start;
+    flex-direction: column;
+    padding: 1rem;
+    height: auto;
+    gap: 1rem;
+    position: relative;
+}
+
+.btn {
+    background-color: rgb(133, 133, 133);
+    color: var(--var-blanco);
+    padding: .5rem 1rem;
+    border-radius: 1rem;
+    border: none;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: #5a67b8;
+}
+
+.sumbit-btn-container {
+    position: absolute;
+    left: 91%;
+    top: 75%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#textarea {
+    background-color: rgb(189, 189, 189);
+    border: 5px solid var(--color-azul-claro);
+    vertical-align: top;
+    width: 100%;
+    height: 10rem;
+    border-radius: 1rem;
+    padding: 1rem;
+    resize: none;
+    outline: none;
+}
+
+#textarea:hover
+{
+    cursor: pointer;
+
+}

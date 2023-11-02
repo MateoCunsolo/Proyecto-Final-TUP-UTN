@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { IComment, IUser } from 'src/app/core/Interfaces';
 import { UserService } from 'src/app/services/user.service';
+import { CommentsService } from '../../services/comments.service';
 
 @Component({
   selector: 'app-comments',
@@ -14,13 +15,34 @@ export class CommentsComponent implements OnInit {
   comment: string = '';
   name: string = '';
   movieId: number = 0;
+  
   comments: IComment[] = [];
+  flag: boolean = false;
   constructor(
     private userService: UserService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private commentsService: CommentsService
   ) {}
 
   ngOnInit(): void {
+  
+    this.extractCommentsJsonServer();
+    this.commentsService.getEvent().subscribe((event) => {
+      const comment : IComment = {
+        name: event.comment?.name ?? null,
+        comment: event.comment?.comment ?? null,
+        idMovie: event.comment?.idMovie ?? null
+      }  
+      this.comments.unshift(comment);
+      this.indexComments = 0;
+      this.comment = this.comments[this.indexComments]?.comment || 'Ningun usuario ha comentado!';
+      this.name = this.comments[this.indexComments]?.name || '';
+      
+    });
+
+  }
+  
+  extractCommentsJsonServer(){
     this.route.paramMap.subscribe((params) => {
       this.movieId = +params.get('id')!;
       this.userService.getUsers().subscribe((listUsers: IUser[]) => {
@@ -32,10 +54,10 @@ export class CommentsComponent implements OnInit {
             }
           }
         }
-        //incializo el primer comentario de entrada, es decir el primero que voy a mostrar en pantalla
-        this.indexComments = 0;
-        this.comment = this.comments[0]?.comment || 'Ningun usuario ha comentado!';
-        this.name = this.comments[0]?.name || '';
+        //incializo el primer comentario de entrada, es decir el primero que voy a mostrar en pantalla, es random de todos los que hya asi no hay preferencia :D 
+        this.indexComments = Math.floor(Math.random() * this.comments.length);
+        this.comment = this.comments[this.indexComments]?.comment || 'Ningun usuario ha comentado!';
+        this.name = this.comments[this.indexComments]?.name || '';
       });
     });
   }

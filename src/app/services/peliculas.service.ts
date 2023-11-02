@@ -2,14 +2,27 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { MovieData } from '../core/movie.interface';
 import { Observable } from 'rxjs';
+import { Genre } from '../core/movie.interface';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PeliculasService {
   private apiUrl = 'https://api.themoviedb.org/3';
+  private eventSubject = new Subject<any>();
 
   constructor(private http: HttpClient) {}
+
+  
+  emitEvent(event: any) {
+    this.eventSubject.next(event);
+  }
+
+  getEvent() {
+    return this.eventSubject.asObservable();
+  }
+
 
   listMovies(page: number): Promise<MovieData> {
     return new Promise<MovieData>((resolve, reject) => {
@@ -51,6 +64,7 @@ export class PeliculasService {
     });
   }
 
+
   listMoviesByRating(page: number, sortBy: string): Promise<MovieData> {
     return new Promise<MovieData>((resolve, reject) => {
       const sortDirection = sortBy === 'asc' ? 'asc' : 'desc';
@@ -79,4 +93,5 @@ export class PeliculasService {
     const url = `${this.apiUrl}/movie/${movieId}?api_key=79f8e563e8d26768e3277cdf102fd1b1`;
     return this.http.get(url);
   }
+
 }

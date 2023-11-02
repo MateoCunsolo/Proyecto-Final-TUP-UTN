@@ -14,7 +14,7 @@ export class HeaderComponent implements OnInit {
     const userSesion = sessionStorage.getItem('user');
     if (userSesion) {
     this.name = JSON.parse(userSesion).userName;
-    
+
     }
 }
 
