@@ -62,7 +62,7 @@ ul li{
     padding: 10px;
     top: 35px;
     left: 0;
-
+  
   }
 
   .dropdown:hover .submenu {
@@ -80,7 +80,7 @@ ul li{
     border: none;
     padding: 0;
     font-weight: lighter;
-  }
+      }
 
 
   img{

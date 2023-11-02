@@ -12,8 +12,8 @@
             </ul>
         </li>
 
-        <li  #genreHeader class="dropdown" [style.background-color]="headerBackgroundColor">
-            <p >{{title}}</p>
+        <li class="dropdown" [style.background-color]="headerBackgroundColor">
+            <p >{{titleG}}</p>
             <img src="assets/flecha-hacia-abajo-.png" alt="">
 
             <ul class="submenu">
@@ -27,16 +27,14 @@
             </ul>
          </li>
 
-        <li class="dropdown">
-            <p>Rating</p>
+        <li class="dropdown" [style.background-color]="RatingBackgroundColor">
+            <p> {{titleR}} </p>
             <img src="assets/flecha-hacia-abajo-.png" alt="">
             
             <ul class="submenu">
-                <li>1 - 2</li>
-                <li>3 - 4</li>
-                <li>5 - 6</li>
-                <li>7 - 8</li>
-                <li>9- 10</li>
+                <li (click)="onRatingClick('Highest First')">Highest First</li>
+                <li (click)="onRatingClick('Lowest First')">Lowest First</li>
+            
             </ul>
         </li>  
 

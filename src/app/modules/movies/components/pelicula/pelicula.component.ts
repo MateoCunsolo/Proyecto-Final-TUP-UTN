@@ -13,7 +13,9 @@ export class PeliculaComponent implements OnInit {
 
   private page = 1;
   public movies: Movie[] = [];
+
   selectedGenre: number = 0; // Propiedad para almacenar el nombre del género
+  selectedRating: string = ''; // Propiedad para almacenar el rating seleccionado
 
 
   constructor(private moviesService: PeliculasService, private router: Router, private filterService: FilteringService) {
@@ -22,14 +24,21 @@ export class PeliculaComponent implements OnInit {
   ngOnInit() {
     this.loadMovies();
 
-    this.filterService.getEvent().subscribe((event) => {
-      this.selectedGenre = event.idgenre;
+    this.filterService.getEvent('filterGenre').subscribe((event) => {
+      console.log(event);
+      this.selectedGenre = event.data.idgenre;
       console.log(this.selectedGenre);
       this.movies = [];
       this.loadMoviesByGenre();
-  });
+    });
+
+    this.filterService.getEvent('filterRating').subscribe((event) => {
+      this.selectedRating = event.data.rating;
+      console.log("escuche el evento, recibi esto" + this.selectedRating);
+      this.movies = [];
+      this.loadMoviesByRating();
+    });
   }
- 
  
   loadMovies() {
     this.moviesService.listMovies(this.page)
@@ -42,7 +51,8 @@ export class PeliculaComponent implements OnInit {
       });
   }
 
-  loadMoviesByGenre() {
+  loadMoviesByGenre() 
+  {
     
     if (this.selectedGenre === 0) {
       // Cargar todas las películas sin filtrar por género
@@ -61,16 +71,40 @@ export class PeliculaComponent implements OnInit {
     }
   }
 
-  loadNextPage() {
-    if(this.selectedGenre == 0)
+  loadMoviesByRating() {
+    console.log("Rating elegido" + this.selectedRating);
+    if(this.selectedRating === '')
     {
-      this.page++;
+      this.movies = [];
       this.loadMovies();
-
     }else
+    {
+      this.moviesService.listMoviesByRating(this.page, this.selectedRating)
+      .then((data: MovieData) => {
+        this.movies = this.movies.concat(data.results);
+      })
+      .catch(error => {
+        console.error('Error fetching data by rating:', error);
+      });
+
+    }
+    
+  }
+
+  loadNextPage() {
+    if(this.selectedGenre != 0)
     {
       this.page++;
       this.loadMoviesByGenre();
+
+    }else if(this.selectedRating != '')
+    {
+      this.page++;
+      this.loadMoviesByRating();
+    }else
+    {
+      this.page++;
+      this.loadMovies();
     }
   }
 

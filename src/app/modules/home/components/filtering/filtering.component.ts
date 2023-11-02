@@ -9,21 +9,22 @@ import { FilteringService } from 'src/app/services/filtering.service';
 
 export class FilteringComponent implements OnInit {
 
-  @ViewChild('genreHeader', { static: true }) genreHeader: ElementRef;
 
-  constructor(private filterService: FilteringService) { 
-    this.genreHeader = new ElementRef(null);
+  constructor(private filterService: FilteringService) { }
 
-  }
-
-  title: string = 'Genre';
+  titleG: string = 'Genre';
+  titleR: string = 'Rating';
 
   ngOnInit(): void {
+    
   }
 
   selectedGenre: string | null = "";
   idGenre: number = 0;
   headerBackgroundColor: string = '';
+
+  RatingBackgroundColor: string = '';
+  selectedRating: string = '';
 
   onGenreClick(genre: string) {
 
@@ -32,11 +33,13 @@ export class FilteringComponent implements OnInit {
       this.selectedGenre = null; // Elimina el filtrado si es el mismo género
       this.idGenre = 0;
       this.headerBackgroundColor = ''; //el boton vuelve a negro
-      this.title = 'Genre';
-      this.filterService.emitEvent({ idgenre: this.idGenre }); //se le manda un id genero de peli que no existe
+      this.titleG = 'Genre';
+      this.emitFilterGenreEvent(this.idGenre);
+      //se le manda un id genero de peli que no existe
 
-    } else {
-      this.title = genre;
+    } else 
+    {
+      this.titleG = genre;
       this.selectedGenre = genre; // Establece el nuevo género seleccionado
 
       if (genre === 'Romance') {
@@ -62,9 +65,51 @@ export class FilteringComponent implements OnInit {
         this.idGenre = 53;
       }
   
-      this.filterService.emitEvent({ idgenre: this.idGenre });
+      this.emitFilterGenreEvent(this.idGenre);
     }
   
+  }
+
+  onRatingClick(rating: string) {
+
+    if(this.titleR === rating) //si apreto por segunda vez 
+    {
+      this.titleR = 'Rating';
+      this.RatingBackgroundColor = '';
+      this.selectedRating = '';
+
+      this.emitFilterRatingEvent(this.selectedRating);
+
+    }else
+    {
+      this.titleR = rating;
+      this.RatingBackgroundColor = 'var(--color-azul-claro)';
+
+      if(rating === 'Highest First')
+      {
+        console.log("entro");
+        this.selectedRating = 'desc';
+        this.emitFilterRatingEvent(this.selectedRating);
+
+
+      }else if(rating === 'Lowest First')
+      {
+        this.selectedRating = 'asc';
+        console.log("selectedRating" + this.selectedRating);
+        this.emitFilterRatingEvent(this.selectedRating);
+      }
+      
+
+    }
+    
+  }
+
+  emitFilterRatingEvent(rating: string) {
+    this.filterService.emitEvent('filterRating', { rating: rating });
+  }
+
+  emitFilterGenreEvent(idgenre: number) {
+    this.filterService.emitEvent('filterGenre', { idgenre: idgenre });
   }
 }
 

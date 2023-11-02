@@ -51,6 +51,30 @@ export class PeliculasService {
     });
   }
 
+  listMoviesByRating(page: number, sortBy: string): Promise<MovieData> {
+    return new Promise<MovieData>((resolve, reject) => {
+      const sortDirection = sortBy === 'asc' ? 'asc' : 'desc';
+  
+      this.http
+        .get<MovieData>(
+          `${this.apiUrl}/discover/movie?api_key=79f8e563e8d26768e3277cdf102fd1b1&page=${page}&sort_by=vote_average.${sortDirection}`
+        )
+        .toPromise()
+        .then((data) => {
+          if (data) {
+            resolve(data);
+          } else {
+            reject('Data is undefined');
+          }
+        })
+        .catch((error) => {
+          reject(error);
+        });
+    });
+  }
+  
+  
+
   getMovieDetails(movieId: number): Observable<any> {
     const url = `${this.apiUrl}/movie/${movieId}?api_key=79f8e563e8d26768e3277cdf102fd1b1`;
     return this.http.get(url);
