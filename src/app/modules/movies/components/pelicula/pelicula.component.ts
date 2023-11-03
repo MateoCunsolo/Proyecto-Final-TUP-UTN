@@ -10,7 +10,7 @@ import { FilteringService } from 'src/app/services/filtering.service';
   styleUrls: ['./pelicula.component.css']
 })
 export class PeliculaComponent implements OnInit {
-
+  public defaultImageURL = 'assets/IMAGE NO DISPONIBLE.png';
   private page = 1;
   public movies: Movie[] = [];
   movie: Movie = {
