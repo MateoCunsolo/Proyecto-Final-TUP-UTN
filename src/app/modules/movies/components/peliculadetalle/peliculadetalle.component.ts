@@ -10,6 +10,7 @@ import { Movie } from 'src/app/core/movie.interface';
 export class PeliculaDetalleComponent implements OnInit {
   movieId: number = 0;
   movie: Movie | undefined;
+  public defaultImageURL = 'assets/IMAGE NOT AVAILABLE.png';
   genreMap: { [key: number]: string } = {
     28: 'Acción',
     12: 'Aventura',
@@ -104,12 +105,14 @@ export class PeliculaDetalleComponent implements OnInit {
 
   getGenres(genreIds: number[]): string[] {
     const genres: string[] = [];
+
     genreIds.forEach((genreId) => {
       const genreName = this.genreMap[genreId];
       if (genreName) {
         genres.push(genreName);
       }
     });
+
     return genres;
   }
   

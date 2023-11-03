@@ -1,35 +1,25 @@
 
-<div class="contenedor">
-    <div class="contenedor-input">
-    <h2>Welcome Back!</h2>
-    <p>Ready to dive back into your cinematic world? </p>
+<div class="flex-center-100vh">
+    
+    <form class="flex-center forms" id="login-form" [formGroup]="loginForm" (ngSubmit)="loginUser()">
      
-    <form id="login-form" [formGroup]="loginForm" (ngSubmit)="loginUser()">
-     
-     
-        <div class="campo">
+        <h2 class="title">Welcome Back!</h2>
+        <p>Ready to dive back into your cinematic world? </p>
+
         <label for="username"></label>
-        <input type="text" name="" id="username" formControlName="userName" placeholder="User Name" pattern="^(?!\s*$).+" title="It cannot be blank">
-     
+        <input class="inputs-values inputs-all" type="text" name="" id="username" formControlName="userName" placeholder="User Name" pattern="^(?!\s*$).+" title="It cannot be blank">
         <span class="error-message" *ngIf="validate('userName', 'required')" > El campo es requerido</span>
-        </div>
      
-        <div class="campo">
         <label for="pass"></label>
-        <input type="password" name="" id="pass" formControlName="password" placeholder="Password"  pattern="^(?!\s*$).+" title="It cannot be blank">
-     
+        <input class="inputs-values inputs-all"  type="password" name="" id="pass" formControlName="password" placeholder="Password"  pattern="^(?!\s*$).+" title="It cannot be blank">
         <span class="error-message" *ngIf="validate('password', 'required')"> El campo es requerido</span>
-        </div>
-     
+        
         <p id="msj-login">Usuario y/o contraseña incorrectos</p>
-     
-        <div class="center-button">
-        <input type="submit" name="" id="login"  [disabled]="loginForm.invalid" value="Login">
-        </div>
+
+        <input class="inputs-sumbit inputs-all" type="submit" name="" id="login"  [disabled]="loginForm.invalid" value="Login">
+    
     </form>
      
-    </div>
-    </div>
-     
-    <app-footer></app-footer>
+</div>
+<app-footer></app-footer>
 
