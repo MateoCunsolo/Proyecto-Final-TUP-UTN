@@ -35,6 +35,9 @@ export class CommentsComponent implements OnInit {
       }  
       this.comments.unshift(comment);
       this.indexComments = 0;
+      this.comment = this.comments[this.indexComments]?.comment || 'Ningun usuario ha comentado!';
+      this.name = this.comments[this.indexComments]?.name || '';
+      
     });
 
   }

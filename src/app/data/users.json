@@ -1,50 +1,6 @@
+
 {
-  "users": [
-    {
-      "userName": "Giuliana",
-      "email": "oliva.giuliana1996@gmail.com",
-      "password": "123456",
-      "lists": [
-        {
-          "name": "To Watch",
-          "id": 1,
-          "idMovies": [
-         
-          ]
-        },
-        {
-          "name": "Watched",
-          "id": 2,
-          "idMovies": [
-       
-          ]
-        },
-        {
-          "name": "Lista3",
-          "id": 3,
-          "idMovies": [
-         
-          ]
-        }
-      ],
-      "comments": [
-        {
-          "name": "",
-          "comment": "COMENTARIO PREDETERMINADO PARA REALIZAR PRUEBAS -> BY JUAN :D",
-          "idMovie": 507089
-        },
-        {
-          "name": "Giuliana",
-          "comment": "este es un comentario",
-          "idMovie": 507089
-        },
-        {
-          "name": "Giuliana",
-          "comment": "dsfdsgsdgdfgdfgsfd",
-          "idMovie": 939335
-        }
-      ],
-      "id": 1
-    }
-  ]
+    "users":[
+        
+    ]
 }

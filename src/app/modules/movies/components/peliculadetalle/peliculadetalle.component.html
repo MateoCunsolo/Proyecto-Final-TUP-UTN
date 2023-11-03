@@ -1,36 +1,36 @@
 <div class="pageFull">
-
-<app-header></app-header>
-
-<div class="container" *ngIf="movie">
-
-  <div class="poster">
-    <img
-      [src]="'https://image.tmdb.org/t/p/original' + movie.poster_path"
-      alt="{{ movie.title }}"
-    />
-  </div>
-
-  <div class="info">
-    <div id="title-year">
-      <h2 id="title">{{ movie.title }}</h2>
-      <h4 id="year">{{extractYear(movie.release_date)}}</h4>
-      <app-addlist></app-addlist>
+  <app-header></app-header>
+  <div class="container" *ngIf="movie">
+    <div class="poster">
+      <img
+        *ngIf="movie.poster_path"
+        [src]="'https://image.tmdb.org/t/p/original' + movie.poster_path"
+        alt="{{ movie.title }}"
+      />
+      <p *ngIf="!movie.poster_path">Image not available</p>
     </div>
-  <section>
-    <p>{{ movie.overview}}</p>
-    <p>{{ movie.original_language}}</p>
-    <p></p>
-  </section>
 
+    <div class="info">
+      <div id="title-year">
+        <h2 id="title">{{ movie.title }}</h2>
+        <h4 id="year">{{ extractYear(movie.release_date) }}</h4>
+        <app-addlist></app-addlist>
+      </div>
+      <section>
+        <p>{{ movie.overview }}</p>
+        <br />
+        <p>Original Lenguage: {{ lenguageReturn(movie.original_language) }}</p>
+        <p>Genres: {{ getGenres(movie.genre_ids).join(", ") }}</p>
+        <p>Adult Content: {{ movie.adult ? "Yes" : "No" }}</p>
+      </section>
+    </div>
   </div>
-</div>
 
-<div *ngIf="!movie">
-  <p>Cargando detalles de la película...</p>
-</div>
+  <div class="container" *ngIf="!movie">
+    <p>Cargando detalles de la película...</p>
+  </div>
 
-<app-add-comment></app-add-comment>
-<app-comments> </app-comments>
-<app-footer></app-footer>
+  <app-add-comment></app-add-comment>
+  <app-comments> </app-comments>
+  <app-footer></app-footer>
 </div>
