@@ -5,9 +5,11 @@ import { PeliculaComponent } from './components/pelicula/pelicula.component';
 import { PeliculaDetalleComponent } from './components/peliculadetalle/peliculadetalle.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { CommentsComponent } from './components/comments/comments.component';
+
 import { AddCommentComponent } from './components/add-comment/add-comment.component';
 import { FormsModule } from '@angular/forms';
 import { AddlistComponent } from './components/addlist/addlist.component';
+
 
 
 @NgModule({

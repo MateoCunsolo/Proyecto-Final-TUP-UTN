@@ -1,19 +1,21 @@
  <div class="div-filtering">
     <ul class="horizontal-list">
         <li id="browse">Browse by</li>
-        <li class="dropdown">
-            
-            <p>Year</p>
+        
+        <li class="dropdown"  [style.background-color]="yearBackgroundColor">
+            <p>{{titleY}}</p>
             <img src="assets/flecha-hacia-abajo-.png" alt="">
 
             <ul class="submenu">
-                <li>2010</li>
-                <li>2011</li>
+                <li (click)="onYearClick(1860,1910)">1860-1910s</li>
+                <li (click)="onYearClick(1910,1960)">1910-1960s</li>
+                <li (click)="onYearClick(1960,2010)">1960-2010</li>
+                <li (click)="onYearClick(2010,2060)">2010-2060s</li>
             </ul>
         </li>
 
-        <li  #genreHeader class="dropdown" [style.background-color]="headerBackgroundColor">
-            <p >{{title}}</p>
+        <li class="dropdown" [style.background-color]="headerBackgroundColor">
+            <p >{{titleG}}</p>
             <img src="assets/flecha-hacia-abajo-.png" alt="">
 
             <ul class="submenu">
@@ -27,16 +29,14 @@
             </ul>
         </li>
 
-        <li class="dropdown">
-            <p>Rating</p>
+        <li class="dropdown" [style.background-color]="RatingBackgroundColor">
+            <p> {{titleR}} </p>
             <img src="assets/flecha-hacia-abajo-.png" alt="">
             
             <ul class="submenu">
-                <li>1 - 2</li>
-                <li>3 - 4</li>
-                <li>5 - 6</li>
-                <li>7 - 8</li>
-                <li>9- 10</li>
+                <li (click)="onRatingClick('Highest First')">Highest First</li>
+                <li (click)="onRatingClick('Lowest First')">Lowest First</li>
+            
             </ul>
         </li>  
 
