@@ -1,15 +1,9 @@
 
-export interface IMovie
-{
-    nameMovie: string;
-    idMovie: number;
-}
-
 export interface IList
 {
     name: string;
     id: number;
-    movies: IMovie[] | null;
+    idMovies: number[];
 }
 
 export interface IComment
@@ -23,7 +17,7 @@ export interface IUser {
     userName: string | null;
     email: string | null;
     password: string | null;
-    lists: IList[] | null;
+    lists: IList[];
     comments: IComment[] | null;
     id?: number;
   }

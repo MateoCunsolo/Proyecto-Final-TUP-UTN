@@ -1,0 +1,10 @@
+
+<button id="boton" (click)="mostrarMenuDesplegable()">Add Movie to List</button>
+
+
+  <div d="menuDesplegable" *ngIf="menuDesplegableVisible">
+    <select [(ngModel)]="selectedListId" (change)="onListaSeleccionadaChange()" (change)="agregarPelicula()" >
+      <option id="option" *ngFor="let list of user?.lists" [value]="list.id">{{list.name}}</option>
+    </select>
+  </div>
+

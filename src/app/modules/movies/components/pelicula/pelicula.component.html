@@ -1,10 +1,13 @@
-<body>
-  <div class="conteiner">
-    <div (click)="redirectToMovieDetail(movie.id)" class="movie-card" *ngFor="let movie of movies">
-      <img class="movie-poster" [src]="'https://image.tmdb.org/t/p/original' + movie.poster_path"
+
+  
+<div class="conteiner">
+    <div (click)="redirectToMovieDetail(movie)" class="movie-card" *ngFor="let movie of movies">
+      <img *ngIf="movie.poster_path" class="movie-poster" [src]="'https://image.tmdb.org/t/p/original' + movie.poster_path"
         alt="{{ movie.title }}" />
-      <h2>{{ movie.title }}</h2>
+        <p *ngIf="!movie.poster_path" >Image not available</p>
+      <h5>{{ movie.title }}</h5>
     </div>
   </div>
+  <section class="load-conteiner">
   <button class="load" (click)="loadNextPage()">Load More</button>
-</body>
+</section>

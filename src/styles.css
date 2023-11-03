@@ -10,6 +10,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-size: 100%;
 }
 
 :after, :before{
@@ -21,6 +22,7 @@ body{
     background-image: url(./assets/cinema.png);
     background-size: cover;
     background-repeat: no-repeat;
+    background-position: bottom;
     height: auto;
     margin: 0;
     background-position-x: center;
@@ -29,3 +31,77 @@ body{
     padding: 0rem 0rem 0rem 0rem;   
 }
 
+
+.flex-center
+{
+    display: flex; 
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.flex-center-100vh
+{
+    display: flex; 
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.inputs-values
+{
+    padding-left: 30px;
+    opacity: 0.7; 
+    width: 230px;
+    opacity: 0.6;
+}
+
+.inputs-sumbit
+{
+    font-weight: bold;
+    color: var(--color-azul);
+    width: 100px;   
+    font-size: 15px;
+}
+
+.inputs-all
+{
+    display: block;
+    margin: 5px;
+    height: 45px;
+    border: none;
+    border-radius: 20px; /* Redondea las esquinas del botón */
+}
+
+.forms
+{
+    background-color: hwb(231 18% 64% / 0.702);
+    border-radius: 15px; 
+    margin-top: 1rem;
+    gap: .5rem;
+}
+
+.title{
+    font-size: 35px;
+}
+
+.border
+{
+    border: solid yellow;
+}
+
+
+.contenedor-forms
+{
+    backdrop-filter: blur(5px); /* Aplica un desenfoque de 5 píxeles (ajusta según tus preferencias) */  
+
+}
+
+.cross-error
+{
+    color: red;
+    font-weight: bold;
+    text-align: center;
+}

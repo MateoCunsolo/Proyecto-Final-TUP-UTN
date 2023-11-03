@@ -20,6 +20,10 @@ import { MoviesModule } from '../movies/movies.module';
     HomeRoutingModule,
     SharedModule,
     MoviesModule
+  ],
+  exports: [
+      FilteringComponent
   ]
+  
 })
 export class HomeModule { }

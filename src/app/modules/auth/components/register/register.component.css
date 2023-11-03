@@ -1,70 +1,7 @@
-
-.seccion{
-
-    background-color: hsla(232, 34%, 27%, 0.7); /* Fondo rojo 50% transparente */
-    text-align: center;
-    align-items: center;
-    display: flex; /* Utiliza flexbox para centrar los elementos */
-    flex-direction: column; /* Apila los elementos verticalmente */
-    justify-content: center; 
-    height: 32rem;
-    width: 30rem;
-    border-radius: 15px; /* Redondea las esquinas del botón */
-    
-}
-
-.contenedor{
-   
-    display: flex;
-    justify-content: center; /* Centra horizontalmente */
-    align-items: center; /* Centra verticalmente */
-    height: 100vh;
-    backdrop-filter: blur(5px); /* Aplica un desenfoque de 5 píxeles (ajusta según tus preferencias) */  
-}
-
-input{
-    display: block;
-    margin: 5px;
-    height: 40px;
-    border: none;   
-    border-radius: 20px; /* Redondea las esquinas del botón */
-    margin-bottom: 10px;
-    margin-top: 15px;
-    padding: 0rem 1rem 0rem 1rem;
-}
-
-label {
-    display: none; /* Oculta las etiquetas */
-    visibility: hidden; /* Oculta las etiquetas y libera el espacio que ocupan */
-
-}
-
-
-fieldset {
-    border: none ; /* Elimina los bordes del fieldset */
-    width: 300px; /* Ajusta el ancho del fieldset según tus necesidades */
-}
-
-fieldset input{
-    align-items: center;
-    width: 85%; /* El input ocupará todo el ancho del fieldset */
-
-}
-h2{
-    font-size: 40px;
-}
-
-#div-submit{
-   display: flex;
-   justify-content: center;
-}
-
-#signUp{
-    
-    width: 50%;
-    font-weight: bold;
-    color: var(--color-azul);
-
+#formulario
+{
+    width: 28rem;
+    height: 30rem;
 }
 
 ::placeholder {
@@ -72,23 +9,6 @@ h2{
     font-weight: bold;
     font-size: 15px;
 }
-
-.campo{
-    padding-left: 30px;
-    opacity: 0.7; 
-    opacity: 0.6;
-}
-
-.error-message {
-    color: rgb(252, 252, 252);
-    font-size: 14px;
-    font-weight: bold;
-    margin-right: 2rem;
-    background-color: rgb(165, 13, 13);
-  }
-
-
-
 
 
 
