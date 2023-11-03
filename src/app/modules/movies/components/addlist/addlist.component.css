@@ -5,7 +5,7 @@
     border-radius: 1rem;
     border: none;
     cursor: pointer;
-    
+    height: 2rem;
 }
 
 
@@ -20,4 +20,25 @@
     background-color: black;
     color: white;
    
+}
+
+select
+{
+    background-color: rgba(255, 0, 0, 0);
+    color: var(--var-blanco);
+    padding: .5rem 1rem;
+    border-radius: 1rem;
+    border: none;
+    cursor: pointer;
+    width: 10rem;
+    height: 2rem;
+    border: solid 1px var(--color-blanco-claro);
+}
+
+#span
+{
+    position: absolute;
+    top: 40.5%;
+    left: 23%;
+    z-index: -1;
 }
