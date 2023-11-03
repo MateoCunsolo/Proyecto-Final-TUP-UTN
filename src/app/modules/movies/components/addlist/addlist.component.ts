@@ -82,6 +82,7 @@ export class AddlistComponent implements OnInit {
         //la posicion de la lista en el arreglo es uno menos que el id de esa lista
         this.userService.addMovieToList(this.user.id, this.selectedListId-1, this.movieId);
         this.menuDesplegableVisible = !this.menuDesplegableVisible; //asi se me vuelve a plegar el menu
+        this.selectedListId = 0;
       } 
       else {
         console.log("Algo salió mal");
