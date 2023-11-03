@@ -37,6 +37,7 @@ export class PeliculaComponent implements OnInit {
   selectedYear: number = 0; // Propiedad para almacenar el año seleccionado
   endYear: number = 0;
   startYear: number = 0;
+  valueSearch: string = '';
 
 
   constructor(private moviesService: PeliculasService, private router: Router, private filterService: FilteringService) {
@@ -65,18 +66,42 @@ export class PeliculaComponent implements OnInit {
       this.movies = [];
       this.loadMoviesByRangeYear();
     });
+
+    this.filterService.getEvent('search').subscribe((event) => {
+      this.movies = [];
+      this.loadMoviesFromSearch(event.data.search);
+      this.valueSearch = event.data.search;
+    });
   }
  
   loadMovies() {
     this.moviesService.listMovies(this.page)
       .then((data: MovieData) => {
         this.movies = this.movies.concat(data.results);
-      })
+      }) 
       .catch(error => {
         console.error('Error fetching data:', error);
       
       });
   }
+  
+  loadMoviesFromSearch(search: string) {
+    if (this.valueSearch === '') {
+      this.movies = [];
+      this.loadMovies();
+    }
+    else
+    {
+    this.moviesService.listMoviesFromSearch(search, this.page)
+      .subscribe((data: MovieData) => {
+        this.movies = this.movies.concat(data.results);
+      }, error => {
+        console.error('Error fetching data:', error);
+      });
+
+    }
+  }
+  
 
   loadMoviesByGenre() {
     if (this.selectedGenre === 0) {
@@ -137,18 +162,25 @@ export class PeliculaComponent implements OnInit {
     {
       this.page++;
       this.loadMoviesByRangeYear();
+
+    }else if(this.valueSearch != '')
+    {
+        this.page++;
+        this.loadMoviesFromSearch(this.valueSearch);
     }else
     {
-    
-        this.page++;
-        this.loadMovies();
-      }
+      this.page++;
+      this.loadMovies();
     }
+    
+  }
 
   redirectToMovieDetail(movieClicked: Movie) {
     sessionStorage.setItem('movieClicked', JSON.stringify(movieClicked));
     this.router.navigate(['home/movie/' + movieClicked.id]);
   }
+
+
   
 }
 
