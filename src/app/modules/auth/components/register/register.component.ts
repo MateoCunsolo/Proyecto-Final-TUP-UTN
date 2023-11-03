@@ -55,6 +55,7 @@ export class RegisterComponent implements OnInit {
   }
 
   passwordMatch(password: string, confirm_password: string) {
+    
     return function (form: AbstractControl) {
       const passwordValue = form.get(password)?.value;
 

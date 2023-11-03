@@ -1,47 +1,4 @@
 {
   "users": [
-    {
-      "userName": "mateo",
-      "email": "m@gmail.com",
-      "password": "123456",
-      "lists": [
-        {
-          "name": "To Watch",
-          "id": 1,
-          "idMovies": [
-            951491,
-            807172,
-            968051,
-            939335,
-            926393,
-            507089
-          ]
-        },
-        {
-          "name": "Watched",
-          "id": 2,
-          "idMovies": [
-            807172,
-            507089
-          ]
-        },
-        {
-          "name": "MateLIst",
-          "id": 3,
-          "idMovies": [
-            968051,
-            507089
-          ]
-        }
-      ],
-      "comments": [
-        {
-          "name": "mateo",
-          "comment": "Muy buena pelicula, me encanto todo.",
-          "idMovie": 951491
-        }
-      ],
-      "id": 1
-    }
   ]
 }

@@ -12,16 +12,17 @@
 
     <div class="info">
       <div id="title-year">
-        <h2 id="title">{{ movie.title }}</h2>
+        <h2 class="title" id="title">{{ movie.title }}</h2>
         <h4 id="year">{{ extractYear(movie.release_date) }}</h4>
         <app-addlist></app-addlist>
       </div>
       <section>
         <p>{{ movie.overview }}</p>
         <br />
-        <p>Original Lenguage: {{ lenguageReturn(movie.original_language) }}</p>
-        <p>Genres: {{ getGenres(movie.genre_ids).join(", ") }}</p>
-        <p>Adult Content: {{ movie.adult ? "Yes" : "No" }}</p>
+        <p><strong>Original Language:</strong> {{ lenguageReturn(movie.original_language) }}</p>
+        <p><strong>Genres:</strong> {{ getGenres(movie.genre_ids).join(", ") }}</p>
+        <p><strong>Adult Content:</strong> {{ movie.adult ? "Yes" : "No" }}</p>
+        <p> <strong>Vote Average:</strong> {{ movie.vote_average}}</p>
       </section>
     </div>
   </div>

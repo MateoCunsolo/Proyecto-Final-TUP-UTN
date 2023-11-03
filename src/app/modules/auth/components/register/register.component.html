@@ -5,27 +5,27 @@
             
             <input class="inputs-all inputs-values" type="text" id="userName" formControlName="userName" placeholder="User Name" pattern="^(?!\s*$).+" title="It cannot be blank">
             <span *ngIf=" getControl('userName')?.touched && getControl('userName')?.errors?.['minlength']">
-            <span class="cross-error">X</span>Mínimo 4 caracteres.</span> 
+            <span class="cross-error">X</span>Minimum 4 characters</span> 
             <span *ngIf="getControl('userName')?.touched && getControl('userName')?.errors?.['required']">
-            <span class="cross-error">X</span>El campo es requerido</span>
+            <span class="cross-error">X</span>The field is required</span>
               
             <input class="inputs-all inputs-values" type="email" id="email" formControlName="email" placeholder="Email" pattern="^(?!\s*$).+" title="It cannot be blank">
             <span *ngIf="getControl('email')?.touched && getControl('email')?.errors?.['required']">
-            <span class="cross-error">X</span>El campo es requerido </span>
+            <span class="cross-error">X</span>The field is required </span>
             <span *ngIf="getControl('email')?.touched && getControl('email')?.errors?.['pattern']">
             <span class="cross-error">X</span>Invalid Email Format </span>
             
             <input class="inputs-all inputs-values" type="password" id="password" formControlName="password" placeholder="Password" pattern="^(?!\s*$).+" title="It cannot be blank">
             <span *ngIf="getControl('password')?.touched && getControl('password')?.errors?.['minlength']">
-            <span class="cross-error">X</span>Mínimo 6 caracteres</span>
+            <span class="cross-error">X</span>Minimum 6 characters</span>
             <span *ngIf="getControl('password')?.touched && getControl('password')?.errors?.['required']">
-            <span class="cross-error">X</span>El campo es requerido</span>
+            <span class="cross-error">X</span>The field is required</span>
             
             <input class="inputs-all inputs-values" type="password" id="confirmPassword" formControlName="confirmPassword"  placeholder="Confirm Password" pattern="^(?!\s*$).+" title="It cannot be blank">
             <span *ngIf="getControl('confirmPassword')?.touched && getControl('confirmPassword')?.errors?.['required']">
-            <span class="cross-error">X</span>El campo es requerido</span>
+            <span class="cross-error">X</span>The field is required</span>
             <span *ngIf="registerForm.errors?.['passwordMismatcgError'] && getControl('confirmPassword')?.touched && getControl('confirmPassword')?.touched" >
-            <span class="cross-error">X</span>No coinciden las contraseñas</span>
+            <span class="cross-error">X</span>Passwords do not match</span>
 
             <input class="inputs-all inputs-sumbit" type="submit" value="Sign Up" id="signUp"  [disabled]="registerForm.status === 'INVALID'">
 
