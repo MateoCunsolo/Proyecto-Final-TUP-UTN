@@ -22,7 +22,8 @@
         <p><strong>Original Language:</strong> {{ lenguageReturn(movie.original_language) }}</p>
         <p><strong>Genres:</strong> {{ getGenres(movie.genre_ids).join(", ") }}</p>
         <p><strong>Adult Content:</strong> {{ movie.adult ? "Yes" : "No" }}</p>
-        <p> <strong>Vote Average:</strong> {{ movie.vote_average}}</p>
+        <p *ngIf="movie.vote_average" > <strong>Vote Average:</strong> {{ movie.vote_average}}</p>
+        <p *ngIf="!movie.vote_average"><strong>Vote Average:</strong> No available</p>
       </section>
     </div>
   </div>
