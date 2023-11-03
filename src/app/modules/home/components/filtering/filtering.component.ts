@@ -9,16 +9,15 @@ import { FilteringService } from 'src/app/services/filtering.service';
 
 export class FilteringComponent implements OnInit {
 
-
   constructor(private filterService: FilteringService) { }
+
+  ngOnInit(): void {}
 
   titleG: string = 'Genre';
   titleR: string = 'Rating';
-  activeFilter: 'genre' | 'rating' | 'year' | '' = '';
+  titleY: string  = 'Year';
 
-  ngOnInit(): void {
-    
-  }
+  activeFilter: 'genre' | 'rating' | 'year' | '' = '';
 
   selectedGenre: string | null = "";
   idGenre: number = 0;
@@ -26,6 +25,11 @@ export class FilteringComponent implements OnInit {
 
   RatingBackgroundColor: string = '';
   selectedRating: string = '';
+
+  selectedYear: number = 0;
+  yearBackgroundColor: string = '';
+  endYear: number = 0;
+  startYear: number = 0;
 
   onGenreClick(genre: string) {
 
@@ -45,27 +49,38 @@ export class FilteringComponent implements OnInit {
       this.selectedGenre = genre; // Establece el nuevo género seleccionado
       this.toggleFilter('genre');
 
-      if (genre === 'Romance') {
-        this.headerBackgroundColor = 'red'; // Cambiar a rojo cuando se selecciona Romance
-        this.idGenre = 10749;
-      } else if (genre === 'Horror') {
-        this.headerBackgroundColor = 'purple'; // Cambiar a morado cuando se selecciona Horror
-        this.idGenre = 27;
-      }else if (genre === 'Comedy') {
-        this.headerBackgroundColor = 'yellow';
-        this.idGenre = 35;
-      }else if (genre === 'Sci-Fi') {
-        this.headerBackgroundColor = 'blue';
-        this.idGenre = 878;
-      }else if (genre === 'Action') {
-        this.headerBackgroundColor = 'lightblue';
-        this.idGenre = 28;
-      }else if (genre === 'Drama') {
-        this.headerBackgroundColor = 'orange';
-        this.idGenre = 18;
-      }else if (genre === 'Thriller') {
-        this.headerBackgroundColor = 'grey';
-        this.idGenre = 53;
+      switch (genre) {
+        case 'Romance':
+          this.headerBackgroundColor = '#D11134'; 
+          this.idGenre = 10749;
+          break;
+        case 'Horror':
+          this.headerBackgroundColor = '#680286'; 
+          this.idGenre = 27;
+          break;
+        case 'Comedy':
+          this.headerBackgroundColor = '#C6AC00';
+          this.idGenre = 35;
+          break;
+        case 'Sci-Fi':
+          this.headerBackgroundColor = '#221476';
+          this.idGenre = 878;
+          break;
+        case 'Action':
+          this.headerBackgroundColor = '#2E7294';
+          this.idGenre = 28;
+          break;
+        case 'Drama':
+          this.headerBackgroundColor = '#BD5500';
+          this.idGenre = 18;
+          break;
+        case 'Thriller':
+          this.headerBackgroundColor = 'grey';
+          this.idGenre = 53;
+          break;
+        default:
+          // Código que se ejecutará si no se encuentra una coincidencia con ninguna de las opciones anteriores.
+          break;
       }
   
       this.emitFilterGenreEvent(this.idGenre);
@@ -109,12 +124,62 @@ export class FilteringComponent implements OnInit {
     
   }
 
+  onYearClick(startY: number, endY: number) {
+
+    if(this.selectedYear === startY) //si apreto por segunda vez 
+    {
+      this.selectedYear = 0;
+      this.titleY = 'Year';
+      this.yearBackgroundColor = '';
+      this.toggleFilter('');
+
+      this.emitFilterYearEvent(startY, endY);
+
+    }else{
+      this.titleY = startY.toString() + "-"+ endY.toString(); 
+      this.yearBackgroundColor = 'var(--color-azul-claro)';
+      this.selectedYear = startY;
+      this.toggleFilter('year');
+
+      switch (startY) {
+        case 1860:
+          this.startYear = 1860;
+          this.endYear = 1909;
+          break;
+        case 1910:
+          this.startYear = 1910;
+          this.endYear = 1959;
+          break;
+        case 1960:
+          this.startYear = 1960;
+          this.endYear = 2009;
+          break;
+        case 2010:
+          this.startYear = 2010;
+          this.endYear = 2059;
+          break;
+        default:
+          // Código que se ejecutará si no se encuentra una coincidencia con ninguna de las opciones anteriores.
+          break;
+      }
+
+      this.emitFilterYearEvent(this.startYear, this.endYear);
+      
+
+    }
+
+  }
+
   emitFilterRatingEvent(rating: string) {
     this.filterService.emitEvent('filterRating', { rating: rating });
   }
 
   emitFilterGenreEvent(idgenre: number) {
     this.filterService.emitEvent('filterGenre', { idgenre: idgenre });
+  }
+
+  emitFilterYearEvent(startY: number, endY: number) {
+    this.filterService.emitEvent('filterYear', { startY: startY, endY: endY });
   }
 
   toggleFilter(filter: 'genre' | 'rating' | 'year' | '') {
@@ -125,7 +190,9 @@ export class FilteringComponent implements OnInit {
       this.RatingBackgroundColor = '';
       this.selectedRating = '';
 
-      //y para year
+      this.titleY = 'Year';
+      this.yearBackgroundColor = '';
+      this.selectedYear = 0;
 
     } else if (filter === 'rating' || !filter) {
     
@@ -133,8 +200,12 @@ export class FilteringComponent implements OnInit {
       this.headerBackgroundColor = '';
       this.selectedGenre = '';
 
-      //el de year
+      this.titleY = 'Year';
+      this.yearBackgroundColor = '';
+      this.selectedYear = 0;
+
     } else if (filter === 'year' || filter === '') {
+
       this.titleR = 'Rating';
       this.RatingBackgroundColor = '';
       this.selectedRating = '';
@@ -143,8 +214,6 @@ export class FilteringComponent implements OnInit {
       this.headerBackgroundColor = '';
       this.selectedGenre = '';
     }
-
-
   }
 }
 

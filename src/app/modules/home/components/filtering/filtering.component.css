@@ -62,7 +62,10 @@ ul li{
     padding: 10px;
     top: 35px;
     left: 0;
-  
+    border: 2px solid var(--color-blanco-claro) !important;
+    border-top: none !important;
+    border-radius: 20px;
+    width: 110%;
   }
 
   .dropdown:hover .submenu {
@@ -80,7 +83,9 @@ ul li{
     border: none;
     padding: 0;
     font-weight: lighter;
-      }
+    margin: 0;
+    padding: 0rem 1rem;
+  }
 
 
   img{

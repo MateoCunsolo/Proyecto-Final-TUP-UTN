@@ -70,6 +70,21 @@ export class PeliculasService {
         })
       );
   }
+
+  listMoviesByRangeYear(page: number, startYear: number, endYear: number): Observable<MovieData> {
+    // Construye la URL con el filtro por rango de años
+    const apiUrl = `${this.apiUrl}/discover/movie?api_key=79f8e563e8d26768e3277cdf102fd1b1&page=${page}&primary_release_date.gte=${startYear}-01-01&primary_release_date.lte=${endYear}-12-31`;
+  
+    return this.http
+      .get<MovieData>(apiUrl)
+      .pipe(
+        catchError((error) => {
+          console.error('Error fetching data by rating:', error);
+          return [];
+        })
+      );
+  }
+  
   
   
 

@@ -1,15 +1,16 @@
  <div class="div-filtering">
     <ul class="horizontal-list">
         <li id="browse">Browse by</li>
-        <li class="dropdown">
-            
-            <p>Year</p>
+        
+        <li class="dropdown"  [style.background-color]="yearBackgroundColor">
+            <p>{{titleY}}</p>
             <img src="assets/flecha-hacia-abajo-.png" alt="">
 
             <ul class="submenu">
-                <li>1860-90s</li>
-                <li>1890-1930</li>
-                <li>1870-80</li>
+                <li (click)="onYearClick(1860,1910)">1860-1910s</li>
+                <li (click)="onYearClick(1910,1960)">1910-1960s</li>
+                <li (click)="onYearClick(1960,2010)">1960-2010</li>
+                <li (click)="onYearClick(2010,2060)">2010-2060s</li>
             </ul>
         </li>
 

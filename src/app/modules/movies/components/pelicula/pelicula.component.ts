@@ -34,6 +34,9 @@ export class PeliculaComponent implements OnInit {
 
   selectedGenre: number = 0; // Propiedad para almacenar el nombre del género
   selectedRating: string = ''; // Propiedad para almacenar el rating seleccionado
+  selectedYear: number = 0; // Propiedad para almacenar el año seleccionado
+  endYear: number = 0;
+  startYear: number = 0;
 
 
   constructor(private moviesService: PeliculasService, private router: Router, private filterService: FilteringService) {
@@ -43,18 +46,24 @@ export class PeliculaComponent implements OnInit {
     this.loadMovies();
 
     this.filterService.getEvent('filterGenre').subscribe((event) => {
-      console.log(event);
       this.selectedGenre = event.data.idgenre;
-      console.log(this.selectedGenre);
       this.movies = [];
       this.loadMoviesByGenre();
     });
 
     this.filterService.getEvent('filterRating').subscribe((event) => {
       this.selectedRating = event.data.rating;
-      console.log("escuche el evento, recibi esto" + this.selectedRating);
       this.movies = [];
       this.loadMoviesByRating();
+    });
+
+    this.filterService.getEvent('filterYear').subscribe((event) => {
+      console.log(event);
+      this.startYear = event.data.startY;
+      this.endYear = event.data.endY;
+      this.selectedYear = event.data.startY;
+      this.movies = [];
+      this.loadMoviesByRangeYear();
     });
   }
  
@@ -84,7 +93,6 @@ export class PeliculaComponent implements OnInit {
   }
   
   loadMoviesByRating() {
-    console.log("Rating elegido" + this.selectedRating);
     if (this.selectedRating === '') {
       this.movies = [];
       this.loadMovies();
@@ -96,6 +104,21 @@ export class PeliculaComponent implements OnInit {
           console.error('Error fetching data by rating:', error);
         });
     }
+  }
+
+  loadMoviesByRangeYear() {
+    if (this.startYear === 0 && this.endYear === 0) {
+      this.movies = [];
+      this.loadMovies();
+    } else {
+      this.moviesService.listMoviesByRangeYear(this.page, this.startYear, this.endYear)
+        .subscribe((data: MovieData) => {
+          this.movies = this.movies.concat(data.results);
+        }, error => {
+          console.error('Error fetching data by range year:', error);
+        });
+    }
+
   }
   
 
@@ -109,12 +132,18 @@ export class PeliculaComponent implements OnInit {
     {
       this.page++;
       this.loadMoviesByRating();
-    }else
+      
+    }else if(this.selectedYear != 0)
     {
       this.page++;
-      this.loadMovies();
+      this.loadMoviesByRangeYear();
+    }else
+    {
+    
+        this.page++;
+        this.loadMovies();
+      }
     }
-  }
 
   redirectToMovieDetail(movieClicked: Movie) {
     sessionStorage.setItem('movieClicked', JSON.stringify(movieClicked));
