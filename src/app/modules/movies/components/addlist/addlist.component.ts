@@ -13,7 +13,6 @@ import { UserService } from 'src/app/services/user.service';
 
 export class AddlistComponent implements OnInit {
 
-  isDropdownOpen: boolean = false;
   isVisibilityActive: boolean = true;
 
   user: IUser | null = null;
@@ -29,6 +28,7 @@ export class AddlistComponent implements OnInit {
 
   mostrarMenuDesplegable() {
     this.menuDesplegableVisible = !this.menuDesplegableVisible;
+    this.isVisibilityActive =!this.isVisibilityActive;
   }
 
   onListaSeleccionadaChange() {
@@ -81,8 +81,8 @@ export class AddlistComponent implements OnInit {
         console.log('id Usuario ' + this.user.id + 'id de la lista seleccionada ' + this.selectedListId + 'id de la pelicula ' + this.movieId )
         //la posicion de la lista en el arreglo es uno menos que el id de esa lista
         this.userService.addMovieToList(this.user.id, this.selectedListId-1, this.movieId);
-        this.menuDesplegableVisible = !this.menuDesplegableVisible; //asi se me vuelve a plegar el menu
         this.selectedListId = 0;
+        this.mostrarMenuDesplegable();
       } 
       else {
         console.log("Algo salió mal");
