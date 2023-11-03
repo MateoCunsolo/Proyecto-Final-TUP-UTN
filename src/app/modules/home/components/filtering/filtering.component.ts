@@ -14,6 +14,7 @@ export class FilteringComponent implements OnInit {
 
   titleG: string = 'Genre';
   titleR: string = 'Rating';
+  activeFilter: 'genre' | 'rating' | 'year' | '' = '';
 
   ngOnInit(): void {
     
@@ -35,12 +36,14 @@ export class FilteringComponent implements OnInit {
       this.headerBackgroundColor = ''; //el boton vuelve a negro
       this.titleG = 'Genre';
       this.emitFilterGenreEvent(this.idGenre);
+      this.toggleFilter('');
       //se le manda un id genero de peli que no existe
 
     } else 
     {
       this.titleG = genre;
       this.selectedGenre = genre; // Establece el nuevo género seleccionado
+      this.toggleFilter('genre');
 
       if (genre === 'Romance') {
         this.headerBackgroundColor = 'red'; // Cambiar a rojo cuando se selecciona Romance
@@ -77,6 +80,7 @@ export class FilteringComponent implements OnInit {
       this.titleR = 'Rating';
       this.RatingBackgroundColor = '';
       this.selectedRating = '';
+      this.toggleFilter('');
 
       this.emitFilterRatingEvent(this.selectedRating);
 
@@ -84,6 +88,7 @@ export class FilteringComponent implements OnInit {
     {
       this.titleR = rating;
       this.RatingBackgroundColor = 'var(--color-azul-claro)';
+      this.toggleFilter('rating');
 
       if(rating === 'Highest First')
       {
@@ -110,6 +115,36 @@ export class FilteringComponent implements OnInit {
 
   emitFilterGenreEvent(idgenre: number) {
     this.filterService.emitEvent('filterGenre', { idgenre: idgenre });
+  }
+
+  toggleFilter(filter: 'genre' | 'rating' | 'year' | '') {
+    this.activeFilter = filter;
+    if(filter == 'genre' || filter == '')
+    {
+      this.titleR = 'Rating';
+      this.RatingBackgroundColor = '';
+      this.selectedRating = '';
+
+      //y para year
+
+    } else if (filter === 'rating' || !filter) {
+    
+      this.titleG = 'Genre';
+      this.headerBackgroundColor = '';
+      this.selectedGenre = '';
+
+      //el de year
+    } else if (filter === 'year' || filter === '') {
+      this.titleR = 'Rating';
+      this.RatingBackgroundColor = '';
+      this.selectedRating = '';
+
+      this.titleG = 'Genre';
+      this.headerBackgroundColor = '';
+      this.selectedGenre = '';
+    }
+
+
   }
 }
 

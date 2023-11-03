@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { MovieData } from '../core/movie.interface';
-import { Observable } from 'rxjs';
+import { Observable, catchError, map } from 'rxjs';
 import { Genre } from '../core/movie.interface';
 import { Subject } from 'rxjs';
 
@@ -44,47 +44,31 @@ export class PeliculasService {
     });
   }
 
-  listMoviesByGenre(page: number, genre: number): Promise<MovieData> {
-    return new Promise<MovieData>((resolve, reject) => {
-      this.http
-        .get<MovieData>(
-          `${this.apiUrl}/discover/movie?api_key=79f8e563e8d26768e3277cdf102fd1b1&with_genres=${genre}&page=${page}`
-        )
-        .toPromise()
-        .then((data) => {
-          if (data) {
-            resolve(data);
-          } else {
-            reject('Data is undefined');
-          }
-        })
-        .catch((error) => {
-          reject(error);
-        });
-    });
+  listMoviesByGenre(page: number, genre: number): Observable<MovieData> {
+    return this.http.get<MovieData>(
+      `${this.apiUrl}/discover/movie?api_key=79f8e563e8d26768e3277cdf102fd1b1&with_genres=${genre}&page=${page}`
+    ).pipe(
+      map((data: MovieData) => data), // Transforma la respuesta
+      catchError((error) => {
+        console.error('Error fetching data:', error);
+        return [];
+      })
+    );
   }
 
 
-  listMoviesByRating(page: number, sortBy: string): Promise<MovieData> {
-    return new Promise<MovieData>((resolve, reject) => {
-      const sortDirection = sortBy === 'asc' ? 'asc' : 'desc';
-  
-      this.http
-        .get<MovieData>(
-          `${this.apiUrl}/discover/movie?api_key=79f8e563e8d26768e3277cdf102fd1b1&page=${page}&sort_by=vote_average.${sortDirection}`
-        )
-        .toPromise()
-        .then((data) => {
-          if (data) {
-            resolve(data);
-          } else {
-            reject('Data is undefined');
-          }
+  listMoviesByRating(page: number, sortBy: string): Observable<MovieData> {
+    const sortDirection = sortBy === 'asc' ? 'asc' : 'desc';
+
+    return this.http
+      .get<MovieData>(
+        `${this.apiUrl}/discover/movie?api_key=79f8e563e8d26768e3277cdf102fd1b1&page=${page}&sort_by=vote_average.${sortDirection}`
+      ).pipe(
+        catchError((error) => {
+          console.error('Error fetching data by rating:', error);
+          return [];
         })
-        .catch((error) => {
-          reject(error);
-        });
-    });
+      );
   }
   
   

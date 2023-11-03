@@ -69,45 +69,35 @@ export class PeliculaComponent implements OnInit {
       });
   }
 
-  loadMoviesByGenre() 
-  {
-    
+  loadMoviesByGenre() {
     if (this.selectedGenre === 0) {
-      // Cargar todas las películas sin filtrar por género
       this.movies = [];
       this.loadMovies();
     } else {
-
-    this.moviesService.listMoviesByGenre(this.page, this.selectedGenre)
-      .then((data: MovieData) => {
-        this.movies = this.movies.concat(data.results);
-
-      })
-      .catch(error => {
-        console.error('Error fetching data by genre:', error);
-      });
+      this.moviesService.listMoviesByGenre(this.page, this.selectedGenre)
+        .subscribe((data: MovieData) => { // Cambiamos .then() por .subscribe()
+          this.movies = this.movies.concat(data.results);
+        }, error => {
+          console.error('Error fetching data by genre:', error);
+        });
     }
   }
-
+  
   loadMoviesByRating() {
     console.log("Rating elegido" + this.selectedRating);
-    if(this.selectedRating === '')
-    {
+    if (this.selectedRating === '') {
       this.movies = [];
       this.loadMovies();
-    }else
-    {
+    } else {
       this.moviesService.listMoviesByRating(this.page, this.selectedRating)
-      .then((data: MovieData) => {
-        this.movies = this.movies.concat(data.results);
-      })
-      .catch(error => {
-        console.error('Error fetching data by rating:', error);
-      });
-
+        .subscribe((data: MovieData) => {
+          this.movies = this.movies.concat(data.results);
+        }, error => {
+          console.error('Error fetching data by rating:', error);
+        });
     }
-    
   }
+  
 
   loadNextPage() {
     if(this.selectedGenre != 0)
