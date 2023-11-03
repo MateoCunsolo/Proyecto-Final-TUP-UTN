@@ -38,7 +38,5 @@ select
 #span
 {
     position: absolute;
-    top: 40.5%;
-    left: 23%;
     z-index: -1;
 }

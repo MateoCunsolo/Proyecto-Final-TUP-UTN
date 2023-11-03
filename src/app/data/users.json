@@ -1,4 +1,56 @@
 {
   "users": [
+    {
+      "userName": "mate",
+      "email": "m@gmail.com",
+      "password": "123456",
+      "lists": [
+        {
+          "name": "To Watch",
+          "id": 1,
+          "idMovies": [
+            507089
+          ]
+        },
+        {
+          "name": "Watched",
+          "id": 2,
+          "idMovies": []
+        }
+      ],
+      "comments": [
+        {
+          "name": "mate",
+          "comment": "ESTA BUENA ",
+          "idMovie": 5698
+        }
+      ],
+      "id": 1
+    },
+    {
+      "userName": "MAGA",
+      "email": "M@GMAIL.COM",
+      "password": "123456",
+      "lists": [
+        {
+          "name": "To Watch",
+          "id": 1,
+          "idMovies": []
+        },
+        {
+          "name": "Watched",
+          "id": 2,
+          "idMovies": []
+        }
+      ],
+      "comments": [
+        {
+          "name": "MAGA",
+          "comment": "FEA",
+          "idMovie": 5698
+        }
+      ],
+      "id": 2
+    }
   ]
 }
