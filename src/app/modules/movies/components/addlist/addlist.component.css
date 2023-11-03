@@ -8,13 +8,9 @@
     
 }
 
-/* Estilo para ocultar el menú desplegable por defecto */
-.dropdown {
-    display: none;
-  }
 
-/* Estilos para el menú desplegable cuando está visible */
-  .dropdown.show {
-    display: block;
-  }
-  
+#option{
+    background-color: black;
+    color: white;
+   
+}
