@@ -1,68 +1,8 @@
 header
 {
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 100%;
     padding: 1rem 2rem 0rem 2rem;
-}
-button
-{
-    background-color: black;
-    border: none;
-    cursor: pointer;
-    width: 36px;
-    height: 36px;
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 1rem;
-    width: auto;
-}
-
-header img
-{
-    width: 32px;
-    height: 32px;
-}
-
-header input
-{
-    width: 100%;
-    height: 2rem;
-    background-color: rgba(0, 0, 0, 0);
-    color: var(--color-blanco-claro);
-    padding-left: 1rem;
-    border: none;
-}
-
-header input
-{
-    outline: none;
-}
-::placeholder{
-    color: rgb(161, 153, 153);
-    font-weight: bold;
-}
-
-.contenedor-input
-{
-    position: absolute;
-    margin-left: 33.333333333333333333333%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-direction: row;
-    border: solid rgb(94, 92, 92) 1px;
-    border-radius: 2rem;
-    width: 30%;
-    gap: 1rem;
-    padding-right: 1rem;
-}
-
-.contenedor-input img
-{
-    width: 16px;
-    height: 16px;
 }
