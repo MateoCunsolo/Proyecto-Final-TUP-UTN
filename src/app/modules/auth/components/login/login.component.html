@@ -1,25 +1,50 @@
+<div class="contenedor-forms flex-center-100vh">
+  <form
+    class="flex-center forms"
+    id="login-form"
+    [formGroup]="loginForm"
+    (ngSubmit)="loginUser()"
+  >
+    <h2 class="title">Welcome Back!</h2>
+    <p>Ready to dive back into your cinematic world?</p>
 
-<div class="flex-center-100vh">
-    
-    <form class="flex-center forms" id="login-form" [formGroup]="loginForm" (ngSubmit)="loginUser()">
-     
-        <h2 class="title">Welcome Back!</h2>
-        <p>Ready to dive back into your cinematic world? </p>
-
-        <label for="username"></label>
-        <input class="inputs-values inputs-all" type="text" name="" id="username" formControlName="userName" placeholder="User Name" pattern="^(?!\s*$).+" title="It cannot be blank">
-        <span class="error-message" *ngIf="validate('userName', 'required')" > El campo es requerido</span>
-     
-        <label for="pass"></label>
-        <input class="inputs-values inputs-all"  type="password" name="" id="pass" formControlName="password" placeholder="Password"  pattern="^(?!\s*$).+" title="It cannot be blank">
-        <span class="error-message" *ngIf="validate('password', 'required')"> El campo es requerido</span>
-        
-        <p id="msj-login">Usuario y/o contraseña incorrectos</p>
-
-        <input class="inputs-sumbit inputs-all" type="submit" name="" id="login"  [disabled]="loginForm.invalid" value="Login">
-    
-    </form>
-     
+    <label for="username"></label>
+    <input
+      class="inputs-values inputs-all"
+      type="text"
+      name=""
+      id="username"
+      formControlName="userName"
+      placeholder="User Name"
+      pattern="^(?!\s*$).+"
+      title="It cannot be blank"
+    />
+    <span class="error-message" *ngIf="validate('userName', 'required')">
+      <span class="cross-error">X</span> El campo es requerido</span
+    >
+    <label for="pass"></label>
+    <input
+      class="inputs-values inputs-all"
+      type="password"
+      name=""
+      id="pass"
+      formControlName="password"
+      placeholder="Password"
+      pattern="^(?!\s*$).+"
+      title="It cannot be blank"
+    />
+    <span class="error-message" *ngIf="validate('password', 'required')">
+      <span class="cross-error">X</span> El campo es requerido
+    </span>
+    <input
+      class="inputs-sumbit inputs-all"
+      type="submit"
+      name=""
+      id="login"
+      [disabled]="loginForm.invalid"
+      value="Login"
+    />
+    <p id="msj-login">Usuario y/o contraseña incorrectos</p>
+  </form>
 </div>
 <app-footer></app-footer>
-

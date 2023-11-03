@@ -9,6 +9,13 @@
 }
 
 
+#boton:hover {
+    background-color: #5a67b8;
+    color: var(--color-azul-claro);
+    transition: 0.5s;
+    color: white;
+}
+
 #option{
     background-color: black;
     color: white;
