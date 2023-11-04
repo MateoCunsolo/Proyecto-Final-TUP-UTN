@@ -1,0 +1,48 @@
+#user-image {
+    cursor: pointer;
+  }
+  
+  .contenedor-menu {
+    display: none;
+    position: absolute;
+    border: 1px solid #cb2929;
+    padding: none;
+    z-index: 1;
+    left: 1100px; /* Ajusta la posición a la izquierda según tus necesidades */
+    text-align: center;
+   
+  }
+  
+  .contenedor-menu.active {
+    display: block;
+    /* Agrega estilos de posición y apariencia aquí */
+  }
+
+  .contenedor-menu .user-data{
+    background-color: #4F4D7E;
+
+  }
+
+.item {
+    padding: 8px;
+    cursor: pointer;
+    text-align: left;
+    background-color: var(--color-azul);
+  }
+  
+  .item:hover {
+    background-color: #5a67b8;
+    color: white;
+  }
+
+.user-data{
+    padding: 12px;
+}
+
+#user-name{
+    font-size: 20px;
+}
+
+#user-email{
+    font-size: 14px;
+}
