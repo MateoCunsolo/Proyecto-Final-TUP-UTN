@@ -48,17 +48,15 @@ export class UserService {
 
   public async addMovieToList(userId: number, listPosChoosen: number, movieId: number) 
   {
-    console.log('1  ' + movieId);
+    
     try {
-      console.log('2  ' + movieId);
-      // Primero, obtén el usuario desde el servidor
+      // Primero, obtengo el usuario desde el servidor
       const user = await fetch(`${this.url}/${userId}`).then((response) =>
         response.json()
       );
-      console.log('3  ' + movieId);
-      // Agrega el movieId a la lista específica
+
+      // Agrego el movieId a la lista específica
       console.log(user.lists[listPosChoosen].idMovies);
-      console.log('4  ' + movieId);
 
       let movieAlreadyInList = false;
       
@@ -67,9 +65,8 @@ export class UserService {
         
         if (user.lists[listPosChoosen].idMovies[i] == movieId) 
         {
-          console.log('5  ' + movieId);
-          alert('La pelicula ya esta en la lista');
-          //console.log('La pelicula ya se encuentra en la lista'); 
+          alert('The movie is already on the list ' + user.lists[listPosChoosen].name);
+      
           movieAlreadyInList = true;
           break;
         }
@@ -78,20 +75,20 @@ export class UserService {
       if (!movieAlreadyInList) 
       {
         user.lists[listPosChoosen].idMovies.push(movieId);
+
         await fetch(`${this.url}/${userId}`, {
           method: 'PATCH',
           body: JSON.stringify(user),
           headers: { 'Content-type': 'application/json' },
         });
-        alert('pelicula agregada exitosamente')
-        //console.log('pelicula agregada con exito')
+
+        alert('Movie successfully added to the list ' + user.lists[listPosChoosen].name)
       }
     }
     catch (error) 
     {
       console.log(error);
     }
-    
    
   }
 }
