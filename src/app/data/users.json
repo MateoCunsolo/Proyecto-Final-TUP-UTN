@@ -51,6 +51,27 @@
         }
       ],
       "id": 2
+    },
+    {
+      "userName": "Giuliana",
+      "email": "oliva@gmail.com",
+      "password": "123456",
+      "lists": [
+        {
+          "name": "To Watch",
+          "id": 1,
+          "idMovies": [
+            939335
+          ]
+        },
+        {
+          "name": "Watched",
+          "id": 2,
+          "idMovies": []
+        }
+      ],
+      "comments": [],
+      "id": 3
     }
   ]
 }
