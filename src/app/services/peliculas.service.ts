@@ -87,9 +87,7 @@ export class PeliculasService {
   
   
   listMoviesFromSearch(query: string, page: number): Observable<MovieData> {
-    // Construye la URL con el filtro de búsqueda por palabra clave y número de página
-    const apiUrl = `${this.apiUrl}/search/movie?api_key=79f8e563e8d26768e3277cdf102fd1b1&query=${encodeURIComponent(query)}&page=${page}`;
-  
+    const apiUrl = `${this.apiUrl}/search/movie?api_key=79f8e563e8d26768e3277cdf102fd1b1&query=${encodeURIComponent(query)}&page=${page}`;  
     return this.http
       .get<MovieData>(apiUrl)
       .pipe(
