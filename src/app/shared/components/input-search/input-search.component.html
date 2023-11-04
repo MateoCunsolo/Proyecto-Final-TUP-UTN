@@ -1,5 +1,5 @@
 <section class="flex-center-row search">
-    <input (keyup.enter)="search()" (input)="onInputChange()" id="input-search" type="text" placeholder="Search by name...">
+    <input (keyup.enter)="search()" (input)="onInputChange()" #inputSearch id="input-search" type="text" placeholder="Search by name...">
     <button [ngClass]="{'enter-pressed': enterPressed}" (click)="search()" id="submit-search">
         <img src="assets/magnifying-glass.png" alt="">
     </button>
