@@ -24,15 +24,12 @@ export class AddlistComponent implements OnInit {
   listsNames: String[] = []; //arreglo donde van a ir los nombrs de las listas del usuario
   selectedListId: number = 0; //aca guardo el id de la lista que selecciona el usuario
 
-  menuDesplegableVisible = false;
+  visibleDropdownMenu = false;
+  
 
-  mostrarMenuDesplegable() {
-    this.menuDesplegableVisible = !this.menuDesplegableVisible;
+  showDropdownMenu(){
+    this.visibleDropdownMenu = !this.visibleDropdownMenu;
     this.isVisibilityActive =!this.isVisibilityActive;
-  }
-
-  onListaSeleccionadaChange() {
-    console.log("Lista seleccionada:", this.selectedListId); //aca me lo muestra bien
   }
 
   constructor(private route: ActivatedRoute, private userService: UserService) { }
@@ -73,22 +70,21 @@ export class AddlistComponent implements OnInit {
 
   }
 
-  agregarPelicula() {
+  addMovie() {
     if (this.selectedListId !== 0) 
     {
       if (this.user?.id !== undefined) 
       {
-        console.log('id Usuario ' + this.user.id + 'id de la lista seleccionada ' + this.selectedListId + 'id de la pelicula ' + this.movieId )
         //la posicion de la lista en el arreglo es uno menos que el id de esa lista
         this.userService.addMovieToList(this.user.id, this.selectedListId-1, this.movieId);
         this.selectedListId = 0;
-        this.mostrarMenuDesplegable();
+        this.showDropdownMenu();
       } 
       else {
-        console.log("Algo salió mal");
+        console.log("Something went wrong");
       }
     } else {
-      console.log("Por favor, selecciona una lista.");
+      console.log("Please select a list.");
     }
   }
 

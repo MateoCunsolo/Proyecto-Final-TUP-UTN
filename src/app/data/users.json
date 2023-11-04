@@ -66,13 +66,16 @@
           "name": "To Watch",
           "id": 1,
           "idMovies": [
-            939335
+            939335,
+            951491
           ]
         },
         {
           "name": "Watched",
           "id": 2,
-          "idMovies": []
+          "idMovies": [
+            951491
+          ]
         }
       ],
       "comments": [],
