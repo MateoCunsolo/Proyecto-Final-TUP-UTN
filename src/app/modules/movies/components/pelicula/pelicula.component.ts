@@ -42,15 +42,17 @@ export class PeliculaComponent implements OnInit {
     private moviesService: PeliculasService,
     private router: Router,
     private filterService: FilteringService
-  ) {}
+  ) { }
 
   ngOnInit() {
     if (this.router.url === '/home') {
       this.movies = [];
+      this.page = 1;
       this.loadMovies();
     } else {
       this.movies = [];
       this.valueSearch = this.router.url.split('=')[1];
+      this.page = 1;
       this.loadMoviesFromSearch(this.valueSearch);
       this.router.navigate(['/home']);
     }
@@ -58,12 +60,14 @@ export class PeliculaComponent implements OnInit {
     this.filterService.getEvent('filterGenre').subscribe((event) => {
       this.selectedGenre = event.data.idgenre;
       this.movies = [];
+      this.page = 1;
       this.loadMoviesByGenre();
     });
 
     this.filterService.getEvent('filterRating').subscribe((event) => {
       this.selectedRating = event.data.rating;
       this.movies = [];
+      this.page = 1;
       this.loadMoviesByRating();
     });
 
@@ -73,6 +77,7 @@ export class PeliculaComponent implements OnInit {
       this.endYear = event.data.endY;
       this.selectedYear = event.data.startY;
       this.movies = [];
+      this.page = 1;
       this.loadMoviesByRangeYear();
     });
 
@@ -83,8 +88,10 @@ export class PeliculaComponent implements OnInit {
         searchValue === 'remove' ||
         this.conteinWordsAndNonAlphanumeric(searchValue)
       ) {
+        this.page = 1;
         this.loadMovies();
       } else {
+        this.page = 1;
         this.loadMoviesFromSearch(searchValue);
         this.valueSearch = searchValue;
       }
@@ -113,6 +120,7 @@ export class PeliculaComponent implements OnInit {
   loadMoviesFromSearch(search: string) {
     if (search === '') {
       this.movies = [];
+      this.page = 1;
       this.loadMovies();
     } else {
       this.moviesService.listMoviesFromSearch(search, this.page).subscribe(
