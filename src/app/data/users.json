@@ -1,41 +1,9 @@
 {
   "users": [
     {
-      "userName": "mate",
-      "email": "m@gmail.com",
-      "password": "123456",
-      "lists": [
-        {
-          "name": "To Watch",
-          "id": 1,
-          "idMovies": [
-            507089
-          ]
-        },
-        {
-          "name": "Watched",
-          "id": 2,
-          "idMovies": []
-        }
-      ],
-      "comments": [
-        {
-          "name": "mate",
-          "comment": "ESTA BUENA ",
-          "idMovie": 5698
-        },
-        {
-          "name": "mate",
-          "comment": "ESTA PELICULA A MI ME PARECIO MUY MALA.",
-          "idMovie": 507089
-        }
-      ],
-      "id": 1
-    },
-    {
-      "userName": "MAGA",
-      "email": "M@GMAIL.COM",
-      "password": "123456",
+      "userName": "maga",
+      "email": "maguimourino@gmail.com",
+      "password": "maga123",
       "lists": [
         {
           "name": "To Watch",
@@ -47,49 +15,8 @@
           "id": 2,
           "idMovies": []
         }
-      ],
-      "comments": [
-        {
-          "name": "MAGA",
-          "comment": "FEA",
-          "idMovie": 5698
-        }
-      ],
-      "id": 2
-    },
-    {
-      "userName": "Giuliana",
-      "email": "oliva@gmail.com",
-      "password": "123456",
-      "lists": [
-        {
-          "name": "To Watch",
-          "id": 1,
-          "idMovies": [
-            939335,
-            951491,
-            354912
-          ]
-        },
-        {
-          "name": "Watched",
-          "id": 2,
-          "idMovies": [
-            951491
-          ]
-        },
-        {
-          "name": "Lista3",
-          "id": 3,
-          "idMovies": [
-            939335,
-            951491,
-            354912
-          ]
-        }
-      ],
-      "comments": [],
-      "id": 3
+      ]
     }
   ]
+
 }

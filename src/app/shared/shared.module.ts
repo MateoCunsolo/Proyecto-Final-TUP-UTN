@@ -20,7 +20,8 @@ import { InputSearchComponent } from './components/input-search/input-search.com
   ],
   imports: [
     CommonModule,
-    SharedRoutingModule
+    SharedRoutingModule,
+    
   ],
   exports:[
     FooterComponent,
