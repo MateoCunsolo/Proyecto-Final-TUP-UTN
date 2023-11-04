@@ -69,8 +69,15 @@ export class PeliculaComponent implements OnInit {
 
     this.filterService.getEvent('search').subscribe((event) => {
       this.movies = [];
-      this.loadMoviesFromSearch(event.data.search);
-      this.valueSearch = event.data.search;
+      if(event.data.search === 'remove')
+      {
+        this.loadMovies();
+      }else
+      {
+        this.loadMoviesFromSearch(event.data.search);
+        this.valueSearch = event.data.search;
+      }
+      
     });
   }
  
