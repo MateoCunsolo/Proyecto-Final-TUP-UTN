@@ -1,17 +1,9 @@
 <header>
 
-    <!--<p> ESTOS TRES ELEMENTOS EN REALIDAD SON COMPONENTES QUE CADA UNO TENDRA SU FUNCIONALIDAD </p>-->
+    <app-nav-bar-list></app-nav-bar-list>
 
-    <button>
-        <img id="menu" src="assets/menu.png" alt="">
-    </button>
-
-    <div class="contenedor-input">
-    <input id="searchForTitle" type="text" placeholder="Search by name">
-    <img src="assets/magnifying-glass.png" alt="">
-    </div>
-    <button>
-        <h4>{{name}}</h4>
-        <img id="perfil" src="assets/usuario.png" alt="">
-    </button>
+    <app-input-search></app-input-search> 
+    
+    <app-nav-bar-user></app-nav-bar-user>
+    
 </header>

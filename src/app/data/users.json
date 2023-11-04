@@ -1,23 +1,7 @@
 {
   "users": [
     {
-      "userName": "maga",
-      "email": "maguimourino@gmail.com",
-      "password": "maga123",
-      "lists": [
-        {
-          "name": "To Watch",
-          "id": 1,
-          "idMovies": []
-        },
-        {
-          "name": "Watched",
-          "id": 2,
-          "idMovies": []
-        }
-      ],
-      "comments": [],
-      "id": 1
+
     }
   ]
 }

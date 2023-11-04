@@ -8,22 +8,17 @@
     height: 2rem;
 }
 
-
 #boton:hover {
     background-color: #5a67b8;
     color: var(--color-azul-claro);
-    transition: 0.5s;
-    color: white;
+    transition: background-color 0.5s, color 0.5s;
 }
 
-#option{
+#option {
     background-color: black;
-    color: white;
-   
 }
 
-select
-{
+select {
     background-color: rgba(255, 0, 0, 0);
     color: var(--var-blanco);
     padding: .5rem 1rem;
@@ -32,13 +27,12 @@ select
     cursor: pointer;
     width: 10rem;
     height: 2rem;
-    border: solid 1px var(--color-blanco-claro);
+    border: 1px solid var(--color-blanco-claro);
+    border-radius: 1rem; /* Borde redondeado para el select */
 }
 
-#span
-{
+#span {
     position: absolute;
-    top: 40.5%;
-    left: 23%;
+    margin-top: 4px;
     z-index: -1;
 }

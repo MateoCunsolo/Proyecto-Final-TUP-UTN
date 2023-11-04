@@ -86,6 +86,18 @@ export class PeliculasService {
   }
   
   
+  listMoviesFromSearch(query: string, page: number): Observable<MovieData> {
+    const apiUrl = `${this.apiUrl}/search/movie?api_key=79f8e563e8d26768e3277cdf102fd1b1&query=${encodeURIComponent(query)}&page=${page}`;  
+    return this.http
+      .get<MovieData>(apiUrl)
+      .pipe(
+        catchError((error) => {
+          console.error('Error fetching data by query:', error);
+          return [];
+        })
+      );
+  }
+  
   
 
   getMovieDetails(movieId: number): Observable<any> {
