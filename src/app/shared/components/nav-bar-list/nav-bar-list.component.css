@@ -1,0 +1,87 @@
+.header {
+    position: relative;
+}
+
+#iconMenu {
+    background-color: black;
+    cursor: pointer;
+    height: 2.5rem;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+.menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: black;
+    display: none;
+    width: 600%; /* Establece un ancho para el menú */
+    padding: 10px; /* Espacio alrededor del menú */
+}
+
+aside{
+    background-color: black;
+}
+
+/* para crear un pseudo-elemento que funcione como el borde izquierdo del menú.*/
+.menu::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -20px; /* Ancho del borde izquierdo, ajusta según tus preferencias */
+    width: 20px; /* Ancho del borde izquierdo, ajusta según tus preferencias */
+    height: 100%; /* Igual a la altura del menú */
+    background-color: black; /* Color del borde izquierdo */
+}
+
+
+#boton {
+    background-color: black;
+    border: none;
+}
+
+#boton:hover {
+    background-color: #5a67b8;
+    color: var(--color-azul-claro);
+    transition: background-color 0.5s, color 0.5s;
+}
+
+#imgLists {
+    width: 40px;
+    height: 25px;
+    margin-top: 5px;
+}
+
+.menu.active {
+    display: block;
+}
+
+#listsNames,#newList{
+    color: white;
+    text-decoration: none;
+}
+
+#div1:hover,#div2:hover{
+    background-color: #5a67b8;
+    color: var(--color-azul-claro);
+    transition: background-color , color ;
+    /*border-radius:*/ 
+}
+
+h3{
+    padding: 7%;
+}
+
+#div1{
+    padding: 1%;
+}
+
+#div2{
+    margin-top: 10%;
+}
+
+
+  
+
