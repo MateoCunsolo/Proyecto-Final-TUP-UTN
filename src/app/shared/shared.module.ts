@@ -10,6 +10,7 @@ import { InputSearchComponent } from './components/input-search/input-search.com
 
 
 
+
 @NgModule({
   declarations: [
     FooterComponent,

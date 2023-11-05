@@ -8,6 +8,7 @@ import { MainComponent } from './components/main/main.component';
 import { PeliculaDetalleComponent} from '../movies/components/peliculadetalle/peliculadetalle.component';
 import { FilteringComponent } from './components/filtering/filtering.component';
 import { MoviesModule } from '../movies/movies.module';
+import { ListsModule } from '../lists/lists.module';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { MoviesModule } from '../movies/movies.module';
     CommonModule,
     HomeRoutingModule,
     SharedModule,
-    MoviesModule
+    MoviesModule,
+    ListsModule
   ],
   exports: [
       FilteringComponent
