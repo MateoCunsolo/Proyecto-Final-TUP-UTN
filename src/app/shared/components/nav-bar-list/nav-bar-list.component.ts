@@ -1,7 +1,6 @@
 import { Component, OnInit, Renderer2, ElementRef } from '@angular/core';
 import { IList, IUser } from 'src/app/core/Interfaces';
-import { ActivatedRoute } from '@angular/router';
-
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-nav-bar-list',
@@ -13,7 +12,7 @@ export class NavBarListComponent implements OnInit {
   user: IUser | null = null;
 
   lists: IList[] = [];
-  listsNames: String[] = []; //arreglo donde van a ir los nombrs de las listas del usuario
+  listsNames: String[] = []; //arreglo donde van a ir los nombres de las listas del usuario
 
   isMenuOpen = false;
 
@@ -21,7 +20,7 @@ export class NavBarListComponent implements OnInit {
     this.isMenuOpen = !this.isMenuOpen;
   }
 
-  constructor(private route: ActivatedRoute, private renderer: Renderer2, private el: ElementRef) { }
+  constructor(private router: Router, private renderer: Renderer2, private el: ElementRef) { }
 
   ngOnInit(): void {
 
@@ -45,6 +44,13 @@ export class NavBarListComponent implements OnInit {
         this.isMenuOpen = false;
       }
     });
+
+  }
+
+  redirectToListDetail (listClicked: IList) 
+  {
+    sessionStorage.setItem('listClicked', JSON.stringify(listClicked));
+    this.router.navigate(['home/list/' + listClicked.name.split(' ')]);
   }
 
 }
