@@ -20,11 +20,34 @@ export class InputSearchComponent implements OnInit {
   @ViewChild('inputSearch', { static: false }) inputSearch: ElementRef | null = null;
 
   enterPressed: boolean = false;
+  searchValueOtherVist: string = '';
 
   ngOnInit(): void {
+
+    let inputSearch = document.querySelector(
+      '#input-search'
+      )   as HTMLInputElement;
     if (this.inputSearch) {
       this.inputSearch.nativeElement.focus();
     }
+    
+    if(this.router.url != '/home')
+    {
+      inputSearch.value =  this.router.url.split('=')[1];
+      if(inputSearch.value === "undefined")
+      {
+        this.enterPressed = false;
+        inputSearch.value = '';
+      }else
+      {
+        this.enterPressed = true;
+      }
+    }
+
+    this.service.getEvent('cross').subscribe((event) => {
+        this.enterPressed = false;
+        inputSearch.value = '';
+    })
   }
   
 
