@@ -1,13 +1,13 @@
 <div class="header">
     <button id="boton" (click)="toggleMenu()">
-        <img id="iconMenu" src="assets/menu.png" alt="Menú Personalizado">
+        <img id="iconMenu" src="assets/logo-menu.png" alt="Menú Personalizado">
     </button>
     <div class="menu" [ngClass]="{'active': isMenuOpen}">
         <aside>
             
             <h3>Your Lists :</h3>
             <div id="div1" *ngFor="let list of user?.lists" >
-                <img src="assets/[removal.ai]_be5a1f4e-38f7-4edc-8d6b-650faaeb6f36-formulario-de-registro-ingrese.png" alt="*" id="imgLists">
+                <img src="assets/logo-flick-finder.png" alt=" " id="imgLists">
                 <a (click)="redirectToListDetail(list)" id="listsNames" ><strong>{{ list.name }}</strong></a>
             </div>
          

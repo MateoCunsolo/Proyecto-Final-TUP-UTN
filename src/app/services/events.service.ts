@@ -5,7 +5,7 @@ import { Observable, Subject, filter } from 'rxjs';
   providedIn: 'root'
 })
 
-export class FilteringService {
+export class eventsService {
 
   constructor() { }
 

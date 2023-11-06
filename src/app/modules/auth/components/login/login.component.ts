@@ -40,7 +40,6 @@ export class LoginComponent implements OnInit {
     this.userService.getUsers().subscribe((listUsers: IUser[]) => {
       console.log(listUsers);
       const users = listUsers.filter(u => u.userName === user.userName && u.password === user.password)
-
       if(users.length > 0){
         console.log('Usuario logueado');
         sessionStorage.setItem('user', JSON.stringify(users[0]));
@@ -48,7 +47,6 @@ export class LoginComponent implements OnInit {
       }else
       {
         console.log('Usuario no logueado');
-
         let p: HTMLElement | null = document.getElementById("msj-login");
         if(p != null)
         {
@@ -68,6 +66,7 @@ export class LoginComponent implements OnInit {
       }
 
     })
+
 
      
   }

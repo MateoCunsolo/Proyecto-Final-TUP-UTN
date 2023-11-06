@@ -1,5 +1,5 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { FilteringService } from 'src/app/services/filtering.service';
+import { Component, OnInit } from '@angular/core';
+import { eventsService } from 'src/app/services/events.service';
 
 @Component({
   selector: 'app-filtering',
@@ -9,7 +9,7 @@ import { FilteringService } from 'src/app/services/filtering.service';
 
 export class FilteringComponent implements OnInit {
 
-  constructor(private filterService: FilteringService) { }
+  constructor(private eventsService: eventsService) { }
 
   ngOnInit(): void {}
 
@@ -33,7 +33,7 @@ export class FilteringComponent implements OnInit {
   
   onGenreClick(genre: string) {
 
-    this.filterService.getEvent('search').subscribe((event) => {
+    this.eventsService.getEvent('search').subscribe((event) => {
       this.selectedGenre = null;
       this.idGenre = 0;
       this.headerBackgroundColor = ''; 
@@ -178,15 +178,15 @@ export class FilteringComponent implements OnInit {
   }
 
   emitFilterRatingEvent(rating: string) {
-    this.filterService.emitEvent('filterRating', { rating: rating });
+    this.eventsService.emitEvent('filterRating', { rating: rating });
   }
 
   emitFilterGenreEvent(idgenre: number) {
-    this.filterService.emitEvent('filterGenre', { idgenre: idgenre });
+    this.eventsService.emitEvent('filterGenre', { idgenre: idgenre });
   }
 
   emitFilterYearEvent(startY: number, endY: number) {
-    this.filterService.emitEvent('filterYear', { startY: startY, endY: endY });
+    this.eventsService.emitEvent('filterYear', { startY: startY, endY: endY });
   }
 
   toggleFilter(filter: 'genre' | 'rating' | 'year' | '') {
