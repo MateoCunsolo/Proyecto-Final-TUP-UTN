@@ -67,7 +67,6 @@ aside{
     background-color: #5a67b8;
     color: var(--color-azul-claro);
     transition: background-color , color ;
-    /*border-radius:*/ 
 }
 
 h3{
@@ -81,7 +80,6 @@ h3{
 #div2{
     margin-top: 10%;
 }
-
 
   
 

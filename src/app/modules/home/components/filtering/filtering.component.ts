@@ -30,8 +30,15 @@ export class FilteringComponent implements OnInit {
   yearBackgroundColor: string = '';
   endYear: number = 0;
   startYear: number = 0;
-
+  
   onGenreClick(genre: string) {
+
+    this.filterService.getEvent('search').subscribe((event) => {
+      this.selectedGenre = null;
+      this.idGenre = 0;
+      this.headerBackgroundColor = ''; 
+      this.titleG = 'Genre';
+    });
 
     if (this.selectedGenre === genre) //si el usuario hace clic en el mismo género la segunda vez 
     {

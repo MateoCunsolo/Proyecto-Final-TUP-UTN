@@ -37,7 +37,7 @@ export class PeliculaComponent implements OnInit {
   endYear: number = 0;
   startYear: number = 0;
   valueSearch: string = '';
-
+  searchLoadMore : boolean = false;
   constructor(
     private moviesService: PeliculasService,
     private router: Router,
@@ -45,7 +45,7 @@ export class PeliculaComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    if (this.router.url === '/home') {
+    if (this.router.url === '/home' && this.searchLoadMore === false) {
       this.movies = [];
       this.page = 1;
       this.loadMovies();
@@ -54,6 +54,7 @@ export class PeliculaComponent implements OnInit {
       this.valueSearch = this.router.url.split('=')[1];
       this.page = 1;
       this.loadMoviesFromSearch(this.valueSearch);
+      this.searchLoadMore = true;
       this.router.navigate(['/home']);
     }
 
@@ -62,6 +63,7 @@ export class PeliculaComponent implements OnInit {
       this.movies = [];
       this.page = 1;
       this.loadMoviesByGenre();
+      this.filterService.emitEvent('cross', { search: 'cross' });
     });
 
     this.filterService.getEvent('filterRating').subscribe((event) => {
@@ -69,6 +71,8 @@ export class PeliculaComponent implements OnInit {
       this.movies = [];
       this.page = 1;
       this.loadMoviesByRating();
+      this.filterService.emitEvent('cross', { search: 'cross' });
+
     });
 
     this.filterService.getEvent('filterYear').subscribe((event) => {
@@ -79,18 +83,26 @@ export class PeliculaComponent implements OnInit {
       this.movies = [];
       this.page = 1;
       this.loadMoviesByRangeYear();
+      this.filterService.emitEvent('cross', { search: 'cross' });
+
     });
 
     this.filterService.getEvent('search').subscribe((event) => {
       this.movies = [];
+      this.selectedGenre = 0; 
+      this.selectedRating = ''; 
+      this.selectedYear = 0; 
+      this.endYear = 0;
+      this.startYear = 0;
       const searchValue = event.data.search;
       if (
-        searchValue === 'remove' ||
-        this.conteinWordsAndNonAlphanumeric(searchValue)
+        searchValue === 'remove'
       ) {
         this.page = 1;
+        this.searchLoadMore = false;
         this.loadMovies();
       } else {
+        this.searchLoadMore = true;
         this.page = 1;
         this.loadMoviesFromSearch(searchValue);
         this.valueSearch = searchValue;
@@ -198,20 +210,28 @@ export class PeliculaComponent implements OnInit {
   }
 
   loadNextPage() {
+    alert("entro en el loadNextPage")
+
     if (this.selectedGenre != 0) {
       this.page++;
       this.loadMoviesByGenre();
+      alert("entro en el loadGenre")
     } else if (this.selectedRating != '') {
       this.page++;
       this.loadMoviesByRating();
+      alert("entro en el raitng")
     } else if (this.selectedYear != 0) {
+    
       this.page++;
       this.loadMoviesByRangeYear();
-    } else if (this.valueSearch != '' || this.router.url != '/home') {
+      alert("entro en el year")
+    } else if (this.searchLoadMore) {
       this.page++;
       this.loadMoviesFromSearch(this.valueSearch);
-    } else {
+      alert("entro en el valuesearch")
+    } else{
       this.page++;
+      alert("entro en el home normal")
       this.loadMovies();
     }
   }
