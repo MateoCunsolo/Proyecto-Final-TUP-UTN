@@ -14,10 +14,12 @@ const routes: Routes = [
     path: 'movie/:id', 
     component: MovieDetailComponent
   },
+
   {
     path: 'list/:name',
     component: ListComponent
   }
+
 ];
 
 @NgModule({

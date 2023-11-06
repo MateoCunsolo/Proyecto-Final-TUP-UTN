@@ -1,7 +1,7 @@
 {
   "users": [
     {
-      "userName": "mate",
+      "userName": "pistachito",
       "email": "m@gmail.com",
       "password": "123456",
       "lists": [
@@ -16,7 +16,13 @@
           "idMovies": []
         }
       ],
-      "comments": [],
+      "comments": [
+        {
+          "name": "pistacho",
+          "comment": "malisima",
+          "idMovie": 507089
+        }
+      ],
       "id": 1
     }
   ]

@@ -5,11 +5,11 @@
   .contenedor-menu {
     display: none;
     position: absolute;
-    border: 1px solid #cb2929;
     padding: none;
     z-index: 1;
     left: 1100px; /* Ajusta la posición a la izquierda según tus necesidades */
     text-align: center;
+    font-size: 14px;
    
   }
   
@@ -24,7 +24,7 @@
   }
 
 .item {
-    padding: 8px;
+    padding: 10px;
     cursor: pointer;
     text-align: left;
     background-color: var(--color-azul);
@@ -36,7 +36,8 @@
   }
 
 .user-data{
-    padding: 12px;
+    padding: 13px;
+    cursor: pointer;
 }
 
 #user-name{
@@ -45,4 +46,24 @@
 
 #user-email{
     font-size: 14px;
+}
+
+.contenedor-menu img{
+  width: 15px;
+  height: 15px;
+  margin-left: 5px;
+  margin-right: 8px;
+  vertical-align: middle;
+  
+}
+
+#logout{
+  text-align: center;
+  border-top: var(--color-blanco-claro) 2px solid;
+  font-size: 13px;
+  padding: 10px;
+}
+
+#logout img{
+  margin-right: 5px;
 }

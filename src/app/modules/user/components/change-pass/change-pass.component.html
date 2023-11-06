@@ -1,0 +1,47 @@
+<div class="contenedor-forms flex-center-100vh ">
+
+    <form [formGroup]="changePassForm" (ngSubmit)="ChangePassword()" class="flex-center forms">
+
+        <h3 class="title">Change Password</h3>
+
+        <label for="currentPass">Current Password</label>
+        <input class="inputs-values inputs-all" type="password" placeholder="Current Password"
+        formControlName="currentPass" pattern="^(?!\s*$).+" title="It cannot be blank" />
+
+        <span class="error-message" *ngIf="validate('currentPass', 'required')">
+        <span class="cross-error">X</span>The field is required</span>
+
+        <span class="error-message" *ngIf="currentPassMatch('currentPass') && changePassForm.get('currentPass')?.touched">
+        Current password does not match. Please try again.</span>
+
+
+        <label for="newPass" >New Password</label>
+        <input class="inputs-values inputs-all" type="password" id="" placeholder="New Password"
+        formControlName="newPass">
+
+        <span class="error-message" *ngIf="validate('newPass', 'required')">
+        <span class="cross-error">X</span>The field is required</span>
+
+        <span class="error-message" *ngIf="validate('newPass', 'minlength')">
+        <span class="cross-error">X</span>Minimum 6 characters</span>
+
+        <label for="confirmPass">Confirm Password</label>
+        <input type="password" class="inputs-values inputs-all" placeholder="Confirm Password"
+        formControlName="confirmPass">
+
+        <span class="error-message" *ngIf="validate('confirmPass', 'required')">
+        <span class="cross-error">X</span>The field is required</span>
+
+        <span class="error-message" *ngIf="validate('confirmPass', 'minlength')">
+        <span class="cross-error">X</span>Minimum 6 characters</span>
+
+        <span *ngIf="changePassForm.errors?.['passwordMismatcgError'] && changePassForm.get('newPass')?.touched && changePassForm.get('confirmPass')?.touched" >
+        <span class="cross-error">X</span>Passwords do not match</span>
+
+        <input class="inputs-sumbit inputs-all" type="submit" value="Change Password"
+            [disabled]="changePassForm.status === 'INVALID'" />
+
+    </form>
+</div>
+
+<app-footer></app-footer>
