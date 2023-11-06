@@ -1,8 +1,37 @@
-<div class="flex-center-100vh contenedor-forms" >
-<div class='forms'>
-    <h2>Change Name</h2>
-    <label for="new-username">Enter your new username</label>
-    <input type="text" id="new-usename" class="inputs-all">
-</div>
-</div>
-<app-footer></app-footer>
+<div class="contenedor-forms flex-center-100vh ">
+   
+    <form  [formGroup]="changeUsernameForm" (ngSubmit)="ChangeUsername()" class="flex-center forms">
+      
+      <h3 class="title">Change Username</h3>
+      <p>Write your new Username</p>
+  
+      <input
+        class="inputs-values inputs-all"
+        type="text"
+        name=""
+        id="username"
+        placeholder="New Username"
+        formControlName="newUserName"
+        pattern="^(?!\s*$).+"
+        title="It cannot be blank"/>
+
+      <span class="error-message" *ngIf="validate('newUserName', 'required')">
+        <span class="cross-error">X</span>The field is required</span>
+
+        <span class="error-message" *ngIf="validate('newUserName', 'minlength')">
+            <span class="cross-error">X</span>Minimum 4 characters</span>
+
+        
+      
+        <input
+        class="inputs-sumbit inputs-all"
+        type="submit"
+        name=""
+        id="in-change"
+        value="Change Username"  
+        [disabled]="changeUsernameForm.status === 'INVALID'"/>
+
+    </form>
+  </div>
+  <app-footer></app-footer>
+  

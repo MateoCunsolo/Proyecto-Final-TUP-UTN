@@ -14,6 +14,7 @@ export interface IComment
 }
 
 export interface IUser {
+    [x: string]: any;
     userName: string | null;
     email: string | null;
     password: string | null;
