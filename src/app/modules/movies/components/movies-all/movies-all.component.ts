@@ -2,14 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { Movie, MovieData } from 'src/app/core/movie.interface';
 import { PeliculasService } from 'src/app/services/peliculas.service';
 import { Router } from '@angular/router'; // Importa el módulo Router
-import { FilteringService } from 'src/app/services/filtering.service';
+import { eventsService } from 'src/app/services/events.service';
 
 @Component({
   selector: 'app-pelicula',
-  templateUrl: './pelicula.component.html',
-  styleUrls: ['./pelicula.component.css'],
+  templateUrl: './movies-all.component.html',
+  styleUrls: ['./movies-all.component.css'],
 })
-export class PeliculaComponent implements OnInit {
+export class MoviesAllComponent implements OnInit {
   public defaultImageURL = 'assets/IMAGE NO DISPONIBLE.png';
   private page = 1;
   public movies: Movie[] = [];
@@ -41,7 +41,7 @@ export class PeliculaComponent implements OnInit {
   constructor(
     private moviesService: PeliculasService,
     private router: Router,
-    private filterService: FilteringService
+    private eventsService: eventsService
   ) { }
 
   ngOnInit() {
@@ -58,24 +58,24 @@ export class PeliculaComponent implements OnInit {
       this.router.navigate(['/home']);
     }
 
-    this.filterService.getEvent('filterGenre').subscribe((event) => {
+    this.eventsService.getEvent('filterGenre').subscribe((event) => {
       this.selectedGenre = event.data.idgenre;
       this.movies = [];
       this.page = 1;
       this.loadMoviesByGenre();
-      this.filterService.emitEvent('cross', { search: 'cross' });
+      this.eventsService.emitEvent('cross', { search: 'cross' });
     });
 
-    this.filterService.getEvent('filterRating').subscribe((event) => {
+    this.eventsService.getEvent('filterRating').subscribe((event) => {
       this.selectedRating = event.data.rating;
       this.movies = [];
       this.page = 1;
       this.loadMoviesByRating();
-      this.filterService.emitEvent('cross', { search: 'cross' });
+      this.eventsService.emitEvent('cross', { search: 'cross' });
 
     });
 
-    this.filterService.getEvent('filterYear').subscribe((event) => {
+    this.eventsService.getEvent('filterYear').subscribe((event) => {
       console.log(event);
       this.startYear = event.data.startY;
       this.endYear = event.data.endY;
@@ -83,11 +83,11 @@ export class PeliculaComponent implements OnInit {
       this.movies = [];
       this.page = 1;
       this.loadMoviesByRangeYear();
-      this.filterService.emitEvent('cross', { search: 'cross' });
+      this.eventsService.emitEvent('cross', { search: 'cross' });
 
     });
 
-    this.filterService.getEvent('search').subscribe((event) => {
+    this.eventsService.getEvent('search').subscribe((event) => {
       this.movies = [];
       this.selectedGenre = 0; 
       this.selectedRating = ''; 

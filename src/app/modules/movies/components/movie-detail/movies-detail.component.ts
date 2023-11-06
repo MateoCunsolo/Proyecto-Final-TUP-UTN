@@ -4,10 +4,10 @@ import { Movie } from 'src/app/core/movie.interface';
 
 @Component({
   selector: 'app-peliculadetalle',
-  templateUrl: './peliculadetalle.component.html',
-  styleUrls: ['./peliculadetalle.component.css']
+  templateUrl: './movies-detail.component.html',
+  styleUrls: ['./movies-detail.component.css']
 })
-export class PeliculaDetalleComponent implements OnInit {
+export class MovieDetailComponent implements OnInit {
   movieId: number = 0;
   movie: Movie | undefined;
   public defaultImageURL = 'assets/IMAGE NOT AVAILABLE.png';
