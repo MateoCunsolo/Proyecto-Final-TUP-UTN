@@ -13,7 +13,8 @@ const routes: Routes = [
   { 
     path: 'movie/:id', 
     component: PeliculaDetalleComponent
-  }
+  },
+ 
 ];
 
 @NgModule({
