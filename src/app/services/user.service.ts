@@ -131,7 +131,10 @@ export class UserService {
       }));
   }
   
-  
+  deleteUser(userId: number): Observable<IUser> {
+    const userUrl = `${this.url}/${userId}`;
+    return from(fetch(userUrl, { method: 'DELETE' }).then((response) => response.json()));
+  }
   
 
 }
