@@ -38,6 +38,8 @@ export class MoviesAllComponent implements OnInit {
   startYear: number = 0;
   valueSearch: string = '';
   searchLoadMore : boolean = false;
+  listClicked : boolean = false;
+
   constructor(
     private moviesService: PeliculasService,
     private router: Router,
@@ -49,7 +51,7 @@ export class MoviesAllComponent implements OnInit {
       this.movies = [];
       this.page = 1;
       this.loadMovies();
-    } else {
+    } else if(this.searchLoadMore === true) {
       this.movies = [];
       this.valueSearch = this.router.url.split('=')[1];
       this.page = 1;
@@ -57,6 +59,13 @@ export class MoviesAllComponent implements OnInit {
       this.searchLoadMore = true;
       this.router.navigate(['/home']);
     }
+
+    this.eventsService.getEvent('listClicked').subscribe((event) => {
+        alert("recibo evento desde el componente list")
+        console.log(event.data);
+        this.listClicked = true;
+    });
+
 
     this.eventsService.getEvent('filterGenre').subscribe((event) => {
       this.selectedGenre = event.data.idgenre;

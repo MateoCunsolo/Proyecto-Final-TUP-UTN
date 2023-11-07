@@ -20,8 +20,6 @@ export class NavBarUserComponent implements OnInit {
       this.user = JSON.parse(userStr);
       console.log(this.user);
     }
-
-  
   }
 
 

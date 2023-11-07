@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { eventsService } from 'src/app/services/events.service';
 
 
 @Component({
@@ -15,6 +16,6 @@ export class ListComponent implements OnInit {
 
   }
 
-
+  
 
 }
