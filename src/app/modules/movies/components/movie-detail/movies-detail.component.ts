@@ -92,6 +92,7 @@ export class MovieDetailComponent implements OnInit {
       this.movieId = +params['id'];
       window.scrollTo(0, 0);
       this.loadMovieDetails();
+      console.log(this.movie);
     });
   }
 

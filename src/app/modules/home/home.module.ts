@@ -5,7 +5,9 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { MainComponent } from './components/main/main.component';
 import { FilteringComponent } from './components/filtering/filtering.component';
 import { MoviesModule } from '../movies/movies.module';
+import { UserModule } from '../user/user.module';
 import { ListsModule } from '../lists/lists.module';
+
 
 
 @NgModule({

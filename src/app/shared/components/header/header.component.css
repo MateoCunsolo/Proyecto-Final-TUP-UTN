@@ -6,3 +6,10 @@ header
     justify-content: space-between;
     padding: 1rem 2rem 0rem 2rem;
 }
+
+
+#filter-blur2
+{
+    position: absolute;
+    left: 35.5%;
+}

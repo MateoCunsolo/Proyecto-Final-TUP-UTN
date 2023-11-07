@@ -2,15 +2,15 @@
   "users": [
     {
       "userName": "mate",
-      "email": "m@gmail.com",
+      "email": "mate@gmail.com",
       "password": "123456",
       "lists": [
         {
           "name": "To Watch",
           "id": 1,
           "idMovies": [
-            951491,
-            507089
+            507089,
+            951491
           ]
         },
         {

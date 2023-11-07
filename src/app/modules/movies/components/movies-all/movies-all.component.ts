@@ -47,6 +47,7 @@ export class MoviesAllComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.movies = [];
     if (this.router.url === '/home' && this.searchLoadMore === false) {
       this.movies = [];
       this.page = 1;
@@ -59,11 +60,11 @@ export class MoviesAllComponent implements OnInit {
       this.searchLoadMore = true;
       this.router.navigate(['/home']);
     }
-
+    
     this.eventsService.getEvent('listClicked').subscribe((event) => {
-        alert("recibo evento desde el componente list")
-        console.log(event.data);
-        this.listClicked = true;
+      this.listClicked = true;
+      alert("entro en el listClicked")
+      this.movies = this.loadMoviesForID(event.data.idMovies);
     });
 
 
@@ -238,7 +239,7 @@ export class MoviesAllComponent implements OnInit {
       this.page++;
       this.loadMoviesFromSearch(this.valueSearch);
       alert("entro en el valuesearch")
-    } else{
+    } else if(this.listClicked == false){
       this.page++;
       alert("entro en el home normal")
       this.loadMovies();
@@ -248,5 +249,22 @@ export class MoviesAllComponent implements OnInit {
   redirectToMovieDetail(movieClicked: Movie) {
     sessionStorage.setItem('movieClicked', JSON.stringify(movieClicked));
     this.router.navigate(['home/movie/' + movieClicked.id]);
+  }
+
+  loadMoviesForID(idMovies: number[]) : Movie[]   
+  {
+    let movies : Movie[] = [];
+    
+    idMovies.forEach((id) => {
+      this.moviesService.getMovieDetails(id).subscribe(
+        (data: Movie) => {
+          movies.push(data);
+        },
+        (error) => {
+          console.error('Error fetching data by id:', error);
+        }
+      );
+    });
+  return movies;
   }
 }
