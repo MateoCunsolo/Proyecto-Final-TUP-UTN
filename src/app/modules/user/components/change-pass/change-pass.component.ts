@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { IUser } from 'src/app/core/Interfaces';
 import { UserService } from 'src/app/services/user.service';
@@ -11,37 +11,54 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class ChangePassComponent implements OnInit {
 
-  changePassForm: FormGroup = this.fb.group(
-    {
-    currentPass: new FormControl('', [Validators.required]),
-    newPass: new FormControl('', [Validators.required, Validators.minLength(6)]),
-    confirmPass: new FormControl('', [Validators.required, Validators.minLength(6)])
-  },
-  { validators: this.passwordMatch('newPass', 'confirmPass') }
-  );
-  
-
+  currentP: string = '';
+  changePassForm!: FormGroup;
+ 
   constructor(
     private fb: FormBuilder, 
     private router: Router,  
-    private userService: UserService) { }
+    private userService: UserService
+  ) {
 
-  userName: string = '';
+   if (this.userStr) {
+      this.user = JSON.parse(this.userStr);
+    }
+ 
+   this.currentP = this.user?.password || '';
+
+   this.changePassForm = this.fb.group({
+      currentPass: ['', [Validators.required, this.currentPasswordValidator(this.currentP)]],
+      newPass: ['', [Validators.required, Validators.minLength(6)]],
+      confirmPass: ['', [Validators.required, Validators.minLength(6)]]
+    }, { validators: [this.passwordMatch('newPass', 'confirmPass')]});
+  
+   }
+
   user: IUser | null = null;
   userStr: any = sessionStorage.getItem('user');
- 
 
-  ngOnInit(): void {
-    
-      if (this.userStr) {
-      this.user = JSON.parse(this.userStr);
-      }
-  }
+
+  ngOnInit(): void {}
 
   ChangePassword(){
-
+    if(this.changePassForm.invalid) return;
     
+    const pass : string = this.changePassForm.controls['newPass'].value;
+    const userId: number | "" = this.user?.id ?? '';
+
+    if(userId !== '')
+    {
+      this.userService.changePassword(userId, pass);
+      if (this.user) {
+        this.user.password = pass;
+        console.log(this.userStr + "actualizado");
+        sessionStorage.setItem('user', JSON.stringify(this.user));
+        this.router.navigate(['home']);
+        alert("Password changed successfully");
+      }
       
+    }
+
   }
 
   validate(field: string, error: string){
@@ -53,7 +70,7 @@ export class ChangePassComponent implements OnInit {
     
     return function (form: AbstractControl) {
       const passwordValue = form.get(newpass)?.value;
-
+  
       const confirmPasswordValue = form.get(confirm_password)?.value;
 
       if (passwordValue === confirmPasswordValue) return null;
@@ -62,18 +79,21 @@ export class ChangePassComponent implements OnInit {
     };
   }
 
-  currentPassMatch(currentPass: string) {
-      
-      return  (form: AbstractControl) => {
-        const passwordValue = form.get(currentPass)?.value;
+    currentPasswordValidator(currentPassword: string): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      const enteredPassword = control.value; // Contraseña ingresada por el usuario
   
-        const currentUserPass = this.user?.password;
+      console.log(enteredPassword);
+      console.log(currentPassword);
+      // Compara la contraseña ingresada con la contraseña almacenada en tus registros
+      if (enteredPassword !== currentPassword) {
+        return { invalidCurrentPassword: true }; // Contraseña actual no coincide, retorna un error
+      }
   
-        if (passwordValue === currentUserPass) return null;
-  
-        return { passwordMismatcgError: true };
-      };
+      return null; // Contraseña actual coincide, no hay error
+    };
   }
+  
 
 
 }

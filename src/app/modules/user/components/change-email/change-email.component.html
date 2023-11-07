@@ -1,0 +1,35 @@
+<div class="contenedor-forms flex-center-100vh ">
+
+    <form [formGroup]="changeEmailForm" (ngSubmit)="ChangeEmail()" class="flex-center forms">
+
+        <h3 class="title">Change Email</h3>
+
+        <label for="new Email">Write your new Email</label>
+        <input class="inputs-values inputs-all" type="email" placeholder="New Email"
+        formControlName="newEmail" pattern="^(?!\s*$).+" title="It cannot be blank" />
+
+        <span class="error-message" *ngIf="this.changeEmailForm.controls['newEmail'].getError('required')
+        && this.changeEmailForm.controls['newEmail'].touched">
+        <span class="cross-error">X</span>The field is required</span>
+
+        <span *ngIf="this.changeEmailForm.controls['newEmail'].touched &&this.changeEmailForm.controls['newEmail'].getError('pattern')">
+            <span class="cross-error">X</span>Invalid Email Format </span>
+
+        <label for="password">Write your current password</label>
+        <input class="inputs-values inputs-all" type="password" placeholder="Password"
+        formControlName="password" pattern="^(?!\s*$).+" title="It cannot be blank" />
+
+        <span class="error-message" *ngIf="this.changeEmailForm.controls['password'].getError('required')
+        && this.changeEmailForm.controls['password'].touched">
+        <span class="cross-error">X</span>The field is required</span>
+
+        <span class="error-message" *ngIf="changeEmailForm.get('password')?.hasError('invalidCurrentPassword') && changeEmailForm.get('password')?.touched">
+            Incorrect Password</span>
+
+        <input class="inputs-sumbit inputs-all" type="submit" value="Change Email"
+            [disabled]="changeEmailForm.status === 'INVALID'" />
+
+    </form>
+</div>
+
+<app-footer></app-footer>

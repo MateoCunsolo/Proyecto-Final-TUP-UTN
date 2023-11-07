@@ -130,7 +130,38 @@ export class UserService {
         }).then((response) => response.json());
       }));
   }
-  
+
+  changePassword(userId: number, newPassword: string): Observable<IUser> {
+    const userUrl = `${this.url}/${userId}`;
+    return from(fetch(userUrl)
+      .then((response) => response.json())
+      .then((user: IUser) => {
+        const updatedUser = { ...user, password: newPassword }; // Crear un nuevo objeto con la contraseña actualizada
+        return fetch(userUrl, {
+          method: 'PATCH', // Usar una solicitud PATCH en lugar de PUT
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ password: newPassword }), // Enviar solo el campo actualizado
+        }).then((response) => response.json());
+      }));
+  }
+
+  changeEmail(userId: number, newEmail: string): Observable<IUser> {
+   const userUrl = `${this.url}/${userId}`;
+   return from(fetch(userUrl)
+      .then((response) => response.json())
+      .then((user: IUser) => {
+        const updatedUser = { ...user, email: newEmail }; // Crear un nuevo objeto con el email actualizado
+        return fetch(userUrl, {
+          method: 'PATCH', // Usar una solicitud PATCH en lugar de PUT
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ email: newEmail }), // Enviar solo el campo actualizado
+        }).then((response) => response.json());
+      }));
+  }
   
   
 

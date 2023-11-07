@@ -43,7 +43,7 @@ export class NavBarUserComponent implements OnInit {
       this.router.navigate(['user/change-email']); // Redirige a la ruta3
       break;
     case 4:
-      this.router.navigate(['user/delete-a']); // Redirige a la ruta4
+     
       break;
     default:
       this.router.navigate(['home']); // Redirige a una ruta por defecto en caso de que el número no coincida con ninguno de los casos anteriores

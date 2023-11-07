@@ -11,9 +11,8 @@
         <span class="error-message" *ngIf="validate('currentPass', 'required')">
         <span class="cross-error">X</span>The field is required</span>
 
-        <span class="error-message" *ngIf="currentPassMatch('currentPass') && changePassForm.get('currentPass')?.touched">
-        Current password does not match. Please try again.</span>
-
+        <span class="error-message" *ngIf="changePassForm.get('currentPass')?.hasError('invalidCurrentPassword') && changePassForm.get('currentPass')?.touched">
+        Incorrect Password</span>
 
         <label for="newPass" >New Password</label>
         <input class="inputs-values inputs-all" type="password" id="" placeholder="New Password"
