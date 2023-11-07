@@ -27,22 +27,22 @@ export class NavBarUserComponent implements OnInit {
   }
 
   changeSomething(number: number) {
-    switch (number) {
-      case 1:
-        this.router.navigate(['user/change-username']); // Redirige a la ruta1
-        break;
-      case 2:
-        this.router.navigate(['user/change-pass']); // Redirige a la ruta2
-        break;
-      case 3:
-        this.router.navigate(['user/change-email']); // Redirige a la ruta3
-        break;
-      case 4:
-        this.showAlert(1);
-        break;
-      default:
-        this.router.navigate(['home']); // Redirige a una ruta por defecto en caso de que el número no coincida con ninguno de los casos anteriores
-    }
+
+     switch (number) {
+    case 1:
+      this.router.navigate(['user/change-username']); // Redirige a la ruta1
+      break;
+    case 2:
+      this.router.navigate(['user/change-pass']); // Redirige a la ruta2
+      break;
+    case 3:
+      this.router.navigate(['user/change-email']); // Redirige a la ruta3
+      break;
+    case 4:
+          this.showAlert(1);
+      break;
+    default:
+      this.router.navigate(['home']); // Redirige a una ruta por defecto en caso de que el número no coincida con ninguno de los casos anteriores
   }
 
   showAlert(num: number) {
