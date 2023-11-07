@@ -6,12 +6,14 @@ import { ChangeNameComponent } from './components/change-name/change-name.compon
 import { SharedModule } from 'src/app/shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ChangePassComponent } from './components/change-pass/change-pass.component';
+import { ChangeEmailComponent } from './components/change-email/change-email.component';
 
 
 @NgModule({
   declarations: [
     ChangeNameComponent,
-    ChangePassComponent
+    ChangePassComponent,
+    ChangeEmailComponent
   ],
   imports: [
     CommonModule,
