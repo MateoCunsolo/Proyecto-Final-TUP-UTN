@@ -62,9 +62,10 @@ export class MoviesAllComponent implements OnInit {
     }
     
     this.eventsService.getEvent('listClicked').subscribe((event) => {
-      this.listClicked = true;
-      alert("entro en el listClicked")
-      this.movies = this.loadMoviesForID(event.data.idMovies);
+        console.log(event.data);
+        this.movies = this.loadMoviesForID(event.data.idMovies);
+        console.log(this.movies);
+        this.listClicked = true;
     });
 
 
