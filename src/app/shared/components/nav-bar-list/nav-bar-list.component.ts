@@ -38,7 +38,7 @@ export class NavBarListComponent implements OnInit {
     }
 
     //esto es para que cuando aprete en cualquier parte del body, se vuelva a plegar el menu
-    this.renderer.listen('body', 'click', (event: Event) => {
+    this.renderer.listen('body' , 'click', (event: Event) => {
       if (!this.el.nativeElement.contains(event.target as Node)) {
         // Si el clic no está dentro del menú, cierra el menú
         this.isMenuOpen = false;
@@ -52,6 +52,7 @@ export class NavBarListComponent implements OnInit {
   
     sessionStorage.setItem('listClicked', JSON.stringify(listClicked));
     this.router.navigate(['home/list/' + listName]);
+    
   }
 
 }

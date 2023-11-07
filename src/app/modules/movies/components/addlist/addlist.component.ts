@@ -44,7 +44,7 @@ export class AddlistComponent implements OnInit {
     //para obtener los nombres de las listas y armar el listado
     let userSstr = sessionStorage.getItem('user'); //me levanta el usuario
 
-    //este bloquesito es que el que me trae los nombres de las lsitas para el listado
+    //este bloquesito es que el que me trae los nombres de las listas para el listado
     if (userSstr != null) 
     {
       this.user = JSON.parse(userSstr);
