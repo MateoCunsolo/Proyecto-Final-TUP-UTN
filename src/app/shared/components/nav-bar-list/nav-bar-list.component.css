@@ -58,6 +58,10 @@ aside{
     display: block;
 }
 
+.menu {
+    display: none; /* Inicialmente, ocultar el menú */
+  }
+  
 #listsNames,#newList{
     color: white;
     text-decoration: none;

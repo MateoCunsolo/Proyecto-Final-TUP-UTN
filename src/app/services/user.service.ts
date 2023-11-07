@@ -46,6 +46,8 @@ export class UserService {
     }
   }
 
+  
+
   public async addMovieToList(userId: number, listPosChoosen: number, movieId: number) 
   {
     
@@ -131,6 +133,7 @@ export class UserService {
       }));
   }
 
+
   changePassword(userId: number, newPassword: string): Observable<IUser> {
     const userUrl = `${this.url}/${userId}`;
     return from(fetch(userUrl)
@@ -163,6 +166,13 @@ export class UserService {
       }));
   }
   
+
+  
+  deleteUser(userId: number): Observable<IUser> {
+    const userUrl = `${this.url}/${userId}`;
+    return from(fetch(userUrl, { method: 'DELETE' }).then((response) => response.json()));
+  }
+
   
 
 }

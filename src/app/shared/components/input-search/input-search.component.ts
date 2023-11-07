@@ -1,7 +1,6 @@
 
 import { PeliculasService } from 'src/app/services/peliculas.service';
-import { MovieData } from 'src/app/core/movie.interface';
-import { FilteringService } from 'src/app/services/filtering.service';
+import { eventsService } from 'src/app/services/events.service';
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 
 import{Router} from '@angular/router';
@@ -13,7 +12,7 @@ import{Router} from '@angular/router';
 export class InputSearchComponent implements OnInit {
   constructor(
     public moviesService: PeliculasService,
-    private service: FilteringService,
+    private eventsService: eventsService,
     public router:Router
     
   ) {}
@@ -44,7 +43,7 @@ export class InputSearchComponent implements OnInit {
       }
     }
 
-    this.service.getEvent('cross').subscribe((event) => {
+    this.eventsService.getEvent('cross').subscribe((event) => {
         this.enterPressed = false;
         inputSearch.value = '';
     })
@@ -58,12 +57,12 @@ export class InputSearchComponent implements OnInit {
     ) as HTMLInputElement;
     if (this.router.url === '/home')
     {
-      this.service.emitEvent('search', { search: inputSearch.value }); 
+      this.eventsService.emitEvent('search', { search: inputSearch.value }); 
     }
     else
     {  
       this.router.navigate(['/home'], { queryParams:{ search: inputSearch.value } });
-      this.service.emitEvent('search', { search: inputSearch.value } );
+      this.eventsService.emitEvent('search', { search: inputSearch.value } );
     }
     this.enterPressed = true;
   }
@@ -73,7 +72,7 @@ export class InputSearchComponent implements OnInit {
       '#input-search'
     ) as HTMLInputElement;
     inputSearch.value = '';
-    this.service.emitEvent('search', { search: 'remove' });
+    this.eventsService.emitEvent('search', { search: 'remove' });
     this.enterPressed = false;
 
   }
