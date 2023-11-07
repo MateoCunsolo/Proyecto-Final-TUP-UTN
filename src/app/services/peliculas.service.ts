@@ -23,6 +23,7 @@ export class PeliculasService {
     return this.eventSubject.asObservable();
   }
 
+  /*{this.apiUrl}/movie/762430?api_key=79f8e563e8d26768e3277cdf102fd1b1*/
 
   listMovies(page: number): Promise<MovieData> {
     return new Promise<MovieData>((resolve, reject) => {
@@ -99,7 +100,6 @@ export class PeliculasService {
   }
   
   
-
   getMovieDetails(movieId: number): Observable<any> {
     const url = `${this.apiUrl}/movie/${movieId}?api_key=79f8e563e8d26768e3277cdf102fd1b1`;
     return this.http.get(url);

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { IUser } from 'src/app/core/Interfaces';
+import { IList, IUser } from 'src/app/core/Interfaces';
 
 
 @Component({
@@ -10,38 +10,29 @@ import { IUser } from 'src/app/core/Interfaces';
 })
 export class ListComponent implements OnInit {
 
-
-  nameList: String | null = ' ';
   moviesInSpecificList: number[] = []; // Almacena las películas en la lista "To Watch"
-  user: IUser | null = null;
+  list: IList | null = null
 
   constructor(private route: ActivatedRoute) { }
 
-  ngOnInit() {
-
-    //paramMap.subscribe() se suscribe a los cambios en los parámetros de la URL
-    this.route.paramMap.subscribe(params => {
-      // params.get('name') para obtener el valor del parámetro 'name' de la URL
-      this.nameList = params.get('name');
-    });
-    
-    console.log(this.nameList)
-
-    let userSstr = sessionStorage.getItem('user'); //me levanta el usuario
-
-    //este bloquesito es que el que me trae los nombres de las listas para el listado
-    if (userSstr != null) 
+  ngOnInit() 
+  {
+    let listSstr = sessionStorage.getItem('listClicked'); //me levanta el usuario
+    if (listSstr != null) 
     {
-      this.user = JSON.parse(userSstr);
-      // Identificar la lista específica
-      const specificList = this.user?.lists.find(list => list.name === this.nameList);
-      console.log(specificList)
+      this.list = JSON.parse(listSstr);
+      if (this.list) 
+      {
+        this.moviesInSpecificList = this.list?.idMovies
+        //console.log(this.moviesInSpecificList) lo levanta bien
+      }
 
-      // Obtener los IDs de las películas de la lista específica
-      //const movieIds = specificList?.idMovies;
-
-      };
     }
-}
+  }
+
+};
+
+
+
 
 
