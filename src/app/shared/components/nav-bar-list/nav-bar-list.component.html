@@ -2,13 +2,13 @@
     <button id="boton" (click)="toggleMenu()">
         <img id="iconMenu" src="assets/logo-menu.png" alt="listsMenu">
     </button>
-    <div class="menu" [ngClass]="{'active': isMenuOpen}">
+    <div class="menu" [ngClass]="{'active': isMenuOpen}" >
         <aside>
             
             <h3>Your Lists :</h3>
-            <div id="div1" *ngFor="let list of user?.lists" >
+            <div id="div1"  (click)="toggleMenu()" (click)="redirectToListDetail(list)" *ngFor="let list of user?.lists" >
                 <img src="assets/logo-flick-finder.png" alt=" " id="imgLists">
-                <a (click)="redirectToListDetail(list)" id="listsNames" ><strong>{{ list.name }}</strong></a>
+                <a  id="listsNames" ><strong>{{ list.name }}</strong></a>
             </div>
          
             <div id="div2">

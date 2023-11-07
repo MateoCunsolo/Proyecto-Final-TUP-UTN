@@ -10,42 +10,38 @@ import { IUser } from 'src/app/core/Interfaces';
 })
 export class ListComponent implements OnInit {
 
+
   nameList: String | null = ' ';
-  moviesInToWatchList: any[] = []; // Almacena las películas en la lista "To Watch"
+  moviesInSpecificList: number[] = []; // Almacena las películas en la lista "To Watch"
   user: IUser | null = null;
 
   constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
-    
+
     //paramMap.subscribe() se suscribe a los cambios en los parámetros de la URL
     this.route.paramMap.subscribe(params => {
       // params.get('name') para obtener el valor del parámetro 'name' de la URL
       this.nameList = params.get('name');
     });
+    
+    console.log(this.nameList)
 
+    let userSstr = sessionStorage.getItem('user'); //me levanta el usuario
 
-
-   /* let userSstr = sessionStorage.getItem('user'); //me levanta el usuario
-
+    //este bloquesito es que el que me trae los nombres de las listas para el listado
     if (userSstr != null) 
     {
       this.user = JSON.parse(userSstr);
-   // Busca la lista "To Watch" en las listas del usuario
-   const toWatchList=this.user?.lists.find(list => list.name === 'To Watch');
-   if (toWatchList) 
-   {
-    // Obtiene las películas de la lista "To Watch" utilizando los IDs
-    const movieIds = toWatchList.idMovies;
-    this.moviesInToWatchList = JSON.parse(sessionStorage.getItem('idMovies')).filter(movie => movieIds.includes(movie.id));
+      // Identificar la lista específica
+      const specificList = this.user?.lists.find(list => list.name === this.nameList);
+      console.log(specificList)
 
-  }*/
+      // Obtener los IDs de las películas de la lista específica
+      //const movieIds = specificList?.idMovies;
+
+      };
     }
+}
 
-
-        
-        
-    
-      
-  }
 
