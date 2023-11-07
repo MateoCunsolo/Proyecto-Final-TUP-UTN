@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { IComment, IUser } from 'src/app/core/Interfaces';
 import { UserService } from 'src/app/services/user.service';
 import { ActivatedRoute } from '@angular/router';

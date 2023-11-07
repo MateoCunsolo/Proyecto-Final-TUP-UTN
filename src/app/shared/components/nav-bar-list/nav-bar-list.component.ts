@@ -46,10 +46,12 @@ export class NavBarListComponent implements OnInit {
     });
   }
 
-  redirectToListDetail (listClicked: IList) 
-  {
+  redirectToListDetail(listClicked: IList) {
+     // Elimina los espacios en blanco del nombre de la lista
+  const listName = listClicked.name.replace(/\s/g, '');
+  
     sessionStorage.setItem('listClicked', JSON.stringify(listClicked));
-    this.router.navigate(['home/list/' + listClicked.name.split(' ')]);
+    this.router.navigate(['home/list/' + listName]);
   }
 
 }

@@ -1,7 +1,6 @@
 
 import { PeliculasService } from 'src/app/services/peliculas.service';
-import { MovieData } from 'src/app/core/movie.interface';
-import { FilteringService } from 'src/app/services/filtering.service';
+import { eventsService } from 'src/app/services/events.service';
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 
 import{Router} from '@angular/router';
@@ -13,18 +12,41 @@ import{Router} from '@angular/router';
 export class InputSearchComponent implements OnInit {
   constructor(
     public moviesService: PeliculasService,
-    private service: FilteringService,
+    private eventsService: eventsService,
     public router:Router
     
   ) {}
   @ViewChild('inputSearch', { static: false }) inputSearch: ElementRef | null = null;
 
   enterPressed: boolean = false;
+  searchValueOtherVist: string = '';
 
   ngOnInit(): void {
+
+    let inputSearch = document.querySelector(
+      '#input-search'
+      )   as HTMLInputElement;
     if (this.inputSearch) {
       this.inputSearch.nativeElement.focus();
     }
+    
+    if(this.router.url != '/home')
+    {
+      inputSearch.value =  this.router.url.split('=')[1];
+      if(inputSearch.value === "undefined")
+      {
+        this.enterPressed = false;
+        inputSearch.value = '';
+      }else
+      {
+        this.enterPressed = true;
+      }
+    }
+
+    this.eventsService.getEvent('cross').subscribe((event) => {
+        this.enterPressed = false;
+        inputSearch.value = '';
+    })
   }
   
 
@@ -35,12 +57,12 @@ export class InputSearchComponent implements OnInit {
     ) as HTMLInputElement;
     if (this.router.url === '/home')
     {
-      this.service.emitEvent('search', { search: inputSearch.value }); 
+      this.eventsService.emitEvent('search', { search: inputSearch.value }); 
     }
     else
     {  
       this.router.navigate(['/home'], { queryParams:{ search: inputSearch.value } });
-      this.service.emitEvent('search', { search: inputSearch.value } );
+      this.eventsService.emitEvent('search', { search: inputSearch.value } );
     }
     this.enterPressed = true;
   }
@@ -50,7 +72,7 @@ export class InputSearchComponent implements OnInit {
       '#input-search'
     ) as HTMLInputElement;
     inputSearch.value = '';
-    this.service.emitEvent('search', { search: 'remove' });
+    this.eventsService.emitEvent('search', { search: 'remove' });
     this.enterPressed = false;
 
   }

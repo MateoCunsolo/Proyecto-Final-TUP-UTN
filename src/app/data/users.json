@@ -8,10 +8,7 @@
         {
           "name": "To Watch",
           "id": 1,
-          "idMovies": [
-            354912,
-            976573
-          ]
+          "idMovies": []
         },
         {
           "name": "Watched",
@@ -19,13 +16,7 @@
           "idMovies": []
         }
       ],
-      "comments": [
-        {
-          "name": "Giuliana",
-          "comment": "hoooola",
-          "idMovie": 976573
-        }
-      ],
+      "comments": [],
       "id": 1
     }
   ]

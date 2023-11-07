@@ -2,14 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { Movie, MovieData } from 'src/app/core/movie.interface';
 import { PeliculasService } from 'src/app/services/peliculas.service';
 import { Router } from '@angular/router'; // Importa el módulo Router
-import { FilteringService } from 'src/app/services/filtering.service';
+import { eventsService } from 'src/app/services/events.service';
 
 @Component({
   selector: 'app-pelicula',
-  templateUrl: './pelicula.component.html',
-  styleUrls: ['./pelicula.component.css'],
+  templateUrl: './movies-all.component.html',
+  styleUrls: ['./movies-all.component.css'],
 })
-export class PeliculaComponent implements OnInit {
+export class MoviesAllComponent implements OnInit {
   public defaultImageURL = 'assets/IMAGE NO DISPONIBLE.png';
   private page = 1;
   public movies: Movie[] = [];
@@ -37,15 +37,15 @@ export class PeliculaComponent implements OnInit {
   endYear: number = 0;
   startYear: number = 0;
   valueSearch: string = '';
-
+  searchLoadMore : boolean = false;
   constructor(
     private moviesService: PeliculasService,
     private router: Router,
-    private filterService: FilteringService
+    private eventsService: eventsService
   ) { }
 
   ngOnInit() {
-    if (this.router.url === '/home') {
+    if (this.router.url === '/home' && this.searchLoadMore === false) {
       this.movies = [];
       this.page = 1;
       this.loadMovies();
@@ -54,24 +54,28 @@ export class PeliculaComponent implements OnInit {
       this.valueSearch = this.router.url.split('=')[1];
       this.page = 1;
       this.loadMoviesFromSearch(this.valueSearch);
+      this.searchLoadMore = true;
       this.router.navigate(['/home']);
     }
 
-    this.filterService.getEvent('filterGenre').subscribe((event) => {
+    this.eventsService.getEvent('filterGenre').subscribe((event) => {
       this.selectedGenre = event.data.idgenre;
       this.movies = [];
       this.page = 1;
       this.loadMoviesByGenre();
+      this.eventsService.emitEvent('cross', { search: 'cross' });
     });
 
-    this.filterService.getEvent('filterRating').subscribe((event) => {
+    this.eventsService.getEvent('filterRating').subscribe((event) => {
       this.selectedRating = event.data.rating;
       this.movies = [];
       this.page = 1;
       this.loadMoviesByRating();
+      this.eventsService.emitEvent('cross', { search: 'cross' });
+
     });
 
-    this.filterService.getEvent('filterYear').subscribe((event) => {
+    this.eventsService.getEvent('filterYear').subscribe((event) => {
       console.log(event);
       this.startYear = event.data.startY;
       this.endYear = event.data.endY;
@@ -79,18 +83,26 @@ export class PeliculaComponent implements OnInit {
       this.movies = [];
       this.page = 1;
       this.loadMoviesByRangeYear();
+      this.eventsService.emitEvent('cross', { search: 'cross' });
+
     });
 
-    this.filterService.getEvent('search').subscribe((event) => {
+    this.eventsService.getEvent('search').subscribe((event) => {
       this.movies = [];
+      this.selectedGenre = 0; 
+      this.selectedRating = ''; 
+      this.selectedYear = 0; 
+      this.endYear = 0;
+      this.startYear = 0;
       const searchValue = event.data.search;
       if (
-        searchValue === 'remove' ||
-        this.conteinWordsAndNonAlphanumeric(searchValue)
+        searchValue === 'remove'
       ) {
         this.page = 1;
+        this.searchLoadMore = false;
         this.loadMovies();
       } else {
+        this.searchLoadMore = true;
         this.page = 1;
         this.loadMoviesFromSearch(searchValue);
         this.valueSearch = searchValue;
@@ -198,20 +210,28 @@ export class PeliculaComponent implements OnInit {
   }
 
   loadNextPage() {
+    alert("entro en el loadNextPage")
+
     if (this.selectedGenre != 0) {
       this.page++;
       this.loadMoviesByGenre();
+      alert("entro en el loadGenre")
     } else if (this.selectedRating != '') {
       this.page++;
       this.loadMoviesByRating();
+      alert("entro en el raitng")
     } else if (this.selectedYear != 0) {
+    
       this.page++;
       this.loadMoviesByRangeYear();
-    } else if (this.valueSearch != '' || this.router.url != '/home') {
+      alert("entro en el year")
+    } else if (this.searchLoadMore) {
       this.page++;
       this.loadMoviesFromSearch(this.valueSearch);
-    } else {
+      alert("entro en el valuesearch")
+    } else{
       this.page++;
+      alert("entro en el home normal")
       this.loadMovies();
     }
   }
