@@ -1,4 +1,31 @@
-div{
+div {
     height: 100vh;
 }
 
+h1 {
+    font-size: 40px;
+    margin-left: 90px;
+}
+
+button {
+    background-color: black;
+    color: var(--color-blanco-claro);
+    border: 2px solid var(--color-blanco-claro) !important;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    margin-right: 90px;
+}
+
+.container {
+    display: flex;     /* Habilita flexbox */
+    align-items: center;     /* Alinea verticalmente al centro */
+    justify-content: space-between;
+    margin-top: -20%;
+}
+
+
+button:hover {
+    background-color: #5a67b8;
+    color: var(--color-azul-claro);
+    transition: background-color 0.5s, color 0.5s;
+}
