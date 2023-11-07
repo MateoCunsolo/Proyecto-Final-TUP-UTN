@@ -46,6 +46,8 @@ export class UserService {
     }
   }
 
+  
+
   public async addMovieToList(userId: number, listPosChoosen: number, movieId: number) 
   {
     

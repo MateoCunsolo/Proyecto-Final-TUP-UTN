@@ -1,22 +1,32 @@
 {
   "users": [
     {
-      "userName": "maga",
-      "email": "maguimourino@gmail.com",
-      "password": "maga123",
+      "userName": "Giuliana",
+      "email": "oliva@gmail.com",
+      "password": "123456",
       "lists": [
         {
           "name": "To Watch",
           "id": 1,
-          "idMovies": []
+          "idMovies": [
+            354912,
+            976573
+          ]
         },
         {
           "name": "Watched",
           "id": 2,
           "idMovies": []
         }
-      ]
+      ],
+      "comments": [
+        {
+          "name": "Giuliana",
+          "comment": "hoooola",
+          "idMovie": 976573
+        }
+      ],
+      "id": 1
     }
   ]
-
 }
