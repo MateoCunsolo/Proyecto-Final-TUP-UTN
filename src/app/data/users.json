@@ -19,7 +19,13 @@
           "idMovies": []
         }
       ],
-      "comments": [],
+      "comments": [
+        {
+          "name": "mate",
+          "comment": "terrible!",
+          "idMovie": 507089
+        }
+      ],
       "id": 1
     }
   ]

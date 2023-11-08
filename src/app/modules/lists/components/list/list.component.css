@@ -1,6 +1,3 @@
-div {
-    height: 100vh;
-}
 
 h1 {
     font-size: 40px;
@@ -20,7 +17,6 @@ button {
     display: flex;     /* Habilita flexbox */
     align-items: center;     /* Alinea verticalmente al centro */
     justify-content: space-between;
-    margin-top: -20%;
 }
 
 

@@ -1,16 +1,19 @@
-
-  
 <div class="conteiner">
-    <div (click)="redirectToMovieDetail(movie)" class="movie-card" *ngFor="let movie of movies">
-      <img *ngIf="movie.poster_path" class="movie-poster" [src]="'https://image.tmdb.org/t/p/original' + movie.poster_path"
-        alt="{{ movie.title }}" />
-        <p *ngIf="!movie.poster_path" >Image not available</p>
+  <div class="flex-center" *ngFor="let movie of movies">
+    <div class="movie-card" (click)="redirectToMovieDetail(movie)">
+      <img
+        *ngIf="movie.poster_path"
+        class="movie-poster"
+        [src]="'https://image.tmdb.org/t/p/original' + movie.poster_path"
+        alt="{{ movie.title }}"
+      />
+      <p *ngIf="!movie.poster_path">Image not available</p>
       <h5>{{ movie.title }}</h5>
-      <!--<button *ngIf="(listClickedLetLocal)">ELMINAR</button>-->
     </div>
+    <button style="margin-top: .5rem;" class="movie-card" *ngIf="listClicked">ELMINAR</button>    
   </div>
-  
-  
-  <section class="load-conteiner">
+</div>
+
+<section class="load-conteiner">
   <button class="load" (click)="loadNextPage()">Load More</button>
 </section>
