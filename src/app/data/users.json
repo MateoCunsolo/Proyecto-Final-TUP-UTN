@@ -1,6 +1,32 @@
 {
   "users": [
-    
+    {
+      "userName": "mate",
+      "email": "mate@gmail.com",
+      "password": "123456",
+      "lists": [
+        {
+          "name": "To Watch",
+          "id": 1,
+          "idMovies": [
+            507089,
+            951491
+          ]
+        },
+        {
+          "name": "Watched",
+          "id": 2,
+          "idMovies": []
+        }
+      ],
+      "comments": [
+        {
+          "name": "mate",
+          "comment": "terrible!",
+          "idMovie": 507089
+        }
+      ],
+      "id": 1
+    }
   ]
-    
 }

@@ -4,6 +4,8 @@ import { MovieData } from '../core/movie.interface';
 import { Observable, catchError, map } from 'rxjs';
 import { Genre } from '../core/movie.interface';
 import { Subject } from 'rxjs';
+import { forkJoin } from 'rxjs';
+
 
 @Injectable({
   providedIn: 'root',
@@ -104,5 +106,7 @@ export class PeliculasService {
     const url = `${this.apiUrl}/movie/${movieId}?api_key=79f8e563e8d26768e3277cdf102fd1b1`;
     return this.http.get(url);
   }
+
+
 
 }

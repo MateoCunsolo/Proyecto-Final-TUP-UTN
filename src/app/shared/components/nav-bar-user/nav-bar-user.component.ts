@@ -44,6 +44,7 @@ export class NavBarUserComponent implements OnInit {
     default:
       this.router.navigate(['home']); // Redirige a una ruta por defecto en caso de que el número no coincida con ninguno de los casos anteriores
   }
+}
 
   showAlert(num: number) {
     let body: HTMLElement | null =
@@ -102,7 +103,8 @@ export class NavBarUserComponent implements OnInit {
   }
  
 
-  toggleMenu() {
+  toggleMenu(){
     this.isMenuOpen = !this.isMenuOpen;
   }
+
 }

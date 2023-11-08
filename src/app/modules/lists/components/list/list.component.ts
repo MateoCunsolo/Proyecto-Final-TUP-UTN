@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { IList, IUser } from 'src/app/core/Interfaces';
+import { IList} from 'src/app/core/Interfaces';
 
 
 @Component({
@@ -29,10 +29,4 @@ export class ListComponent implements OnInit {
 
     }
   }
-
 };
-
-
-
-
-

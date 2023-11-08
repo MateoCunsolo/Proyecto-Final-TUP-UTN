@@ -1,6 +1,7 @@
 import { Component, OnInit, Renderer2, ElementRef } from '@angular/core';
 import { IList, IUser } from 'src/app/core/Interfaces';
 import { Router } from '@angular/router';
+import { eventsService } from 'src/app/services/events.service';
 
 @Component({
   selector: 'app-nav-bar-list',
@@ -20,7 +21,7 @@ export class NavBarListComponent implements OnInit {
     this.isMenuOpen = !this.isMenuOpen;
   }
 
-  constructor(private router: Router, private renderer: Renderer2, private el: ElementRef) { }
+  constructor(private router: Router, private renderer: Renderer2, private el: ElementRef,  private eventsService: eventsService) { }
 
   ngOnInit(): void {
 
@@ -46,15 +47,13 @@ export class NavBarListComponent implements OnInit {
     });
   }
 
+
   redirectToListDetail(listClicked: IList) {
-     // Elimina los espacios en blanco del nombre de la lista
-  const listName = listClicked.name.replace(/\s/g, '');
-  
+    const listName = listClicked.name.replace(/\s/g, '');
     sessionStorage.setItem('listClicked', JSON.stringify(listClicked));
     this.router.navigate(['home/list/' + listName]);
-    
   }
-
+  
 }
 
 
