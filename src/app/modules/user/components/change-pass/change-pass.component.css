@@ -1,9 +1,27 @@
-.flex-center{
-    height: 60%;
+.flex-center-local{
+    height: auto;
     width: 30%;
     margin: 0 auto;   
+    padding: 2rem;
+   
+    display: flex;
+    align-items: start;
+    justify-content: center;
+    flex-direction: column;
 }
 
 .title{
-    font-size: 25px
+    font-size: 25px;
 }
+
+.inputs-sumbit{
+    width: 150px;
+
+}
+
+.inputs-all{
+    border-radius: 9px;
+    margin-top: 0;
+
+}
+
