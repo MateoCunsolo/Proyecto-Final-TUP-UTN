@@ -10,54 +10,40 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./change-name.component.css']
 })
 export class ChangeNameComponent implements OnInit {
+  
+  userName: string = '';
+  user: IUser | null = null;
 
   changeUsernameForm: FormGroup = this.fb.group({
     newUserName: new FormControl('', [Validators.required, Validators.minLength(4)])
   })
 
-  constructor(private fb: FormBuilder, private router: Router,  private userService: UserService) { }
+  constructor(private fb: FormBuilder, private router: Router,  private userService: UserService) {}
 
-  userName: string = '';
-  user: IUser | null = null;
-  userStr: any = sessionStorage.getItem('user');
- 
-
+  
   ngOnInit(): void {
-    
-      if (this.userStr) {
-      this.user = JSON.parse(this.userStr);
-      }
+    this.user = this.userService.getUserSessionStorage();
   }
-
-
 
   async ChangeUsername(){
 
     if(this.changeUsernameForm.invalid) return;
-
     const username : string = this.changeUsernameForm.controls['newUserName'].value;
-    console.log(username);
-    console.log("nuevo user" + username)
-
     const isAvailable = await this.userService.checkIfUsernameAvailable(username);
-    console.log(isAvailable)
-
-    if (isAvailable) {
-      // El nombre de usuario está disponible
+    if (isAvailable && this.user) {
+    //El nombre de usuario está disponible y hay un usuario en sesión
       const oldUsername: number | "" = this.user?.id ?? '';
-      console.log("usuario viejo" + oldUsername);
-
       if (oldUsername !== '') 
-      {
+      {        
         this.userService.changeUsername(oldUsername, username);
-        alert("Username changed successfully");
-        console.log(this.userStr + "viejo");
+        //ACTUALIZAR TAMBIEN LOS NOMBRES DE LOS COMENTARIOS EN EL JSON SERVER
+        this.user.userName = username;
+        this.user.comments?.forEach(comment => {
+          comment.name = username;
+        })
 
-        if (this.user) {
-          this.user.userName = username;
-          console.log(this.userStr + "actualizado");
-          sessionStorage.setItem('user', JSON.stringify(this.user));
-        }
+        this.userService.setUserSessionStorage(this.user);
+        alert("Username changed successfully");
         this.router.navigate(['home']);
       } else 
       {
