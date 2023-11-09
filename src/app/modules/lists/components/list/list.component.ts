@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
+import { IList} from 'src/app/core/Interfaces';
 
 
 @Component({
@@ -9,12 +10,23 @@ import { Router } from '@angular/router';
 })
 export class ListComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  moviesInSpecificList: number[] = []; // Almacena las películas en la lista "To Watch"
+  list: IList | null = null
 
-  ngOnInit(): void {
+  constructor(private route: ActivatedRoute) { }
 
+  ngOnInit() 
+  {
+    let listSstr = sessionStorage.getItem('listClicked'); //me levanta el usuario
+    if (listSstr != null) 
+    {
+      this.list = JSON.parse(listSstr);
+      if (this.list) 
+      {
+        this.moviesInSpecificList = this.list?.idMovies
+        //console.log(this.moviesInSpecificList) lo levanta bien
+      }
+
+    }
   }
-
-
-
-}
+};

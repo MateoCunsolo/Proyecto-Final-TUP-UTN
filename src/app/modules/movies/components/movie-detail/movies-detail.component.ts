@@ -1,38 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Movie } from 'src/app/core/movie.interface';
+import { Genre, Movie } from 'src/app/core/movie.interface';
+import { PeliculasService } from 'src/app/services/peliculas.service';
 
 @Component({
   selector: 'app-peliculadetalle',
-  templateUrl: './peliculadetalle.component.html',
-  styleUrls: ['./peliculadetalle.component.css']
+  templateUrl: './movies-detail.component.html',
+  styleUrls: ['./movies-detail.component.css']
 })
-export class PeliculaDetalleComponent implements OnInit {
+export class MovieDetailComponent implements OnInit {
   movieId: number = 0;
   movie: Movie | undefined;
-  public defaultImageURL = 'assets/IMAGE NOT AVAILABLE.png';
-  genreMap: { [key: number]: string } = {
-    28: 'Action',
-    12: 'Adventure',
-    16: 'Animation',
-    35: 'Comedy',
-    80: 'Crime',
-    99: 'Documentary',
-    18: 'Drama',
-    10751: 'Family',
-    14: 'Fantasy',
-    36: 'History',
-    27: 'Horror',
-    10402: 'Music',
-    9648: 'Mystery',
-    10749: 'Romance',
-    878: 'Science Fiction',
-    10770: 'TV Movie',
-    53: 'Thriller',
-    10752: 'War',
-    37: 'Western',
-  };
-  
+  public defaultImageURL = 'assets/IMAGE NOT AVAILABLE.png';  
   languageMap: { [key: string]: string } = {
     en: 'English',
     es: 'Spanish',
@@ -85,35 +64,32 @@ export class PeliculaDetalleComponent implements OnInit {
     en_gb: 'British English',
   };
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(private route: ActivatedRoute, private movieService : PeliculasService) {}
 
   ngOnInit() {
-    this.route.params.subscribe(params => {
-      this.movieId = +params['id'];
       window.scrollTo(0, 0);
       this.loadMovieDetails();
-    });
   }
 
   loadMovieDetails() {
-    this.movie = JSON.parse(sessionStorage.getItem('movieClicked') || '{}');
+    const id = JSON.parse(sessionStorage.getItem('id') || '{}');
+    this.movieService.getMovieDetails(id).subscribe((data: any) => {
+      this.movie = data;
+    });
   }
 
   extractYear(date: string): string {
     return date.substr(0, 4);
   }
 
-  getGenres(genreIds: number[]): string[] {
-    const genres: string[] = [];
+  getGenreNames(genres: Genre[] | undefined): string []{
+    if (!genres) {
+      return [''];
+    }
 
-    genreIds.forEach((genreId) => {
-      const genreName = this.genreMap[genreId];
-      if (genreName) {
-        genres.push(genreName);
-      }
-    });
-
-    return genres;
+    let genreNames: string[] = [];
+    genres.forEach((genre) =>  genreNames.push(genre.name));
+    return genreNames;
   }
   
   lenguageReturn(language: string): string {

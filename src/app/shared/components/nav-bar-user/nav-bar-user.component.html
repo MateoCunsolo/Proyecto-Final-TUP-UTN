@@ -1,21 +1,40 @@
+
+
 <div id="user-image" (click)="toggleMenu()">
-    <img src="assets/usuario.png" alt="user avatar">
+    <h3 id="user-name" >{{user?.userName}}</h3>
+    <img src="assets/logo-user-small.png" alt="user avatar" />
 </div>
-  
-  <div class="contenedor-menu" [class.active]="isMenuOpen">
+<div class="contenedor-menu" [class.active]="isMenuOpen">
+  <div class="user-data">
+    <h2 id="user-name">Hello {{ user?.userName }}!</h2>
+    <p id="user-email">{{ user?.email }}</p>
+  </div>
 
-    <div class="user-data">
-    <h2 id="user-name"> Hello {{ user?.userName }}! </h2>
-    <p id="user-email"> {{ user?.email }} </p>
-    </div>
-    
-    <div class="jamon">
-    <h3 class="item" (click)="changeSomething(1)"> <img src="assets/usuario.png" alt="">Change Name</h3>
-    <h3 class="item"  (click)="changeSomething(2)"> <img  src="assets/candado.png" alt="">Change Password</h3>
-    <h3 class="item" (click)="changeSomething(3)"> <img src="assets/email.png" alt="">Change Email</h3>
-    <h3 class="item" (click)="changeSomething(4)"> <img src="assets/trash.png" alt="">Delete Account</h3>
-    <p  class="item" (click)="logout()" id="logout"> <img src="assets/log-out.png" alt=""> Log Out</p>
-    </div>
+  <div class="jamon">
+    <h3 class="item" (click)="changeSomething(1)">
+      <img src="assets/usuario.png" alt="" />Change Name
+    </h3>
+    <h3 class="item" (click)="changeSomething(2)">
+      <img src="assets/candado.png" alt="" />Change Password
+    </h3>
+    <h3 class="item" (click)="changeSomething(3)">
+      <img src="assets/email.png" alt="" />Change Email
+    </h3>
+    <h3 class="item" (click)="changeSomething(4)">
+      <img src="assets/trash.png" alt="" />Delete Account
+    </h3>
+    <p class="item" (click)="showAlert(2)" id="logout">
+      <img src="assets/log-out.png" alt="" /> Log Out
+    </p>
+  </div>
+</div>
 
-    </div>
 
+<section class="flex-center" *ngIf="confirmLogOut" id="logout-account">
+  <p>Are you sure you want to {{ message }} ?</p>
+
+  <div id="logout-button">
+    <button (click)="logout()">YES</button>
+    <button (click)="showAlert(2)">NO</button>
+  </div>
+</section>

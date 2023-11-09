@@ -1,6 +1,7 @@
 import { Component, OnInit, Renderer2, ElementRef } from '@angular/core';
 import { IList, IUser } from 'src/app/core/Interfaces';
 import { Router } from '@angular/router';
+import { eventsService } from 'src/app/services/events.service';
 
 @Component({
   selector: 'app-nav-bar-list',
@@ -20,7 +21,7 @@ export class NavBarListComponent implements OnInit {
     this.isMenuOpen = !this.isMenuOpen;
   }
 
-  constructor(private router: Router, private renderer: Renderer2, private el: ElementRef) { }
+  constructor(private router: Router, private renderer: Renderer2, private el: ElementRef,  private eventsService: eventsService) { }
 
   ngOnInit(): void {
 
@@ -38,21 +39,21 @@ export class NavBarListComponent implements OnInit {
     }
 
     //esto es para que cuando aprete en cualquier parte del body, se vuelva a plegar el menu
-    this.renderer.listen('body', 'click', (event: Event) => {
+    this.renderer.listen('body' , 'click', (event: Event) => {
       if (!this.el.nativeElement.contains(event.target as Node)) {
         // Si el clic no está dentro del menú, cierra el menú
         this.isMenuOpen = false;
       }
     });
-
   }
 
-  redirectToListDetail (listClicked: IList) 
-  {
+
+  redirectToListDetail(listClicked: IList) {
+    const listName = listClicked.name.replace(/\s/g, '');
     sessionStorage.setItem('listClicked', JSON.stringify(listClicked));
-    this.router.navigate(['home/list/' + listClicked.name.split(' ')]);
+    this.router.navigate(['home/list/' + listName]);
   }
-
+  
 }
 
 
