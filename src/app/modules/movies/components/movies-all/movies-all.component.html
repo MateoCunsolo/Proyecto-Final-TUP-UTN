@@ -15,5 +15,5 @@
 </div>
 
 <section class="load-conteiner">
-  <button class="load" (click)="loadNextPage()">Load More</button>
+  <button  *ngIf="!listClicked" class="load" (click)="loadNextPage()">Load More</button>
 </section>
