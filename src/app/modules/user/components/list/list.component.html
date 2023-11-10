@@ -1,7 +1,9 @@
 <app-header></app-header>
     <div class="container">
         <h1>{{ name }}</h1> 
+        <button *ngIf="listEditable"><strong>Delete List</strong></button>
     </div>
-    <app-pelicula></app-pelicula>
+
+<app-pelicula></app-pelicula>
 <app-footer></app-footer>
 

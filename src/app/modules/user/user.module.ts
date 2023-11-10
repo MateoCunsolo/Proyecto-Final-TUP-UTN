@@ -11,7 +11,6 @@ import { ListComponent } from './components/list/list.component';
 import { MoviesModule } from '../movies/movies.module';
 
 
-
 @NgModule({
   declarations: [
     ChangeNameComponent,
@@ -24,7 +23,8 @@ import { MoviesModule } from '../movies/movies.module';
     UserRoutingModule,
     MoviesModule,
     SharedModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MoviesModule
   ]
 })
 export class UserModule { }

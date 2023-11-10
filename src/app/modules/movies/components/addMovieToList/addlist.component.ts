@@ -47,6 +47,7 @@ export class AddlistComponent implements OnInit {
   addMovie() {
     if (this.selectedListId !== 0) {
       if (this.user?.id !== undefined) {
+
         //la posicion de la lista en el arreglo es uno menos que el id de esa lista
         this.userService.addMovieToList(
           this.user.id,
@@ -54,11 +55,18 @@ export class AddlistComponent implements OnInit {
           this.movieId
         );
 
-        this.user.lists[this.selectedListId - 1].idMovies.push(this.movieId);
-        this.userService.setUserSessionStorage(this.user);
+        if(!this.user.lists[this.selectedListId - 1].idMovies.includes(this.movieId))
+        {
+          this.user.lists[this.selectedListId - 1].idMovies.push(this.movieId);
+          this.userService.setUserSessionStorage(this.user);
+        }
+        
+       
         sessionStorage.removeItem('listClicked');
         this.selectedListId = 0;
         this.showDropdownMenu();
+
+
       } else {
         console.log('Something went wrong');
       }

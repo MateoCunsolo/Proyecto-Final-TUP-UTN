@@ -1,4 +1,33 @@
 {
   "users": [
+    {
+      "userName": "maga",
+      "email": "jamoncito@gmail.com",
+      "password": "123456",
+      "lists": [
+        {
+          "name": "To Watch",
+          "id": 1,
+          "idMovies": []
+        },
+        {
+          "name": "Watched",
+          "id": 2,
+          "idMovies": []
+        },
+        {
+          "name": "favoritas",
+          "id": 3,
+          "idMovies": []
+        },
+        {
+          "name": "pistacho",
+          "id": 4,
+          "idMovies": []
+        }
+      ],
+      "comments": [],
+      "id": 1
+    }
   ]
 }

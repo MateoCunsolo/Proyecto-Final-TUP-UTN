@@ -65,7 +65,7 @@ export class MoviesAllComponent implements OnInit {
       this.loadMoviesFromSearch(this.valueSearch);
       this.router.navigate(['home']);
     }
-    
+
     // Comprobamos si la URL incluye 'list', lo que indica que estamos en la vista de lista
     this.route.url.subscribe(urlSegments => {
      if (urlSegments.some(segment => segment.path === 'list')) {
