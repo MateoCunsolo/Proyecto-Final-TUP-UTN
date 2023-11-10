@@ -1,19 +1,24 @@
 <div class="header">
-    <button id="boton" (click)="toggleMenu()">
-        <img id="iconMenu" src="assets/logo-menu.png" alt="listsMenu">
-    </button>
-    <div class="menu" [ngClass]="{'active': isMenuOpen}" >
+
+    <div class="flex-center-row">
+        <button id="boton" (click)="toggleMenu()">
+            <img id="iconMenu" src="assets/logo-menu.png" alt="listsMenu" />
+        </button>
+        <a id="logo"[routerLink]="['/home']">Flick Finder</a>
+    </div>
+
+    <div class="menu" [ngClass]="{ active: isMenuOpen }">
         <aside>
-            
             <h3>Your Lists :</h3>
-            <div id="div1"  (click)=" [ toggleMenu(), redirectToListDetail(list) ]" *ngFor="let list of user?.lists" >
-                <img src="assets/logo-flick-finder.png" alt=" " id="imgLists">
-                <a  id="listsNames" ><strong>{{ list.name }}</strong></a>
+            <div id="div1" (click)="[toggleMenu(), redirectToListDetail(list)]" *ngFor="let list of user?.lists">
+                <img src="assets/logo-flick-finder.png" alt=" " id="imgLists" />
+                <a id="listsNames"><strong>{{ list.name }}</strong></a>
             </div>
-         
+
             <div id="div2">
-                <a id="newList" [routerLink]="['/lista']"><strong>+ Add New List</strong></a>
+                <a id="newList"[routerLink]="['/lista']"><strong>+ Add New List</strong></a>
             </div>
         </aside>
     </div>
+
 </div>
