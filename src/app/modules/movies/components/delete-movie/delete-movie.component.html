@@ -1,0 +1,10 @@
+
+<button id="boton" (click)="changeStatus()">Delete</button>
+<section class="flex-center" *ngIf="confirmDeletMovie" id="confirmation">
+    <p>Are you sure you want to delete this movie from the list ?</p>
+  
+    <div id="confirmation-button">
+      <button (click)="showAlert(1)">YES</button>
+      <button (click)="showAlert(2)">NO</button>
+    </div>
+</section>

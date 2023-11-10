@@ -7,12 +7,9 @@ import { UserService } from 'src/app/services/user.service';
 @Component({
   selector: 'app-addlist',
   templateUrl: './addlist.component.html',
-  styleUrls: ['./addlist.component.css']
+  styleUrls: ['./addlist.component.css'],
 })
-
-
 export class AddlistComponent implements OnInit {
-
   isVisibilityActive: boolean = true;
 
   user: IUser | null = null;
@@ -25,67 +22,48 @@ export class AddlistComponent implements OnInit {
   selectedListId: number = 0; //aca guardo el id de la lista que selecciona el usuario
 
   visibleDropdownMenu = false;
-  
 
-  showDropdownMenu(){
+  showDropdownMenu() {
     this.visibleDropdownMenu = !this.visibleDropdownMenu;
-    this.isVisibilityActive =!this.isVisibilityActive;
+    this.isVisibilityActive = !this.isVisibilityActive;
   }
 
-  constructor(private route: ActivatedRoute, private userService: UserService) { }
+  constructor(
+    private route: ActivatedRoute,
+    private userService: UserService
+  ) {}
 
-  ngOnInit(): void 
-  {
+  ngOnInit(): void {
+    this.route.params.subscribe((params) => {
+      this.movieId = +params['id'];
+    });
 
-    this.route.params.subscribe(params => {
-      this.movieId = +params['id']
-    })
-
-    //para obtener los nombres de las listas y armar el listado
-    let userSstr = sessionStorage.getItem('user'); //me levanta el usuario
-
-    //este bloquesito es que el que me trae los nombres de las listas para el listado
-    if (userSstr != null) 
-    {
-      this.user = JSON.parse(userSstr);
-      // Recorre las listas del usuario y extrae los nombres
-      this.user?.lists.forEach((lista) => {
-        this.listsNames.push(lista.name);
-      });
-    }
-
-
-    if (userSstr != null) 
-    {
-      this.user = JSON.parse(userSstr); //lo paso a formato json
-
-      if (this.user) {
-        console.log(this.user.id);
-
-        this.lists = this.user.lists;
-        console.log(this.lists);
-
-      }
-    }
-
+    this.user = this.userService.getUserSessionStorage();
+    this.user?.lists.forEach((lista) => {
+      this.listsNames.push(lista.name);
+    });
   }
 
   addMovie() {
-    if (this.selectedListId !== 0) 
-    {
-      if (this.user?.id !== undefined) 
-      {
+    if (this.selectedListId !== 0) {
+      if (this.user?.id !== undefined) {
         //la posicion de la lista en el arreglo es uno menos que el id de esa lista
-        this.userService.addMovieToList(this.user.id, this.selectedListId-1, this.movieId);
+        this.userService.addMovieToList(
+          this.user.id,
+          this.selectedListId - 1,
+          this.movieId
+        );
+
+        this.user.lists[this.selectedListId - 1].idMovies.push(this.movieId);
+        this.userService.setUserSessionStorage(this.user);
+        sessionStorage.removeItem('listClicked');
         this.selectedListId = 0;
         this.showDropdownMenu();
-      } 
-      else {
-        console.log("Something went wrong");
+      } else {
+        console.log('Something went wrong');
       }
     } else {
-      console.log("Please select a list.");
+      console.log('Please select a list.');
     }
   }
-
 }

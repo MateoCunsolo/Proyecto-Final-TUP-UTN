@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Movie, MovieData } from 'src/app/core/movie.interface';
 import { PeliculasService } from 'src/app/services/peliculas.service';
-import { Router } from '@angular/router'; // Importa el módulo Router
+import { ActivatedRoute, Router } from '@angular/router'; // Importa el módulo Router
 import { eventsService } from 'src/app/services/events.service';
-
+import { Observable, forkJoin, of } from 'rxjs';
+import { UserService } from 'src/app/services/user.service';
 @Component({
   selector: 'app-pelicula',
   templateUrl: './movies-all.component.html',
@@ -29,6 +30,7 @@ export class MoviesAllComponent implements OnInit {
     video: false,
     vote_average: 0,
     vote_count: 0,
+    genres: undefined
   };
 
   selectedGenre: number = 0; // Propiedad para almacenar el nombre del género
@@ -37,27 +39,56 @@ export class MoviesAllComponent implements OnInit {
   endYear: number = 0;
   startYear: number = 0;
   valueSearch: string = '';
-  searchLoadMore : boolean = false;
+  searchLoadMore: boolean = false;
+  listClicked: boolean = false;
+
   constructor(
     private moviesService: PeliculasService,
     private router: Router,
-    private eventsService: eventsService
-  ) { }
+    private route: ActivatedRoute, // Inject the ActivatedRoute module
+    private eventsService: eventsService,
+    private userService: UserService
+
+  ) {}
 
   ngOnInit() {
+    this.movies = [];
     if (this.router.url === '/home' && this.searchLoadMore === false) {
       this.movies = [];
       this.page = 1;
       this.loadMovies();
-    } else {
+    } else if (this.router.url.includes('search')) {
       this.movies = [];
-      this.valueSearch = this.router.url.split('=')[1];
       this.page = 1;
-      this.loadMoviesFromSearch(this.valueSearch);
       this.searchLoadMore = true;
-      this.router.navigate(['/home']);
+      this.valueSearch = this.router.url.split('=')[1];
+      this.loadMoviesFromSearch(this.valueSearch);
+      alert('entro en el searchloadmore del primer i');
+      this.router.navigate(['home']);
     }
-
+    
+    // Comprobamos si la URL incluye 'list', lo que indica que estamos en la vista de lista
+    this.route.url.subscribe(urlSegments => {
+     if (urlSegments.some(segment => segment.path === 'list')) {
+          //alert('entro en el list');
+          // Obtenemos el objeto 'listClicked' de sessionStorage y lo almacenamos en la variable 'list'
+          let user = this.userService.getUserSessionStorage();
+          if(user != null){
+            let list = user.lists.find(list => list.name === this.router.url.split('/')[3]);
+            console.log(list);
+            this.movies = []; // Reiniciamos la lista de películas
+            this.page = 1;
+            this.listClicked = true;
+            // Llamamos a la función 'loadMoviesForID' pasando el array de IDs de películas de 'list.idMovies'
+            // Usamos 'subscribe' para manejar las películas una vez que todas las solicitudes se completen
+            if(list != undefined){
+            this.loadMoviesForID(list.idMovies).subscribe((movies) => {
+              this.movies = movies; // Almacena las películas recuperadas en 'this.movies'
+            });}
+          }
+      }
+    });
+    
     this.eventsService.getEvent('filterGenre').subscribe((event) => {
       this.selectedGenre = event.data.idgenre;
       this.movies = [];
@@ -72,7 +103,6 @@ export class MoviesAllComponent implements OnInit {
       this.page = 1;
       this.loadMoviesByRating();
       this.eventsService.emitEvent('cross', { search: 'cross' });
-
     });
 
     this.eventsService.getEvent('filterYear').subscribe((event) => {
@@ -84,20 +114,17 @@ export class MoviesAllComponent implements OnInit {
       this.page = 1;
       this.loadMoviesByRangeYear();
       this.eventsService.emitEvent('cross', { search: 'cross' });
-
     });
 
     this.eventsService.getEvent('search').subscribe((event) => {
       this.movies = [];
-      this.selectedGenre = 0; 
-      this.selectedRating = ''; 
-      this.selectedYear = 0; 
+      this.selectedGenre = 0;
+      this.selectedRating = '';
+      this.selectedYear = 0;
       this.endYear = 0;
       this.startYear = 0;
       const searchValue = event.data.search;
-      if (
-        searchValue === 'remove'
-      ) {
+      if (searchValue === 'remove') {
         this.page = 1;
         this.searchLoadMore = false;
         this.loadMovies();
@@ -210,34 +237,51 @@ export class MoviesAllComponent implements OnInit {
   }
 
   loadNextPage() {
-    alert("entro en el loadNextPage")
+    alert('entro en el loadNextPage');
 
     if (this.selectedGenre != 0) {
       this.page++;
       this.loadMoviesByGenre();
-      alert("entro en el loadGenre")
+      alert('entro en el loadGenre');
     } else if (this.selectedRating != '') {
       this.page++;
       this.loadMoviesByRating();
-      alert("entro en el raitng")
+      alert('entro en el raitng');
     } else if (this.selectedYear != 0) {
-    
       this.page++;
       this.loadMoviesByRangeYear();
-      alert("entro en el year")
+      alert('entro en el year');
     } else if (this.searchLoadMore) {
       this.page++;
       this.loadMoviesFromSearch(this.valueSearch);
-      alert("entro en el valuesearch")
-    } else{
+      alert('entro en el valuesearch');
+    } else if (this.listClicked == false) {
       this.page++;
-      alert("entro en el home normal")
+      alert('entro en el home normal');
       this.loadMovies();
     }
   }
 
   redirectToMovieDetail(movieClicked: Movie) {
-    sessionStorage.setItem('movieClicked', JSON.stringify(movieClicked));
+    sessionStorage.setItem('id', JSON.stringify(movieClicked.id));
     this.router.navigate(['home/movie/' + movieClicked.id]);
+  }
+
+  sendMovie(movieClicked: Movie) {
+    sessionStorage.setItem('id', JSON.stringify(movieClicked.id));
+  }
+
+  // Función que carga películas por sus IDs
+  loadMoviesForID(idMovies: number[] | undefined): Observable<Movie[]> {
+    // Comprobamos si 'idMovies' es 'undefined'
+    if (!idMovies) {
+      return of([]); // Retornamos un Observable vacío si 'idMovies' no está definido
+    }
+    // Creamos un array de observables para obtener detalles de películas por sus IDs
+    const observables = idMovies.map((id) =>
+      this.moviesService.getMovieDetails(id)
+    );
+    // Utilizamos 'forkJoin' para esperar a que todas las solicitudes se completen
+    return forkJoin(observables);
   }
 }

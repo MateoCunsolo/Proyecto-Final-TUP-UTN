@@ -38,19 +38,15 @@ export class LoginComponent implements OnInit {
     } //capturo los datos del formulario y creo el objeto con ellos
     
     this.userService.getUsers().subscribe((listUsers: IUser[]) => {
-      console.log(listUsers);
       const users = listUsers.filter(u => u.userName === user.userName && u.password === user.password)
       if(users.length > 0){
-        console.log('Usuario logueado');
-        sessionStorage.setItem('user', JSON.stringify(users[0]));
+        this.userService.setUserSessionStorage(users[0]);
         this.router.navigate(['home']);
       }else
       {
-        console.log('Usuario no logueado');
         let p: HTMLElement | null = document.getElementById("msj-login");
         if(p != null)
         {
-        
           p.classList.add("show");
           
           let formAfterSumbit : HTMLElement | null = document.getElementById("login-form");

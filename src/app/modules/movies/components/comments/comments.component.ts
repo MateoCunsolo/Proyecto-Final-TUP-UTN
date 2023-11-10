@@ -27,6 +27,7 @@ export class CommentsComponent implements OnInit {
   ngOnInit(): void {
   
     this.extractCommentsJsonServer();
+    
     this.commentsService.getEvent().subscribe((event) => {
       const comment : IComment = {
         name: event.comment?.name ?? null,

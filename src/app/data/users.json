@@ -1,3 +1,27 @@
 {
-  "users": [ ]
+  "users": [
+    {
+      "userName": "MateoCunsolo",
+      "email": "cunsolo73@gmail.com",
+      "password": "123456",
+      "lists": [
+        {
+          "name": "ToWatch",
+          "id": 1,
+          "idMovies": [
+            44363
+          ]
+        },
+        {
+          "name": "Watched",
+          "id": 2,
+          "idMovies": [
+            843846
+          ]
+        }
+      ],
+      "comments": [],
+      "id": 1
+    }
+  ]
 }
