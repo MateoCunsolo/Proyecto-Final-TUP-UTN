@@ -4,6 +4,7 @@ import { PeliculasService } from 'src/app/services/peliculas.service';
 import { ActivatedRoute, Router } from '@angular/router'; // Importa el módulo Router
 import { eventsService } from 'src/app/services/events.service';
 import { Observable, forkJoin, of } from 'rxjs';
+import { UserService } from 'src/app/services/user.service';
 @Component({
   selector: 'app-pelicula',
   templateUrl: './movies-all.component.html',
@@ -45,7 +46,9 @@ export class MoviesAllComponent implements OnInit {
     private moviesService: PeliculasService,
     private router: Router,
     private route: ActivatedRoute, // Inject the ActivatedRoute module
-    private eventsService: eventsService
+    private eventsService: eventsService,
+    private userService: UserService
+
   ) {}
 
   ngOnInit() {
@@ -54,30 +57,39 @@ export class MoviesAllComponent implements OnInit {
       this.movies = [];
       this.page = 1;
       this.loadMovies();
-    } else if (this.searchLoadMore === true) {
+    } else if (this.router.url.includes('search')) {
       this.movies = [];
-      this.valueSearch = this.router.url.split('=')[1];
       this.page = 1;
-      this.loadMoviesFromSearch(this.valueSearch);
       this.searchLoadMore = true;
-      this.router.navigate(['/home']);
+      this.valueSearch = this.router.url.split('=')[1];
+      this.loadMoviesFromSearch(this.valueSearch);
+      this.router.navigate(['home']);
     }
 
-    /*// Comprobamos si la URL incluye 'list', lo que indica que estamos en la vista de lista
-    if (this.router.url.includes('list')) {
-      // Obtenemos el objeto 'listClicked' de sessionStorage y lo almacenamos en la variable 'list'
-      let list = JSON.parse(sessionStorage.getItem('listClicked') || '{}');
-      console.log(list); // Imprimimos 'list' en la consola para depuración
-      this.movies = []; // Reiniciamos la lista de películas
-      this.page = 1;
-      this.listClicked = true;
-      // Llamamos a la función 'loadMoviesForID' pasando el array de IDs de películas de 'list.idMovies'
-      // Usamos 'subscribe' para manejar las películas una vez que todas las solicitudes se completen
-      this.loadMoviesForID(list.idMovies).subscribe((movies) => {
-        this.movies = movies; // Almacena las películas recuperadas en 'this.movies'
-      });
-    }*/
+    // Comprobamos si la URL incluye 'list', lo que indica que estamos en la vista de lista
+    this.route.url.subscribe(urlSegments => {
+     if (urlSegments.some(segment => segment.path === 'list')) {
 
+          //alert('entro en el list');
+
+          // Obtenemos el objeto 'listClicked' de sessionStorage y lo almacenamos en la variable 'list'
+          let user = this.userService.getUserSessionStorage();
+          if(user != null){
+            let list = user.lists.find(list => list.name === this.router.url.split('/')[3]);
+            console.log(list);
+            this.movies = []; // Reiniciamos la lista de películas
+            this.page = 1;
+            this.listClicked = true;
+            // Llamamos a la función 'loadMoviesForID' pasando el array de IDs de películas de 'list.idMovies'
+            // Usamos 'subscribe' para manejar las películas una vez que todas las solicitudes se completen
+            if(list != undefined){
+            this.loadMoviesForID(list.idMovies).subscribe((movies) => {
+              this.movies = movies; // Almacena las películas recuperadas en 'this.movies'
+            });}
+          }
+      }
+    });
+    
     this.eventsService.getEvent('filterGenre').subscribe((event) => {
       this.selectedGenre = event.data.idgenre;
       this.movies = [];
@@ -256,7 +268,10 @@ export class MoviesAllComponent implements OnInit {
     this.router.navigate(['home/movie/' + movieClicked.id]);
   }
 
-  
+  sendMovie(movieClicked: Movie) {
+    sessionStorage.setItem('id', JSON.stringify(movieClicked.id));
+  }
+
   // Función que carga películas por sus IDs
   loadMoviesForID(idMovies: number[] | undefined): Observable<Movie[]> {
     // Comprobamos si 'idMovies' es 'undefined'

@@ -1,56 +1,5 @@
 {
   "users": [
-    {
-      "userName": "Magali",
-      "email": "jamoncito@gmail.com",
-      "password": "123456",
-      "lists": [
-        {
-          "name": "To Watch",
-          "id": 1,
-          "idMovies": [
-            951491,
-            507089,
-            609681,
-            354912,
-            901362,
-            1058694,
-            670292
-          ]
-        },
-        {
-          "name": "Watched",
-          "id": 2,
-          "idMovies": []
-        },
-        {
-          "name": "hjvljb",
-          "id": 3,
-          "idMovies": []
-        },
-        {
-          "name": "JAMON",
-          "id": 4,
-          "idMovies": []
-        },
-        {
-          "name": "PISTACHO",
-          "id": 5,
-          "idMovies": []
-        },
-        {
-          "name": "jajaja",
-          "id": 6,
-          "idMovies": []
-        },
-        {
-          "name": "jJJAJAJAAJ",
-          "id": 7,
-          "idMovies": []
-        }
-      ],
-      "comments": [],
-      "id": 1
-    }
+
   ]
 }

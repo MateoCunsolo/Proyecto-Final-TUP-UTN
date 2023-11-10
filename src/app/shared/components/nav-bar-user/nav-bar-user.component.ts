@@ -86,8 +86,7 @@ export class NavBarUserComponent implements OnInit {
     if ((num == 1)) {
         this.message = 'delete your account 😥'
     } else {
-      this.message = 'leave'
-      
+      this.message = 'leave' 
     }
   }
 

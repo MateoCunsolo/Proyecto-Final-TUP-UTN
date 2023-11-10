@@ -51,17 +51,9 @@ export class NavBarListComponent implements OnInit {
 
 
   redirectToListDetail(listClicked: IList) {
-   
-      const listName = listClicked.name.replace(/\s/g, '');
-      sessionStorage.setItem('listClicked', JSON.stringify(listClicked));
-      this.router.navigate(['home/list/' + listName]);
-    
-      // Emite el evento después de navegar
-      console.log("por emitir");
-      this.eventService.emitEvent('LClicked', listClicked);
-      console.log("EMITIDOO");
-      this.cdRef.detectChanges();  // Forzar detección de cambios
-      this.toggleMenu();
+    const listName = listClicked.name;
+    sessionStorage.setItem('listClicked', JSON.stringify(listClicked));
+    this.router.navigate(['home/list/' + listName]);
   }
 
   addNewList(){
@@ -94,10 +86,6 @@ export class NavBarListComponent implements OnInit {
           //actualizo el listado
     
           this.newList = false; //no se ve mas el input de agregar lista
-
-      
-        
-  
       }
   
       

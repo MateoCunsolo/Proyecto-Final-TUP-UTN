@@ -1,19 +1,24 @@
 <div class="conteiner">
-  <div class="flex-center" *ngFor="let movie of movies">
-    <div class="movie-card" (click)="redirectToMovieDetail(movie)">
+  
+    <div class="movie-card flex-center" *ngFor="let movie of movies">
       <img
         *ngIf="movie.poster_path"
         class="movie-poster"
         [src]="'https://image.tmdb.org/t/p/original' + movie.poster_path"
         alt="{{ movie.title }}"
+        (click)="redirectToMovieDetail(movie)"
       />
-      <p *ngIf="!movie.poster_path">Image not available</p>
-      <h5>{{ movie.title }}</h5>
+      <p  (click)="redirectToMovieDetail(movie)" *ngIf="!movie.poster_path">Image not available</p>
+      <h5 (click)="redirectToMovieDetail(movie)"> {{ movie.title }}</h5>
+      <div  *ngIf="listClicked">
+       <!-- Pasar el movie al componente hijo DeleteMovieComponent -->
+      <app-delete-movie [movieToDelete]="movie"></app-delete-movie>
+      </div>
+         
     </div>
-    <button style="margin-top: .5rem;" class="movie-card" *ngIf="listClicked">ELMINAR</button>    
-  </div>
 </div>
 
 <section class="load-conteiner">
-  <button class="load" (click)="loadNextPage()">Load More</button>
+  <button  *ngIf="!listClicked" class="load" (click)="loadNextPage()">Load More</button>
 </section>
+

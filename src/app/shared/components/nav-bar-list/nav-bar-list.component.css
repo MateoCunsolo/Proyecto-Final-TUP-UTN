@@ -2,6 +2,15 @@
     position: relative;
 }
 
+#logo
+{
+    margin: 0rem 0rem 0rem 1rem;
+    color: white;
+    font-weight: bold;
+    font-size: 1.5rem;
+    text-decoration: none;
+}
+
 #iconMenu {
     background-color: black;
     cursor: pointer;
@@ -15,26 +24,17 @@
     position: absolute;
     top: 100%;
     left: 0;
-    background-color: black;
     display: none;
-    width: 600%; /* Establece un ancho para el menú */
-    padding: 10px; /* Espacio alrededor del menú */
+    width: 15rem;
 }
 
 aside{
     background-color: black;
+    border: solid #5a67b8 .5px;
+    padding: .5rem;
 }
 
-/* para crear un pseudo-elemento que funcione como el borde izquierdo del menú.*/
-.menu::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -20px; /* Ancho del borde izquierdo, ajusta según tus preferencias */
-    width: 20px; /* Ancho del borde izquierdo, ajusta según tus preferencias */
-    height: 100%; /* Igual a la altura del menú */
-    background-color: black; /* Color del borde izquierdo */
-}
+
 
 
 #boton {

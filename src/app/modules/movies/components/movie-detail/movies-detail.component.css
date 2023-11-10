@@ -47,7 +47,7 @@ img {
 {
     display: flex;
     align-items: center;
-    justify-content: start;
+    justify-content: flex-start;
     width: 100%;
     padding: 1rem 0rem 1rem 0rem;
     gap: 2rem;

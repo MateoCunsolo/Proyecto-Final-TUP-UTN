@@ -21,6 +21,7 @@ import { MoviesModule } from '../movies/movies.module';
   imports: [
     CommonModule,
     UserRoutingModule,
+    MoviesModule,
     SharedModule,
     ReactiveFormsModule,
     MoviesModule

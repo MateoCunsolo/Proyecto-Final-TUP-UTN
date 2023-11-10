@@ -54,11 +54,10 @@ export class AddlistComponent implements OnInit {
           this.selectedListId - 1,
           this.movieId
         );
-      
+        
         this.user.lists[this.selectedListId - 1].idMovies.push(this.movieId);
         this.userService.setUserSessionStorage(this.user);
-      
-        //aca se guarda en la session storage el usuario con la lista modificada
+        sessionStorage.removeItem('listClicked');
         this.selectedListId = 0;
         this.showDropdownMenu();
       } else {
