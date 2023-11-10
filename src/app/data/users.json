@@ -6,7 +6,7 @@
       "password": "123456",
       "lists": [
         {
-          "name": "To Watch",
+          "name": "ToWatch",
           "id": 1,
           "idMovies": []
         },
@@ -18,7 +18,9 @@
         {
           "name": "favoritas",
           "id": 3,
-          "idMovies": []
+          "idMovies": [
+            609681
+          ]
         },
         {
           "name": "pistacho",
