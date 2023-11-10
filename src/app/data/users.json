@@ -6,10 +6,13 @@
       "password": "123456",
       "lists": [
         {
-          "name": "To Watch",
+          "name": "ToWatch",
           "id": 1,
           "idMovies": [
-            507089
+            507089,
+            926393,
+            975902,
+            609681
           ]
         },
         {

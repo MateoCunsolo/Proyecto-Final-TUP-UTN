@@ -49,7 +49,7 @@ export class NavBarListComponent implements OnInit {
 
 
   redirectToListDetail(listClicked: IList) {
-    const listName = listClicked.name.replace(/\s/g, '');
+    const listName = listClicked.name;
     sessionStorage.setItem('listClicked', JSON.stringify(listClicked));
     this.router.navigate(['home/list/' + listName]);
   }
