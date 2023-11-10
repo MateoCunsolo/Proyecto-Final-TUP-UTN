@@ -15,6 +15,9 @@
         <h2 class="title" id="title">{{ movie.title }}</h2>
         <h4 id="year">{{ extractYear(movie.release_date) }}</h4>
         <app-addlist></app-addlist>
+        <div class="flex-center-row" *ngFor="let available of availableStreaming">
+          <a href=""><img class="logoStreaming" [src]="available.logoUrl" alt="{{ available.name }} logo"></a>
+        </div>        
       </div>
       <section>
         <p>{{ movie.overview }}</p>
