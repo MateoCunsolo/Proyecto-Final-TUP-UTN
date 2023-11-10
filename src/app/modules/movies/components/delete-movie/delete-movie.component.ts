@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IList, IUser } from 'src/app/core/Interfaces';
 import { Movie } from 'src/app/core/movie.interface';
+import { eventsService } from 'src/app/services/events.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -25,7 +26,7 @@ export class DeleteMovieComponent implements OnInit
  // Nueva propiedad para recibir el movie desde el componente padre
  @Input() movieToDelete: Movie | undefined;
 
-  constructor(private router: Router, private userService: UserService, private route: ActivatedRoute) { }
+  constructor(private eventService: eventsService, private router: Router, private userService: UserService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     const userStr = sessionStorage.getItem('user');
@@ -87,9 +88,7 @@ export class DeleteMovieComponent implements OnInit
   
           this.userService.setUserSessionStorage(this.user); //actualizo la info del usuario
 
-          this.router.navigate(['home']); //me lleva al home
-          //this.router.navigate(['home/list/' + this.listName]); //para q me vuelva a cargar la misma pag pero sin esa peli
-          
+          this.eventService.emitEvent("movieDeleted", {movieDeleted: this.movieId}); //aviso que se borro la peli
         }
       }
        catch (error) {

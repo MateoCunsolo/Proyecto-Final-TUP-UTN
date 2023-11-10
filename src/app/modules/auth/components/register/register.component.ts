@@ -65,7 +65,7 @@ export class RegisterComponent implements OnInit {
     if (this.registerForm.invalid) return; //si el formulario es invalido, que no me retorne el objeto (osea nada)
 
     const ToWatch: IList = {
-      name: 'To Watch',
+      name: 'ToWatch',
       id: 1,
       idMovies: [],
     };
