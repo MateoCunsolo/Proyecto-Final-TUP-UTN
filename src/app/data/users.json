@@ -1,110 +1,25 @@
 {
   "users": [
     {
-      "userName": "JUANCITO",
-      "email": "mate@gmail.com",
-      "password": "1234567",
+      "userName": "MateoCunsolo",
+      "email": "cunsolo73@gmail.com",
+      "password": "123456",
       "lists": [
         {
           "name": "To Watch",
           "id": 1,
           "idMovies": [
-            507089,
-            951491
+            507089
           ]
         },
         {
           "name": "Watched",
           "id": 2,
           "idMovies": []
-        },
-        {
-          "name": "Kids",
-          "id": 3,
-          "idMovies": []
         }
       ],
-      "comments": [
-        {
-          "name": "mate",
-          "comment": "terrible!",
-          "idMovie": 507089
-        },
-        {
-          "name": "mate",
-          "comment": "muy buena peli, top top",
-          "idMovie": 507089
-        },
-        {
-          "name": "mate",
-          "comment": "muuuuy buena\n",
-          "idMovie": 507089
-        },
-        {
-          "name": "mate",
-          "comment": "increible\n",
-          "idMovie": 507089
-        },
-        {
-          "name": "mate",
-          "comment": "malisima igual esta",
-          "idMovie": 678512
-        }
-      ],
+      "comments": [],
       "id": 1
-    },
-    {
-      "userName": "JUANCITO",
-      "email": "mate@gmail.com",
-      "password": "1234567",
-      "lists": [
-        {
-          "name": "To Watch",
-          "id": 1,
-          "idMovies": [
-            507089,
-            951491
-          ]
-        },
-        {
-          "name": "Watched",
-          "id": 2,
-          "idMovies": []
-        },
-        {
-          "name": "Kids",
-          "id": 3,
-          "idMovies": []
-        }
-      ],
-      "comments": [
-        {
-          "name": "mate",
-          "comment": "terrible!",
-          "idMovie": 507089
-        },
-        {
-          "name": "mate",
-          "comment": "muy buena peli, top top",
-          "idMovie": 507089
-        },
-        {
-          "name": "mate",
-          "comment": "muuuuy buena\n",
-          "idMovie": 507089
-        },
-        {
-          "name": "mate",
-          "comment": "increible\n",
-          "idMovie": 507089
-        },
-        {
-          "name": "mate",
-          "comment": "malisima igual esta",
-          "idMovie": 678512
-        }
-      ],
-      "id": 2
     }
   ]
 }

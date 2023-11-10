@@ -53,6 +53,7 @@ export class AddlistComponent implements OnInit {
           this.selectedListId - 1,
           this.movieId
         );
+        
         this.selectedListId = 0;
         this.showDropdownMenu();
       } else {

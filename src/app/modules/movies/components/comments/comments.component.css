@@ -41,7 +41,7 @@ img
     width: 70%;
     border-radius: 2rem;
     display: flex;
-    align-items: start;
+    align-items: flex-start;
     justify-content: center;
     text-align: center;
     text-align: justify;
