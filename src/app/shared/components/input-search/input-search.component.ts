@@ -39,6 +39,7 @@ export class InputSearchComponent implements OnInit {
         inputSearch.value = '';
       }else
       {
+        inputSearch.value.replace('%20', ' ');
         this.enterPressed = true;
       }
     }
