@@ -173,6 +173,15 @@ export class UserService {
     return from(fetch(userUrl, { method: 'DELETE' }).then((response) => response.json()));
   }
 
+   setUserSessionStorage(user: IUser) {
+    sessionStorage.setItem('user', JSON.stringify(user));
+  }
+
+  getUserSessionStorage(): IUser | null {
+    const user = sessionStorage.getItem('user');
+    return user ? JSON.parse(user) : null;
+  }
+  
   
 
 }

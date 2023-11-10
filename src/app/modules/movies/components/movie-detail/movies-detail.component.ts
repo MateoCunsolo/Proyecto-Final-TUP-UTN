@@ -75,7 +75,6 @@ export class MovieDetailComponent implements OnInit {
     const id = JSON.parse(sessionStorage.getItem('id') || '{}');
     this.movieService.getMovieDetails(id).subscribe((data: any) => {
       this.movie = data;
-      console.log(this.movie);
     });
   }
 
