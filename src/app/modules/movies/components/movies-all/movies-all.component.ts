@@ -57,16 +57,16 @@ export class MoviesAllComponent implements OnInit {
       this.movies = [];
       this.page = 1;
       this.loadMovies();
-    } else if (this.searchLoadMore === true) {
+    } else if (this.router.url.includes('search')) {
       this.movies = [];
-      this.valueSearch = this.router.url.split('=')[1];
       this.page = 1;
-      this.loadMoviesFromSearch(this.valueSearch);
       this.searchLoadMore = true;
-      this.router.navigate(['/home']);
+      this.valueSearch = this.router.url.split('=')[1];
+      this.loadMoviesFromSearch(this.valueSearch);
+      alert('entro en el searchloadmore del primer i');
+      this.router.navigate(['home']);
     }
     
-    this.listClicked = false;
     // Comprobamos si la URL incluye 'list', lo que indica que estamos en la vista de lista
     this.route.url.subscribe(urlSegments => {
      if (urlSegments.some(segment => segment.path === 'list')) {
