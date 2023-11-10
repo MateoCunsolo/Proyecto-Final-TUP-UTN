@@ -14,7 +14,7 @@
 #iconMenu {
     background-color: black;
     cursor: pointer;
-    height: 2.5rem;
+    height: 1.5rem;
     border: none;
     padding: 0;
     cursor: pointer;
@@ -30,12 +30,8 @@
 
 aside{
     background-color: black;
-    border: solid #5a67b8 .5px;
     padding: .5rem;
 }
-
-
-
 
 #boton {
     background-color: black;
@@ -88,27 +84,7 @@ h3{
 .input-group {
     display: flex;
     align-items: center;
-    border: 2px red solid; 
-  }
-
-.custom-input {
-    background-color: #5a67b8;
-    color: white;
-    border: 2px solid #5a67b8; /* Color del borde enfocado */
-    outline: none; /* Elimina el contorno predeterminado del input al hacer clic */
     margin-top: 1rem;
-   
-  }
-
-  .custom-input:focus {
-    border-color: #ffffff; /* Cambia el color del borde cuando el input está enfocado */
-    box-shadow: 0 0 5px rgba(255, 255, 255, 0.5); /* Agrega una sombra alrededor del input al estar enfocado */
-  }
-
-  .custom-input::placeholder {
-    color:rgb(157, 152, 152); /* Cambia el color a tu preferencia */
-    margin-left: 5px;
-    text-align: center;
   }
 
   .round-button {
@@ -119,8 +95,12 @@ h3{
     padding: 3px; /* Ajusta este valor según tu preferencia */
     margin-left: 5px;
     cursor: pointer;
-    width: 100%;
-    height: 100%;
+    width: 60px; /* ajusta el tamaño según tus necesidades */
+    height: 20px; 
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   .round-button:hover{
@@ -129,5 +109,29 @@ h3{
     transition: background-color 0.5s, color 0.5s;
   }
 
+  
+
+.custom-input {
+    background-color: var(--color-azul-claro);
+    color: white;
+    border: 2px solid var(--color-azul-claro); /* Color del borde enfocado */
+    outline: none; /* Elimina el contorno predeterminado del input al hacer clic */
+
+  }
+
+  .custom-input:focus {
+    border-color: #ffffff; /* Cambia el color del borde cuando el input está enfocado */
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.5); /* Agrega una sombra alrededor del input al estar enfocado */
+  }
+
+  .custom-input::placeholder {
+    color:var(--color-blanco-claro); /* Cambia el color a tu preferencia */
+    margin-left: 5px;
+    text-align: center;
+    font-weight: bold;
+  }
+
+  
+ 
   
 
