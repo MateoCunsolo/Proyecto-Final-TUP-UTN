@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { MainComponent } from './components/main/main.component';
 import { MovieDetailComponent } from '../movies/components/movie-detail/movies-detail.component';
-import { ListComponent } from '../lists/components/list/list.component';
+import { ListComponent } from '../user/components/list/list.component';
 
 const routes: Routes = [
 
