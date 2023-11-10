@@ -63,7 +63,7 @@ export class MoviesAllComponent implements OnInit {
       this.router.navigate(['/home']);
     }
 
-    // Comprobamos si la URL incluye 'list', lo que indica que estamos en la vista de lista
+    /*// Comprobamos si la URL incluye 'list', lo que indica que estamos en la vista de lista
     if (this.router.url.includes('list')) {
       // Obtenemos el objeto 'listClicked' de sessionStorage y lo almacenamos en la variable 'list'
       let list = JSON.parse(sessionStorage.getItem('listClicked') || '{}');
@@ -76,7 +76,7 @@ export class MoviesAllComponent implements OnInit {
       this.loadMoviesForID(list.idMovies).subscribe((movies) => {
         this.movies = movies; // Almacena las películas recuperadas en 'this.movies'
       });
-    }
+    }*/
 
     this.eventsService.getEvent('filterGenre').subscribe((event) => {
       this.selectedGenre = event.data.idgenre;

@@ -182,5 +182,23 @@ export class UserService {
     return user ? JSON.parse(user) : null;
   }
 
+  createNewList(userId: number, newListName: string): Observable<IUser> {
+    const userUrl = `${this.url}/${userId}`;
+    return from(fetch(userUrl)
+      .then((response) => response.json())
+      .then((user: IUser) => {
+        const newList = { name: newListName, id: user.lists.length +1, idMovies: [] }; // Crear un nuevo objeto con la con
+        user.lists.push(newList);
+        return fetch(userUrl, {
+          method: 'PATCH', // Usar una solicitud PATCH en lugar de PUT
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ lists: user.lists }), // Enviar solo el campo actualizado
+        }).then((response) => response.json());
+      }));
+  }
+     
+
 }
 

@@ -6,13 +6,19 @@
         <aside>
             
             <h3>Your Lists :</h3>
-            <div id="div1"  (click)=" [ toggleMenu(), redirectToListDetail(list) ]" *ngFor="let list of user?.lists" >
+            <div id="div1"  (click)="redirectToListDetail(list)" *ngFor="let list of user?.lists" >
                 <img src="assets/logo-flick-finder.png" alt=" " id="imgLists">
                 <a  id="listsNames" ><strong>{{ list.name }}</strong></a>
             </div>
+
+            <span *ngIf="newList" class="input-group">
+                <input #inputText type="text" class="custom-input" placeholder="new name list">
+                <button (click)="getText(inputText.value)" class="round-button">✓</button>
+            </span>
+            
          
             <div id="div2">
-                <a id="newList" [routerLink]="['/lista']"><strong>+ Add New List</strong></a>
+                <a id="newList" (click)="addNewList()"><strong>+ Add New List</strong></a>
             </div>
         </aside>
     </div>
