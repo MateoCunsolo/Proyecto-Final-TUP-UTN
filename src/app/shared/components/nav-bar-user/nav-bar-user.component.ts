@@ -106,3 +106,4 @@ export class NavBarUserComponent implements OnInit {
     this.isMenuOpen = !this.isMenuOpen;
   }
 }
+}
