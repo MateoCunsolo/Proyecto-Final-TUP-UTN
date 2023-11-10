@@ -69,6 +69,9 @@ export class MoviesAllComponent implements OnInit {
     // Comprobamos si la URL incluye 'list', lo que indica que estamos en la vista de lista
     this.route.url.subscribe(urlSegments => {
      if (urlSegments.some(segment => segment.path === 'list')) {
+
+          //alert('entro en el list');
+
           // Obtenemos el objeto 'listClicked' de sessionStorage y lo almacenamos en la variable 'list'
           let user = this.userService.getUserSessionStorage();
           if(user != null){
@@ -265,7 +268,10 @@ export class MoviesAllComponent implements OnInit {
     this.router.navigate(['home/movie/' + movieClicked.id]);
   }
 
-  
+  sendMovie(movieClicked: Movie) {
+    sessionStorage.setItem('id', JSON.stringify(movieClicked.id));
+  }
+
   // Función que carga películas por sus IDs
   loadMoviesForID(idMovies: number[] | undefined): Observable<Movie[]> {
     // Comprobamos si 'idMovies' es 'undefined'

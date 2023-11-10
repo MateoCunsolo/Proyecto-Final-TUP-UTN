@@ -11,6 +11,7 @@ import { ListComponent } from './components/list/list.component';
 import { MoviesModule } from '../movies/movies.module';
 
 
+
 @NgModule({
   declarations: [
     ChangeNameComponent,
