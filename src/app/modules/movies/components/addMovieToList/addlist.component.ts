@@ -54,12 +54,19 @@ export class AddlistComponent implements OnInit {
           this.selectedListId - 1,
           this.movieId
         );
+
+        if(!this.user.lists[this.selectedListId - 1].idMovies.includes(this.movieId))
+        {
+          this.user.lists[this.selectedListId - 1].idMovies.push(this.movieId);
+          this.userService.setUserSessionStorage(this.user);
+        }
         
-        this.user.lists[this.selectedListId - 1].idMovies.push(this.movieId);
-        this.userService.setUserSessionStorage(this.user);
+       
         sessionStorage.removeItem('listClicked');
         this.selectedListId = 0;
         this.showDropdownMenu();
+
+
       } else {
         console.log('Something went wrong');
       }

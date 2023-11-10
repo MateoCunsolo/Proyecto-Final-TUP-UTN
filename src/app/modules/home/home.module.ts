@@ -17,11 +17,8 @@ import { MoviesModule } from '../movies/movies.module';
     HomeRoutingModule,
     SharedModule,
     MoviesModule
-<<<<<<< HEAD
+
   ],
-=======
-    ],
->>>>>>> 1c0aa8379eb49fbb200635f7e09f0c8e722c32ee
   exports: [
       FilteringComponent
   ]
