@@ -56,7 +56,6 @@ export class UserService {
       const user = await fetch(`${this.url}/${userId}`).then((response) =>
         response.json()
       );
-
       // Agrego el movieId a la lista específica
       console.log(user.lists[listPosChoosen].idMovies);
 
@@ -91,7 +90,35 @@ export class UserService {
     {
       console.log(error);
     }
-   
+  }
+
+  public async removeMovieFromList(userId: number, listPosChoosen: number, movieId: number) {
+    try {
+      // Primero, obtengo el usuario desde el servidor
+      const user = await fetch(`${this.url}/${userId}`).then((response) => response.json());
+  
+      // Verifico si la película está en la lista
+      const movieIndex = user.lists[listPosChoosen].idMovies.indexOf(movieId);
+  
+      if (movieIndex !== -1) {
+        // Si la película está en la lista, la elimino
+        user.lists[listPosChoosen].idMovies.splice(movieIndex, 1);
+  
+        // Actualizo la información del usuario en el servidor
+        await fetch(`${this.url}/${userId}`, {
+          method: 'PATCH',
+          body: JSON.stringify(user),
+          headers: { 'Content-type': 'application/json' },
+        });
+  
+        alert('Movie successfully removed from the list ' + user.lists[listPosChoosen].name);
+      } else {
+        // Si la película no está en la lista, muestro un mensaje de error
+        alert('The movie is not in the list ' + user.lists[listPosChoosen].name);
+      }
+    } catch (error) {
+      console.log(error);
+    }
   }
 
 
@@ -183,6 +210,24 @@ export class UserService {
   }
   
   
+
+  createNewList(userId: number, newListName: string): Observable<IUser> {
+    const userUrl = `${this.url}/${userId}`;
+    return from(fetch(userUrl)
+      .then((response) => response.json())
+      .then((user: IUser) => {
+        const newList = { name: newListName, id: user.lists.length +1, idMovies: [] }; // Crear un nuevo objeto con la con
+        user.lists.push(newList);
+        return fetch(userUrl, {
+          method: 'PATCH', // Usar una solicitud PATCH en lugar de PUT
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ lists: user.lists }), // Enviar solo el campo actualizado
+        }).then((response) => response.json());
+      }));
+  }
+     
 
 }
 

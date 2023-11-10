@@ -23,7 +23,8 @@ import { MoviesModule } from '../movies/movies.module';
     UserRoutingModule,
     MoviesModule,
     SharedModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MoviesModule
   ]
 })
 export class UserModule { }
