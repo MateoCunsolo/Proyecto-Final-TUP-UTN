@@ -9,6 +9,7 @@ import { ChangePassComponent } from './components/change-pass/change-pass.compon
 import { ChangeEmailComponent } from './components/change-email/change-email.component';
 import { ListComponent } from './components/list/list.component';
 import { MoviesModule } from '../movies/movies.module';
+import { DeleteListComponent } from './components/delete-list/delete-list.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { MoviesModule } from '../movies/movies.module';
     ChangeNameComponent,
     ChangePassComponent,
     ChangeEmailComponent,
-    ListComponent
+    ListComponent,
+    DeleteListComponent
   ],
   imports: [
     CommonModule,

@@ -121,6 +121,33 @@ export class UserService {
     }
   }
 
+  
+  public async deleteListComplete(userId: number, listPosChoosen: number) {
+    try {
+      // Primero, obtengo el usuario desde el servidor
+      const user = await fetch(`${this.url}/${userId}`).then((response) => response.json());
+  
+      // Verifico si la lista existe en la posición especificada
+      if (user.lists[listPosChoosen]) {
+        // Elimino la lista de películas completa
+        user.lists.splice(listPosChoosen, 1);
+  
+        // Actualizo la información del usuario en el servidor
+        await fetch(`${this.url}/${userId}`, {
+          method: 'PATCH',
+          body: JSON.stringify(user),
+          headers: { 'Content-type': 'application/json' },
+        });
+  
+        alert('List successfully removed.');
+      } else {
+        // Si la lista no existe, muestro un mensaje de error
+        alert('The selected list does not exist.');
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   public async checkIfUsernameAvailable(username: string): Promise<boolean> {
     try {
@@ -228,6 +255,7 @@ export class UserService {
       }));
   }
      
-
+  
+  
 }
 
