@@ -6,19 +6,19 @@ import { CommentsComponent } from './components/comments/comments.component';
 import { AddCommentComponent } from './components/add-comment/add-comment.component';
 import { FormsModule } from '@angular/forms';
 import { AddlistComponent } from './components/addMovieToList/addlist.component';
-import { MoviesAllComponent } from './components/movies-all/MoviesAllComponent';
 import { MovieDetailComponent} from './components/movie-detail/movies-detail.component';
 import { DeleteMovieComponent } from './components/delete-movie/delete-movie.component';
+import { MoviesAllComponent } from './components/movies-all/movies-all.component';
 
 
 @NgModule({
   declarations: [
-    MoviesAllComponent,
     MovieDetailComponent,
     CommentsComponent,
     AddCommentComponent,
     AddlistComponent,
-    DeleteMovieComponent
+    DeleteMovieComponent,
+    MoviesAllComponent
   ],
   imports: [
     CommonModule,
@@ -27,10 +27,10 @@ import { DeleteMovieComponent } from './components/delete-movie/delete-movie.com
     FormsModule
   ],
   exports:[
-    MoviesAllComponent,
     MovieDetailComponent,
     CommentsComponent,
-    AddCommentComponent
+    AddCommentComponent,
+    MoviesAllComponent
   ]
 })
 export class MoviesModule { }
