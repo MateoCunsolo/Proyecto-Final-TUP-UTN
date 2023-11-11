@@ -6,7 +6,7 @@ import { CommentsComponent } from './components/comments/comments.component';
 import { AddCommentComponent } from './components/add-comment/add-comment.component';
 import { FormsModule } from '@angular/forms';
 import { AddlistComponent } from './components/addMovieToList/addlist.component';
-import { MoviesAllComponent } from './components/movies-all/movies-all.component';
+import { MoviesAllComponent } from './components/movies-all/MoviesAllComponent';
 import { MovieDetailComponent} from './components/movie-detail/movies-detail.component';
 import { DeleteMovieComponent } from './components/delete-movie/delete-movie.component';
 

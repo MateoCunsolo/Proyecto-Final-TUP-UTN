@@ -4,6 +4,22 @@ h1 {
     font-size: 24px;
 }
 
+.loadingMovies
+{
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    flex-direction: column;
+    background-color: rebeccapurple;
+}
+
+#loadImg
+{
+    width: 23.64rem;
+    height: auto;
+}
+
+
 .conteiner {
     background-color: black;
     display: grid;
