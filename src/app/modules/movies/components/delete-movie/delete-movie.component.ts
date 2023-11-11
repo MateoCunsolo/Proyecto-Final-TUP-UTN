@@ -47,7 +47,6 @@ export class DeleteMovieComponent implements OnInit
     });
 
     this.movieId = this.movieToDelete?.id; //levanto el id de la peli desde el componente padre
-
   }
 
   changeStatus()
@@ -69,16 +68,15 @@ export class DeleteMovieComponent implements OnInit
 
   deleteMovie() 
   {        
-    console.log(this.user?.id, this.listId, this.movieId) //imprime bien las cosas
     if (this.user?.id) 
     {
       try {
         if(this.listId !== undefined && this.movieId !== undefined)
         { 
-          //console.log(this.user.id, this.listId - 1, this.movieId)
+          
           this.userService.removeMovieFromList(this.user.id, this.listId - 1, this.movieId);
 
-           // guardo la posicion de la lista para despues borrarla
+          // guardo la posicion de la lista para despues borrarla
           const movieIndex = this.user.lists[this.listId-1].idMovies.indexOf(this.movieId);
           if (movieIndex !== -1) 
           {

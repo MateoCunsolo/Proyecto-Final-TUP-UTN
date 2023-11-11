@@ -23,7 +23,7 @@ export class NavBarListComponent implements OnInit {
     this.isMenuOpen = !this.isMenuOpen;
   }
 
-  constructor(private userService: UserService, private router: Router, private renderer: Renderer2, private el: ElementRef,  private eventService: eventsService, private cdRef: ChangeDetectorRef) { }
+  constructor( private eventsService: eventsService, private userService: UserService, private router: Router, private renderer: Renderer2, private el: ElementRef,  private eventService: eventsService, private cdRef: ChangeDetectorRef) { }
 
   ngOnInit(): void {
 
@@ -88,7 +88,6 @@ export class NavBarListComponent implements OnInit {
           this.newList = false; //no se ve mas el input de agregar lista
       }
   
-      
     
     }
  }

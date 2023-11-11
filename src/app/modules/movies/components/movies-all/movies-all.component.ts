@@ -70,7 +70,6 @@ export class MoviesAllComponent implements OnInit {
 
     this.eventsService.getEvent('movieDeleted').subscribe((event) => {
       this.showMoviesByIdList();
-
     });
     
     this.eventsService.getEvent('filterGenre').subscribe((event) => {

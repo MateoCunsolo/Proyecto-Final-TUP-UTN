@@ -1,35 +1,36 @@
 {
   "users": [
     {
-      "userName": "maga",
-      "email": "jamoncito@gmail.com",
+      "userName": "Giuliana",
+      "email": "oliva@gmail.com",
       "password": "123456",
       "lists": [
         {
           "name": "ToWatch",
           "id": 1,
-          "idMovies": []
+          "idMovies": [
+            354912
+          ]
         },
         {
           "name": "Watched",
           "id": 2,
-          "idMovies": []
-        },
-        {
-          "name": "favoritas",
-          "id": 3,
           "idMovies": [
-            609681
+            678512,
+            507089,
+            951491
           ]
         },
         {
-          "name": "pistacho",
-          "id": 4,
-          "idMovies": []
+          "name": "Lista3",
+          "id": 5,
+          "idMovies": [
+            459003
+          ]
         }
       ],
       "comments": [],
-      "id": 1
+      "id": 2
     }
   ]
 }
