@@ -2,7 +2,7 @@
 
     <div class="flex-center-row">
         <button id="boton" (click)="toggleMenu()">
-            <img id="iconMenu" src="assets/logo-menu.png" alt="listsMenu" />
+            <img id="iconMenu" src="assets/menu.png" alt="listsMenu" />
         </button>
         <a id="logo"[routerLink]="['/home']">Flick Finder</a>
     </div>
@@ -18,7 +18,7 @@
 
             <span *ngIf="newList" class="input-group">
                 <input #inputText type="text" class="custom-input" placeholder="new name list">
-                <button (click)="getText(inputText.value)" class="round-button">✓</button>
+                <button (click)="getText(inputText.value)" class="round-button"><strong>✓</strong></button>
             </span>
             
          

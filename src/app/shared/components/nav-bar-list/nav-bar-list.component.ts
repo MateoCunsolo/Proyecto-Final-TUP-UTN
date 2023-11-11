@@ -23,7 +23,7 @@ export class NavBarListComponent implements OnInit {
     this.isMenuOpen = !this.isMenuOpen;
   }
 
-  constructor( private eventsService: eventsService, private userService: UserService, private router: Router, private renderer: Renderer2, private el: ElementRef,  private eventService: eventsService, private cdRef: ChangeDetectorRef) { }
+  constructor(private userService: UserService, private router: Router, private renderer: Renderer2, private el: ElementRef,  private eventService: eventsService, private cdRef: ChangeDetectorRef) { }
 
   ngOnInit(): void {
 
@@ -71,27 +71,28 @@ export class NavBarListComponent implements OnInit {
     
   getText(valor: string) {
       console.log('Texto ingresado:', valor);
-  
-      //agrego la lista al json
-      if(this.user?.id != null)
+
+      if(!valor.trim())
       {
-        
-          this.userService.createNewList(this.user?.id, valor);
-  
-          //actualizo la session storage
-          const newList = { name: valor, id: this.user.lists.length +1, idMovies: [] }; // Crear un nuevo objeto con la con
-          this.user.lists.push(newList);
-          sessionStorage.setItem('user', JSON.stringify(this.user));
+        alert("You must enter a name for the list");
+
+      }else{
+
+        if(this.user?.id != null)
+        {
+          
+            this.userService.createNewList(this.user?.id, valor);
     
-          //actualizo el listado
-    
-          this.newList = false; //no se ve mas el input de agregar lista
-      }
-  
-    
+            //actualizo la session storage
+            const newList = { name: valor, id: this.user.lists.length +1, idMovies: [] }; // Crear un nuevo objeto con la con
+            this.user.lists.push(newList);
+            sessionStorage.setItem('user', JSON.stringify(this.user));
+      
+            //actualizo el listado
+      
+            this.newList = false; //no se ve mas el input de agregar lista
+        }
+      } 
     }
  }
-  
-
-
 
