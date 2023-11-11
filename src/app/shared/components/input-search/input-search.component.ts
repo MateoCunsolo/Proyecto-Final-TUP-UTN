@@ -23,6 +23,8 @@ export class InputSearchComponent implements OnInit {
 
   ngOnInit(): void {
 
+   
+
     let inputSearch = document.querySelector(
       '#input-search'
       )   as HTMLInputElement;
@@ -32,14 +34,13 @@ export class InputSearchComponent implements OnInit {
     
     if(this.router.url != '/home')
     {
-      inputSearch.value =  this.router.url.split('=')[1];
+      inputSearch.value =  this.router.url.split('=')[1].replace(/%20/g, ' ');
       if(inputSearch.value === "undefined")
       {
         this.enterPressed = false;
         inputSearch.value = '';
       }else
       {
-        inputSearch.value.replace('%20', ' ');
         this.enterPressed = true;
       }
     }
