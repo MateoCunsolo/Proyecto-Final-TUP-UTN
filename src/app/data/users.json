@@ -31,10 +31,34 @@
           "name": "chacha ",
           "id": 5,
           "idMovies": []
+        },
+        {
+          "name": "banana",
+          "id": 6,
+          "idMovies": []
         }
       ],
       "comments": [],
       "id": 1
+    },
+    {
+      "userName": "magali",
+      "email": "yojaja@gmail.com",
+      "password": "magali",
+      "lists": [
+        {
+          "name": "ToWatch",
+          "id": 1,
+          "idMovies": []
+        },
+        {
+          "name": "Watched",
+          "id": 2,
+          "idMovies": []
+        }
+      ],
+      "comments": [],
+      "id": 2
     }
   ]
 }

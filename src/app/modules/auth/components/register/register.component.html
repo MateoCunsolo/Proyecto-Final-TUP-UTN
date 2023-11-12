@@ -6,14 +6,25 @@
             <input class="inputs-all inputs-values" type="text" id="userName" formControlName="userName" placeholder="User Name" pattern="^(?!\s*$).+" title="It cannot be blank">
             <span *ngIf=" getControl('userName')?.touched && getControl('userName')?.errors?.['minlength']">
             <span class="cross-error">X</span>Minimum 4 characters</span> 
+
             <span *ngIf="getControl('userName')?.touched && getControl('userName')?.errors?.['required']">
             <span class="cross-error">X</span>The field is required</span>
-              
+
+            <span *ngIf="getControl('userName')?.touched && getControl('userName')?.errors?.['usernameTaken']">
+                <span class="cross-error">X</span>Username already exists
+            </span>
+            {{ getControl('userName')?.errors | json }}
+
             <input class="inputs-all inputs-values" type="email" id="email" formControlName="email" placeholder="Email" pattern="^(?!\s*$).+" title="It cannot be blank">
             <span *ngIf="getControl('email')?.touched && getControl('email')?.errors?.['required']">
             <span class="cross-error">X</span>The field is required </span>
             <span *ngIf="getControl('email')?.touched && getControl('email')?.errors?.['pattern']">
             <span class="cross-error">X</span>Invalid Email Format </span>
+
+            <span *ngIf="getControl('email')?.touched && getControl('email')?.errors?.['emailTaken']">
+                <span class="cross-error">X</span>Email already exists
+            </span>
+            {{ getControl('userName')?.errors | json }}
             
             <input class="inputs-all inputs-values" type="password" id="password" formControlName="password" placeholder="Password" pattern="^(?!\s*$).+" title="It cannot be blank">
             <span *ngIf="getControl('password')?.touched && getControl('password')?.errors?.['minlength']">
@@ -24,10 +35,13 @@
             <input class="inputs-all inputs-values" type="password" id="confirmPassword" formControlName="confirmPassword"  placeholder="Confirm Password" pattern="^(?!\s*$).+" title="It cannot be blank">
             <span *ngIf="getControl('confirmPassword')?.touched && getControl('confirmPassword')?.errors?.['required']">
             <span class="cross-error">X</span>The field is required</span>
-            <span *ngIf="registerForm.errors?.['passwordMismatcgError'] && getControl('confirmPassword')?.touched && getControl('confirmPassword')?.touched" >
-            <span class="cross-error">X</span>Passwords do not match</span>
-
-            <input class="inputs-all inputs-sumbit" type="submit" value="Sign Up" id="signUp"  [disabled]="registerForm.status === 'INVALID'">
+           
+            <span *ngIf="getControl('confirmPassword')?.hasError('passwordMismatchError') && getControl('password')?.touched && getControl('confirmPassword')?.touched">
+                <span class="cross-error">X</span>Passwords do not match
+              </span>
+            
+            {{registerForm.invalid}}
+            <input class="inputs-all inputs-sumbit" type="submit" value="Sign Up" id="signUp"  [disabled]="registerForm.invalid">
 
         </form>
         
