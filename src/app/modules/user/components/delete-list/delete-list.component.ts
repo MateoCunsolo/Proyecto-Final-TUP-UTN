@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, OnInit, Renderer2 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IList, IUser } from 'src/app/core/Interfaces';
 import { eventsService } from 'src/app/services/events.service';
@@ -18,7 +18,7 @@ export class DeleteListComponent implements OnInit {
   listName: string | undefined = ' ';
   list: IList | null = null;
 
-  constructor(private eventService: eventsService, private router: Router, private userService: UserService, private route: ActivatedRoute) { }
+  constructor(private router: Router, private userService: UserService, private renderer: Renderer2, private route: ActivatedRoute, private el: ElementRef, private cdRef: ChangeDetectorRef) { }
 
   ngOnInit(): void {
     const userStr = sessionStorage.getItem('user');
@@ -33,10 +33,17 @@ export class DeleteListComponent implements OnInit {
         if (this.listId !== undefined && this.listName !== undefined) {
           this.listId = this.list?.id;
           this.listName = this.list?.name;
-         }
+        }
       }
     });
 
+    //esto es para que cuando aprete en cualquier parte del body, se vuelva a plegar el menu
+    this.renderer.listen('body', 'click', (event: Event) => {
+      if (!this.el.nativeElement.contains(event.target as Node)) {
+        // Si el clic no está dentro del menú, cierra el menú
+        this.confirmDelete = false;
+      }
+    });
   }
 
   changeStatus() {
@@ -56,25 +63,23 @@ export class DeleteListComponent implements OnInit {
 
   deleteList() {
     try {
-      if (this.user?.id && this.listId !== undefined) 
-      {
-      
-      // Guardo la posición de la lista para después borrarla
-      const listIndex = this.user.lists.findIndex(list => list.name === this.listName);
+      if (this.user?.id && this.listId !== undefined) {
 
-      this.userService.deleteListComplete(this.user.id, listIndex);
+        // Guardo la posición de la lista para después borrarla
+        const listIndex = this.user.lists.findIndex(list => list.name === this.listName);
+
+        this.userService.deleteListComplete(this.user.id, listIndex);
 
         // Verifico si la lista existe en la posición especificada
-        if (this.user.lists && this.user.lists[listIndex]) 
-        {
-          this.user.lists.splice(listIndex,1);
-        } 
-          // Actualizo la información del usuario
-          this.userService.setUserSessionStorage(this.user);
+        if (this.user.lists && this.user.lists[listIndex]) {
+          this.user.lists.splice(listIndex, 1);
+        }
+        // Actualizo la información del usuario
+        this.userService.setUserSessionStorage(this.user);
 
-          console.log('List successfully deleted.');
-          this.router.navigate(['home']);
-        
+        console.log('List successfully deleted.');
+        this.router.navigate(['home']);
+
       } else {
         console.log('Error');
       }

@@ -1,0 +1,26 @@
+<button id="boton" (click)="changeStatus()">
+    <img id="editImg" src="assets/edit.png" alt="editMenu">
+</button>
+
+<section class="flex-center" *ngIf="confirmChange" id="confirmation">
+    <p *ngIf="inputMode; else defaultText">Enter the new list name:</p>
+    
+    <ng-container *ngIf="inputMode; else defaultButtons">
+        <input type="text" [(ngModel)]="newListName"  placeholder="New name">
+        <div class="opcionButton">
+        <button (click)="showAlert(1)">Save</button>
+        <button (click)="showAlert(2)">Cancel</button>
+         </div>
+    </ng-container>
+
+    <ng-template #defaultText>
+        <p>Are you sure you want to change the list name?</p>
+    </ng-template>
+
+    <ng-template #defaultButtons>
+        <div  class="opcionButton">
+            <button (click)="toggleInputMode()">YES</button>
+            <button (click)="showAlert(2)">NO</button>
+        </div>
+    </ng-template>
+</section>

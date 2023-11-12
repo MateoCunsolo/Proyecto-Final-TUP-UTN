@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { IComment, IUser } from '../core/Interfaces';
+import { IComment, IList, IUser } from '../core/Interfaces';
 import { Observable, from } from 'rxjs';
 
 @Injectable({
@@ -219,7 +219,6 @@ export class UserService {
         }).then((response) => response.json());
       }));
   }
-  
 
   
   deleteUser(userId: number): Observable<IUser> {
@@ -254,8 +253,33 @@ export class UserService {
         }).then((response) => response.json());
       }));
   }
-     
   
   
-}
+  changeListName(userId: number, newListName: string, listIndex: number): Observable<IUser> {
+    const userUrl = `${this.url}/${userId}`;
+    return from(
+      fetch(userUrl)
+        .then((response) => response.json())
+        .then((user: IUser) => {
+          // Crear una copia de la lista actual del usuario
+          const updatedLists = [...user.lists];
+          // Actualizar el nombre de la lista en la copia
+          updatedLists[listIndex] = { ...updatedLists[listIndex], name: newListName };
+          // Crear un nuevo objeto de usuario con la lista actualizada
+          const updatedUser = { ...user, lists: updatedLists };
+          
+          // Enviar una solicitud PATCH al servidor con el usuario actualizado
+          return fetch(userUrl, {
+            method: 'PATCH',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(updatedUser),
+          }).then((response) => response.json());
+        })
+    );
+  }
+  }
+  
+
 

@@ -1,5 +1,42 @@
 {
   "users": [
-  
+    {
+      "userName": "Giuliana",
+      "email": "oliva@gmail.com",
+      "password": "123456",
+      "lists": [
+        {
+          "name": "ToWatch",
+          "id": 1,
+          "idMovies": []
+        },
+        {
+          "name": "Watched",
+          "id": 2,
+          "idMovies": []
+        },
+        {
+          "name": "Jamoncito",
+          "id": 3,
+          "idMovies": [
+            507089
+          ]
+        },
+        {
+          "name": "Pistacho",
+          "id": 4,
+          "idMovies": [
+            507089
+          ]
+        },
+        {
+          "name": "Lista3",
+          "id": 5,
+          "idMovies": []
+        }
+      ],
+      "comments": [],
+      "id": 1
+    }
   ]
 }
