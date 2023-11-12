@@ -2,11 +2,9 @@
 <div class="container">
     <div class="mainContainer">
         <h1>{{ name }}</h1>
-        <app-edit-list></app-edit-list>
+        <app-edit-list *ngIf="listEditable"></app-edit-list>
     </div>
-    <p *ngIf="listEditable">
-        <app-delete-list></app-delete-list>
-    </p>
+        <app-delete-list *ngIf="listEditable"></app-delete-list>
 </div>
 <app-pelicula></app-pelicula>
 <app-footer></app-footer>

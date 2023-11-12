@@ -1,8 +1,8 @@
 {
   "users": [
     {
-      "userName": "Giuliana",
-      "email": "oliva@gmail.com",
+      "userName": "MATEO",
+      "email": "MATEO@GMIAL.COM",
       "password": "123456",
       "lists": [
         {
@@ -16,22 +16,16 @@
           "idMovies": []
         },
         {
-          "name": "Jamoncito",
-          "id": 3,
-          "idMovies": [
-            507089
-          ]
-        },
-        {
-          "name": "Pistacho",
+          "name": "PISTACHO",
           "id": 4,
           "idMovies": [
-            507089
+            609681,
+            926393
           ]
         },
         {
-          "name": "Lista3",
-          "id": 5,
+          "name": "coquito",
+          "id": 4,
           "idMovies": []
         }
       ],
