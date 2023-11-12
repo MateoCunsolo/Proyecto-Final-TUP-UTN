@@ -57,6 +57,11 @@
           "name": "Watched",
           "id": 2,
           "idMovies": []
+        },
+        {
+          "name": "jamon",
+          "id": 3,
+          "idMovies": []
         }
       ],
       "comments": [],
