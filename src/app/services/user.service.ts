@@ -20,36 +20,30 @@ export class UserService {
   checkIfUsernameExists(username: string): Observable<boolean> {
     return from(
       fetch(this.url)
-        .then((response) => {
+        .then(response => {
           if (!response.ok) {
             throw new Error('Network response was not ok');
           }
           return response.json();
         })
-        .then((users: IUser[]) => !!users.find((user) => user.userName === username))
-        .catch((error) => {
-          console.error('Error fetching user data:', error);
-          return false;
-        })
+        .then((users: IUser[]) => users.some(user => user.userName === username))
     );
   }
+  
 
   checkIfEmailExists(email: string): Observable<boolean> {
     return from(
       fetch(this.url)
-        .then((response) => {
+        .then(response => {
           if (!response.ok) {
             throw new Error('Network response was not ok');
           }
           return response.json();
         })
-        .then((users: IUser[]) => !!users.find((user) => user.email === email))
-        .catch((error) => {
-          console.error('Error fetching user data:', error);
-          return false;
-        })
+        .then((users: IUser[]) => users.some(user => user.email === email))
     );
   }
+  
   
   public async postUser(user: IUser) {
     try {

@@ -2,7 +2,7 @@
    
     <form  [formGroup]="changeUsernameForm" (ngSubmit)="ChangeUsername()" class="flex-center forms">
       
-      <h3 class="title">Change Username</h3>
+      <h3 class="title"> <img src="assets/logo-user-large.png">Change Username</h3>
       <p>Write your new Username</p>
   
       <input
@@ -16,13 +16,11 @@
         title="It cannot be blank"/>
 
       <span class="error-message" *ngIf="validate('newUserName', 'required')">
-        <span class="cross-error">X</span>The field is required</span>
+      <span class="cross-error">X</span>The field is required</span>
 
-        <span class="error-message" *ngIf="validate('newUserName', 'minlength')">
-            <span class="cross-error">X</span>Minimum 4 characters</span>
+      <span class="error-message" *ngIf="validate('newUserName', 'minlength')">
+      <span class="cross-error">X</span>Minimum 4 characters</span>
 
-        
-      
         <input
         class="inputs-sumbit inputs-all"
         type="submit"

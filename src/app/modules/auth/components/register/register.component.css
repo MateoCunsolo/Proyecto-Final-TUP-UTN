@@ -9,6 +9,32 @@
     font-size: 15px;
 }
 
+#member{
+    font-size: 13px;
+    margin-bottom: 1rem;
+}
+
+h2{
+    margin-bottom: none;
+   
+}
+
+.titles-container{
+    text-align: center;
+}
+
+#embark{
+    font-size: 14px;
+    margin-top: none;
+    color: var(--color-blanco-claro);
+}
+
+a{
+    color: rgb(174, 169, 169);
+    font-weight: bold;
+    font-size: 13px;
+}
+
 
 
 

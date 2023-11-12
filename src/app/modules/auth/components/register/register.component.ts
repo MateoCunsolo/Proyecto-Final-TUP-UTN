@@ -127,29 +127,50 @@ export class RegisterComponent implements OnInit {
     
     if (this.registerForm.invalid) return; //si el formulario es invalido, que no me retorne el objeto (osea nada)
 
-    const ToWatch: IList = {
-      name: 'ToWatch',
-      id: 1,
-      idMovies: [],
-    };
+    this.userService.checkIfEmailExists(this.registerForm.controls['email'].value)
+    .subscribe(isEmailTaken => {
+      this.userService.checkIfUsernameExists(this.registerForm.controls['userName'].value)
+        .subscribe(isUsernameTaken => {
+          if (isEmailTaken && isUsernameTaken) 
+          {
+            alert('Username and Email already taken. Please try another one!');
 
-    const Watched: IList = {
-      name: 'Watched',
-      id: 2,
-      idMovies: [],
-    };
-    
-    const user: IUser = {
-      userName: this.registerForm.controls['userName'].value,
-      email: this.registerForm.controls['email'].value,
-      password: this.registerForm.controls['password'].value,
-      lists: [ToWatch, Watched],
-      comments: [],
-    }; //capturo los datos del formulario y creo el objeto con ellos
+          } else if (isEmailTaken)
+          {
+            alert('Email already exists. Please try another one!');
+
+          } else if (isUsernameTaken) 
+          {
+            alert('Username already exists. Please try another one!');
+
+          } else 
+          {
+            // Ambos están disponibles
+            const ToWatch: IList = {
+              name: 'ToWatch',
+              id: 1,
+              idMovies: [],
+            };
+        
+            const Watched: IList = {
+              name: 'Watched',
+              id: 2,
+              idMovies: [],
+            };
+            
+            const user: IUser = {
+              userName: this.registerForm.controls['userName'].value,
+              email: this.registerForm.controls['email'].value,
+              password: this.registerForm.controls['password'].value,
+              lists: [ToWatch, Watched],
+              comments: [],
+            }; //capturo los datos del formulario y creo el objeto con ellos
+      
+            this.userService.postUser(user);
+          }
+        });
+    });
   
-    
-    this.userService.postUser(user);
-    
   }
 
   /*
@@ -180,8 +201,5 @@ export class RegisterComponent implements OnInit {
     );
   }*/
 
-  
 
-  
-  
 }
