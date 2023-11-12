@@ -41,7 +41,7 @@ export class MoviesAllComponent implements OnInit {
   valueSearch: string = '';
   searchLoadMore: boolean = false;
   listClicked: boolean = false;
-
+  messageLoad: string = '';
   constructor(
     private moviesService: PeliculasService,
     private router: Router,
@@ -52,7 +52,18 @@ export class MoviesAllComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    
     this.movies = [];
+    this.messageLoad = 'Loadding movies...';
+    if (this.router.url.includes('list'))
+    {  
+      if(this.movies.length == 0){
+        this.messageLoad = "Hey! No movies on your list yet. Let's fix that—time to add some films!";
+      }
+    }
+    
+
+
     if (this.router.url === '/home' && this.searchLoadMore === false) {
       this.movies = [];
       this.page = 1;
@@ -61,7 +72,7 @@ export class MoviesAllComponent implements OnInit {
       this.movies = [];
       this.page = 1;
       this.searchLoadMore = true;
-      this.valueSearch = this.router.url.split('=')[1];
+      this.valueSearch = this.router.url.split('=')[1].replace(/%20/g, ' ');
       this.loadMoviesFromSearch(this.valueSearch);
       this.router.navigate(['home']);
     }
@@ -70,7 +81,6 @@ export class MoviesAllComponent implements OnInit {
 
     this.eventsService.getEvent('movieDeleted').subscribe((event) => {
       this.showMoviesByIdList();
-
     });
     
     this.eventsService.getEvent('filterGenre').subscribe((event) => {

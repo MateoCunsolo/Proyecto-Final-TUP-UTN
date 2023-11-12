@@ -1,8 +1,8 @@
 {
   "users": [
     {
-      "userName": "maga",
-      "email": "jamoncito@gmail.com",
+      "userName": "Giuliana",
+      "email": "oliva@gmail.com",
       "password": "123456",
       "lists": [
         {
@@ -16,19 +16,21 @@
           "idMovies": []
         },
         {
-          "name": "favoritas",
+          "name": "Jamoncito",
           "id": 3,
           "idMovies": [
-            609681
+            507089
           ]
         },
         {
-          "name": "pistacho",
+          "name": "Pistacho",
           "id": 4,
-          "idMovies": []
+          "idMovies": [
+            507089
+          ]
         },
         {
-          "name": "chacha ",
+          "name": "Lista3",
           "id": 5,
           "idMovies": []
         },

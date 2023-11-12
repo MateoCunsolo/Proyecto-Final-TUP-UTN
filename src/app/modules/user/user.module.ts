@@ -9,6 +9,9 @@ import { ChangePassComponent } from './components/change-pass/change-pass.compon
 import { ChangeEmailComponent } from './components/change-email/change-email.component';
 import { ListComponent } from './components/list/list.component';
 import { MoviesModule } from '../movies/movies.module';
+import { DeleteListComponent } from './components/delete-list/delete-list.component';
+import { EditListComponent } from './components/edit-list/edit-list.component';
+import { FormsModule } from '@angular/forms'; // Importa FormsModule
 
 
 @NgModule({
@@ -16,7 +19,10 @@ import { MoviesModule } from '../movies/movies.module';
     ChangeNameComponent,
     ChangePassComponent,
     ChangeEmailComponent,
-    ListComponent
+    ListComponent,
+    DeleteListComponent,
+    EditListComponent,
+    
   ],
   imports: [
     CommonModule,
@@ -24,7 +30,8 @@ import { MoviesModule } from '../movies/movies.module';
     MoviesModule,
     SharedModule,
     ReactiveFormsModule,
-    MoviesModule
+    MoviesModule,
+    FormsModule
   ]
 })
 export class UserModule { }

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { tick } from '@angular/core/testing';
 import { ActivatedRoute } from '@angular/router';
 import { IList} from 'src/app/core/Interfaces';
 
@@ -36,4 +35,4 @@ export class ListComponent implements OnInit {
 
       });
   }
-};
+}

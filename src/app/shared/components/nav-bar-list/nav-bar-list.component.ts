@@ -47,6 +47,7 @@ export class NavBarListComponent implements OnInit {
         this.isMenuOpen = false;
       }
     });
+
   }
 
 
@@ -95,7 +96,4 @@ export class NavBarListComponent implements OnInit {
       } 
     }
  }
-  
-
-
 
