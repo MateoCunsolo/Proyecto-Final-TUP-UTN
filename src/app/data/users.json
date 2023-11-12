@@ -18,16 +18,12 @@
         {
           "name": "Jamoncito",
           "id": 3,
-          "idMovies": [
-            507089
-          ]
+          "idMovies": []
         },
         {
           "name": "Pistacho",
           "id": 4,
-          "idMovies": [
-            507089
-          ]
+          "idMovies": []
         },
         {
           "name": "Lista3",
