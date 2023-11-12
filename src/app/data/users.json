@@ -1,8 +1,8 @@
 {
   "users": [
     {
-      "userName": "MATEO",
-      "email": "MATEO@GMIAL.COM",
+      "userName": "MATE",
+      "email": "M@GMIAL.COM",
       "password": "123456",
       "lists": [
         {
@@ -16,16 +16,8 @@
           "idMovies": []
         },
         {
-          "name": "PISTACHO",
-          "id": 4,
-          "idMovies": [
-            609681,
-            926393
-          ]
-        },
-        {
           "name": "coquito",
-          "id": 4,
+          "id": 3,
           "idMovies": []
         }
       ],
