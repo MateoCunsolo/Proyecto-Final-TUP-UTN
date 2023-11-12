@@ -5,6 +5,16 @@
     gap: .5rem;   
   }
   
+
+  @keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
   .contenedor-menu {
     display: none;
     padding: none;
@@ -16,8 +26,8 @@
   }
   
   .contenedor-menu.active {
+    animation: fade-in 0.5s ease-in-out;
     display: block;
-    /* Agrega estilos de posición y apariencia aquí */
   }
 
   .contenedor-menu .user-data{
@@ -75,7 +85,7 @@
 {
   position: absolute;
   top: 25%;
-  left: 39.5%;
+  left: 37.5%;
   height: 10rem;
   border-radius: 2rem;
   padding: 1rem;
@@ -83,7 +93,7 @@
   background-color: #4F4D7E;
   z-index: 1;
   filter: blur(0px) !important;
-  max-width: 20rem;
+  width: 20rem;
   text-align: center;
 }
 
