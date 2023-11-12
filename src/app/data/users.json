@@ -16,6 +16,14 @@
           "name": "Watched",
           "id": 2,
           "idMovies": []
+        },
+        {
+          "name": "terrror",
+          "id": 3,
+          "idMovies": [
+            507089,
+            678512
+          ]
         }
       ],
       "comments": [],
