@@ -1,6 +1,7 @@
 
 h1 {
     font-size: 40px;
+    padding: 0rem 1rem 0rem 3rem;
 }
 
 button {
@@ -23,4 +24,9 @@ button:hover {
     background-color: rgb(255, 124, 124);
     transition: background-color 0.5s, color 0.5s;
     cursor: pointer;
+}
+
+.mainContainer{
+    display: flex;
+    align-items: center;
 }
