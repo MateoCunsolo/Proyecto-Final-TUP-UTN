@@ -1,16 +1,14 @@
 {
   "users": [
     {
-      "userName": "mateo",
-      "email": "mate@gmail.com",
+      "userName": "MATEO",
+      "email": "MATEO@GMIAL.COM",
       "password": "123456",
       "lists": [
         {
           "name": "ToWatch",
           "id": 1,
-          "idMovies": [
-            30129
-          ]
+          "idMovies": []
         },
         {
           "name": "Watched",
@@ -18,12 +16,17 @@
           "idMovies": []
         },
         {
-          "name": "terrror",
-          "id": 3,
+          "name": "PISTACHO",
+          "id": 4,
           "idMovies": [
-            507089,
-            678512
+            609681,
+            926393
           ]
+        },
+        {
+          "name": "coquito",
+          "id": 4,
+          "idMovies": []
         }
       ],
       "comments": [],

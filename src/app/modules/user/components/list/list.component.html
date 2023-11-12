@@ -1,9 +1,10 @@
 <app-header></app-header>
-    <div class="container">
-        <h1>{{ name }}</h1> 
-        <button *ngIf="listEditable"><strong>Delete List</strong></button>
+<div class="container">
+    <div class="mainContainer">
+        <h1>{{ name }}</h1>
+        <app-edit-list *ngIf="listEditable"></app-edit-list>
     </div>
-
+        <app-delete-list *ngIf="listEditable"></app-delete-list>
+</div>
 <app-pelicula></app-pelicula>
 <app-footer></app-footer>
-

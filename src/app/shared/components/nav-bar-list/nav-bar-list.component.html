@@ -7,11 +7,11 @@
         <a id="logo"[routerLink]="['/home']">Flick Finder</a>
     </div>
 
-    <div class="menu" [ngClass]="{ active: isMenuOpen }">
+    <div class="menu" [ngClass]="{ active: isMenuOpen }" >
         <aside>
             <h3>Your Lists :</h3>
 
-            <div id="div1"  (click)="redirectToListDetail(list)" *ngFor="let list of user?.lists" >
+            <div id="div1"  (click)="redirectToListDetail(list)" *ngFor="let list of user?.lists" (click)="toggleMenu()" >
                 <img src="assets/logo-flick-finder.png" alt=" " id="imgLists">
                 <a  id="listsNames" ><strong>{{ list.name }}</strong></a>
             </div>

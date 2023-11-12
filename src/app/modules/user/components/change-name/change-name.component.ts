@@ -25,7 +25,8 @@ export class ChangeNameComponent implements OnInit {
     this.user = this.userService.getUserSessionStorage();
   }
 
-  async ChangeUsername(){
+  async ChangeUsername()
+  {
 
     if(this.changeUsernameForm.invalid) return;
     const username : string = this.changeUsernameForm.controls['newUserName'].value;
