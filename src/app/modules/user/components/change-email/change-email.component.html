@@ -1,8 +1,8 @@
 <div class="contenedor-forms flex-center-100vh ">
 
-    <form [formGroup]="changeEmailForm" (ngSubmit)="ChangeEmail()" class="flex-center forms">
+    <form [formGroup]="changeEmailForm" (ngSubmit)="ChangeEmail()" class="flex-center-local forms">
 
-        <h3 class="title">Change Email</h3>
+        <h3 class="title"><img src="assets/email.png" >Change Email</h3>
 
         <label for="new Email">Write your new Email</label>
         <input class="inputs-values inputs-all" type="email" placeholder="New Email"
@@ -24,7 +24,7 @@
         <span class="cross-error">X</span>The field is required</span>
 
         <span class="error-message" *ngIf="changeEmailForm.get('password')?.hasError('invalidCurrentPassword') && changeEmailForm.get('password')?.touched">
-            Incorrect Password</span>
+        <span class="cross-error">X</span> Incorrect Password</span>
 
         <input class="inputs-sumbit inputs-all" type="submit" value="Change Email"
             [disabled]="changeEmailForm.status === 'INVALID'" />

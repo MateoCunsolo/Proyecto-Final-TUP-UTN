@@ -1,9 +1,10 @@
-.flex-center{
-    height: 40%;
+.flex-center-local{
+    height: auto;
     width: 30%;
     margin: 0 auto;  
     padding: 2rem; 
     display: flex;
+
     align-items: start;
     justify-content: center;
     flex-direction: column;
@@ -21,7 +22,7 @@ p{
 
 #in-change{
     width: 50%;
-    height: 20%;
+    height: 25%;
 }
 
 .title{
