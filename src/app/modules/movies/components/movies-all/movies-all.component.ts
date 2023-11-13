@@ -54,7 +54,7 @@ export class MoviesAllComponent implements OnInit {
   ngOnInit() {
     
     this.movies = [];
-    this.messageLoad = 'Loadding movies...';
+    this.messageLoad = 'Loading movies...';
     if (this.router.url.includes('list'))
     {  
       if(this.movies.length == 0){
@@ -184,7 +184,7 @@ export class MoviesAllComponent implements OnInit {
           this.verifyData(data);
         },
         (error) => {
-          alert('No se encontraron resultados');
+          this.messageLoad = 'No results found';
         }
       );
     }
@@ -247,7 +247,7 @@ export class MoviesAllComponent implements OnInit {
 
   verifyData(data: MovieData) {
     if (data.results.length === 0) {
-      alert('No se encontraron resultados');
+      this.messageLoad = 'No results found';
     } else {
       this.movies = this.movies.concat(data.results);
     }
