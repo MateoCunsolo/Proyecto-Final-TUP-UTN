@@ -80,6 +80,7 @@ export class MovieDetailComponent implements OnInit {
       'Paramount Plus': 'assets/paramount-plus.png',
       'Movistar Play': 'assets/movistar-play.png',
       'Star Plus': 'assets/star-plus.svg',
+      'Cultpix': 'assets/cultpix.png'
     };
   
   constructor(private route: ActivatedRoute, private movieService : PeliculasService) {}

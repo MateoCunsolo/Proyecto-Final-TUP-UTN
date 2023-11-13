@@ -30,6 +30,17 @@ export class UserService {
     );
   }
   
+  isUsuarioAutenticado()
+  {
+    if(this.getUserSessionStorage())
+    {
+      return true;
+    }
+    else
+    {
+      return false;
+    }
+  }
 
   checkIfEmailExists(email: string): Observable<boolean> {
     return from(

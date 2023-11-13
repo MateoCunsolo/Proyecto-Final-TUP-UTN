@@ -247,7 +247,12 @@ export class MoviesAllComponent implements OnInit {
 
   verifyData(data: MovieData) {
     if (data.results.length === 0) {
-      this.messageLoad = 'No results found';
+      if(this.page == 1){
+        this.messageLoad = 'No results found';
+      }else
+      {
+        alert("No more movies to show");
+      }
     } else {
       this.movies = this.movies.concat(data.results);
     }
