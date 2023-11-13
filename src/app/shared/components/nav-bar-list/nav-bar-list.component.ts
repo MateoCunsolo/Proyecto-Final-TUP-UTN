@@ -24,7 +24,7 @@ export class NavBarListComponent implements OnInit {
   }
 
 
-  constructor(private userService: UserService, private router: Router, private renderer: Renderer2, private el: ElementRef, private eventService: eventsService, private cdRef: ChangeDetectorRef) { }
+  constructor(private userService: UserService, private router: Router, private renderer: Renderer2, private el: ElementRef, private eventsService: eventsService, private cdRef: ChangeDetectorRef) { }
 
 
   ngOnInit(): void {
@@ -92,6 +92,7 @@ export class NavBarListComponent implements OnInit {
           //actualizo la session storage
           const newList = { name: valor, id: this.user.lists.length + 1, idMovies: [] }; // Crear un nuevo objeto con la con
           this.user.lists.push(newList);
+          this.userService.setUserSessionStorage(this.user);
 
         }else
         {
