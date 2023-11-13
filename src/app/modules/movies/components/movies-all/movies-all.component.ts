@@ -254,31 +254,24 @@ export class MoviesAllComponent implements OnInit {
   }
 
   loadNextPage() {
-    alert('entro en el loadNextPage');
-
     if (this.selectedGenre != 0) {
       this.page++;
       this.loadMoviesByGenre();
-      alert('entro en el loadGenre');
     } else if (this.selectedRating != '') {
       this.page++;
       this.loadMoviesByRating();
-      alert('entro en el raitng');
     } else if (this.selectedYear != 0) {
       this.page++;
       this.loadMoviesByRangeYear();
-      alert('entro en el year');
     } else if (this.searchLoadMore) {
       this.page++;
       this.loadMoviesFromSearch(this.valueSearch);
-      alert('entro en el valuesearch');
     } else if (this.listClicked == false) {
       this.page++;
-      alert('entro en el home normal');
       this.loadMovies();
     }
   }
-
+ 
   redirectToMovieDetail(movieClicked: Movie) {
     sessionStorage.setItem('id', JSON.stringify(movieClicked.id));
     this.router.navigate(['home/movie/' + movieClicked.id]);

@@ -19,9 +19,33 @@
           "name": "coquito",
           "id": 3,
           "idMovies": []
+        },
+        {
+          "name": "malas",
+          "id": 4,
+          "idMovies": [
+            299054,
+            350499
+          ]
+        },
+        {
+          "name": "buenas",
+          "id": 5,
+          "idMovies": []
+        },
+        {
+          "name": "spects",
+          "id": 6,
+          "idMovies": []
         }
       ],
-      "comments": [],
+      "comments": [
+        {
+          "name": "MATE",
+          "comment": "TERRIBLE MOVIE LOCO",
+          "idMovie": 299054
+        }
+      ],
       "id": 1
     }
   ]
