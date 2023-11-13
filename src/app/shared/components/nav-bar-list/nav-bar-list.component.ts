@@ -23,7 +23,7 @@ export class NavBarListComponent implements OnInit {
     this.isMenuOpen = !this.isMenuOpen;
   }
 
-  constructor(private userService: UserService, private router: Router, private renderer: Renderer2, private el: ElementRef,  private eventService: eventsService, private cdRef: ChangeDetectorRef) { }
+  constructor(private eventsService: eventsService, private userService: UserService, private router: Router, private renderer: Renderer2, private el: ElementRef,  private eventService: eventsService, private cdRef: ChangeDetectorRef) { }
 
   ngOnInit(): void {
 
@@ -39,6 +39,10 @@ export class NavBarListComponent implements OnInit {
         this.listsNames.push(lista.name);
       });
     }
+    
+    this.eventsService.getEvent('updateLists').subscribe((data) => {
+      this.user = this.userService.getUserSessionStorage();
+    });
 
     //esto es para que cuando aprete en cualquier parte del body, se vuelva a plegar el menu
     this.renderer.listen('body' , 'click', (event: Event) => {
@@ -47,6 +51,7 @@ export class NavBarListComponent implements OnInit {
         this.isMenuOpen = false;
       }
     });
+    
 
   }
 
@@ -88,7 +93,7 @@ export class NavBarListComponent implements OnInit {
             const newList = { name: valor, id: this.user.lists.length +1, idMovies: [] }; // Crear un nuevo objeto con la con
             this.user.lists.push(newList);
             sessionStorage.setItem('user', JSON.stringify(this.user));
-      
+            this.eventService.emitEvent('updateLists', this.user);
             //actualizo el listado
       
             this.newList = false; //no se ve mas el input de agregar lista
