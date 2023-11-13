@@ -140,7 +140,7 @@ export class FilteringComponent implements OnInit {
       this.yearBackgroundColor = '';
       this.toggleFilter('');
 
-      this.emitFilterYearEvent(startY, endY);
+      this.emitFilterYearEvent(0, 0);
 
     }else{
       this.titleY = startY.toString() + "-"+ endY.toString(); 
@@ -165,9 +165,7 @@ export class FilteringComponent implements OnInit {
           this.startYear = 2010;
           this.endYear = 2059;
           break;
-        default:
-          // Código que se ejecutará si no se encuentra una coincidencia con ninguna de las opciones anteriores.
-          break;
+       
       }
 
       this.emitFilterYearEvent(this.startYear, this.endYear);

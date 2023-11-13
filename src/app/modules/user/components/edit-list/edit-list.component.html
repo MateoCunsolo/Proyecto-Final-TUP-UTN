@@ -6,7 +6,7 @@
     <p *ngIf="inputMode; else defaultText">Enter the new list name:</p>
     
     <ng-container *ngIf="inputMode; else defaultButtons">
-        <input type="text" [(ngModel)]="newListName"  placeholder="New name">
+        <input type="text" (keyup.enter)="showAlert(1)" [(ngModel)]="newListName"  placeholder="New name">
         <div class="opcionButton">
         <button (click)="showAlert(1)">Save</button>
         <button (click)="showAlert(2)">Cancel</button>

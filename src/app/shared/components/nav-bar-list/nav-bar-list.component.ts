@@ -10,7 +10,7 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./nav-bar-list.component.css']
 })
 export class NavBarListComponent implements OnInit {
-  
+
   user: IUser | null = null;
 
   lists: IList[] = [];
@@ -23,7 +23,9 @@ export class NavBarListComponent implements OnInit {
     this.isMenuOpen = !this.isMenuOpen;
   }
 
-  constructor(private eventsService: eventsService, private userService: UserService, private router: Router, private renderer: Renderer2, private el: ElementRef,  private eventService: eventsService, private cdRef: ChangeDetectorRef) { }
+
+  constructor(private userService: UserService, private router: Router, private renderer: Renderer2, private el: ElementRef, private eventsService: eventsService, private cdRef: ChangeDetectorRef) { }
+
 
   ngOnInit(): void {
 
@@ -31,8 +33,7 @@ export class NavBarListComponent implements OnInit {
     let userSstr = sessionStorage.getItem('user'); //me levanta el usuario
 
     //este bloquecito es que el que me trae los nombres de las lsitas para el listado
-    if (userSstr != null) 
-    {
+    if (userSstr != null) {
       this.user = JSON.parse(userSstr);
       // Recorre las listas del usuario y extrae los nombres
       this.user?.lists.forEach((lista) => {
@@ -45,7 +46,7 @@ export class NavBarListComponent implements OnInit {
     });
 
     //esto es para que cuando aprete en cualquier parte del body, se vuelva a plegar el menu
-    this.renderer.listen('body' , 'click', (event: Event) => {
+    this.renderer.listen('body', 'click', (event: Event) => {
       if (!this.el.nativeElement.contains(event.target as Node)) {
         // Si el clic no está dentro del menú, cierra el menú
         this.isMenuOpen = false;
@@ -62,43 +63,49 @@ export class NavBarListComponent implements OnInit {
     this.router.navigate(['home/list/' + listName]);
   }
 
-  addNewList(){
-    if(this.user != null)
-    {
-      if(this.user.lists.length != 6)
-      {
+  addNewList() {
+    if (this.user != null) {
+      if (this.user.lists.length != 6) {
         this.newList = true;
-      }else
-      {
+      } else {
         alert("You can't have more than 6 lists");
       }
     }
   }
-    
-  getText(valor: string) {
-      console.log('Texto ingresado:', valor);
 
-      if(!valor.trim())
-      {
-        alert("You must enter a name for the list");
+ getText(valor: string) {
+    const regex = /^[a-zA-Z0-9]+$/;
+    console.log('Texto ingresado:', valor);
 
-      }else{
+    if (this.user?.id != null) {
 
-        if(this.user?.id != null)
+      if (valor.trim() !== '' && !/\s/.test(valor)) {
+
+        if (this.user?.lists.find((lista) => lista.name === valor)) 
         {
-          
-            this.userService.createNewList(this.user?.id, valor);
-    
-            //actualizo la session storage
-            const newList = { name: valor, id: this.user.lists.length +1, idMovies: [] }; // Crear un nuevo objeto con la con
-            this.user.lists.push(newList);
-            sessionStorage.setItem('user', JSON.stringify(this.user));
-            this.eventService.emitEvent('updateLists', this.user);
-            //actualizo el listado
-      
-            this.newList = false; //no se ve mas el input de agregar lista
+
+          alert('A list with that name already exists');
+          this.newList = false; //no se ve mas el input de agregar lista
+
+        }else if(regex.test(valor)) {
+          this.userService.createNewList(this.user?.id, valor);
+          //actualizo la session storage
+          const newList = { name: valor, id: this.user.lists.length + 1, idMovies: [] }; // Crear un nuevo objeto con la con
+          this.user.lists.push(newList);
+          this.userService.setUserSessionStorage(this.user);
+
+        }else
+        {
+          alert( "The list name can't contain special characters, only letters and numbers")
+        
         }
-      } 
+
+      } else 
+      {
+        alert("The list name can't be empty or contain spaces");
+      }
     }
- }
+  }
+
+}
 

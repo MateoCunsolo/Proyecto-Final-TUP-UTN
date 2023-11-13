@@ -1,7 +1,7 @@
 {
   "users": [
     {
-      "userName": "mate",
+      "userName": "Mateo",
       "email": "mate@gmail.com",
       "password": "123456",
       "lists": [
@@ -14,51 +14,10 @@
           "name": "Watched",
           "id": 2,
           "idMovies": []
-        },
-        {
-          "name": "faster",
-          "id": 3,
-          "idMovies": []
         }
       ],
-      "comments": [
-        {
-          "name": "mate",
-          "comment": "Muy buena peli, lastima el final.",
-          "idMovie": 939335
-        },
-        {
-          "name": "mate",
-          "comment": "Increible!",
-          "idMovie": 939335
-        }
-      ],
+      "comments": [],
       "id": 1
-    },
-    {
-      "userName": "juan",
-      "email": "juan@gmail.com",
-      "password": "123456",
-      "lists": [
-        {
-          "name": "ToWatch",
-          "id": 1,
-          "idMovies": []
-        },
-        {
-          "name": "Watched",
-          "id": 2,
-          "idMovies": []
-        }
-      ],
-      "comments": [
-        {
-          "name": "juan",
-          "comment": "Increible final!!!!",
-          "idMovie": 939335
-        }
-      ],
-      "id": 2
     }
   ]
 }
