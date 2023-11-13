@@ -1,52 +1,5 @@
 {
   "users": [
-    {
-      "userName": "MATE",
-      "email": "M@GMIAL.COM",
-      "password": "123456",
-      "lists": [
-        {
-          "name": "ToWatch",
-          "id": 1,
-          "idMovies": []
-        },
-        {
-          "name": "Watched",
-          "id": 2,
-          "idMovies": []
-        },
-        {
-          "name": "coquito",
-          "id": 3,
-          "idMovies": []
-        },
-        {
-          "name": "malas",
-          "id": 4,
-          "idMovies": [
-            299054,
-            350499
-          ]
-        },
-        {
-          "name": "buenas",
-          "id": 5,
-          "idMovies": []
-        },
-        {
-          "name": "spects",
-          "id": 6,
-          "idMovies": []
-        }
-      ],
-      "comments": [
-        {
-          "name": "MATE",
-          "comment": "TERRIBLE MOVIE LOCO",
-          "idMovie": 299054
-        }
-      ],
-      "id": 1
-    }
+    
   ]
 }

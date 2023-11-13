@@ -2,17 +2,17 @@
 
     <form [formGroup]="changePassForm" (ngSubmit)="ChangePassword()" class="flex-center-local forms">
 
-        <h3 class="title">Change Password</h3>
+        <h3 class="title"> <img src="assets/candado.png" >Change Password</h3>
 
         <label for="currentPass">Current Password</label>
         <input class="inputs-values inputs-all" type="password" placeholder="Current Password"
         formControlName="currentPass" pattern="^(?!\s*$).+" title="It cannot be blank" />
 
         <span class="error-message" *ngIf="validate('currentPass', 'required')">
-        <span class="cross-error">X</span>The field is required</span>
+        <span class="cross-error">X</span>This field is required</span>
 
         <span class="error-message" *ngIf="changePassForm.get('currentPass')?.hasError('invalidCurrentPassword') && changePassForm.get('currentPass')?.touched">
-        Incorrect Password</span>
+        <span class="cross-error">X</span>Incorrect Current Password</span>
 
         <label for="newPass" >New Password</label>
         <input class="inputs-values inputs-all" type="password" id="" placeholder="New Password"

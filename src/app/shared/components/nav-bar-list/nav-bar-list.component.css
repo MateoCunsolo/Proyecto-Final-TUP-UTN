@@ -73,6 +73,10 @@ aside{
     text-decoration: none;
 }
 
+#newList{
+    margin-left: 1rem;
+}
+
 #div1:hover,#div2:hover{
     background-color: #5a67b8;
     color: var(--color-azul-claro);
@@ -105,8 +109,10 @@ h3{
     padding: 3px;
     margin-left: 5px;
     cursor: pointer;
+
     width: 60px; 
     height: 20px; 
+
     text-align: center;
     display: flex;
     justify-content: center;
@@ -114,12 +120,10 @@ h3{
   }
 
   .round-button:hover{
-    background-color: #63688b;
+    background-color: white;
     color: black;
     transition: background-color 0.5s, color 0.5s;
   }
-
-  
 
 .custom-input {
     background-color: var(--color-azul-claro);
