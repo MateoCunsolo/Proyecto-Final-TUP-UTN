@@ -22,7 +22,7 @@ export class EditListComponent implements OnInit {
   list: IList | null = null;
 
 
-  constructor(private eventsService:eventsService, private router: Router, private userService: UserService, private renderer: Renderer2, private route: ActivatedRoute, private el: ElementRef, private cdRef: ChangeDetectorRef) { }
+  constructor(private eventsService: eventsService, private router: Router, private userService: UserService, private renderer: Renderer2, private route: ActivatedRoute, private el: ElementRef, private cdRef: ChangeDetectorRef) { }
 
   ngOnInit(): void {
     this.user = this.userService.getUserSessionStorage();
@@ -37,32 +37,39 @@ export class EditListComponent implements OnInit {
 
   }
 
+
+
   changeStatus() {
     this.confirmChange = !this.confirmChange;
     this.inputMode = false; // Restablecer el modo de entrada al cerrar la ventana
+
   }
 
   showAlert(num: number) {
+    const regex = /^[a-zA-Z0-9]+$/;
     if (num === 1) {
+
       if (this.inputMode) {
         // Validar que el nuevo nombre no esté vacío, no contenga solo espacios en blanco y no contenga espacios en medio del texto
-        if (this.newListName.trim() !== '' && !/\s/.test(this.newListName)) {
+        if (this.newListName.trim() !== '' && !/\s/.test(this.newListName) && regex.test(this.newListName)) {
           this.message = 'New saved name: ' + this.newListName;
           this.editList()
         }
         else {
-          alert('The name cannot be empty or contain only whitespace.');
+          alert('The list name cannot contain special characters be empty or contain only whitespace, only letters and numbers');
           return; // Evitar continuar si el nombre no es válido
         }
+        
       } else {
         this.message = 'okey';
       }
-      alert(this.message);
+      
       this.changeStatus(); // Cerrar la ventana de confirmación después de guardar o cancelar
     }
     else {
       this.message = 'okey';
       alert(this.message);
+  
       this.changeStatus(); // Cerrar la ventana de confirmación después de guardar o cancelar
     }
   }
@@ -80,6 +87,9 @@ export class EditListComponent implements OnInit {
         if (listExists) {
           alert('There is already a list with that name. Please choose another name.');
           return;
+        
+        }else{
+          alert(this.message);
         }
 
         // Guardo la posición de la lista para después modificarla
@@ -98,9 +108,10 @@ export class EditListComponent implements OnInit {
             this.userService.setUserSessionStorage(updatedUser);
             sessionStorage.removeItem('listClicked');
             this.router.navigate(['home/list/' + this.newListName]);
+
             if (this.user != null) {
               sessionStorage.setItem('listClicked', JSON.stringify(this.user.lists[listIndex]));
-              this.eventsService.emitEvent('updateLists', {user: this.user});
+              this.eventsService.emitEvent('updateLists', { user: this.user });
             }
           });
       } else {

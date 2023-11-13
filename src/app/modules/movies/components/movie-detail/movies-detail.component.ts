@@ -68,24 +68,54 @@ export class MovieDetailComponent implements OnInit {
     en_gb: 'British English',
   };
   
-    logos: { [key: string]: string } = {
-      'Netflix': 'assets/netflix.png',
-      'Amazon Prime Video': 'assets/amazon-prime.png',
-      'HBO Max': 'assets/hbo-max.png',
-      'Disney Plus': 'assets/disney.png',
-      'Apple TV Plus': 'assets/apple-tv.png',
-      'Paramount Plus Apple TV Channel ': 'assets/apple-tv.png',
-      'Google Play Movies': 'assets/google-play-movies.png',
-      'YouTube': 'assets/youtube-movies.png',
-      'Paramount Plus': 'assets/paramount-plus.png',
-      'Movistar Play': 'assets/movistar-play.png',
-      'Star Plus': 'assets/star-plus.svg',
-      'Cultpix': 'assets/cultpix.png',
-      'Claro video': 'assets/claro-video.png',
-      'MUBI': 'assets/mubi.png',
-      'QubitTV': 'assets/qubit-tv.svg',
-      'MGM Amazon Channel': 'assets/mgm-amazon-channel.jpg',
-    };
+  logos: { [key: string]: string } = {
+    'Netflix': 'assets/netflix.webp',
+    'Amazon Prime Video': 'assets/prime-video.webp',
+    'Apple TV Plus': 'assets/apple-tv-plus.webp',
+    'Apple TV': 'assets/apple-tv.webp',
+    'BHD': 'assets/bhd.webp',
+    'Claro Video': 'assets/claro-video.webp',
+    'Classix': 'assets/classix.webp',
+    'Contar': 'assets/contar.webp',
+    'Crunchyroll': 'assets/crunchyroll.webp',
+    'Cultpix': 'assets/cultpix.webp',
+    'Curiosity Stream': 'assets/curiosity-stream.webp',
+    'DAFilms': 'assets/dafilms.webp',
+    'Dek-Koo': 'assets/dek-koo.webp',
+    'DirecTV Go': 'assets/directv-go.webp',
+    'Disney Plus': 'assets/disney-plus.webp',
+    'Docs Ville': 'assets/docs-ville.webp',
+    'Eventive': 'assets/eventive.webp',
+    'Film Box': 'assets/film-box.webp',
+    'Filmzie': 'assets/filmzie.webp',
+    'Google Play Movies': 'assets/google-play-movies.webp',
+    'HBO Max Free': 'assets/hbo-max-free.webp',
+    'HBO Max': 'assets/hbo-max.webp',
+    'History Play': 'assets/history-play.webp',
+    'Hoichoi': 'assets/hoichoi.webp',
+    'Kocowa': 'assets/kocowa.webp',
+    'Lionsgate Plus': 'assets/lionsgate-plus.webp',
+    'Magellan TV': 'assets/magellan-tv.webp',
+    'MGM Amazon Channel': 'assets/MGM-amazon-channel.webp',
+    'Movistar Play': 'assets/movistar-play.webp',
+    'Mubi': 'assets/mubi.webp',
+    'OnDemandKorea': 'assets/ondemandkorea.webp',
+    'Paramount Plus Apple TV Channel ': 'assets/paramount-plus-apple-tv-channel.webp',
+    'Paramount Plus': 'assets/paramount-plus.webp',
+    'Pluto TV': 'assets/pluto-tv.webp',
+    'Qubit TV': 'assets/qubit-tv.webp',
+    'Runtime': 'assets/runtime.webp',
+    'Shahid': 'assets/shahid.webp',
+    'Spamflix': 'assets/Spamflix.webp',
+    'Star Plus': 'assets/star-plus.webp',
+    'Sun NXT': 'assets/sun-nxt.webp',
+    'Talkfix': 'assets/talkfix.webp',
+    'Trash': 'assets/trash.png',
+    'True Story': 'assets/true-story.webp',
+    'Vix': 'assets/vix.webp',
+    'Wow Plus': 'assets/wow-plus.webp',
+  };
+  
   
   constructor(private route: ActivatedRoute, private movieService : PeliculasService) {}
 
@@ -108,6 +138,7 @@ export class MovieDetailComponent implements OnInit {
     this.movieService.getAvaliableStreaming(id).subscribe((data: any) => {
       for (let i = 0; i < data.results.AR.flatrate.length; i++) {
         const providerName = data.results.AR.flatrate[i].provider_name;
+        alert(providerName);
           if (this.logos.hasOwnProperty(providerName)) {
           this.availableStreaming.push({
             name: providerName,
