@@ -23,7 +23,11 @@ export class NavBarListComponent implements OnInit {
     this.isMenuOpen = !this.isMenuOpen;
   }
 
+<<<<<<< HEAD
   constructor(private userService: UserService, private router: Router, private renderer: Renderer2, private el: ElementRef, private eventService: eventsService, private cdRef: ChangeDetectorRef) { }
+=======
+  constructor(private eventsService: eventsService, private userService: UserService, private router: Router, private renderer: Renderer2, private el: ElementRef,  private eventService: eventsService, private cdRef: ChangeDetectorRef) { }
+>>>>>>> a5e174b4c75c0867859595996314e26c67573951
 
   ngOnInit(): void {
 
@@ -38,6 +42,10 @@ export class NavBarListComponent implements OnInit {
         this.listsNames.push(lista.name);
       });
     }
+    
+    this.eventsService.getEvent('updateLists').subscribe((data) => {
+      this.user = this.userService.getUserSessionStorage();
+    });
 
     //esto es para que cuando aprete en cualquier parte del body, se vuelva a plegar el menu
     this.renderer.listen('body', 'click', (event: Event) => {
@@ -46,6 +54,7 @@ export class NavBarListComponent implements OnInit {
         this.isMenuOpen = false;
       }
     });
+    
 
   }
 
@@ -76,6 +85,7 @@ export class NavBarListComponent implements OnInit {
 
         if (this.user?.lists.find((lista) => lista.name === valor)) 
         {
+
           alert('A list with that name already exists');
           this.newList = false; //no se ve mas el input de agregar lista
 

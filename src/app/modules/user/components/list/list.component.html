@@ -1,7 +1,7 @@
 <app-header></app-header>
 <div class="container">
     <div class="mainContainer">
-        <h1>{{ name }}</h1>
+        <h1>{{ this.list?.name}}</h1>
         <app-edit-list *ngIf="listEditable"></app-edit-list>
     </div>
         <app-delete-list *ngIf="listEditable"></app-delete-list>
