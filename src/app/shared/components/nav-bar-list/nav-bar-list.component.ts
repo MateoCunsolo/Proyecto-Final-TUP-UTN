@@ -72,7 +72,7 @@ export class NavBarListComponent implements OnInit {
     }
   }
 
-  getText(valor: string) {
+ getText(valor: string) {
     const regex = /^[a-zA-Z0-9]+$/;
     console.log('Texto ingresado:', valor);
 
@@ -92,6 +92,7 @@ export class NavBarListComponent implements OnInit {
           const newList = { name: valor, id: this.user.lists.length + 1, idMovies: [] }; // Crear un nuevo objeto con la con
           this.user.lists.push(newList);
           this.newList = false; //no se ve mas el input de agregar lista
+          this.userService.setUserSessionStorage(this.user);
 
 
         }else

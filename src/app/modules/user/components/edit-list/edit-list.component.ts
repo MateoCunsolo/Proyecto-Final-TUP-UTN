@@ -102,7 +102,6 @@ export class EditListComponent implements OnInit {
               sessionStorage.setItem('listClicked', JSON.stringify(this.user.lists[listIndex]));
               this.eventsService.emitEvent('updateLists', {user: this.user});
             }
-            
           });
       } else {
         console.log('Error');
