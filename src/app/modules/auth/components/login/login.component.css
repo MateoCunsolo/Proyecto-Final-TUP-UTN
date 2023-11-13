@@ -19,4 +19,18 @@
 {
     visibility:visible !important; 
 }
- 
+
+#member{
+    font-size: 13px;
+    
+}
+
+#member a{
+    color: rgb(174, 169, 169);
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.title{
+    margin-top: 1rem;
+}

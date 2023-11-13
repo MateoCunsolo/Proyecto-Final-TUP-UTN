@@ -1,8 +1,8 @@
 {
   "users": [
     {
-      "userName": "mate",
-      "email": "mate@gmail.com",
+      "userName": "magali",
+      "email": "yojaja@gmail.com",
       "password": "123456",
       "lists": [
         {
@@ -13,6 +13,26 @@
         {
           "name": "Watched",
           "id": 2,
+          "idMovies": []
+        },
+        {
+          "name": "jnñnsx",
+          "id": 3,
+          "idMovies": []
+        },
+        {
+          "name": "knk",
+          "id": 5,
+          "idMovies": []
+        },
+        {
+          "name": "jaa",
+          "id": 6,
+          "idMovies": []
+        },
+        {
+          "name": "j",
+          "id": 6,
           "idMovies": []
         }
       ],
