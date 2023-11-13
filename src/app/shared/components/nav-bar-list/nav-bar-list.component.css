@@ -120,7 +120,7 @@ h3{
   }
 
   .round-button:hover{
-    background-color: white;
+    background-color:white;
     color: black;
     transition: background-color 0.5s, color 0.5s;
   }
