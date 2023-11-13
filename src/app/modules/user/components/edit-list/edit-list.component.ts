@@ -1,6 +1,7 @@
 import { ChangeDetectorRef, Component, ElementRef, Input, OnInit, Renderer2 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IList, IUser } from 'src/app/core/Interfaces';
+import { eventsService } from 'src/app/services/events.service';
 import { UserService } from 'src/app/services/user.service';
 
 
@@ -21,7 +22,7 @@ export class EditListComponent implements OnInit {
   list: IList | null = null;
 
 
-  constructor(private router: Router, private userService: UserService, private renderer: Renderer2, private route: ActivatedRoute, private el: ElementRef, private cdRef: ChangeDetectorRef) { }
+  constructor(private eventsService:eventsService, private router: Router, private userService: UserService, private renderer: Renderer2, private route: ActivatedRoute, private el: ElementRef, private cdRef: ChangeDetectorRef) { }
 
   ngOnInit(): void {
     this.user = this.userService.getUserSessionStorage();
@@ -95,9 +96,13 @@ export class EditListComponent implements OnInit {
 
             // Actualizo la información del usuario
             this.userService.setUserSessionStorage(updatedUser);
-
-            console.log('List name successfully updated.');
-            this.router.navigate(['home']);
+            sessionStorage.removeItem('listClicked');
+            this.router.navigate(['home/list/' + this.newListName]);
+            if (this.user != null) {
+              sessionStorage.setItem('listClicked', JSON.stringify(this.user.lists[listIndex]));
+              this.eventsService.emitEvent('updateLists', {user: this.user});
+            }
+            
           });
       } else {
         console.log('Error');
