@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { IComment, IUser } from '../core/Interfaces';
+import { IComment, IList, IUser } from '../core/Interfaces';
 import { Observable, from } from 'rxjs';
 
 @Injectable({
@@ -16,6 +16,35 @@ export class UserService {
     return from(fetch(this.url).then((response) => response.json()));
   }
 
+
+  checkIfUsernameExists(username: string): Observable<boolean> {
+    return from(
+      fetch(this.url)
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.json();
+        })
+        .then((users: IUser[]) => users.some(user => user.userName === username))
+    );
+  }
+  
+
+  checkIfEmailExists(email: string): Observable<boolean> {
+    return from(
+      fetch(this.url)
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.json();
+        })
+        .then((users: IUser[]) => users.some(user => user.email === email))
+    );
+  }
+  
+  
   public async postUser(user: IUser) {
     try {
       await fetch(this.url, {
@@ -46,7 +75,6 @@ export class UserService {
     }
   }
 
-  
 
   public async addMovieToList(userId: number, listPosChoosen: number, movieId: number) 
   {
@@ -56,7 +84,6 @@ export class UserService {
       const user = await fetch(`${this.url}/${userId}`).then((response) =>
         response.json()
       );
-
       // Agrego el movieId a la lista específica
       console.log(user.lists[listPosChoosen].idMovies);
 
@@ -91,32 +118,77 @@ export class UserService {
     {
       console.log(error);
     }
-   
   }
 
+  public async removeMovieFromList(userId: number, listPosChoosen: number, movieId: number) {
+    try {
+      // Primero, obtengo el usuario desde el servidor
+      const user = await fetch(`${this.url}/${userId}`).then((response) => response.json());
+  
+      // Verifico si la película está en la lista
+      const movieIndex = user.lists[listPosChoosen].idMovies.indexOf(movieId);
+  
+      if (movieIndex !== -1) {
+        // Si la película está en la lista, la elimino
+        user.lists[listPosChoosen].idMovies.splice(movieIndex, 1);
+  
+        // Actualizo la información del usuario en el servidor
+        await fetch(`${this.url}/${userId}`, {
+          method: 'PATCH',
+          body: JSON.stringify(user),
+          headers: { 'Content-type': 'application/json' },
+        });
+  
+        alert('Movie successfully removed from the list ' + user.lists[listPosChoosen].name);
+      } else {
+        // Si la película no está en la lista, muestro un mensaje de error
+        alert('The movie is not in the list ' + user.lists[listPosChoosen].name);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+
+  public async deleteListComplete(userId: number, listPosChoosen: number) {
+    try {
+      // Primero, obtengo el usuario desde el servidor
+      const user = await fetch(`${this.url}/${userId}`).then((response) => response.json());
+  
+      // Verifico si la lista existe en la posición especificada
+      if (user.lists[listPosChoosen]) {
+        // Elimino la lista de películas completa
+        user.lists.splice(listPosChoosen, 1);
+  
+        // Actualizo la información del usuario en el servidor
+        await fetch(`${this.url}/${userId}`, {
+          method: 'PATCH',
+          body: JSON.stringify(user),
+          headers: { 'Content-type': 'application/json' },
+        });
+  
+        alert('List successfully removed.');
+      } else {
+        // Si la lista no existe, muestro un mensaje de error
+        alert('The selected list does not exist.');
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   public async checkIfUsernameAvailable(username: string): Promise<boolean> {
     try {
       const users = await fetch(this.url).then((response) => response.json());
-      const existingUser = users.find((user: { username: string; }) => user.username === username);
-      return !existingUser;
+      const existingUser = users.find((user: { username: string }) => user.username === username);
+      console.log("El usuario existe? " + existingUser);
+      return !!existingUser; // Ahora negamos el resultado aquí
     } catch (error) {
       console.log(error);
       return false;
     }
   }
-
-  public async checkIfEmailAvailable(email: string): Promise<boolean> {
-    try {
-      const users = await fetch(this.url).then((response) => response.json());
-      const existingUser = users.find((user: { email: string; }) => user.email === email);
-      return !existingUser;
-    } catch (error) {
-      console.log(error);
-      return false;
-    }
-  }
-
+  
   changeUsername(userId: number, newUsername: string): Observable<IUser> {
     const userUrl = `${this.url}/${userId}`;
     return from(fetch(userUrl)
@@ -132,7 +204,6 @@ export class UserService {
         }).then((response) => response.json());
       }));
   }
-
 
   changePassword(userId: number, newPassword: string): Observable<IUser> {
     const userUrl = `${this.url}/${userId}`;
@@ -165,7 +236,6 @@ export class UserService {
         }).then((response) => response.json());
       }));
   }
-  
 
   
   deleteUser(userId: number): Observable<IUser> {
@@ -182,7 +252,62 @@ export class UserService {
     return user ? JSON.parse(user) : null;
   }
   
+  createNewList(userId: number, newListName: string): Observable<IUser> {
+    const userUrl = `${this.url}/${userId}`;
+    return from(fetch(userUrl)
+      .then((response) => response.json())
+      .then((user: IUser) => {
+        const newList = { name: newListName, id: user.lists.length +1, idMovies: [] }; // Crear un nuevo objeto con la con
+        user.lists.push(newList);
+        return fetch(userUrl, {
+          method: 'PATCH', // Usar una solicitud PATCH en lugar de PUT
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ lists: user.lists }), // Enviar solo el campo actualizado
+        }).then((response) => response.json());
+      }));
+  }
+
+  getUsernameAvailability(username: string): Observable<boolean> {
+    return from(fetch(this.url)
+      .then((response) => response.json())
+      .then((users: IUser[]) => !users.find((user) => user.userName === username)));
+  }
+
+  getEmailAvailability(email: string): Observable<boolean> {
+    return from(fetch(this.url)
+      .then((response) => response.json())
+      .then((users: IUser[]) => !users.find((user) => user.email === email)));
+  }
+
+  
+  changeListName(userId: number, newListName: string, listIndex: number): Observable<IUser> {
+    const userUrl = `${this.url}/${userId}`;
+    return from(
+      fetch(userUrl)
+        .then((response) => response.json())
+        .then((user: IUser) => {
+          // Crear una copia de la lista actual del usuario
+          const updatedLists = [...user.lists];
+          // Actualizar el nombre de la lista en la copia
+          updatedLists[listIndex] = { ...updatedLists[listIndex], name: newListName };
+          // Crear un nuevo objeto de usuario con la lista actualizada
+          const updatedUser = { ...user, lists: updatedLists };
+          
+          // Enviar una solicitud PATCH al servidor con el usuario actualizado
+          return fetch(userUrl, {
+            method: 'PATCH',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(updatedUser),
+          }).then((response) => response.json());
+        })
+    );
+  }
+  }
   
 
-}
+
 

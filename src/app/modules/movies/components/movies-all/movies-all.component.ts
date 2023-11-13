@@ -41,7 +41,7 @@ export class MoviesAllComponent implements OnInit {
   valueSearch: string = '';
   searchLoadMore: boolean = false;
   listClicked: boolean = false;
-
+  messageLoad: string = '';
   constructor(
     private moviesService: PeliculasService,
     private router: Router,
@@ -52,41 +52,35 @@ export class MoviesAllComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    
     this.movies = [];
+    this.messageLoad = 'Loading movies...';
+    if (this.router.url.includes('list'))
+    {  
+      if(this.movies.length == 0){
+        this.messageLoad = "Hey! No movies on your list yet. Let's fix that—time to add some films!";
+      }
+    }
+    
+
+
     if (this.router.url === '/home' && this.searchLoadMore === false) {
       this.movies = [];
       this.page = 1;
       this.loadMovies();
-    } else if (this.searchLoadMore === true) {
+    } else if (this.router.url.includes('search')) {
       this.movies = [];
-      this.valueSearch = this.router.url.split('=')[1];
       this.page = 1;
-      this.loadMoviesFromSearch(this.valueSearch);
       this.searchLoadMore = true;
-      this.router.navigate(['/home']);
+      this.valueSearch = this.router.url.split('=')[1].replace(/%20/g, ' ');
+      this.loadMoviesFromSearch(this.valueSearch);
+      this.router.navigate(['home']);
     }
-    
-    this.listClicked = false;
-    // Comprobamos si la URL incluye 'list', lo que indica que estamos en la vista de lista
-    this.route.url.subscribe(urlSegments => {
-     if (urlSegments.some(segment => segment.path === 'list')) {
-          alert('entro en el list');
-          // Obtenemos el objeto 'listClicked' de sessionStorage y lo almacenamos en la variable 'list'
-          let user = this.userService.getUserSessionStorage();
-          if(user != null){
-            let list = user.lists.find(list => list.name === this.router.url.split('/')[3]);
-            console.log(list);
-            this.movies = []; // Reiniciamos la lista de películas
-            this.page = 1;
-            this.listClicked = true;
-            // Llamamos a la función 'loadMoviesForID' pasando el array de IDs de películas de 'list.idMovies'
-            // Usamos 'subscribe' para manejar las películas una vez que todas las solicitudes se completen
-            if(list != undefined){
-            this.loadMoviesForID(list.idMovies).subscribe((movies) => {
-              this.movies = movies; // Almacena las películas recuperadas en 'this.movies'
-            });}
-          }
-      }
+
+    this.showMoviesByIdList();
+
+    this.eventsService.getEvent('movieDeleted').subscribe((event) => {
+      this.showMoviesByIdList();
     });
     
     this.eventsService.getEvent('filterGenre').subscribe((event) => {
@@ -137,6 +131,29 @@ export class MoviesAllComponent implements OnInit {
     });
   }
 
+  showMoviesByIdList(){
+     // Comprobamos si la URL incluye 'list', lo que indica que estamos en la vista de lista
+     this.route.url.subscribe(urlSegments => {
+      if (urlSegments.some(segment => segment.path === 'list')) {
+           // Obtenemos el objeto 'listClicked' de sessionStorage y lo almacenamos en la variable 'list'
+           let user = this.userService.getUserSessionStorage();
+           if(user != null){
+             let list = user.lists.find(list => list.name === this.router.url.split('/')[3]);
+             console.log(list);
+             this.movies = []; // Reiniciamos la lista de películas
+             this.page = 1;
+             this.listClicked = true;
+             // Llamamos a la función 'loadMoviesForID' pasando el array de IDs de películas de 'list.idMovies'
+             // Usamos 'subscribe' para manejar las películas una vez que todas las solicitudes se completen
+             if(list != undefined){
+             this.loadMoviesForID(list.idMovies).subscribe((movies) => {
+               this.movies = movies; // Almacena las películas recuperadas en 'this.movies'
+             });}
+           }
+       }
+     });
+  }
+
   conteinWordsAndNonAlphanumeric(search: string): boolean {
     if (!/^[a-zA-Z0-9\s]*$/.test(search)) {
       return true;
@@ -167,7 +184,7 @@ export class MoviesAllComponent implements OnInit {
           this.verifyData(data);
         },
         (error) => {
-          alert('No se encontraron resultados');
+          this.messageLoad = 'No results found';
         }
       );
     }
@@ -230,44 +247,45 @@ export class MoviesAllComponent implements OnInit {
 
   verifyData(data: MovieData) {
     if (data.results.length === 0) {
-      alert('No se encontraron resultados');
+      if(this.page == 1){
+        this.messageLoad = 'No results found';
+      }else
+      {
+        alert("No more movies to show");
+      }
     } else {
       this.movies = this.movies.concat(data.results);
     }
   }
 
   loadNextPage() {
-    alert('entro en el loadNextPage');
-
     if (this.selectedGenre != 0) {
       this.page++;
       this.loadMoviesByGenre();
-      alert('entro en el loadGenre');
     } else if (this.selectedRating != '') {
       this.page++;
       this.loadMoviesByRating();
-      alert('entro en el raitng');
     } else if (this.selectedYear != 0) {
       this.page++;
       this.loadMoviesByRangeYear();
-      alert('entro en el year');
     } else if (this.searchLoadMore) {
       this.page++;
       this.loadMoviesFromSearch(this.valueSearch);
-      alert('entro en el valuesearch');
     } else if (this.listClicked == false) {
       this.page++;
-      alert('entro en el home normal');
       this.loadMovies();
     }
   }
-
+ 
   redirectToMovieDetail(movieClicked: Movie) {
     sessionStorage.setItem('id', JSON.stringify(movieClicked.id));
     this.router.navigate(['home/movie/' + movieClicked.id]);
   }
 
-  
+  sendMovie(movieClicked: Movie) {
+    sessionStorage.setItem('id', JSON.stringify(movieClicked.id));
+  }
+
   // Función que carga películas por sus IDs
   loadMoviesForID(idMovies: number[] | undefined): Observable<Movie[]> {
     // Comprobamos si 'idMovies' es 'undefined'

@@ -1,7 +1,8 @@
-import { Component, OnInit, Renderer2, ElementRef } from '@angular/core';
+import { Component, OnInit, Renderer2, ElementRef, ChangeDetectorRef } from '@angular/core';
 import { IList, IUser } from 'src/app/core/Interfaces';
 import { Router } from '@angular/router';
 import { eventsService } from 'src/app/services/events.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-nav-bar-list',
@@ -16,12 +17,13 @@ export class NavBarListComponent implements OnInit {
   listsNames: String[] = []; //arreglo donde van a ir los nombres de las listas del usuario
 
   isMenuOpen = false;
+  newList = false;
 
   toggleMenu() {
     this.isMenuOpen = !this.isMenuOpen;
   }
 
-  constructor(private router: Router, private renderer: Renderer2, private el: ElementRef,  private eventsService: eventsService) { }
+  constructor(private userService: UserService, private router: Router, private renderer: Renderer2, private el: ElementRef,  private eventService: eventsService, private cdRef: ChangeDetectorRef) { }
 
   ngOnInit(): void {
 
@@ -45,6 +47,7 @@ export class NavBarListComponent implements OnInit {
         this.isMenuOpen = false;
       }
     });
+
   }
 
 
@@ -53,8 +56,44 @@ export class NavBarListComponent implements OnInit {
     sessionStorage.setItem('listClicked', JSON.stringify(listClicked));
     this.router.navigate(['home/list/' + listName]);
   }
-  
-}
 
+  addNewList(){
+    if(this.user != null)
+    {
+      if(this.user.lists.length != 6)
+      {
+        this.newList = true;
+      }else
+      {
+        alert("You can't have more than 6 lists");
+      }
+    }
+  }
+    
+  getText(valor: string) {
+      console.log('Texto ingresado:', valor);
 
+      if(!valor.trim())
+      {
+        alert("You must enter a name for the list");
+
+      }else{
+
+        if(this.user?.id != null)
+        {
+          
+            this.userService.createNewList(this.user?.id, valor);
+    
+            //actualizo la session storage
+            const newList = { name: valor, id: this.user.lists.length +1, idMovies: [] }; // Crear un nuevo objeto con la con
+            this.user.lists.push(newList);
+            sessionStorage.setItem('user', JSON.stringify(this.user));
+      
+            //actualizo el listado
+      
+            this.newList = false; //no se ve mas el input de agregar lista
+        }
+      } 
+    }
+ }
 

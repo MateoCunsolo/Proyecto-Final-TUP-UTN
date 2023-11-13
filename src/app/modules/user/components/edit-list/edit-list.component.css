@@ -1,0 +1,64 @@
+#editImg {
+    background-color: black;
+    color: white;
+    width: 85%;
+    margin-right: 15%; /* Agrega esta línea para mover a la izquierda */
+}
+
+button {
+    background-color: black;
+    color: white;
+    border: none;
+    width: 55%;
+}
+
+#editImg:hover {
+    background-color: #5a67b8;
+    color: var(--color-azul-claro);
+    transition: background-color 0.5s, color 0.5s;
+}
+
+#confirmation
+{
+  position: absolute;
+  top: 25%;
+  left: 37.5%;
+  height: 10rem;
+  border-radius: 2rem;
+  padding: 1rem;
+  gap: 1rem;
+  background-color: #4F4D7E;
+  z-index: 1;
+  filter: blur(0px) !important;
+  max-width: 20rem;
+  text-align: center;
+}
+
+
+.opcionButton
+{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 20rem;
+    gap: 1rem;
+}
+
+
+.opcionButton button{
+    background-color: var(--color-azul-claro);
+    color: var(--var-blanco);
+    padding: .5rem 1rem;
+    border-radius: 1rem;
+    border: none;
+    cursor: pointer;
+    height: 2rem;
+    width: auto;
+  }
+
+.opcionButton :hover {
+    background-color: #5a67b8;
+    color: white;
+    transition: background-color 0.5s, color 0.5s;
+  }
+

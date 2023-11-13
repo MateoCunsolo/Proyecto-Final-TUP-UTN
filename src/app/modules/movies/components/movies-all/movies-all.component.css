@@ -4,6 +4,23 @@ h1 {
     font-size: 24px;
 }
 
+.loadingMovies
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    width: 100%;
+    height: 66.7vh;
+}
+
+#loadImg
+{
+    width: 23.64rem;
+    height: auto;
+}
+
+
 .conteiner {
     background-color: black;
     display: grid;
@@ -12,6 +29,12 @@ h1 {
     padding: 1rem;
     gap: 2rem;
 }
+
+.movie-none
+{
+    height: 66.7vh !important;
+}
+
 
 .movie-card {
     display: flex;
@@ -26,6 +49,8 @@ h1 {
     text-align: center;
     gap: 1rem;
     cursor: pointer;
+    height: auto;
+
 }
 
 .movie-card:hover
@@ -66,4 +91,20 @@ h1 {
 .load-conteiner
 {
     background-color: black;
+}
+
+
+.add-movie-list
+{
+    color: white;
+    text-decoration:dashed;
+    cursor: pointer;
+    position: relative;
+    top: 7rem;
+}
+
+.add-movie-list:hover
+{
+    color: blue;
+    transition: 0.5s;
 }

@@ -6,7 +6,7 @@
     justify-content: center;
     flex-direction: column;
     padding-top: 1rem;
-    
+    height: 100vh;
 }
 
 
@@ -43,14 +43,32 @@ img {
 }
 
 
+.logoStreaming
+{
+    border-radius: .5rem;
+    width: auto;
+    height: 2.5rem;
+    background-color: rgb(0, 0, 0);
+}
+
+.logoStreaming:hover
+{
+    cursor: pointer;
+}
+
+
 #title-year
 {
     display: flex;
     align-items: center;
-    justify-content: flex-start;
     width: 100%;
     padding: 1rem 0rem 1rem 0rem;
     gap: 2rem;
+}
+
+#title-year h2
+{
+    font-size: 1.5rem;
 }
 
 #title-year button

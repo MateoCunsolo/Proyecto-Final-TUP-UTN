@@ -17,6 +17,7 @@
     box-sizing: inherit;
 }
 
+
 body{
     color: white;
     background-image: url(./assets/background-cinema.png);
@@ -88,6 +89,7 @@ body{
     border-radius: 15px; 
     margin-top: 1rem;
     gap: .5rem;
+    height: auto;
 }
 
 .title{
@@ -111,4 +113,10 @@ body{
     color: red;
     font-weight: bold;
     text-align: center;
+}
+
+span{
+  font-size: 14px;
+  font-family: 'Poppins', sans-serif;
+
 }

@@ -10,7 +10,7 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./change-name.component.css']
 })
 export class ChangeNameComponent implements OnInit {
-  
+
   userName: string = '';
   user: IUser | null = null;
 
@@ -18,51 +18,48 @@ export class ChangeNameComponent implements OnInit {
     newUserName: new FormControl('', [Validators.required, Validators.minLength(4)])
   })
 
-  constructor(private fb: FormBuilder, private router: Router,  private userService: UserService) {}
+  constructor(private fb: FormBuilder, private router: Router, private userService: UserService) { }
 
-  
+
   ngOnInit(): void {
     this.user = this.userService.getUserSessionStorage();
   }
 
-  async ChangeUsername(){
+  async ChangeUsername() {
 
-    if(this.changeUsernameForm.invalid) return;
-    const username : string = this.changeUsernameForm.controls['newUserName'].value;
-    const isAvailable = await this.userService.checkIfUsernameAvailable(username);
-    if (isAvailable && this.user) {
-    //El nombre de usuario está disponible y hay un usuario en sesión
-      const oldUsername: number | "" = this.user?.id ?? '';
-      if (oldUsername !== '') 
-      {        
-        this.userService.changeUsername(oldUsername, username);
-        //ACTUALIZAR TAMBIEN LOS NOMBRES DE LOS COMENTARIOS EN EL JSON SERVER
-        
+    if (this.changeUsernameForm.invalid) return;
 
-        this.user.userName = username;
-        this.user.comments?.forEach(comment => {
-          comment.name = username;
-        })
+    const username: string = this.changeUsernameForm.controls['newUserName'].value;
 
-        this.userService.setUserSessionStorage(this.user);
-        alert("Username changed successfully");
-        this.router.navigate(['home']);
-      } else 
-      {
-        alert("Username not changed");
-      }
+    this.userService.checkIfUsernameExists(username)
+      .subscribe(isAvailable => {
+        if (!isAvailable && this.user) {
+          // Hacer algo si el nombre de usuario está disponible
+          //El nombre de usuario está disponible y hay un usuario en sesión
+          const oldUsername: number | "" = this.user?.id ?? '';
+          if (oldUsername !== '') {
+            this.userService.changeUsername(oldUsername, username);
+            //ACTUALIZAR TAMBIEN LOS NOMBRES DE LOS COMENTARIOS EN EL JSON SERVER
+            this.user.userName = username;
+            this.user.comments?.forEach(comment => {
+              comment.name = username;
+            })
 
-    }else 
-    {
-      // El nombre de usuario no está disponible
-      alert("Username already taken");
-      return;
-    }
-      
+            this.userService.setUserSessionStorage(this.user);
+            alert("Username changed successfully");
+            this.router.navigate(['home']);
+          }
+        } else {
+          // Hacer algo si el nombre de usuario no está disponible
+          // El nombre de usuario no está disponible
+          alert("Username already taken. Please try another one!");
+          return;
+        }});
+
   }
 
-  validate(field: string, error: string){
+  validate(field: string, error: string) {
     return this.changeUsernameForm.controls[field].getError(error)
-    && this.changeUsernameForm.controls[field].touched
+      && this.changeUsernameForm.controls[field].touched
   }
 }
