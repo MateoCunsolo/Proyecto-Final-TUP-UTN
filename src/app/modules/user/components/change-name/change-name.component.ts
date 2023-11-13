@@ -37,6 +37,8 @@ export class ChangeNameComponent implements OnInit {
       {        
         this.userService.changeUsername(oldUsername, username);
         //ACTUALIZAR TAMBIEN LOS NOMBRES DE LOS COMENTARIOS EN EL JSON SERVER
+        
+
         this.user.userName = username;
         this.user.comments?.forEach(comment => {
           comment.name = username;
