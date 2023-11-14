@@ -1,3 +1,23 @@
 {
-  "users": []
+  "users": [
+    {
+      "userName": "mateo",
+      "email": "mate@gmail.com",
+      "password": "123456",
+      "lists": [
+        {
+          "name": "ToWatch",
+          "id": 1,
+          "idMovies": []
+        },
+        {
+          "name": "Watched",
+          "id": 2,
+          "idMovies": []
+        }
+      ],
+      "comments": [],
+      "id": 1
+    }
+  ]
 }

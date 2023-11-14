@@ -16,11 +16,6 @@ export class PeliculasService {
 
   constructor(private http: HttpClient) {}
 
-  
-  
-
-  /*{this.apiUrl}/movie/762430?api_key=79f8e563e8d26768e3277cdf102fd1b1*/
-
   listMovies(page: number): Promise<MovieData> {
     return new Promise<MovieData>((resolve, reject) => {
       this.http
