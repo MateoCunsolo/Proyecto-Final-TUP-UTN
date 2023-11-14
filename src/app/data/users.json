@@ -16,17 +16,19 @@
           "idMovies": []
         },
         {
-          "name": "NuevoNombre1",
+          "name": "papryca",
           "id": 3,
           "idMovies": []
         },
         {
-          "name": "Lista2",
+          "name": "pepe",
           "id": 4,
-          "idMovies": []
+          "idMovies": [
+            507089
+          ]
         },
         {
-          "name": "pepe",
+          "name": "arroz",
           "id": 5,
           "idMovies": []
         }

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, Renderer2 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IList, IUser } from 'src/app/core/Interfaces';
 import { Movie } from 'src/app/core/movie.interface';
@@ -26,7 +26,7 @@ export class DeleteMovieComponent implements OnInit
  // Nueva propiedad para recibir el movie desde el componente padre
  @Input() movieToDelete: Movie | undefined;
 
-  constructor(private eventService: eventsService, private router: Router, private userService: UserService, private route: ActivatedRoute) { }
+  constructor(private eventService: eventsService, private router: Router, private userService: UserService, private route: ActivatedRoute,  private renderer: Renderer2, private el: ElementRef) { }
 
   ngOnInit(): void {
     const userStr = sessionStorage.getItem('user');
@@ -47,6 +47,14 @@ export class DeleteMovieComponent implements OnInit
     });
 
     this.movieId = this.movieToDelete?.id; //levanto el id de la peli desde el componente padre
+
+    //esto es para que cuando aprete en cualquier parte del body, se vuelva a plegar el menu
+    this.renderer.listen('body', 'click', (event: Event) => {
+      if (!this.el.nativeElement.contains(event.target as Node)) {
+        // Si el clic no está dentro del menú, cierra el menú
+        this.confirmDeletMovie = false;
+      }
+    });
   }
 
   changeStatus()
