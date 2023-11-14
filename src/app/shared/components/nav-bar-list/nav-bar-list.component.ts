@@ -26,7 +26,6 @@ export class NavBarListComponent implements OnInit {
 
   constructor(private userService: UserService, private router: Router, private renderer: Renderer2, private el: ElementRef, private eventsService: eventsService, private cdRef: ChangeDetectorRef) { }
 
-
   ngOnInit(): void {
 
     //para obtener los nombres de las listas y armar el listado
@@ -92,7 +91,9 @@ export class NavBarListComponent implements OnInit {
           //actualizo la session storage
           const newList = { name: valor, id: this.user.lists.length + 1, idMovies: [] }; // Crear un nuevo objeto con la con
           this.user.lists.push(newList);
+          this.newList = false; //no se ve mas el input de agregar lista
           this.userService.setUserSessionStorage(this.user);
+
 
         }else
         {
