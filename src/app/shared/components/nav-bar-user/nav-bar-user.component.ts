@@ -12,7 +12,10 @@ export class NavBarUserComponent implements OnInit {
   user: IUser | null = null;
   isMenuOpen = false;
   confirmLogOut: boolean = false;
-  message: string = '';
+  
+  showDelete: boolean = false;
+  showLogOut: boolean = false;
+
   constructor(private router: Router, private userService: UserService, private renderer: Renderer2,private el: ElementRef) {}
 
   ngOnInit(): void {
@@ -30,12 +33,6 @@ export class NavBarUserComponent implements OnInit {
         });
   }
 
-  doSomething() {
-    // Agrega la lógica que desees aquí al hacer clic en las opciones del menú.
-  }
-  
-
-
   changeSomething(number: number) {
 
      switch (number) {
@@ -48,8 +45,11 @@ export class NavBarUserComponent implements OnInit {
     case 3:
       this.router.navigate(['user/change-email']); // Redirige a la ruta3
       break;
-    case 4:
+    case 4: //delete account
           this.showAlert(1);
+      break;
+    case 5: //logout
+          this.showAlert(2);
       break;
     default:
       this.router.navigate(['home']); // Redirige a una ruta por defecto en caso de que el número no coincida con ninguno de los casos anteriores
@@ -69,24 +69,30 @@ export class NavBarUserComponent implements OnInit {
         this.toggleMenu();
       }
       if ((num == 1)) {
-        this.message = 'delete your account 😥'
+        this.showDelete = true;
+      }else if(num == 2){
+        this.showLogOut = true;
       }else {
-        this.message = 'leave' 
+        this.showDelete = false;
+        this.showLogOut = false;
+       
       }
   }
 
   logout() {
     this.router.navigate(['']);
-    if(this.message == 'delete your account 😥' && this.user?.id){
-        this.userService.deleteUser(this.user.id).subscribe(() => {
-          sessionStorage.clear();
-        });
-    } else {
-      sessionStorage.clear();
-    }
+    sessionStorage.clear();
+  }
+
+  deleteAccount(){
+    if(this.user?.id){
+      this.userService.deleteUser(this.user.id).subscribe(() => {
+        sessionStorage.clear();
+        this.router.navigate(['']);
+      });
+  }
   }
  
-
   toggleMenu(){
     this.isMenuOpen = !this.isMenuOpen;
   }

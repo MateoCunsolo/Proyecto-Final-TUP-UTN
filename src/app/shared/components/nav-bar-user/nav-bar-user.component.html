@@ -1,8 +1,6 @@
-
-
 <div id="user-image" (click)="toggleMenu()">
-    <h3 id="user-name" >{{user?.userName}}</h3>
-    <img src="assets/logo-user-small.png" alt="user avatar" />
+  <h3 id="user-name">{{user?.userName}}</h3>
+  <img src="assets/logo-user-small.png" alt="user avatar" />
 </div>
 <div class="contenedor-menu" [class.active]="isMenuOpen">
   <div class="user-data">
@@ -29,12 +27,27 @@
   </div>
 </div>
 
+<div class="flex-center" *ngIf="showDelete" id="logout-account">
 
-<section class="flex-center" *ngIf="confirmLogOut" id="logout-account">
-  <p>Are you sure you want to {{ message }} ?</p>
+  <img src="assets/trash-2.png" alt="">
+  <p><strong>You are about to delete your account</strong></p>
+  <p id="sure">Are you sure? 😥</p>
 
   <div id="logout-button">
-    <button (click)="logout()">YES</button>
-    <button (click)="showAlert(2)">NO</button>
+    <button class="cancel" (click)="showAlert(3)">Cancel</button>
+    <button id="delete" (click)="deleteAccount()">Delete</button>
   </div>
-</section>
+
+</div>
+
+<div class="flex-center" *ngIf="showLogOut" id="logout-account">
+  
+  <img src="assets/logout.png" alt="">
+  <p><strong>Oh no! You're leaving...</strong></p>
+  <p id="sure">Are you sure? </p>
+
+  <div id="logout-button">
+    <button class="cancel" (click)="showAlert(3)">No</button>
+    <button id="yes" (click)="logout()">Yes</button>
+  </div>
+</div>
