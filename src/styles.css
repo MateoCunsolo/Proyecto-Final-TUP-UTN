@@ -17,6 +17,10 @@
     box-sizing: inherit;
 }
 
+html
+{
+    cursor: pointer;
+}
 
 body{
     color: white;

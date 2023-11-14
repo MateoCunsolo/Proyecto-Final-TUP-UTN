@@ -138,7 +138,6 @@ export class MovieDetailComponent implements OnInit {
     this.movieService.getAvaliableStreaming(id).subscribe((data: any) => {
       for (let i = 0; i < data.results.AR.flatrate.length; i++) {
         const providerName = data.results.AR.flatrate[i].provider_name;
-        alert(providerName);
           if (this.logos.hasOwnProperty(providerName)) {
           this.availableStreaming.push({
             name: providerName,
