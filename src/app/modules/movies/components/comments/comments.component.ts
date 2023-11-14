@@ -57,7 +57,7 @@ export class CommentsComponent implements OnInit {
         }
         //incializo el primer comentario de entrada, es decir el primero que voy a mostrar en pantalla, es random de todos los que hya asi no hay preferencia :D 
         this.indexComments = Math.floor(Math.random() * this.comments.length);
-        this.comment = this.comments[this.indexComments]?.comment || 'Ningun usuario ha comentado!';
+        this.comment = this.comments[this.indexComments]?.comment || '🎬No user has commented yet. Be the first to share your thoughts!🍿✨';
         this.name = this.comments[this.indexComments]?.name || '';
       });
     });

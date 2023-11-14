@@ -16,8 +16,18 @@
           "idMovies": []
         },
         {
-          "name": "lista",
+          "name": "NuevoNombre1",
           "id": 3,
+          "idMovies": []
+        },
+        {
+          "name": "Lista2",
+          "id": 4,
+          "idMovies": []
+        },
+        {
+          "name": "pepe",
+          "id": 5,
           "idMovies": []
         }
       ],

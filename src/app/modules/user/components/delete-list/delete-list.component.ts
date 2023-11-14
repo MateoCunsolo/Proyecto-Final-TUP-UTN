@@ -66,7 +66,7 @@ export class DeleteListComponent implements OnInit {
       if (this.user?.id && this.listId !== undefined) {
 
         // Guardo la posición de la lista para después borrarla
-        const listIndex = this.user.lists.findIndex(list => list.name === this.listName);
+        const listIndex = this.user.lists.findIndex(list => list.id === this.listId);
 
         this.userService.deleteListComplete(this.user.id, listIndex);
 

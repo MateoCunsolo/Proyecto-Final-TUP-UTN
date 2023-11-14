@@ -3,6 +3,7 @@ import { IUser } from 'src/app/core/Interfaces';
 import { IList } from 'src/app/core/Interfaces';
 import { ActivatedRoute } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
+import { eventsService } from 'src/app/services/events.service';
 
 @Component({
   selector: 'app-addlist',
@@ -30,7 +31,8 @@ export class AddlistComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private userService: UserService
+    private userService: UserService,
+    private eventsService: eventsService
   ) {}
 
   ngOnInit(): void {
@@ -42,6 +44,11 @@ export class AddlistComponent implements OnInit {
     this.user?.lists.forEach((lista) => {
       this.listsNames.push(lista.name);
     });
+    
+    this.eventsService.getEvent('updateLists').subscribe((data) => {
+      this.user = this.userService.getUserSessionStorage();
+    });
+
   }
 
   addMovie() {

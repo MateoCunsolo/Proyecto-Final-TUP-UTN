@@ -16,6 +16,46 @@ export class UserService {
     return from(fetch(this.url).then((response) => response.json()));
   }
 
+
+  checkIfUsernameExists(username: string): Observable<boolean> {
+    return from(
+      fetch(this.url)
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.json();
+        })
+        .then((users: IUser[]) => users.some(user => user.userName === username))
+    );
+  }
+  
+  isUsuarioAutenticado()
+  {
+    if(this.getUserSessionStorage())
+    {
+      return true;
+    }
+    else
+    {
+      return false;
+    }
+  }
+
+  checkIfEmailExists(email: string): Observable<boolean> {
+    return from(
+      fetch(this.url)
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.json();
+        })
+        .then((users: IUser[]) => users.some(user => user.email === email))
+    );
+  }
+  
+  
   public async postUser(user: IUser) {
     try {
       await fetch(this.url, {
@@ -46,7 +86,6 @@ export class UserService {
     }
   }
 
-  
 
   public async addMovieToList(userId: number, listPosChoosen: number, movieId: number) 
   {
@@ -121,7 +160,7 @@ export class UserService {
     }
   }
 
-  
+
   public async deleteListComplete(userId: number, listPosChoosen: number) {
     try {
       // Primero, obtengo el usuario desde el servidor
@@ -152,25 +191,15 @@ export class UserService {
   public async checkIfUsernameAvailable(username: string): Promise<boolean> {
     try {
       const users = await fetch(this.url).then((response) => response.json());
-      const existingUser = users.find((user: { username: string; }) => user.username === username);
-      return !existingUser;
+      const existingUser = users.find((user: { username: string }) => user.username === username);
+      console.log("El usuario existe? " + existingUser);
+      return !!existingUser; // Ahora negamos el resultado aquí
     } catch (error) {
       console.log(error);
       return false;
     }
   }
-
-  public async checkIfEmailAvailable(email: string): Promise<boolean> {
-    try {
-      const users = await fetch(this.url).then((response) => response.json());
-      const existingUser = users.find((user: { email: string; }) => user.email === email);
-      return !existingUser;
-    } catch (error) {
-      console.log(error);
-      return false;
-    }
-  }
-
+  
   changeUsername(userId: number, newUsername: string): Observable<IUser> {
     const userUrl = `${this.url}/${userId}`;
     return from(fetch(userUrl)
@@ -186,7 +215,6 @@ export class UserService {
         }).then((response) => response.json());
       }));
   }
-
 
   changePassword(userId: number, newPassword: string): Observable<IUser> {
     const userUrl = `${this.url}/${userId}`;
@@ -235,8 +263,6 @@ export class UserService {
     return user ? JSON.parse(user) : null;
   }
   
-  
-
   createNewList(userId: number, newListName: string): Observable<IUser> {
     const userUrl = `${this.url}/${userId}`;
     return from(fetch(userUrl)
@@ -253,7 +279,19 @@ export class UserService {
         }).then((response) => response.json());
       }));
   }
-  
+
+  getUsernameAvailability(username: string): Observable<boolean> {
+    return from(fetch(this.url)
+      .then((response) => response.json())
+      .then((users: IUser[]) => !users.find((user) => user.userName === username)));
+  }
+
+  getEmailAvailability(email: string): Observable<boolean> {
+    return from(fetch(this.url)
+      .then((response) => response.json())
+      .then((users: IUser[]) => !users.find((user) => user.email === email)));
+  }
+
   
   changeListName(userId: number, newListName: string, listIndex: number): Observable<IUser> {
     const userUrl = `${this.url}/${userId}`;
@@ -281,5 +319,6 @@ export class UserService {
   }
   }
   
+
 
 

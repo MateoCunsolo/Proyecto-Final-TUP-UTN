@@ -5,7 +5,7 @@
     padding: 2rem;
    
     display: flex;
-    align-items: start;
+    align-items: flex-start;
     justify-content: center;
     flex-direction: column;
 }
@@ -16,12 +16,21 @@
 
 .inputs-sumbit{
     width: 150px;
-
 }
 
 .inputs-all{
     border-radius: 9px;
     margin-top: 0;
+}
 
+img{
+    width: 20px;
+    height: 20px;
+    margin-right: 6px;
+}
+
+label{
+    font-size: 15px;
+    color: var(--color-blanco-claro);
 }
 

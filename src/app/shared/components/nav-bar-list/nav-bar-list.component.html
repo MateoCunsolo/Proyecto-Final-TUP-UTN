@@ -17,7 +17,7 @@
             </div>
 
             <span *ngIf="newList" class="input-group">
-                <input #inputText type="text" class="custom-input" placeholder="new name list">
+                <input #inputText type="text" class="custom-input" placeholder="new name list" (keyup.enter)="getText(inputText.value)">
                 <button (click)="getText(inputText.value)" class="round-button"><strong>✓</strong></button>
             </span>
             

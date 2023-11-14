@@ -50,17 +50,31 @@ aside{
     margin-top: 5px;
 }
 
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
 .menu.active {
     display: block;
+    animation: fade-in 0.5s ease-in-out;
 }
 
 .menu {
-    display: none; /* Inicialmente, ocultar el menú */
-  }
-  
+    display: none;
+}
+
 #listsNames,#newList{
     color: white;
     text-decoration: none;
+}
+
+#newList{
+    margin-left: 1rem;
 }
 
 #div1:hover,#div2:hover{
@@ -92,11 +106,13 @@ h3{
     color: white;
     border: 2px solid white;
     border-radius: 50%;
-    padding: 3px; /* Ajusta este valor según tu preferencia */
+    padding: 3px;
     margin-left: 5px;
     cursor: pointer;
-    width: 60px; /* ajusta el tamaño según tus necesidades */
+
+    width: 20px; 
     height: 20px; 
+
     text-align: center;
     display: flex;
     justify-content: center;
@@ -104,28 +120,26 @@ h3{
   }
 
   .round-button:hover{
-    background-color: #63688b;
+    background-color:white;
     color: black;
     transition: background-color 0.5s, color 0.5s;
   }
 
-  
-
 .custom-input {
     background-color: var(--color-azul-claro);
     color: white;
-    border: 2px solid var(--color-azul-claro); /* Color del borde enfocado */
-    outline: none; /* Elimina el contorno predeterminado del input al hacer clic */
+    border: 2px solid var(--color-azul-claro);
+    outline: none; 
 
   }
 
   .custom-input:focus {
-    border-color: #ffffff; /* Cambia el color del borde cuando el input está enfocado */
-    box-shadow: 0 0 5px rgba(255, 255, 255, 0.5); /* Agrega una sombra alrededor del input al estar enfocado */
-  }
+    border-color: #ffffff; 
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.5); 
+}
 
   .custom-input::placeholder {
-    color:var(--color-blanco-claro); /* Cambia el color a tu preferencia */
+    color:var(--color-blanco-claro);
     margin-left: 5px;
     text-align: center;
     font-weight: bold;

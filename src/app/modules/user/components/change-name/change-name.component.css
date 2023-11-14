@@ -1,20 +1,39 @@
-.flex-center{
-    height: 40%;
+.flex-center-local{
+    height: auto;
     width: 30%;
-    margin: 0 auto;   
+    margin: 0 auto;  
+    padding: 2rem; 
+    display: flex;
+
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+}
+
+p{
+    font-size: 15px;
+    color: var(--color-blanco-claro);
+}
+
+.inputs-all{
+    border-radius: 9px;
+    margin-top: 0;
 }
 
 #in-change{
-    
-    width: 40%;
-    height: 15%;
+    width: 50%;
+    height: 25%;
 }
 
 .title{
-    font-size: 28px;
-   
+    font-size: 26px;  
 }
 
+img{
+    width: 24px;
+    height: 24px;
+    margin-right: 6px;
+}
 
 
   
