@@ -17,11 +17,6 @@
     box-sizing: inherit;
 }
 
-html
-{
-    cursor: pointer;
-}
-
 body{
     color: white;
     background-image: url(./assets/background-cinema.png);
