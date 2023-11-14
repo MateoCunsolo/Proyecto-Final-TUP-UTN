@@ -1,8 +1,8 @@
 {
   "users": [
     {
-      "userName": "Mateo",
-      "email": "mate@gmail.com",
+      "userName": "Giuliana",
+      "email": "oliva@gmail.com",
       "password": "123456",
       "lists": [
         {
@@ -13,6 +13,23 @@
         {
           "name": "Watched",
           "id": 2,
+          "idMovies": []
+        },
+        {
+          "name": "papryca",
+          "id": 3,
+          "idMovies": []
+        },
+        {
+          "name": "pepe",
+          "id": 4,
+          "idMovies": [
+            507089
+          ]
+        },
+        {
+          "name": "arroz",
+          "id": 5,
           "idMovies": []
         }
       ],
