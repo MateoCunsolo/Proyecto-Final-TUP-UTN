@@ -1,5 +1,5 @@
 <div class="container">
-  <button (click)="visibility()" id="btn-add" class="btn">Add my comment</button>
+  <button *ngIf="checkId()" (click)="visibility()" id="btn-add" class="btn">Add my comment</button>
   <div class="sumbit-btn-container">
     <input  *ngIf="flag" (click)="postComment()" id="sumbit-comment" class="btn" type="submit" value="Submit">
   </div>

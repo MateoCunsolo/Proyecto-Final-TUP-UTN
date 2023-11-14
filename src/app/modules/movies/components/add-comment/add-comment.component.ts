@@ -30,6 +30,13 @@ export class AddCommentComponent implements OnInit {
     this.flag = !this.flag;
   }
 
+  checkId(): boolean {
+    if (this.user != null && this.user?.id !== undefined) {
+      return true;
+    }
+    return false;
+  }
+
   postComment() {
     const area = document.getElementById(`textarea`) as HTMLTextAreaElement;
     const comment: IComment = {
