@@ -14,6 +14,7 @@ interface StreamingProvider {
 export class MovieDetailComponent implements OnInit {
   movieId: number = 0;
   movie: Movie | undefined;
+  isImgClicked = false;
   availableStreaming: StreamingProvider[] = [];
   public defaultImageURL = 'assets/IMAGE NOT AVAILABLE.png';  
   languageMap: { [key: string]: string } = {
@@ -132,6 +133,14 @@ export class MovieDetailComponent implements OnInit {
       console.log(this.movie);
     });
   }
+  
+
+toggleImgClicked() {
+   this.isImgClicked = !this.isImgClicked;
+}
+
+
+ 
 
   loadAvailableStreaming() {
     const id = JSON.parse(sessionStorage.getItem('id') || '{}');
