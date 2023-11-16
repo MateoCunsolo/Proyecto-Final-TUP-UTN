@@ -10,7 +10,6 @@
 }
 
 
-
 .pageFull
 {
     width: 100%;
@@ -27,14 +26,24 @@
     height: 15rem;
 }
 
-img {
+.imgClicked {
+    cursor: zoom-in;
+    height: auto;
+    width: 19%;
+}
+
+.hide-scrollbar {
+    overflow: hidden;
+}
+
+ img {
     width: 100%;
     height: inherit; 
     object-fit: cover;
     object-position: medium;
-    z-index: -1;
-  }
-  
+    cursor: zoom-out;
+ }
+ 
 
   .info
 {
@@ -42,13 +51,13 @@ img {
     padding: 0rem 1rem;
 }
 
-
 .logoStreaming
 {
     border-radius: .5rem;
     width: auto;
     height: 2.5rem;
     background-color: rgb(0, 0, 0);
+    z-index: -5;
 }
 
 .logoStreaming:hover

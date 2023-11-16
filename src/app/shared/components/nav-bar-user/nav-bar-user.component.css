@@ -79,11 +79,11 @@
   margin-right: 5px;
 }
 
-#logout-account
-{
-  position: absolute;
-  top: 25%;
-  left: 37.5%;
+#logout-account {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   height: auto;
   border-radius: 2rem;
   padding: 1rem;
@@ -94,6 +94,7 @@
   width: auto;
   text-align: center;
 }
+
 
 #logout-button
 {

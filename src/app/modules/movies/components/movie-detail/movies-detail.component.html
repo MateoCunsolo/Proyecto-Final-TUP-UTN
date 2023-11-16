@@ -1,12 +1,16 @@
-<div class="pageFull">
-  <app-header></app-header>
+<app-header></app-header>
+<div class="hide-scrollbar pageFull">
   <div class="container" *ngIf="movie">
     <div class="poster">
       <img
-        *ngIf="movie.poster_path"
-        [src]="'https://image.tmdb.org/t/p/original' + movie.poster_path"
-        alt="{{ movie.title }}"
-      />
+    (click)="toggleImgClicked()"
+    *ngIf="movie.poster_path"
+    [src]="'https://image.tmdb.org/t/p/original' + movie.poster_path"
+    alt="{{ movie.title }}"
+    [ngClass]="{ imgClicked: isImgClicked }"
+/>
+
+
       <p *ngIf="!movie.poster_path">Image not available</p>
     </div>
 
@@ -15,36 +19,56 @@
         <h2 class="title">{{ movie.title }}</h2>
         <h4 id="year">{{ extractYear(movie.release_date) }}</h4>
         <app-addlist></app-addlist>
-        <div class="flex-center-row" *ngFor="let available of availableStreaming">
-          <a [href]="'https://www.google.com/search?q=' + movie.title +' '+ available.name"
-             target="_blank">
-              <img class="logoStreaming" [src]="available.logoUrl" alt="{{ available.name }} logo">
+        <div
+          class="flex-center-row"
+          *ngFor="let available of availableStreaming"
+        >
+          <a
+            [href]="
+              'https://www.google.com/search?q=' +
+              movie.title +
+              ' ' +
+              available.name
+            "
+            target="_blank"
+          >
+            <img
+              class="logoStreaming"
+              [src]="available.logoUrl"
+              alt="{{ available.name }} logo"
+            />
           </a>
-      </div>
-          
+        </div>
       </div>
       <section>
         <p>{{ movie.overview }}</p>
         <br />
-        <p><strong>Original Language:</strong> {{ lenguageReturn(movie.original_language) }}</p>
+        <p>
+          <strong>Original Language:</strong>
+          {{ lenguageReturn(movie.original_language) }}
+        </p>
         <p *ngIf="getGenreNames(movie.genres).join(', ') === ''">
           <strong>Genres:</strong> No available
         </p>
         <p *ngIf="getGenreNames(movie.genres).join(', ') !== ''">
-          <strong>Genres:</strong> {{ getGenreNames(movie.genres).join(', ') }}
+          <strong>Genres:</strong> {{ getGenreNames(movie.genres).join(", ") }}
         </p>
         <p><strong>Adult Content:</strong> {{ movie.adult ? "Yes" : "No" }}</p>
-        <p *ngIf="movie.vote_average" > <strong>Vote Average:</strong> {{ movie.vote_average}}</p>
-        <p *ngIf="!movie.vote_average"><strong>Vote Average:</strong> No available</p>
+        <p *ngIf="movie.vote_average">
+          <strong>Vote Average:</strong> {{ movie.vote_average }}
+        </p>
+        <p *ngIf="!movie.vote_average">
+          <strong>Vote Average:</strong> No available
+        </p>
       </section>
     </div>
   </div>
 
   <div class="container" *ngIf="!movie">
-    <h2>Loading  details movies...</h2>
+    <h2>Loading details movies...</h2>
   </div>
 
   <app-add-comment></app-add-comment>
   <app-comments> </app-comments>
-  <app-footer></app-footer>
 </div>
+<app-footer></app-footer>

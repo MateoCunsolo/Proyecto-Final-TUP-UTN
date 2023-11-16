@@ -14,6 +14,7 @@ interface StreamingProvider {
 export class MovieDetailComponent implements OnInit {
   movieId: number = 0;
   movie: Movie | undefined;
+  isImgClicked = false;
   availableStreaming: StreamingProvider[] = [];
   public defaultImageURL = 'assets/IMAGE NOT AVAILABLE.png';  
   languageMap: { [key: string]: string } = {
@@ -132,13 +133,20 @@ export class MovieDetailComponent implements OnInit {
       console.log(this.movie);
     });
   }
+  
+
+toggleImgClicked() {
+   this.isImgClicked = !this.isImgClicked;
+}
+
+
+ 
 
   loadAvailableStreaming() {
     const id = JSON.parse(sessionStorage.getItem('id') || '{}');
     this.movieService.getAvaliableStreaming(id).subscribe((data: any) => {
       for (let i = 0; i < data.results.AR.flatrate.length; i++) {
         const providerName = data.results.AR.flatrate[i].provider_name;
-        alert(providerName);
           if (this.logos.hasOwnProperty(providerName)) {
           this.availableStreaming.push({
             name: providerName,
