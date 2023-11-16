@@ -1,4 +1,4 @@
-button {
+#delete-button {
     background-color:rgb(156, 11, 11);
     border: none;
     color: white;
@@ -6,7 +6,7 @@ button {
     border-radius: 1rem;
 }
 
-button:hover {
+#delete-button:hover {
     background-color: rgb(255, 124, 124);
     transition: background-color 0.5s, color 0.5s;
     cursor: pointer;

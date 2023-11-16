@@ -1,10 +1,16 @@
 
-<button (click)="changeStatus()"><strong>Delete List</strong></button>
-<section class="flex-center" *ngIf="confirmDelete" id="confirmation">
-    <p>Are you sure you want to delete this list ?</p>
+<button id="delete-button" (click)="changeStatus()"><strong>Delete List</strong></button>
+
+<div class="flex-center" *ngIf="confirmDelete" id="logout-account">
   
-    <div id="confirmation-button">
-      <button (click)="showAlert(1)">YES</button>
-      <button (click)="showAlert(2)">NO</button>
-    </div>
-</section>
+  <img src="" alt="i">
+  <p><strong>Oh no! You're leaving...</strong></p>
+  <p id="sure">Are you sure? </p>
+
+  <div id="logout-button">
+    <button class="cancel" (click)="showAlert(2)">Cancel</button>
+    <button id="delete" (click)="showAlert(1)">Delete</button>
+  </div>
+  
+</div>
+

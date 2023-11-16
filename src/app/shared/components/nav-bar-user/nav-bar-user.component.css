@@ -79,22 +79,6 @@
   margin-right: 5px;
 }
 
-#logout-account {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  height: auto;
-  border-radius: 2rem;
-  padding: 1rem;
-  gap: 10px;
-  background-color: #4F4D7E;
-  z-index: 1;
-  filter: blur(0px) !important;
-  width: auto;
-  text-align: center;
-}
-
 
 #logout-button
 {
@@ -105,7 +89,6 @@
 }
 
 button{
-  
   padding: .5rem 1rem;
   border-radius: 1rem;
   border: none;
@@ -113,26 +96,6 @@ button{
   height: 2rem;
   font-weight: bold;
   font-size: 14px;
-}
-
-#delete{
-  background-color: #f3574c;
-  color: var(--color-blanco-claro);
-}
-
-#delete:hover{
-  background-color: #FF7A6A;
-  transition: background-color 0.5s;
-}
-
-.cancel{
-  color: #737373
-}
-
-.cancel:hover {
-  background-color: #8287ac;
-  color: white;
-  transition: background-color 0.5s, color 0.5s;
 }
 
 #logout-account img{
