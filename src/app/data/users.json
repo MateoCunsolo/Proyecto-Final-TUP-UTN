@@ -1,3 +1,41 @@
 {
-  "users": []
+  "users": [
+    {
+      "userName": "pistacho",
+      "email": "camila@gmail.com",
+      "password": "123456",
+      "lists": [
+        {
+          "name": "ToWatch",
+          "id": 1,
+          "idMovies": []
+        },
+        {
+          "name": "Watched",
+          "id": 2,
+          "idMovies": [
+            11036
+          ]
+        },
+        {
+          "name": "romcomsgood",
+          "id": 3,
+          "idMovies": []
+        }
+      ],
+      "comments": [
+        {
+          "name": "camila",
+          "comment": "Me encanto!!",
+          "idMovie": 296096
+        },
+        {
+          "name": "camila",
+          "comment": "cool",
+          "idMovie": 671
+        }
+      ],
+      "id": 1
+    }
+  ]
 }
