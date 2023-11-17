@@ -1,48 +1,4 @@
 {
   "users": [
-    {
-      "userName": "magali",
-      "email": "jamoncito@gmail.com",
-      "password": "123456",
-      "lists": [
-        {
-          "name": "ToWatch",
-          "id": 1,
-          "idMovies": [
-            299054
-          ]
-        },
-        {
-          "name": "Watched",
-          "id": 2,
-          "idMovies": []
-        },
-        {
-          "name": "Kids",
-          "id": 3,
-          "idMovies": []
-        },
-        {
-          "name": "Terror",
-          "id": 4,
-          "idMovies": [
-            507089
-          ]
-        },
-        {
-          "name": "jamon",
-          "id": 3,
-          "idMovies": []
-        }
-      ],
-      "comments": [
-        {
-          "name": "Giuliana",
-          "comment": "Hermosa pelicula, lastima el final una decepción. Recomendable hasta cierto punto....",
-          "idMovie": 19995
-        }
-      ],
-      "id": 1
-    }
   ]
 }
