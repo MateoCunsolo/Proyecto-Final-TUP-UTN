@@ -108,3 +108,8 @@ h1 {
     color: blue;
     transition: 0.5s;
 }
+
+.buttons{
+    display: flex;
+    gap: 1rem;
+}

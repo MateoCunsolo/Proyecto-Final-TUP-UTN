@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router'; // Importa el módulo 
 import { eventsService } from 'src/app/services/events.service';
 import { Observable, forkJoin, of } from 'rxjs';
 import { UserService } from 'src/app/services/user.service';
+import { IList } from 'src/app/core/Interfaces';
 @Component({
   selector: 'app-pelicula',
   templateUrl: './movies-all.component.html',
@@ -42,6 +43,8 @@ export class MoviesAllComponent implements OnInit {
   searchLoadMore: boolean = false;
   listClicked: boolean = false;
   messageLoad: string = '';
+  listName : string| undefined  = ' ';
+  list: IList | null = null;
   constructor(
     private moviesService: PeliculasService,
     private router: Router,
@@ -61,6 +64,17 @@ export class MoviesAllComponent implements OnInit {
         this.messageLoad = "Hey! No movies on your list yet. Let's fix that—time to add some films!";
       }
     }
+
+    //levanto el nombre de la lista para hacer la comprobacion
+    this.route.url.subscribe(urlSegments => {
+      if (urlSegments.some(segment => segment.path === 'list')) {
+        this.list = JSON.parse(sessionStorage.getItem('listClicked')!);
+        if(this.listName !== undefined)
+        {
+          this.listName = this.list?.name
+        }
+      }
+    });
     
 
 
@@ -82,6 +96,7 @@ export class MoviesAllComponent implements OnInit {
     this.eventsService.getEvent('movieDeleted').subscribe((event) => {
       this.showMoviesByIdList();
     });
+    
     
     this.eventsService.getEvent('filterGenre').subscribe((event) => {
       this.selectedGenre = event.data.idgenre;
