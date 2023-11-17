@@ -79,15 +79,6 @@
   margin-right: 5px;
 }
 
-
-#logout-button
-{
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    width: 100%;
-}
-
 button{
   padding: .5rem 1rem;
   border-radius: 1rem;
@@ -98,26 +89,7 @@ button{
   font-size: 14px;
 }
 
-#logout-account img{
-  border-radius: 50%;
-  width: 50%;
-  height: 50%;
-}
 
-#yes{
-  background-color: #5F4A77;
-  color: var(--color-blanco-claro);
-  border: 1px solid var(--color-blanco-claro);
-}
-
-#yes:hover{
-  background-color: #7D6B9B;
-  transition: background-color 0.5s;
-}
-#sure{
-  margin-top: none;
-  padding-top: none;
-}
 
 
 

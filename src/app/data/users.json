@@ -14,13 +14,21 @@
           "name": "Watched",
           "id": 2,
           "idMovies": [
-            507089
+            507089,
+            951491
           ]
         },
         {
-          "name": "rgdgs",
+          "name": "jiji",
           "id": 3,
-          "idMovies": []
+          "idMovies": [
+            507089,
+            872585,
+            951491,
+            565770,
+            968051,
+            800158
+          ]
         }
       ],
       "comments": [],

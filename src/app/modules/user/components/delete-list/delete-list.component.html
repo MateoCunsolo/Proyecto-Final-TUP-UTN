@@ -1,15 +1,15 @@
 
 <button id="delete-button" (click)="changeStatus()"><strong>Delete List</strong></button>
 
-<div class="flex-center" *ngIf="confirmDelete" id="logout-account">
+<div class="flex-center alert" *ngIf="confirmDelete" >
   
-  <img src="" alt="i">
-  <p><strong>Oh no! You're leaving...</strong></p>
-  <p id="sure">Are you sure? </p>
+  <img src="/assets/claqueta.png" alt="">
+  <p><strong>⚠️ Delete this movie list? </strong></p>
+  <p class="sure">This action can't be undone! 🗑️ </p>
 
-  <div id="logout-button">
+  <div class="options-buttons">
     <button class="cancel" (click)="showAlert(2)">Cancel</button>
-    <button id="delete" (click)="showAlert(1)">Delete</button>
+    <button class="delete" (click)="showAlert(1)">Delete</button>
   </div>
   
 </div>
