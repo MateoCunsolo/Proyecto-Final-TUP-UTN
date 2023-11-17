@@ -10,9 +10,13 @@
       />
       <p  (click)="redirectToMovieDetail(movie)" *ngIf="!movie.poster_path">Image not available</p>
       <h5 (click)="redirectToMovieDetail(movie)"> {{ movie.title }}</h5>
-      <div  *ngIf="listClicked">
+      <div  class='buttons' *ngIf="listClicked">
        <!-- Pasar el movie al componente hijo DeleteMovieComponent -->
       <app-delete-movie [movieToDelete]="movie"></app-delete-movie>
+      <div *ngIf="listName === 'ToWatch'" >
+        <app-movie-watched [movieToMove]="movie" ></app-movie-watched>
+      </div>    
+      
       </div>
     </div>
 
