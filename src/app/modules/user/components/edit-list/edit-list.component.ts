@@ -75,16 +75,12 @@ export class EditListComponent implements OnInit {
           return; // Evitar continuar si el nombre no es válido
         }
         
-      } else {
-        this.message = 'okey';
       }
       
       this.inputMode = false; // Cerrar la ventana de confirmación después de guardar o cancelar
     }
     else {
-      this.message = 'okey';
-      alert(this.message);
-  
+
       this.inputMode = false; // Cerrar la ventana de confirmación después de guardar o cancelar
     }
   }

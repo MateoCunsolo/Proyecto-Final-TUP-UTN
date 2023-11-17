@@ -16,9 +16,9 @@
 </div>
 
 <div class="flex-center" *ngIf="inputMode" class="alert">
-    <p *ngIf="inputMode">Enter the new list name:</p>
+    <p *ngIf="inputMode"> <strong>Enter your new movie list name📝 </strong></p>
     
-    <input type="text" (keyup.enter)="showAlert(1)" [(ngModel)]="newListName"  placeholder="New name">
+    <input type="text" class="input-newName" (keyup.enter)="showAlert(1)" [(ngModel)]="newListName"  placeholder="New List Name">
     
     <div class="options-buttons">
     <button class="cancel" (click)="showAlert(2)">Cancel</button>
