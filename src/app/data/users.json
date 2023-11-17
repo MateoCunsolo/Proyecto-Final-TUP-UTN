@@ -1,14 +1,16 @@
 {
   "users": [
     {
-      "userName": "Giuliana",
-      "email": "oliva@gmail.com",
+      "userName": "magali",
+      "email": "jamoncito@gmail.com",
       "password": "123456",
       "lists": [
         {
           "name": "ToWatch",
           "id": 1,
-          "idMovies": []
+          "idMovies": [
+            299054
+          ]
         },
         {
           "name": "Watched",
@@ -26,6 +28,11 @@
           "idMovies": [
             507089
           ]
+        },
+        {
+          "name": "jamon",
+          "id": 3,
+          "idMovies": []
         }
       ],
       "comments": [

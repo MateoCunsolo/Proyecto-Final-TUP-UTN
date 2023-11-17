@@ -9,8 +9,8 @@
 }
 
 #boton:hover {
-    background-color: green;
-    color: white;
+    background-color: rgb(227, 227, 227);
+    color: var(--color-azul-claro);
     transition: background-color 0.5s, color 0.5s;
 }
 
