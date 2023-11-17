@@ -74,19 +74,18 @@ button:hover{
 }
 
 
-.conteiner
+.conteiner-landing
 {   
     
     padding: 5rem 2rem;
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 5fr auto auto;
+    grid-template-rows: 6fr auto auto;
     grid-template-areas: "title" 
                         "subtitle" 
                         "button";
-    gap: 0rem;   
-    
     grid-area: contenedor;
+    max-width: 1300px;
 }
 
 .footer{
