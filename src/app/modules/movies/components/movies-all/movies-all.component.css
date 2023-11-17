@@ -117,3 +117,9 @@ h1 {
     height: auto;
     border-radius: 20rem;
 }
+
+.buttons
+{
+    display: flex;
+    gap: 1rem;
+}
