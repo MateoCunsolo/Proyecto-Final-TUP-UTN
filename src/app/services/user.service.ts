@@ -88,8 +88,7 @@ export class UserService {
 
 
   public async addMovieToList(userId: number, listPosChoosen: number, movieId: number) 
-  {
-    
+  { 
     try {
       // Primero, obtengo el usuario desde el servidor
       const user = await fetch(`${this.url}/${userId}`).then((response) =>
@@ -116,6 +115,7 @@ export class UserService {
       {
         user.lists[listPosChoosen].idMovies.push(movieId);
 
+        console.log(user)
         await fetch(`${this.url}/${userId}`, {
           method: 'PATCH',
           body: JSON.stringify(user),
@@ -144,6 +144,7 @@ export class UserService {
         user.lists[listPosChoosen].idMovies.splice(movieIndex, 1);
   
         // Actualizo la información del usuario en el servidor
+        console.log('ESTE ES EL SEGUNDO USUARIO REMOVE ' + user)
         await fetch(`${this.url}/${userId}`, {
           method: 'PATCH',
           body: JSON.stringify(user),

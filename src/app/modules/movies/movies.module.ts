@@ -9,6 +9,7 @@ import { AddlistComponent } from './components/addMovieToList/addlist.component'
 import { MovieDetailComponent} from './components/movie-detail/movies-detail.component';
 import { DeleteMovieComponent } from './components/delete-movie/delete-movie.component';
 import { MoviesAllComponent } from './components/movies-all/movies-all.component';
+import { MovieWatchedComponent } from './components/movie-watched/movie-watched.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { MoviesAllComponent } from './components/movies-all/movies-all.component
     AddCommentComponent,
     AddlistComponent,
     DeleteMovieComponent,
-    MoviesAllComponent
+    MoviesAllComponent,
+    MovieWatchedComponent
   ],
   imports: [
     CommonModule,
