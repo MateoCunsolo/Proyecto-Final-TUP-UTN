@@ -10,36 +10,40 @@
       />
       <p  (click)="redirectToMovieDetail(movie)" *ngIf="!movie.poster_path">Image not available</p>
       <h5 (click)="redirectToMovieDetail(movie)"> {{ movie.title }}</h5>
-      <div  *ngIf="listClicked">
+      <div  class='buttons' *ngIf="listClicked">
        <!-- Pasar el movie al componente hijo DeleteMovieComponent -->
       <app-delete-movie [movieToDelete]="movie"></app-delete-movie>
+      <div *ngIf="listName === 'ToWatch'" >
+        <app-movie-watched [movieToMove]="movie" ></app-movie-watched>
+      </div>    
+      
       </div>
     </div>
 
     
     <div class="movie-card movie-none flex-center loadingMovies" *ngIf="(movies.length == 0)">
       <h4>{{messageLoad}} </h4>
-      <a class="add-movie-list" *ngIf="messageLoad === 'Hey! No movies on your list yet. Let\'s fix that—time to add some films!'" href="/home">Add Movies</a>
+      <button class="add-movie-list" *ngIf="messageLoad === 'Hey! No movies on your list yet. Let\'s fix that—time to add some films!'" (click)="returnIDRandom()" >{{messageRandom}}</button>
     </div>
 
     <div class="movie-card movie-none flex-center loadingMovies" *ngIf="(movies.length == 0)">
       <h4>{{messageLoad}} </h4>
-      <a class="add-movie-list" *ngIf="messageLoad === 'Hey! No movies on your list yet. Let\'s fix that—time to add some films!'" href="/home">Add Movies</a>
+      <button class="add-movie-list" *ngIf="messageLoad === 'Hey! No movies on your list yet. Let\'s fix that—time to add some films!'" (click)="returnIDRandom()" >{{messageRandom}}</button>
     </div>
 
     <div class="movie-card movie-none flex-center loadingMovies" *ngIf="(movies.length == 0)">
       <h4>{{messageLoad}} </h4>
-      <a class="add-movie-list" *ngIf="messageLoad === 'Hey! No movies on your list yet. Let\'s fix that—time to add some films!'" href="/home">Add Movies</a>
+      <button class="add-movie-list" *ngIf="messageLoad === 'Hey! No movies on your list yet. Let\'s fix that—time to add some films!'" (click)="returnIDRandom()" >{{messageRandom}}</button>
     </div>
 
     <div class="movie-card movie-none flex-center loadingMovies" *ngIf="(movies.length == 0)">
       <h4>{{messageLoad}} </h4>
-      <a class="add-movie-list" *ngIf="messageLoad === 'Hey! No movies on your list yet. Let\'s fix that—time to add some films!'" href="/home">Add Movies</a>
+      <button class="add-movie-list" *ngIf="messageLoad === 'Hey! No movies on your list yet. Let\'s fix that—time to add some films!'" (click)="returnIDRandom()" >{{messageRandom}}</button>
     </div>
 
     <div class="movie-card movie-none flex-center loadingMovies" *ngIf="(movies.length == 0)">
       <h4>{{messageLoad}} </h4>
-      <a class="add-movie-list" *ngIf="messageLoad === 'Hey! No movies on your list yet. Let\'s fix that—time to add some films!'" href="/home">Add Movies</a>
+      <button class="add-movie-list" *ngIf="messageLoad === 'Hey! No movies on your list yet. Let\'s fix that—time to add some films!'" (click)="returnIDRandom()" >{{messageRandom}}</button>
     </div>
     
 </div>
