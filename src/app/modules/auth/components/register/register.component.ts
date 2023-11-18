@@ -19,30 +19,6 @@ export class RegisterComponent implements OnInit {
   private emailPattern: RegExp =
     /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-  
- /* registerForm = new FormGroup(
-    {
-      userName: new FormControl('', {
-        validators: [
-          Validators.required,
-          Validators.minLength(4),
-        ],
-        asyncValidators: [this.checkUsernameAvailability.bind(this)],
-        updateOn: 'blur', // Update the validation on blur
-      }),
-      email: new FormControl('', [
-        Validators.required,
-        Validators.pattern(this.emailPattern),
-      ]),
-      password: new FormControl('', [
-        Validators.required,
-        Validators.minLength(6),
-      ]),
-      confirmPassword: new FormControl('', [Validators.required]),
-    },
-    [this.passwordMatch('password', 'confirmPassword')]
-  );*/
-
   constructor(
     private fb: FormBuilder,
     private router: Router,
@@ -52,8 +28,8 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
 
     this.registerForm = this.fb.group({
-      userName: ['', [Validators.required, Validators.minLength(4)]], /*this.checkUsernameAvailability.bind(this)],*/
-      email: ['', [ Validators.required, Validators.pattern(this.emailPattern)]],/* this.checkEmailAvailability.bind(this)],*/
+      userName: ['', [Validators.required, Validators.minLength(4)]], 
+      email: ['', [ Validators.required, Validators.pattern(this.emailPattern)]],
       password:['', [Validators.required, Validators.minLength(6)]],
       confirmPassword:['', [Validators.required]],
     },
@@ -61,37 +37,7 @@ export class RegisterComponent implements OnInit {
       validators: [this.passwordMatch('password', 'confirmPassword')]} 
     );
 
-  /*  this.registerForm.controls['userName'].valueChanges
-    .pipe(
-      debounceTime(300), // Esperar 300 milisegundos después de la última pulsación de tecla
-      distinctUntilChanged(), // Solo continuar si el valor ha cambiado
-      switchMap(username => this.userService.getUsernameAvailability(username))
-    )
-    .subscribe(isTaken => {
-      if (!isTaken) {
-        console.log('Username is already taken');
-        this.getControl('userName')?.setErrors({ 'usernameTaken': true });
-      } else {
-        // Restablecer los errores si el nombre de usuario está disponible
-        this.getControl('userName')?.setErrors(null);
-      }
-    });
 
-    this.registerForm.controls['email'].valueChanges
-    .pipe(
-      debounceTime(300), // Esperar 300 milisegundos después de la última pulsación de tecla
-      distinctUntilChanged(), // Solo continuar si el valor ha cambiado
-      switchMap(email => this.userService.getEmailAvailability(email))
-    )
-    .subscribe(isTaken => {
-      if (!isTaken) {
-        console.log('Email is already taken');
-        this.getControl('email')?.setErrors({ 'emailTaken': true });
-      } else {
-        // Restablecer los errores si el nombre de usuario está disponible
-        this.getControl('email')?.setErrors(null);
-      }
-    });*/
 
   }
 

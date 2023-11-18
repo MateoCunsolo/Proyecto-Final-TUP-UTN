@@ -59,6 +59,7 @@ h1 {
 
 }
 
+
 .movie-card:hover
 {
     background-color: #5a67b8;
@@ -122,4 +123,10 @@ h1 {
     width: 1.5rem;
     height: auto;
     border-radius: 20rem;
+}
+
+.buttons
+{
+    display: flex;
+    gap: 1rem;
 }
