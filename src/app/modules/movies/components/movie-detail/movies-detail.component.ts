@@ -109,7 +109,7 @@ export class MovieDetailComponent implements OnInit {
     'Shahid': 'assets/shahid.webp',
     'Spamflix': 'assets/Spamflix.webp',
     'Star Plus': 'assets/star-plus.webp',
-    'Sun NXT': 'assets/sun-nxt.webp',
+    'Sun Nxt': 'assets/sun-nxt.webp',
     'Talkfix': 'assets/talkfix.webp',
     'Trash': 'assets/trash.png',
     'True Story': 'assets/true-story.webp',

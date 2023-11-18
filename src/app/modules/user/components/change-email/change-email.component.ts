@@ -39,16 +39,28 @@ export class ChangeEmailComponent implements OnInit {
 
     if(userId !== '')
     {
-      this.userService.changeEmail(userId, email);
+      this.userService.checkIfEmailExists(this.changeEmailForm.controls['newEmail'].value)
+      .subscribe(isEmailTaken => {
+        if (isEmailTaken)
+          {
+            alert('Email already exists. Please try another one!');
+
+          }else{
+            this.userService.changeEmail(userId, email);
       if (this.user) {
         this.user.email = email;
         this.userService.setUserSessionStorage(this.user);
         this.router.navigate(['home']);
-        alert("Password changed successfully");
+        alert("Email changed successfully");
       }else
       {
-        alert("Error changing password");
+        alert("Error changing email");
       }
+
+          }
+      }
+      );
+      
     }
   }
 

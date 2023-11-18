@@ -1,4 +1,79 @@
 {
   "users": [
+    {
+      "userName": "Giuliana",
+      "email": "gilu@hotmail.com",
+      "password": "123456",
+      "lists": [
+        {
+          "name": "ToWatch",
+          "id": 1,
+          "idMovies": []
+        },
+        {
+          "name": "Watched",
+          "id": 2,
+          "idMovies": []
+        }
+      ],
+      "comments": [
+        {
+          "name": "Giuliana",
+          "comment": "Muy buena peli :)",
+          "idMovie": 872585
+        }
+      ],
+      "id": 1
+    },
+    {
+      "userName": "Mateo",
+      "email": "mateo@gmail.com",
+      "password": "123456",
+      "lists": [
+        {
+          "name": "ToWatch",
+          "id": 1,
+          "idMovies": []
+        },
+        {
+          "name": "Watched",
+          "id": 2,
+          "idMovies": []
+        }
+      ],
+      "comments": [
+        {
+          "name": "Mateo",
+          "comment": "Increíble. El actor es el mejor del mundo. Si estas buscando una peli que trate de la historia de la humanidad, esta es la correcta.",
+          "idMovie": 872585
+        }
+      ],
+      "id": 2
+    },
+    {
+      "userName": "Maga",
+      "email": "maga@gmail.com",
+      "password": "123456",
+      "lists": [
+        {
+          "name": "ToWatch",
+          "id": 1,
+          "idMovies": []
+        },
+        {
+          "name": "Watched",
+          "id": 2,
+          "idMovies": []
+        }
+      ],
+      "comments": [
+        {
+          "name": "Maga",
+          "comment": "A mi no me gusto para nada muy aburrida, no la recomiendo.",
+          "idMovie": 872585
+        }
+      ],
+      "id": 3
+    }
   ]
 }
