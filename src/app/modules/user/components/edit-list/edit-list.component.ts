@@ -35,13 +35,28 @@ export class EditListComponent implements OnInit {
       }
     });
 
+    //esto es para que cuando aprete en cualquier parte del body, se vuelva a plegar el menu
+    this.renderer.listen('body', 'click', (event: Event) => {
+      if (!this.el.nativeElement.contains(event.target as Node)) {
+        // Si el clic no está dentro del menú, cierra el menú
+        this.confirmChange = false;
+        //this.inputMode = false;
+      }
+    });
+
+   if(this.inputMode){
+   this.renderer.listen('body', 'click', (event: Event) => {
+    if (!this.el.nativeElement.contains(event.target as Node)) {
+      // Si el clic no está dentro del menú, cierra el menú
+      this.inputMode = false;
+    }
+  });
+}
+
   }
-
-
 
   changeStatus() {
     this.confirmChange = !this.confirmChange;
-    this.inputMode = false; // Restablecer el modo de entrada al cerrar la ventana
 
   }
 
@@ -60,21 +75,18 @@ export class EditListComponent implements OnInit {
           return; // Evitar continuar si el nombre no es válido
         }
         
-      } else {
-        this.message = 'okey';
       }
       
-      this.changeStatus(); // Cerrar la ventana de confirmación después de guardar o cancelar
+      this.inputMode = false; // Cerrar la ventana de confirmación después de guardar o cancelar
     }
     else {
-      this.message = 'okey';
-      alert(this.message);
-  
-      this.changeStatus(); // Cerrar la ventana de confirmación después de guardar o cancelar
+
+      this.inputMode = false; // Cerrar la ventana de confirmación después de guardar o cancelar
     }
   }
 
   toggleInputMode() {
+    this.confirmChange = !this.confirmChange;
     this.inputMode = !this.inputMode;
   }
 

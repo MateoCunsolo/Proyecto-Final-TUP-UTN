@@ -1,26 +1,32 @@
-<button id="boton" (click)="changeStatus()">
-    <img id="editImg" src="assets/edit.png" alt="editMenu">
-</button>
 
-<section class="flex-center" *ngIf="confirmChange" id="confirmation">
-    <p *ngIf="inputMode; else defaultText">Enter the new list name:</p>
+    <img (click)="changeStatus()" id="editImg" src="assets/edit.png" alt="editMenu">
+
+
+<div class="flex-center alert" *ngIf="confirmChange">
+
+    <img src="assets/editar.png" alt="">
+    <p><strong>✏️Renaming your movie list?</strong></p>
+    <p class="sure">Your cinematic journey, your choice!🌟🍿</p>
+  
+    <div class="options-buttons">
+      <button class="cancel" (click)="changeStatus()">No</button>
+      <button class="yes" (click)="toggleInputMode()">Yes</button>
+    </div>
     
-    <ng-container *ngIf="inputMode; else defaultButtons">
-        <input type="text" (keyup.enter)="showAlert(1)" [(ngModel)]="newListName"  placeholder="New name">
-        <div class="opcionButton">
-        <button (click)="showAlert(1)">Save</button>
-        <button (click)="showAlert(2)">Cancel</button>
-         </div>
-    </ng-container>
+</div>
 
-    <ng-template #defaultText>
-        <p>Are you sure you want to change the list name?</p>
-    </ng-template>
+<div class="flex-center" *ngIf="inputMode" class="alert">
+    <p *ngIf="inputMode"> <strong>Enter your new movie list name📝 </strong></p>
+    
+    <input type="text" class="input-newName" (keyup.enter)="showAlert(1)" [(ngModel)]="newListName"  placeholder="New List Name">
+    
+    <div class="options-buttons">
+    <button class="cancel" (click)="showAlert(2)">Cancel</button>
+    <button class="yes" (click)="showAlert(1)">Save</button>
+    </div>
+   
+</div>
 
-    <ng-template #defaultButtons>
-        <div  class="opcionButton">
-            <button (click)="toggleInputMode()">YES</button>
-            <button (click)="showAlert(2)">NO</button>
-        </div>
-    </ng-template>
-</section>
+  
+
+    
