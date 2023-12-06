@@ -5,6 +5,8 @@ import { LandingRoutingModule } from './landing-routing.module';
 import { LandingpageComponent } from './components/landingpage/landingpage.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { AuthModule } from '../auth/auth.module';
+import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap/carousel/carousel.module';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -15,7 +17,8 @@ import { AuthModule } from '../auth/auth.module';
     CommonModule,
     LandingRoutingModule,
     AuthModule,
-    SharedModule
+    SharedModule,
+    NgbModule
   ]
 })
 export class LandingModule { }
