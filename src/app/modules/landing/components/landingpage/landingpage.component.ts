@@ -1,5 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
+import { Observable, Subject, debounceTime, distinctUntilChanged, filter } from 'rxjs';
+
+
+
 
 @Component({
   selector: 'app-landingpage',
@@ -8,22 +12,30 @@ import { Router } from '@angular/router';
 })
 export class LandingpageComponent {
   
-  constructor(private router: Router) {}
+  prueba: string = 'linear_reveal_both entry_5%_cover_30% view';
+  mostrarTexto: boolean = false;
 
-  images = [
-    './assets/movie-1.png',
-    './assets/movie-2.png',
-    './assets/movie-3.png',
-    './assets/movie-4.png'
-    // Añade más imágenes según sea necesario
-  ];
+  private scrollSubject = new Subject<number>();
+  scroll$: Observable<number> = this.scrollSubject.asObservable();
 
-  carouselOptions = {
-    items: 1,
-    loop: true,
-    autoplay: true,
-    autoplayTimeout: 3000, // ajusta el tiempo de reproducción automática
-  };
+  @HostListener('window:scroll', ['$event'])
+  onScroll(event: any) {
+    this.scrollSubject.next(window.scrollY);
+  }
+
+  constructor(private router: Router) {
+    this.scroll$
+      .pipe(
+        debounceTime(100), // Espera 200 milisegundos después del último evento
+        distinctUntilChanged(), // Asegura que solo se procesan eventos cuando el valor cambia
+        filter(scrollPosition => scrollPosition > 100) // Filtra eventos cuando el usuario ha bajado más de 100 píxeles
+      )
+      .subscribe(() => {
+        this.mostrarTexto = true;
+      });
+  }
+
+  
 
   onSignUpClick() {
     this.router.navigate(['/signup']);
@@ -39,3 +51,7 @@ export class LandingpageComponent {
     
   
 }
+function ngAfterViewInit() {
+  throw new Error('Function not implemented.');
+}
+

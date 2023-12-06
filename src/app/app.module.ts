@@ -4,6 +4,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import {  NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule, // Corrección en esta línea
+    HttpClientModule,
+    NgbModule, // Añade el módulo NgbModule
   ],
   providers: [], // SERVICIOS EXTERNOS QUE SE PUEDEN CONSUMIR DESDE NUESTRA APP
   bootstrap: [AppComponent] // COMPONENTE PRINCIPAL

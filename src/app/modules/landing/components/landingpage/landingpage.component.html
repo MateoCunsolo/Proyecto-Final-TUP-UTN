@@ -1,7 +1,7 @@
 <body>
     
 <header> 
-    <h2 id="title"><img class="logo" src="./assets/logo-flick-finder.png" alt="">Flick Finder</h2>
+    <h2 id="title"><img class="logo" src="./assets/logo-flick-finder.png" alt=""> <strong>Flick Finder</strong></h2>
     <div class="conteiner-bt">
         <button (click)="onSignInClick()">Sign in</button>
         <button (click)="onSignUpClick()" id="singUp">Sign up</button>
@@ -18,40 +18,65 @@
 
 <div class="section">   
     <div class="text-container">
-        <h3 class="sub-title">Explore New Releases</h3>
-        <p>Find the latest additions and hidden gems in our ever-growing library.</p>
+        <h3  class="sub-title fade-in " [ngClass]="{'show': mostrarTexto}"><strong>Explore New Releases</strong></h3>
+        <p class="fade-in" [ngClass]="{'show': mostrarTexto}">Find the latest additions and hidden gems in our ever-growing library.</p>
     </div>
 
-    <owl-carousel-o [options]="carouselOptions">
-        <ng-container *ngFor="let image of images">
-          <img [src]="image" alt="Movie Poster">
-        </ng-container>
-      </owl-carousel-o>
-     
-     
+    <ngb-carousel class="fade-in" [ngClass]="{'show': mostrarTexto}"  [interval]="1500">
+       
+        <ng-template ngbSlide>
+            <img src="./assets/movie-2.png" alt="Imagen 2">
+        </ng-template>
+        <ng-template ngbSlide>
+            <img src="./assets/movie-5.jpg" alt="Imagen 5">
+        </ng-template>
+        <ng-template ngbSlide>
+            <img src="./assets/movie-4.png" alt="Imagen 4">
+        </ng-template>
+        <ng-template ngbSlide>
+            <img src="./assets/movie-1.jpg" alt="Imagen 4">
+        </ng-template>
+    </ngb-carousel>
 </div>
+  
 
-<div class="section" id="custom-container">
+<div  class="section" id="custom-container">
     <img class="movies" id="add-list-img" src="./assets/add-list.png" alt="">
 
-    <div class="text-container" id="custom">
-        <h3 class="sub-title">Custom Lists</h3>
+    <div [style.animation]="prueba + 'reveal 2s'" class="text-container" id="custom">
+        <h3 class="sub-title" ><strong>Custom Lists</strong></h3>
         <p>Organize your cinema with custom lists: 'Watched,' 'To Watch,' and more. Do it your way!</p>
     </div>  
 </div>
 
 <div class="section" id="background-3">
 
-    <div class="text-container" >
-        <h3 class="sub-title">Personal Reviews</h3>
-        <p>Make every movie count. </p>
+    <div class="text-container"  >
+        <h3 class="sub-title"><strong>Personal Reviews</strong></h3>
+        <p id="mk">Make every movie count. </p>
         <p>Leave personal reviews and share your opinions with the community.</p>
     </div>
-    <img class="movies" src="./assets/movies-landing.png" alt="imagen">
+
+    <ngb-carousel class="fade-in" [ngClass]="{'show': mostrarTexto}"  [interval]="1500">
+       
+        <ng-template ngbSlide>
+            <img class="user" src="./assets/user-1.png" alt="Imagen 2">
+        </ng-template>
+        <ng-template ngbSlide>
+            <img src="./assets/movie-5.jpg" alt="Imagen 5">
+        </ng-template>
+        <ng-template ngbSlide>
+            <img src="./assets/movie-4.png" alt="Imagen 4">
+        </ng-template>
+        <ng-template ngbSlide>
+            <img src="./assets/movie-1.jpg" alt="Imagen 4">
+        </ng-template>
+    </ngb-carousel>
+
 </div>
 
 <div class="final-section">   
-     <h3 class="sub-title" id="final">Sign up now to start your personalized cinematic journey!</h3>
+     <h3 class="sub-title" id="final"><strong>Sign up now to start your personalized cinematic journey!</strong></h3>
      <button (click)="onSignUpClick()" id="free" class="button">Start Free</button>
     
      
