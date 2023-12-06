@@ -75,7 +75,6 @@ export class DeleteListComponent implements OnInit {
         // Actualizo la información del usuario
         this.userService.setUserSessionStorage(this.user);
 
-        console.log('List successfully deleted.');
         this.router.navigate(['home']);
 
       } else {

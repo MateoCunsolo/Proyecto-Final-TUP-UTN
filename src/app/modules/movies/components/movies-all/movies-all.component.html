@@ -8,7 +8,7 @@
         alt="{{ movie.title }}"
         (click)="redirectToMovieDetail(movie)"
       />
-      <p  (click)="redirectToMovieDetail(movie)" *ngIf="!movie.poster_path">Image not available</p>
+      <p class="" (click)="redirectToMovieDetail(movie)" *ngIf="!movie.poster_path">Image not available</p>
       <h5 (click)="redirectToMovieDetail(movie)"> {{ movie.title }}</h5>
       <div  class='buttons' *ngIf="listClicked">
        <!-- Pasar el movie al componente hijo DeleteMovieComponent -->

@@ -1,37 +1,4 @@
 {
   "users": [
-    {
-      "userName": "magali",
-      "email": "jamoncito@gmail.com",
-      "password": "123456",
-      "lists": [
-        {
-          "name": "ToWatch",
-          "id": 1,
-          "idMovies": [
-            695721,
-            976573
-          ]
-        },
-        {
-          "name": "Watched",
-          "id": 2,
-          "idMovies": []
-        }
-      ],
-      "comments": [
-        {
-          "name": "magali",
-          "comment": "Amazing!!",
-          "idMovie": 976573
-        },
-        {
-          "name": "magali",
-          "comment": "woww",
-          "idMovie": 670292
-        }
-      ],
-      "id": 1
-    }
   ]
 }
