@@ -17,8 +17,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     CommonModule,
     LandingRoutingModule,
     AuthModule,
-    SharedModule,
-    NgbModule
+    SharedModule
   ]
 })
 export class LandingModule { }

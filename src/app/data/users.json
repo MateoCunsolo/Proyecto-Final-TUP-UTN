@@ -32,6 +32,73 @@
         }
       ],
       "id": 1
+    },
+    {
+      "userName": "juancho",
+      "email": "salamandra@gmail.com",
+      "password": "mishagorda",
+      "lists": [
+        {
+          "name": "ToWatch",
+          "id": 1,
+          "idMovies": []
+        },
+        {
+          "name": "Watched",
+          "id": 2,
+          "idMovies": [
+            787699
+          ]
+        },
+        {
+          "name": "Saracatungui",
+          "id": 3,
+          "idMovies": [
+            129
+          ]
+        }
+      ],
+      "comments": [
+        {
+          "name": "juancho",
+          "comment": "Love it!!!",
+          "idMovie": 129
+        },
+        {
+          "name": "juancho",
+          "comment": "jaaaa",
+          "idMovie": 466420
+        }
+      ],
+      "id": 2
+    },
+    {
+      "userName": "pato",
+      "email": "yojaja@gmail.com",
+      "password": "fffffffff",
+      "lists": [
+        {
+          "name": "ToWatch",
+          "id": 1,
+          "idMovies": [
+            466420
+          ]
+        },
+        {
+          "name": "Watched",
+          "id": 2,
+          "idMovies": []
+        },
+        {
+          "name": "fffff",
+          "id": 3,
+          "idMovies": [
+            775
+          ]
+        }
+      ],
+      "comments": [],
+      "id": 3
     }
   ]
 }
