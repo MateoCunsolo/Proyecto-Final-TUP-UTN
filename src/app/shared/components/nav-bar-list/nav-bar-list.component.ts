@@ -73,6 +73,7 @@ export class NavBarListComponent implements OnInit {
   }
 
  getText(valor: string) {
+  
     const regex = /^[a-zA-Z0-9]+$/;
     console.log('Texto ingresado:', valor);
 
@@ -93,7 +94,7 @@ export class NavBarListComponent implements OnInit {
           this.user.lists.push(newList);
           this.newList = false; //no se ve mas el input de agregar lista
           this.userService.setUserSessionStorage(this.user);
-
+          this.eventsService.emitEvent('updateLists', null);
 
         }else
         {

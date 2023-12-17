@@ -150,9 +150,7 @@ export class UserService {
           body: JSON.stringify(user),
           headers: { 'Content-type': 'application/json' },
         });
-  
-        alert('Movie successfully removed from the list ' + user.lists[listPosChoosen].name);
-      } else {
+        } else {
         // Si la película no está en la lista, muestro un mensaje de error
         alert('The movie is not in the list ' + user.lists[listPosChoosen].name);
       }
