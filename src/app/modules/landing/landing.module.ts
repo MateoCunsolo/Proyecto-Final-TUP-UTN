@@ -7,6 +7,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { AuthModule } from '../auth/auth.module';
 
 
+
 @NgModule({
   declarations: [
     LandingpageComponent
