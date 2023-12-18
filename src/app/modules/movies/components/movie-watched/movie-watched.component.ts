@@ -50,11 +50,13 @@ export class MovieWatchedComponent implements OnInit {
       if (this.user?.id !== undefined && this.movieId !== undefined) {
 
         this.userService.addMovieToList(this.user.id, 1, this.movieId);
-    
+        if(!this.user.lists[1].idMovies.includes(this.movieId))
+        {
           this.user.lists[1].idMovies.push(this.movieId);
           this.userService.setUserSessionStorage(this.user);
-        
-        sessionStorage.removeItem('listClicked');
+          sessionStorage.removeItem('listClicked');
+        }
+       
 
       } else {
         console.log('Something went wrong');

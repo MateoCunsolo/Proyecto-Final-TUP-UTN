@@ -54,3 +54,10 @@
   transition: background-color 0.5s, color 0.5s;
 }
 
+section#confirmation {
+  position: fixed; /* Posición fija */
+  top: 50%; /* Posición vertical al 50% del viewport */
+  left: 50%; /* Posición horizontal al 50% del viewport */
+  transform: translate(-50%, -50%); /* Centrar el elemento */
+  /* El resto de tu código CSS */
+}

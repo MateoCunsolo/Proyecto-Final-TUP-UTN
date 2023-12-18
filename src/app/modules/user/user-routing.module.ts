@@ -6,9 +6,9 @@ import { ChangeEmailComponent } from './components/change-email/change-email.com
 import { AuthGuardGuard } from '../auth/guards/auth-guard.guard';
 
 const routes: Routes = [
-  {path: 'change-username', component:ChangeNameComponent, canActivate: [AuthGuardGuard] },
-  {path: 'change-pass', component:ChangePassComponent, canActivate: [AuthGuardGuard] },
-  {path: 'change-email', component:ChangeEmailComponent, canActivate: [AuthGuardGuard] }
+  {path: 'change-username', component:ChangeNameComponent , canActivate: [AuthGuardGuard] } ,
+  {path: 'change-pass', component:ChangePassComponent , canActivate: [AuthGuardGuard] },
+  {path: 'change-email', component:ChangeEmailComponent , canActivate: [AuthGuardGuard] }
 ];
 
 @NgModule({
