@@ -16,6 +16,7 @@ export class MovieWatchedComponent implements OnInit {
   confirmMoveMovie: boolean = false;
   user: IUser | null = null;
   movieId: number | undefined  = 0;
+  
 
    // Nueva propiedad para recibir la movie desde el componente padre
  @Input() movieToMove: Movie | undefined;
