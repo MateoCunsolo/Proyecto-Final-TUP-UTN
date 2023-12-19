@@ -1,4 +1,4 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, Subject, debounceTime, distinctUntilChanged, filter } from 'rxjs';
 
@@ -15,7 +15,6 @@ export class LandingpageComponent {
   
   constructor(private router: Router) {
   }
-
 
 
 
@@ -36,4 +35,8 @@ export class LandingpageComponent {
   
 }
 
+
+function cambiarReferenciaYOperar() {
+  throw new Error('Function not implemented.');
+}
 

@@ -40,7 +40,7 @@ export class PeliculasService {
     return this.http.get<MovieData>(
       `${this.apiUrl}/discover/movie?api_key=79f8e563e8d26768e3277cdf102fd1b1&with_genres=${genre}&page=${page}`
     ).pipe(
-      map((data: MovieData) => data), // Transforma la respuesta
+      map((data: MovieData) => data),
       catchError((error) => {
         console.error('Error fetching data:', error);
         return [];
@@ -64,7 +64,6 @@ export class PeliculasService {
   }
 
   listMoviesByRangeYear(page: number, startYear: number, endYear: number): Observable<MovieData> {
-    // Construye la URL con el filtro por rango de años
     const apiUrl = `${this.apiUrl}/discover/movie?api_key=79f8e563e8d26768e3277cdf102fd1b1&page=${page}&primary_release_date.gte=${startYear}-01-01&primary_release_date.lte=${endYear}-12-31`;
   
     return this.http
@@ -98,6 +97,12 @@ export class PeliculasService {
 
   getAvaliableStreaming(movieId: number): Observable<any> {
     const url = `${this.apiUrl}/movie/${movieId}/watch/providers?api_key=79f8e563e8d26768e3277cdf102fd1b1&watch_region=AR`;
+    return this.http.get(url);
+  }
+
+  getVideoKey(movieId: number): Observable<any> {
+    const url = `${this.apiUrl}/movie/${movieId}/videos?api_key=79f8e563e8d26768e3277cdf102fd1b1`;
+    console.log(url);
     return this.http.get(url);
   }
 

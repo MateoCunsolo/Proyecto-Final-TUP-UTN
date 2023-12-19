@@ -100,3 +100,13 @@
     padding: 1rem;
     width: inherit;
 }
+
+iframe{
+    width: 70%; 
+    height: 70vh;
+}
+
+#container-iframe{
+  height: auto;
+  padding-bottom: 1rem;
+}

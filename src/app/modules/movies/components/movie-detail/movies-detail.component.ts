@@ -1,22 +1,28 @@
 import { Component, OnInit } from '@angular/core';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { Genre, Movie } from 'src/app/core/movie.interface';
 import { PeliculasService } from 'src/app/services/peliculas.service';
+
 interface StreamingProvider {
   name: string;
   logoUrl: string;
 }
+
 @Component({
   selector: 'app-peliculadetalle',
   templateUrl: './movies-detail.component.html',
   styleUrls: ['./movies-detail.component.css']
 })
+
 export class MovieDetailComponent implements OnInit {
+  videoUrl: SafeResourceUrl | undefined;
   movieId: number = 0;
   movie: Movie | undefined;
   isImgClicked = false;
   availableStreaming: StreamingProvider[] = [];
   public defaultImageURL = 'assets/IMAGE NOT AVAILABLE.png';  
+
   languageMap: { [key: string]: string } = {
     en: 'English',
     es: 'Spanish',
@@ -117,13 +123,15 @@ export class MovieDetailComponent implements OnInit {
     'Wow Plus': 'assets/wow-plus.webp',
   };
   
-  
-  constructor(private route: ActivatedRoute, private movieService : PeliculasService) {}
+  constructor(private route: ActivatedRoute, private movieService : PeliculasService, private sanitizer: DomSanitizer) {}
 
   ngOnInit() {
       window.scrollTo(0, 0);
       this.loadMovieDetails();
       this.loadAvailableStreaming();
+      
+      this.movieId = JSON.parse(sessionStorage.getItem('id') || '{}');
+      this.showVideo(this.movieId);
   }
 
   loadMovieDetails() {
@@ -138,9 +146,6 @@ export class MovieDetailComponent implements OnInit {
 toggleImgClicked() {
    this.isImgClicked = !this.isImgClicked;
 }
-
-
- 
 
   loadAvailableStreaming() {
     const id = JSON.parse(sessionStorage.getItem('id') || '{}');
@@ -163,7 +168,6 @@ toggleImgClicked() {
     });
   }
   
-
   extractYear(date: string): string {
     return date.substr(0, 4);
   }
@@ -181,5 +185,16 @@ toggleImgClicked() {
   lenguageReturn(language: string): string {
     return this.languageMap[language] || 'Unknown';
   };
+
+  showVideo(movieId: number): void {
+    this.movieService.getVideoKey(movieId).subscribe((data: any) => {
+      if (data.results.length > 0) {
+        const videoKey = data.results[0].key;
+        const videoUrl = `https://www.youtube.com/embed/${videoKey}`;
+        this.videoUrl = this.sanitizer.bypassSecurityTrustResourceUrl(videoUrl);
+      }
+    });
+  }
+  
 
 }
