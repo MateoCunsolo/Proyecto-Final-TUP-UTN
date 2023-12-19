@@ -69,6 +69,7 @@ export class MoviesAllComponent implements OnInit {
     this.route.url.subscribe(urlSegments => {
       if (urlSegments.some(segment => segment.path === 'list')) {
         this.list = JSON.parse(sessionStorage.getItem('listClicked')!);
+
         if(this.listName !== undefined)
         {
           this.listName = this.list?.name
