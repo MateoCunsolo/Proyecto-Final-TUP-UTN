@@ -1,5 +1,58 @@
 {
   "users": [
-
+    {
+      "userName": "jaja",
+      "email": "sofi.mouri@gmail.com",
+      "password": "123456",
+      "lists": [
+        {
+          "name": "ToWatch",
+          "id": 1,
+          "idMovies": []
+        },
+        {
+          "name": "Watched",
+          "id": 2,
+          "idMovies": [
+            695721
+          ]
+        },
+        {
+          "name": "jaja",
+          "id": 3,
+          "idMovies": []
+        },
+        {
+          "name": "dsdg",
+          "id": 4,
+          "idMovies": []
+        },
+        {
+          "name": "fdf",
+          "id": 5,
+          "idMovies": []
+        },
+        {
+          "name": "nuevaq",
+          "id": 6,
+          "idMovies": [
+            901362
+          ]
+        }
+      ],
+      "comments": [
+        {
+          "name": "jaja",
+          "comment": "ke miedi\n",
+          "idMovie": 11531
+        },
+        {
+          "name": "jaja",
+          "comment": "buenisima",
+          "idMovie": 787699
+        }
+      ],
+      "id": 1
+    }
   ]
 }

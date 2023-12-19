@@ -11,7 +11,7 @@
 <div class="conteiner-landing">
     <h2 class="title">Instantly Craft Your Favorite Movie Lists</h2>
     <p class="subtitle">Explore, organize, and review your favorite films</p>
-    <button (click)="onSignUpClick()" id="free" class="button">Start Free</button>
+    <button (click)="onSignUpClick()"  class="button free">Start Free</button>
 </div>
 
 </body>
@@ -62,7 +62,7 @@
 
 <div class="section" id="background-3">
 
-    <div class="text-container"   >
+    <div class="text-container" id="reviews"  >
         <h3 class="sub-title"><strong>Personal Reviews</strong></h3>
         <p id="mk">Make every movie count. </p>
         <p>Leave personal reviews and share your opinions with the community.</p>
@@ -71,23 +71,23 @@
     <div class="carrousel" id="c-review" >
         <div class="conteCarrousel">
             <div class="itemCarrousel" id="itemComment-1">
-                <div class="itemCarrouselTarjeta"><img class="review"src="/assets/user-1.png" alt="Review-1"></div>
+                <div class="itemCarrouselTarjeta"><img class="review"src="/assets/review-1.png" alt="Review-1"></div>
 
             </div>
             <div class="itemCarrousel" id="itemComment-2">
-                <div class="itemCarrouselTarjeta"><img class="review" src="" alt="Review-2"></div>
+                <div class="itemCarrouselTarjeta"><img class="review" src="/assets/review-2.png" alt="Review-2"></div>
             </div>
             <div class="itemCarrousel" id="itemComment-3">
-             <div class="itemCarrouselTarjeta "><img class="review" src="" alt="Review-3"></div>
+             <div class="itemCarrouselTarjeta "><img class="review" src="/assets/review-3.png" alt="Review-3"></div>
   
             </div>
             <div class="itemCarrousel" id="itemComment-4">
-                <div class="itemCarrouselTarjeta"><img class="review" src="" alt="Review-4"></div>
+                <div class="itemCarrouselTarjeta"><img class="review" src="/assets/review-4.png" alt="Review-4"></div>
             </div>
         </div>
         <div class="conteCarrouselController">
-            <a href="#itemComment-1" >•</a>
-            <a href="#itemComment-2" >•</a>
+            <a id="comments" href="#itemComment-1">•</a>
+            <a href="#itemComment-2">•</a>
             <a href="#itemComment-3">•</a>
             <a href="#itemComment-4">•</a>
         </div>
@@ -96,7 +96,7 @@
 
 <div class="final-section">   
      <h3 class="sub-title" id="final"><strong>Sign up now to start your personalized cinematic journey!</strong></h3>
-     <button (click)="onSignUpClick()" id="free" class="button">Start Free</button>    
+     <button (click)="onSignUpClick()" class="button free">Start Free</button>    
 </div>
 
 <app-footer class="footer"></app-footer>

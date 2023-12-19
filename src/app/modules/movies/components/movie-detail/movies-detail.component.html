@@ -11,7 +11,6 @@
     [ngClass]="{ imgClicked: isImgClicked }"
 />
 
-
       <p *ngIf="!movie.poster_path">Image not available</p>
     </div>
 
@@ -65,6 +64,9 @@
     </div>
   </div>
 
+  <div class="container" id="container-iframe">
+  <iframe [src]="videoUrl" title="Movie Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
   <div class="container" *ngIf="!movie">
     <h2>Loading details movies...</h2>
   </div>
