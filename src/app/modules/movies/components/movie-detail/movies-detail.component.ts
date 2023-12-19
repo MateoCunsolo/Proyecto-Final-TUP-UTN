@@ -16,6 +16,7 @@ interface StreamingProvider {
 })
 
 export class MovieDetailComponent implements OnInit {
+  flag: boolean = false;
   videoUrl: SafeResourceUrl | undefined;
   movieId: number = 0;
   movie: Movie | undefined;
@@ -81,7 +82,7 @@ export class MovieDetailComponent implements OnInit {
     'Apple TV Plus': 'assets/apple-tv-plus.webp',
     'Apple TV': 'assets/apple-tv.webp',
     'BHD': 'assets/bhd.webp',
-    'Claro Video': 'assets/claro-video.webp',
+    'Claro video': 'assets/claro-video.webp',
     'Classix': 'assets/classix.webp',
     'Contar': 'assets/contar.webp',
     'Crunchyroll': 'assets/crunchyroll.webp',
@@ -187,11 +188,19 @@ toggleImgClicked() {
   };
 
   showVideo(movieId: number): void {
+    
     this.movieService.getVideoKey(movieId).subscribe((data: any) => {
       if (data.results.length > 0) {
-        const videoKey = data.results[0].key;
-        const videoUrl = `https://www.youtube.com/embed/${videoKey}`;
-        this.videoUrl = this.sanitizer.bypassSecurityTrustResourceUrl(videoUrl);
+
+        for(let i = 0; i < data.results.length; i++) {
+          if (data.results[i].type === 'Trailer' && this.flag === false) {
+            const videoKey = data.results[i].key;
+            const videoUrl = `https://www.youtube.com/embed/${videoKey}`;
+            this.videoUrl = this.sanitizer.bypassSecurityTrustResourceUrl(videoUrl);
+            this.flag = true;
+          }
+        }
+
       }
     });
   }

@@ -52,7 +52,6 @@ export class AddCommentComponent implements OnInit {
       this.userService.setUserSessionStorage(this.user);
       area.value = '';
       this.visibility();
-      alert('Comment added successfully');
     }
   }
 }

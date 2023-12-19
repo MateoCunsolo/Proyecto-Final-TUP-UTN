@@ -67,8 +67,7 @@ export class DeleteMovieComponent implements OnInit
         this.deleteMovie();
         this.changeStatus();
     } else {
-      this.message = 'okey' 
-      alert(this.message)
+    
       this.changeStatus();
     }
   }

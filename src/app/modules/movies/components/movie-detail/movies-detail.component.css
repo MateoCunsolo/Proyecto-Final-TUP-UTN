@@ -110,3 +110,11 @@ iframe{
   height: auto;
   padding-bottom: 1rem;
 }
+
+#msj-trailer{
+    color: var(--color-blanco-claro);
+    font-size: 1rem;
+    padding: 1rem;
+    background-color: rgba(39, 27, 109, 0.758);
+    border-radius: 2rem;
+}

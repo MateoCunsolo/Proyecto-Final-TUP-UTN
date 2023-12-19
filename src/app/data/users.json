@@ -1,9 +1,9 @@
 {
   "users": [
     {
-      "userName": "jaja",
-      "email": "sofi.mouri@gmail.com",
-      "password": "123456",
+      "userName": "jamon",
+      "email": "magali@gmail.com",
+      "password": "magali",
       "lists": [
         {
           "name": "ToWatch",
@@ -14,29 +14,26 @@
           "name": "Watched",
           "id": 2,
           "idMovies": [
-            695721
+            872585,
+            726209,
+            9502,
+            140300,
+            49444,
+            1075794
           ]
-        },
-        {
-          "name": "jaja",
-          "id": 3,
-          "idMovies": []
-        },
-        {
-          "name": "dsdg",
-          "id": 4,
-          "idMovies": []
-        },
-        {
-          "name": "fdf",
-          "id": 5,
-          "idMovies": []
         },
         {
           "name": "nuevaq",
           "id": 6,
           "idMovies": [
             901362
+          ]
+        },
+        {
+          "name": "fiction",
+          "id": 6,
+          "idMovies": [
+            787699
           ]
         }
       ],
@@ -50,9 +47,58 @@
           "name": "jaja",
           "comment": "buenisima",
           "idMovie": 787699
+        },
+        {
+          "name": "jaja",
+          "comment": "muy buena peli. Recomiendo",
+          "idMovie": 787699
+        },
+        {
+          "name": "jaja",
+          "comment": "jiji",
+          "idMovie": 787699
+        },
+        {
+          "name": "pistacho",
+          "comment": "tremenda kuchau",
+          "idMovie": 9502
         }
       ],
       "id": 1
+    },
+    {
+      "userName": "maga",
+      "email": "maga@gmail.com",
+      "password": "123456",
+      "lists": [
+        {
+          "name": "ToWatch",
+          "id": 1,
+          "idMovies": []
+        },
+        {
+          "name": "Watched",
+          "id": 2,
+          "idMovies": []
+        },
+        {
+          "name": "otralista",
+          "id": 4,
+          "idMovies": []
+        },
+        {
+          "name": "lista3",
+          "id": 5,
+          "idMovies": []
+        },
+        {
+          "name": "lista4",
+          "id": 6,
+          "idMovies": []
+        }
+      ],
+      "comments": [],
+      "id": 2
     }
   ]
 }
