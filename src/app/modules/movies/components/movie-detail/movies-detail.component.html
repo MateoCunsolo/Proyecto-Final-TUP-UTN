@@ -65,8 +65,11 @@
   </div>
 
   <div class="container" id="container-iframe">
-  <iframe [src]="videoUrl" title="Movie Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  <iframe *ngIf="flag" [src]="videoUrl" title="Movie Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+   
+   <p *ngIf="!flag"  id="msj-trailer">Trailer not available</p>
 </div>
+
   <div class="container" *ngIf="!movie">
     <h2>Loading details movies...</h2>
   </div>
