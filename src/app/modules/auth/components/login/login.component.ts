@@ -34,16 +34,21 @@ export class LoginComponent implements OnInit {
       password: this.loginForm.controls['password'].value,
       lists: [],
       comments: null
-
     } //capturo los datos del formulario y creo el objeto con ellos
     
     this.userService.getUsers().subscribe((listUsers: IUser[]) => {
       const users = listUsers.filter(u => u.userName === user.userName && u.password === user.password)
-      if(users.length > 0){
-        this.userService.setUserSessionStorage(users[0]);
-        this.router.navigate(['home']);
-    
-      }else
+      if (users.length > 0) {
+        if(users[0].id)
+        {
+          this.userService.getOneUser(users[0].id).subscribe((user: IUser | undefined) => {
+            if (user) {
+              this.userService.setUserSessionStorage(user);
+              this.router.navigate(['home']);
+            }
+          });
+        }
+      } else {
       {
         let p: HTMLElement | null = document.getElementById("msj-login");
         if(p != null)
@@ -58,14 +63,9 @@ export class LoginComponent implements OnInit {
             });
           }
         }
-
-
       }
-
-    })
-
-
-     
+      }
+    });
   }
 
   validate(field: string, error: string){

@@ -1,6 +1,5 @@
 import { Component, ElementRef, OnInit, Renderer2 } from '@angular/core';
 import { Router } from '@angular/router';
-import { IUser } from 'src/app/core/Interfaces';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -9,20 +8,35 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./nav-bar-user.component.css'],
 })
 export class NavBarUserComponent implements OnInit {
-  user: IUser | null = null;
   isMenuOpen = false;
   confirmLogOut: boolean = false;
-  
+  userName: string = '';
+  userEmail: string = '';
+  userId: number = 0;
   showDelete: boolean = false;
   showLogOut: boolean = false;
-
+  
   constructor(private router: Router, private userService: UserService, private renderer: Renderer2,private el: ElementRef) {}
 
   ngOnInit(): void {
-    const userStr = sessionStorage.getItem('user');
-    if (userStr) {
-      this.user = JSON.parse(userStr);
+    
+    let id = sessionStorage.getItem('user') || null;
+    if (id !== null) {
+      id = id.replace(/[^0-9]/g, '');
+      this.userId = parseInt(id);
+
+      this.userService.getUserName(this.userId).then((user) => {
+        this.userName = user.userName;
+        this.userEmail = user.email;
+      });
     }
+
+
+
+
+
+
+
 
         //esto es para que cuando aprete en cualquier parte del body, se vuelva a plegar el menu
         this.renderer.listen('body' , 'click', (event: Event) => {
@@ -85,8 +99,8 @@ export class NavBarUserComponent implements OnInit {
   }
 
   deleteAccount(){
-    if(this.user?.id){
-      this.userService.deleteUser(this.user.id).subscribe(() => {
+    if(this.userId){
+      this.userService.deleteUser(this.userId).subscribe(() => {
         sessionStorage.clear();
         this.router.navigate(['']);
       });

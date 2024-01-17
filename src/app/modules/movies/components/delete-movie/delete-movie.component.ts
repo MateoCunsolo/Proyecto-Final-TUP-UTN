@@ -15,13 +15,9 @@ export class DeleteMovieComponent implements OnInit
 {
   confirmDeletMovie: boolean = false;
   message: string = '';
-  user: IUser | null = null;
-
   userId: number = 0;
   movieId: number | undefined  = 0;
-  listId: number | undefined  = 0;
   listName : string| undefined  = ' ';
-  list: IList | null = null;
 
  // Nueva propiedad para recibir el movie desde el componente padre
  @Input() movieToDelete: Movie | undefined;
@@ -29,20 +25,15 @@ export class DeleteMovieComponent implements OnInit
   constructor(private eventService: eventsService, private router: Router, private userService: UserService, private route: ActivatedRoute,  private renderer: Renderer2, private el: ElementRef) { }
 
   ngOnInit(): void {
-    const userStr = sessionStorage.getItem('user');
-    if (userStr) {
-      this.user = JSON.parse(userStr);
+    let id = sessionStorage.getItem('user') || null;
+    if (id !== null) {
+      id = id.replace(/[^0-9]/g, '');
+      this.userId = parseInt(id);
     }
 
     this.route.url.subscribe(urlSegments => {
       if (urlSegments.some(segment => segment.path === 'list')) {
-        this.list = JSON.parse(sessionStorage.getItem('listClicked')!);
-        
-        if(this.listId !== undefined  && this.listName !== undefined)
-        {
-          this.listId = this.list?.id;
-          this.listName = this.list?.name
-        }
+        this.listName = JSON.parse(sessionStorage.getItem('listClicked')!);
       }
     });
 
@@ -75,26 +66,14 @@ export class DeleteMovieComponent implements OnInit
 
   deleteMovie() 
   {        
-    if (this.user?.id) 
+    if (this.userId !== null) 
     {
       try {
-        if(this.listId !== undefined && this.movieId !== undefined)
+        if(this.listName !== undefined && this.movieId !== undefined)
         { 
-          
-          this.userService.removeMovieFromList(this.user.id, this.listId - 1, this.movieId);
-
-          // guardo la posicion de la lista para despues borrarla
-          const movieIndex = this.user.lists[this.listId-1].idMovies.indexOf(this.movieId);
-          if (movieIndex !== -1) 
-          {
-            //la elimino
-            this.user.lists[this.listId-1].idMovies.splice(movieIndex, 1);
-          }
-  
-          this.userService.setUserSessionStorage(this.user); //actualizo la info del usuario
-
-          this.eventService.emitEvent("movieDeleted", {movieDeleted: this.movieId}); //aviso que se borro la peli
-        }
+          this.userService.deleteMovieFromList(this.userId, this.listName, this.movieId);
+          this.eventService.emitEvent("movieDeleted", {movieDeleted: this.movieId}); 
+        }      
       }
        catch (error) {
         console.error(error);

@@ -25,56 +25,57 @@ export class CommentsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+
+    
   
     this.extractCommentsJsonServer();
     
     this.commentsService.getEvent().subscribe((event) => {
       const comment : IComment = {
-        name: event.comment?.name ?? null,
-        comment: event.comment?.comment ?? null,
+        username: event.comment?.username ?? null,
+        text: event.comment?.text ?? null,
         idMovie: event.comment?.idMovie ?? null
       }  
       this.comments.unshift(comment);
-      this.indexComments = 0;
-      this.comment = this.comments[this.indexComments]?.comment || 'Ningun usuario ha comentado!';
-      this.name = this.comments[this.indexComments]?.name || '';
       
     });
-
+    
+    this.indexComments = 0;
+    this.comment = this.comments[this.indexComments]?.text || 'Ningun usuario ha comentado!';
+    this.name = this.comments[this.indexComments]?.username || '';
   }
   
+  
+
+
+
   extractCommentsJsonServer(){
-    this.route.paramMap.subscribe((params) => {
+    this.route.paramMap.subscribe(async (params) => {
       this.movieId = +params.get('id')!;
-      this.userService.getUsers().subscribe((listUsers: IUser[]) => {
-        for (let i = 0; i < listUsers.length; i++) {
-          for (let j = 0; j < listUsers[i].comments!.length; j++) {
-            if (listUsers[i].comments![j].idMovie === this.movieId) {
-              listUsers[i].comments![j].name = listUsers[i].userName;
-              this.comments.push(listUsers[i].comments![j]);
-            }
-          }
+      (await this.userService.getCommentsForMovie(this.movieId)).subscribe(async (commentsData) => {
+        for (const comment of commentsData) {
+          this.comments.push(comment);
         }
-        //incializo el primer comentario de entrada, es decir el primero que voy a mostrar en pantalla, es random de todos los que hya asi no hay preferencia :D 
-        this.indexComments = Math.floor(Math.random() * this.comments.length);
-        this.comment = this.comments[this.indexComments]?.comment || '🎬No user has commented yet. Be the first to share your thoughts!🍿✨';
-        this.name = this.comments[this.indexComments]?.name || '';
+        console.log(this.comments);
+        this.comment = this.comments[this.indexComments].text!;
+        this.name = this.comments[this.indexComments].username!;
+        console.log(this.comment);
       });
-    });
+      });
   }
 
   continueComments() {
     
     if (this.indexComments < this.comments.length - 1) {
       this.indexComments++;
-      this.comment = this.comments[this.indexComments].comment!;
-      this.name = this.comments[this.indexComments].name!;
+      this.comment = this.comments[this.indexComments].text!;
+      this.name = this.comments[this.indexComments].username!;
     }
     else
     {
       this.indexComments =  0;
-      this.comment = this.comments[this.indexComments].comment!;
-      this.name = this.comments[this.indexComments].name!;
+      this.comment = this.comments[this.indexComments].text!;
+      this.name = this.comments[this.indexComments].username!;
     }
     
   }  
@@ -84,14 +85,14 @@ export class CommentsComponent implements OnInit {
     if (this.indexComments > 0)
     {
       this.indexComments--;
-      this.comment = this.comments[this.indexComments].comment!;
-      this.name = this.comments[this.indexComments].name!;
+      this.comment = this.comments[this.indexComments].text!;
+      this.name = this.comments[this.indexComments].username!;
       
     }
     else{
       this.indexComments = this.comments.length - 1;
-      this.comment = this.comments[this.indexComments].comment!;
-      this.name = this.comments[this.indexComments].name!;
+      this.comment = this.comments[this.indexComments].text!;
+      this.name = this.comments[this.indexComments].username!;
     }
     
   }

@@ -13,27 +13,25 @@ export class DeleteListComponent implements OnInit {
 
   confirmDelete: boolean = false;
   message: string = ' ';
-  user: IUser | null = null;
+  userId: number = 0;
   listId: number | undefined = 0;
-  listName: string | undefined = ' ';
+  listName: string  = ' ';
   list: IList | null = null;
 
   constructor(private router: Router, private userService: UserService, private renderer: Renderer2, private route: ActivatedRoute, private el: ElementRef, private cdRef: ChangeDetectorRef) { }
 
   ngOnInit(): void {
-    const userStr = sessionStorage.getItem('user');
-    if (userStr) {
-      this.user = JSON.parse(userStr);
+     
+    let id = sessionStorage.getItem('user') || null;
+    if (id !== null) {
+      id = id.replace(/[^0-9]/g, '');
+      this.userId = parseInt(id);
     }
+
 
     this.route.url.subscribe(urlSegments => {
       if (urlSegments.some(segment => segment.path === 'list')) {
-        this.list = JSON.parse(sessionStorage.getItem('listClicked')!);
-
-        if (this.listId !== undefined && this.listName !== undefined) {
-          this.listId = this.list?.id;
-          this.listName = this.list?.name;
-        }
+        this.listName = JSON.parse(sessionStorage.getItem('listClicked')!);
       }
     });
 
@@ -61,25 +59,8 @@ export class DeleteListComponent implements OnInit {
 
   deleteList() {
     try {
-      if (this.user?.id && this.listId !== undefined) {
-
-        // Guardo la posición de la lista para después borrarla
-        const listIndex = this.user.lists.findIndex(list => list.id === this.listId);
-
-        this.userService.deleteListComplete(this.user.id, listIndex);
-
-        // Verifico si la lista existe en la posición especificada
-        if (this.user.lists && this.user.lists[listIndex]) {
-          this.user.lists.splice(listIndex, 1);
-        }
-        // Actualizo la información del usuario
-        this.userService.setUserSessionStorage(this.user);
-
-        this.router.navigate(['home']);
-
-      } else {
-        console.log('Error');
-      }
+      this.userService.deleteList(this.userId,this.listName);
+      this.router.navigate(['home']);
     } catch (error) {
       console.error(error);
     }

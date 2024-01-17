@@ -14,21 +14,28 @@ import { UserService } from 'src/app/services/user.service';
 export class MovieWatchedComponent implements OnInit {
 
   confirmMoveMovie: boolean = false;
-  user: IUser | null = null;
   movieId: number | undefined  = 0;
-  
+  userId: number = 0; 
+  listName : string| undefined  = '';
 
-   // Nueva propiedad para recibir la movie desde el componente padre
- @Input() movieToMove: Movie | undefined;
+  @Input() movieToMove: Movie | undefined;
 
   constructor(private eventService: eventsService, private router: Router, private userService: UserService, private route: ActivatedRoute,  private renderer: Renderer2, private el: ElementRef) { }
 
   ngOnInit(): void {
 
-    const userStr = sessionStorage.getItem('user');
-    if (userStr) {
-      this.user = JSON.parse(userStr);
+    let id = sessionStorage.getItem('user') || null;
+    if (id !== null) {
+      id = id.replace(/[^0-9]/g, '');
+      this.userId = parseInt(id);
     }
+
+    this.route.url.subscribe(urlSegments => {
+      if (urlSegments.some(segment => segment.path === 'list')) {
+        this.listName = JSON.parse(sessionStorage.getItem('listClicked')!);
+      }
+    });
+
 
     this.movieId = this.movieToMove?.id; //levanto el id de la peli desde el componente padre
 
@@ -47,17 +54,8 @@ export class MovieWatchedComponent implements OnInit {
     this.confirmMoveMovie=true;
     
     setTimeout(()=>{
-      if (this.user?.id !== undefined && this.movieId !== undefined) {
-
-        this.userService.addMovieToList(this.user.id, 1, this.movieId);
-        if(!this.user.lists[1].idMovies.includes(this.movieId))
-        {
-          this.user.lists[1].idMovies.push(this.movieId);
-          this.userService.setUserSessionStorage(this.user);
-          sessionStorage.removeItem('listClicked');
-        }
-       
-
+      if (this.userId !== undefined && this.movieId !== undefined) {
+        this.userService.addMovieToList(this.userId, "Watched", this.movieId);
       } else {
         console.log('Something went wrong');
       }
@@ -70,28 +68,17 @@ export class MovieWatchedComponent implements OnInit {
 
   }
 
+ 
   deleteMovie() 
   {        
-    if (this.user?.id) 
+    if (this.userId !== null) 
     {
       try {
-        if(this.movieId !== undefined)
+        if(this.listName !== undefined && this.movieId !== undefined)
         { 
-          
-          this.userService.removeMovieFromList(this.user.id, 0, this.movieId);
-
-          // guardo la posicion de la lista para despues borrarla
-          const movieIndex = this.user.lists[0].idMovies.indexOf(this.movieId);
-          if (movieIndex !== -1) 
-          {
-            //la elimino
-            this.user.lists[0].idMovies.splice(movieIndex, 1);
-          }
-  
-          this.userService.setUserSessionStorage(this.user); //actualizo la info del usuario
-
-          this.eventService.emitEvent("movieDeleted", {movieDeleted: this.movieId}); //aviso que se borro la peli
-        }
+          this.userService.deleteMovieFromList(this.userId, this.listName, this.movieId);
+          this.eventService.emitEvent("movieDeleted", {movieDeleted: this.movieId}); 
+        }      
       }
        catch (error) {
         console.error(error);
@@ -100,6 +87,5 @@ export class MovieWatchedComponent implements OnInit {
     console.log('error');
   }
   }
-
-
 }
+ 

@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { IList} from 'src/app/core/Interfaces';
+import { eventsService } from 'src/app/services/events.service';
 
 @Component({
   selector: 'app-list',
@@ -8,31 +9,31 @@ import { IList} from 'src/app/core/Interfaces';
   styleUrls: ['./list.component.css']
 })
 
-export class ListComponent implements OnInit {
+export class ListComponent implements OnInit{
 
-  list: IList | null = null
   name: string | undefined;
   listEditable: boolean = false;
-  constructor(private route: ActivatedRoute) {}
+  constructor(private route: ActivatedRoute,private eventsService: eventsService) {}
 
   ngOnInit() 
   {
       this.route.url.subscribe(urlSegments => {
         if (urlSegments.some(segment => segment.path === 'list')) {
-          this.list = JSON.parse(sessionStorage.getItem('listClicked')!);
-          this.name = this.list?.name;
-          if(this.list?.id == 1 || this.list?.id == 2)
+          this.name = JSON.parse(sessionStorage.getItem('listClicked')!);
+          if(this.name == "Watched" || this.name == "ToWatch")
           {
-            this.listEditable = false;
-          }else
-          {
-            this.listEditable = true;
+              this.listEditable = false;
+          }else{
+              this.listEditable = true;
           }
           sessionStorage.setItem('listEditable', JSON.stringify(this.listEditable));
         }
-
         this.listEditable = JSON.parse(sessionStorage.getItem('listEditable')!);
+      });
 
+      this.eventsService.getEvent("listNameChanged").subscribe(() => {
+        this.name = JSON.parse(sessionStorage.getItem('listClicked')!);
       });
   }
 }
+

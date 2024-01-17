@@ -12,7 +12,7 @@ import { UserService } from 'src/app/services/user.service';
 export class ChangeNameComponent implements OnInit {
 
   userName: string = '';
-  user: IUser | null = null;
+  userId: number = 0;
 
   changeUsernameForm: FormGroup = this.fb.group({
     newUserName: new FormControl('', [Validators.required, Validators.minLength(4)])
@@ -22,36 +22,33 @@ export class ChangeNameComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.user = this.userService.getUserSessionStorage();
+    let id = sessionStorage.getItem('user') || null;
+    if (id !== null) {
+      id = id.replace(/[^0-9]/g, '');
+      this.userId = parseInt(id);
+    }
   }
 
   async ChangeUsername() {
 
     if (this.changeUsernameForm.invalid) return;
 
-    const username: string = this.changeUsernameForm.controls['newUserName'].value;
+    const usernameNew: string = this.changeUsernameForm.controls['newUserName'].value;
 
-    this.userService.checkIfUsernameExists(username)
+    this.userService.checkIfUsernameExists(usernameNew)
       .subscribe(isAvailable => {
-        if (!isAvailable && this.user) {
-          // Hacer algo si el nombre de usuario está disponible
+        if (!isAvailable && this.userId) {
           //El nombre de usuario está disponible y hay un usuario en sesión
-          const oldUsername: number | "" = this.user?.id ?? '';
+          this.userService.getUserName(this.userId).then((user) => {
+            this.userName = user.userName;
+          });
+          let oldUsername: string = '' || this.userName;
           if (oldUsername !== '') {
-            this.userService.changeUsername(oldUsername, username);
-            //ACTUALIZAR TAMBIEN LOS NOMBRES DE LOS COMENTARIOS EN EL JSON SERVER
-            this.user.userName = username;
-            this.user.comments?.forEach(comment => {
-              comment.name = username;
-            })
-
-            this.userService.setUserSessionStorage(this.user);
+            this.userService.changeUsername(this.userId, usernameNew);
             alert("Username changed successfully");
             this.router.navigate(['home']);
           }
         } else {
-          // Hacer algo si el nombre de usuario no está disponible
-          // El nombre de usuario no está disponible
           alert("Username already taken. Please try another one!");
           return;
         }});

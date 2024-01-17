@@ -72,24 +72,6 @@ export class RegisterComponent implements OnInit {
   saveUser() {
     
     if (this.registerForm.invalid) return; //si el formulario es invalido, que no me retorne el objeto (osea nada)
-
-    this.userService.checkIfEmailExists(this.registerForm.controls['email'].value)
-    .subscribe(isEmailTaken => {
-      this.userService.checkIfUsernameExists(this.registerForm.controls['userName'].value)
-        .subscribe(isUsernameTaken => {
-          if (isEmailTaken && isUsernameTaken) 
-          {
-            alert('Username and Email already taken. Please try another one!');
-
-          } else if (isEmailTaken)
-          {
-            alert('Email already exists. Please try another one!');
-
-          } else if (isUsernameTaken) 
-          {
-            alert('Username already exists. Please try another one!');
-
-          } else 
           {
             // Ambos están disponibles
             const ToWatch: IList = {
@@ -114,10 +96,10 @@ export class RegisterComponent implements OnInit {
       
             this.userService.postUser(user);
           }
-        });
-    });
-  
-  }
+        // Remove the unexpected characters
+        // });
+        // }
+
 
   /*
   checkUsernameAvailability(control: AbstractControl): Observable<{ [key: string]: any } | null> {
@@ -145,7 +127,4 @@ export class RegisterComponent implements OnInit {
         )
       )
     );
-  }*/
-
-
-}
+  }*/}}

@@ -11,8 +11,9 @@ import { CommentsService } from 'src/app/modules/movies/services/comments.servic
 })
 export class AddCommentComponent implements OnInit {
   flag: boolean = false;
-  user: IUser | null = null;
+  userId: number = 0;
   movieId: number = 0;
+  userName: string = '';
   constructor(
     public userService: UserService,
     private route: ActivatedRoute,
@@ -20,18 +21,27 @@ export class AddCommentComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.user = this.userService.getUserSessionStorage();
-    this.route.params.subscribe((params) => {
-      this.movieId = +params['id'];
-    });
-  }
+    let id = sessionStorage.getItem('user') || null;
+    if (id !== null) {
+      id = id.replace(/[^0-9]/g, '');
+      this.userId = parseInt(id);
+
+      this.userService.getUserName(this.userId).then((user) => {
+        this.userName = user.userName;
+      });
+    }
+      this.route.params.subscribe((params) => {
+        this.movieId = +params['id'];
+      });
+    }
+
 
   visibility() {
     this.flag = !this.flag;
   }
 
   checkId(): boolean {
-    if (this.user != null && this.user?.id !== undefined) {
+    if (this.userId !== undefined) {
       return true;
     }
     return false;
@@ -39,17 +49,16 @@ export class AddCommentComponent implements OnInit {
 
   postComment() {
     const area = document.getElementById(`textarea`) as HTMLTextAreaElement;
+
     const comment: IComment = {
-      name: this.user?.userName ?? null,
-      comment: area.value ?? null,
+      username: this.userName ?? null,
+      text: area.value ?? null,
       idMovie: this.movieId,
     };
 
-    if (this.user != null && this.user?.id !== undefined) {
+    if (this.userId !== undefined) {
       this.commentsService.emitEvent({ comment: comment });
-      this.userService.addCommentToUser(this.user.id, comment);
-      this.user.comments?.push(comment);
-      this.userService.setUserSessionStorage(this.user);
+      this.userService.addCommentToUser(this.userId, comment);
       area.value = '';
       this.visibility();
     }

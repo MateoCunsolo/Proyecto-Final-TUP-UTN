@@ -8,13 +8,13 @@ export interface IList
 
 export interface IComment
 {
-    name: string | null;
-    comment: string | null;
+    username: string | null;
+    text: string | null;
     idMovie: number;
+    user_id?: number;
 }
 
 export interface IUser {
-    [x: string]: any;
     userName: string | null;
     email: string | null;
     password: string | null;
@@ -24,3 +24,8 @@ export interface IUser {
   }
 
 
+export interface User {
+    userName: string | null;
+    email: string | null;
+    password: string | null;
+}

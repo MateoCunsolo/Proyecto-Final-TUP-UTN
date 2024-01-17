@@ -15,23 +15,27 @@ export class EditListComponent implements OnInit {
   confirmChange: boolean = false;
   inputMode: boolean = false;
   newListName: string = '';
-  listName: string | undefined = '';
+  listName: string  = '';
   message: string = ' ';
-  user: IUser | null = null;
   listId: number | undefined = 0;
   list: IList | null = null;
-
+  userId: number  = 0;
 
   constructor(private eventsService: eventsService, private router: Router, private userService: UserService, private renderer: Renderer2, private route: ActivatedRoute, private el: ElementRef, private cdRef: ChangeDetectorRef) { }
 
   ngOnInit(): void {
-    this.user = this.userService.getUserSessionStorage();
+
+    let id = sessionStorage.getItem('user') || null;
+    if (id !== null) {
+      id = id.replace(/[^0-9]/g, '');
+      this.userId = parseInt(id);
+    }
+
+    this.listName = sessionStorage.getItem('listClicked') || "";
 
     this.route.url.subscribe(urlSegments => {
       if (urlSegments.some(segment => segment.path === 'list')) {
-        this.list = JSON.parse(sessionStorage.getItem('listClicked')!);
-        this.listId = this.list?.id;
-        this.listName = this.list?.name;
+        this.listName = JSON.parse(sessionStorage.getItem('listClicked')!);
       }
     });
 
@@ -76,11 +80,9 @@ export class EditListComponent implements OnInit {
         }
         
       }
-      
       this.inputMode = false; // Cerrar la ventana de confirmación después de guardar o cancelar
     }
     else {
-
       this.inputMode = false; // Cerrar la ventana de confirmación después de guardar o cancelar
     }
   }
@@ -92,40 +94,12 @@ export class EditListComponent implements OnInit {
 
   editList() {
     try {
-      if (this.user?.id && this.listId !== undefined && this.newListName) {
-        // Verificar si ya existe una lista con el mismo nombre
-        const listExists = this.user.lists.some(list => list.name === this.newListName);
-
-        if (listExists) {
-          alert('There is already a list with that name. Please choose another name.');
-          return;
-        
-        }else{
-          alert(this.message);
-        }
-
-        // Guardo la posición de la lista para después modificarla
-        const listIndex = this.user.lists.findIndex(list => list.name === this.listName);
-
+      if (this.newListName) {
         // Modifico el nombre de la lista utilizando el servicio
-        this.userService.changeListName(this.user.id, this.newListName, listIndex)
-          .subscribe((updatedUser: IUser) => {
-            // Verifico si la lista existe en la posición especificada
-            if (updatedUser.lists && updatedUser.lists[listIndex] && this.user != null) {
-              // Modifico el nombre de la lista en el arreglo local
-              this.user.lists[listIndex].name = this.newListName;
-            }
-
-            // Actualizo la información del usuario
-            this.userService.setUserSessionStorage(updatedUser);
-            sessionStorage.removeItem('listClicked');
-            this.router.navigate(['home/list/' + this.newListName]);
-
-            if (this.user != null) {
-              sessionStorage.setItem('listClicked', JSON.stringify(this.user.lists[listIndex]));
-              this.eventsService.emitEvent('updateLists', { user: this.user });
-            }
-          });
+        this.userService.updateNameList(this.userId, this.listName ,this.newListName)
+        sessionStorage.setItem('listClicked', JSON.stringify(this.newListName));
+        this.eventsService.emitEvent('listNameChanged', this.newListName);
+        this.router.navigate(['home/list/' + this.newListName]);
       } else {
         console.log('Error');
       }

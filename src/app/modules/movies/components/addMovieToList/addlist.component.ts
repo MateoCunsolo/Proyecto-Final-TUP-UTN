@@ -20,7 +20,7 @@ export class AddlistComponent implements OnInit {
   movieId: number = 0;
 
   listsNames: String[] = []; //arreglo donde van a ir los nombrs de las listas del usuario
-  selectedListId: number = 0; //aca guardo el id de la lista que selecciona el usuario
+  selectedListId: string = ""; //aca guardo el id de la lista que selecciona el usuario
 
   visibleDropdownMenu = false;
 
@@ -40,45 +40,47 @@ export class AddlistComponent implements OnInit {
       this.movieId = +params['id'];
     });
 
-    this.user = this.userService.getUserSessionStorage();
-    this.user?.lists.forEach((lista) => {
-      this.listsNames.push(lista.name);
-    });
+    let id = sessionStorage.getItem('user') || null;
+    if (id !== null) {
+      id = id.replace(/[^0-9]/g, '');
+      this.userId = parseInt(id);
+      this.userService.getListsNamesForID(this.userId).subscribe((data) => {
+          for (let i = 0; i < data.length; i++) {
+            this.listsNames.push(data[i].name);
+          }
+      });
+    }
     
     this.eventsService.getEvent('updateLists').subscribe((data) => {
-      this.user = this.userService.getUserSessionStorage();
+      this.listsNames = [];
+      let id = sessionStorage.getItem('user') || null;
+      if (id !== null) {
+        id = id.replace(/[^0-9]/g, '');
+        this.userId = parseInt(id);
+        this.userService.getListsNamesForID(this.userId).subscribe((data) => {
+            for (let i = 0; i < data.length; i++) {
+              this.listsNames.push(data[i].name);
+            }
+        });
+      }
     });
 
   }
 
   addMovie() {
-    if (this.selectedListId !== 0) {
-      if (this.user?.id !== undefined) {
+      if (this.userId !== null) {
 
-        //la posicion de la lista en el arreglo es uno menos que el id de esa lista
         this.userService.addMovieToList(
-          this.user.id,
-          this.selectedListId - 1,
+          this.userId,
+          this.selectedListId,
           this.movieId
         );
 
-        if(!this.user.lists[this.selectedListId - 1].idMovies.includes(this.movieId))
-        {
-          this.user.lists[this.selectedListId - 1].idMovies.push(this.movieId);
-          this.userService.setUserSessionStorage(this.user);
-        }
-        
-       
         sessionStorage.removeItem('listClicked');
-        this.selectedListId = 0;
+        this.selectedListId = "";
         this.showDropdownMenu();
-
-
-      } else {
-        console.log('Something went wrong');
       }
-    } else {
-      console.log('Please select a list.');
     }
-  }
+
+
 }

@@ -3,6 +3,7 @@ import { IList, IUser } from 'src/app/core/Interfaces';
 import { Router } from '@angular/router';
 import { eventsService } from 'src/app/services/events.service';
 import { UserService } from 'src/app/services/user.service';
+import { AnyCatcher } from 'rxjs/internal/AnyCatcher';
 
 @Component({
   selector: 'app-nav-bar-list',
@@ -11,13 +12,14 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class NavBarListComponent implements OnInit {
 
-  user: IUser | null = null;
+  userId: number = 0; 
 
   lists: IList[] = [];
   listsNames: String[] = []; //arreglo donde van a ir los nombres de las listas del usuario
 
   isMenuOpen = false;
   newList = false;
+  
 
   toggleMenu() {
     this.isMenuOpen = !this.isMenuOpen;
@@ -28,21 +30,25 @@ export class NavBarListComponent implements OnInit {
 
   ngOnInit(): void {
 
-    //para obtener los nombres de las listas y armar el listado
-    let userSstr = sessionStorage.getItem('user'); //me levanta el usuario
+    this.eventsService.getEvent("listNameChanged").subscribe((data: any) => {
+      this.listsNames = [];
+      this.userService.getListsNamesForID( this.userId ).subscribe((data) => {
+        for (let i = 0; i < data.length; i++) {
+          this.listsNames.push(data[i].name);
+        }
+    });
+    });
 
-    //este bloquecito es que el que me trae los nombres de las lsitas para el listado
-    if (userSstr != null) {
-      this.user = JSON.parse(userSstr);
-      // Recorre las listas del usuario y extrae los nombres
-      this.user?.lists.forEach((lista) => {
-        this.listsNames.push(lista.name);
+    let id = sessionStorage.getItem('user') || null;
+    if (id !== null) {
+      id = id.replace(/[^0-9]/g, '');
+      this.userId = parseInt(id);
+      this.userService.getListsNamesForID( this.userId ).subscribe((data) => {
+          for (let i = 0; i < data.length; i++) {
+            this.listsNames.push(data[i].name);
+          }
       });
     }
-    
-    this.eventsService.getEvent('updateLists').subscribe((data) => {
-      this.user = this.userService.getUserSessionStorage();
-    });
 
     //esto es para que cuando aprete en cualquier parte del body, se vuelva a plegar el menu
     this.renderer.listen('body', 'click', (event: Event) => {
@@ -56,15 +62,15 @@ export class NavBarListComponent implements OnInit {
   }
 
 
-  redirectToListDetail(listClicked: IList) {
-    const listName = listClicked.name;
+  redirectToListDetail(listClicked: String) {
+    let listName = listClicked;
     sessionStorage.setItem('listClicked', JSON.stringify(listClicked));
     this.router.navigate(['home/list/' + listName]);
   }
 
   addNewList() {
-    if (this.user != null) {
-      if (this.user.lists.length != 6) {
+    if (this.userId != null) {
+      if (this.listsNames.length != 6) {
         this.newList = true;
       } else {
         alert("You can't have more than 6 lists");
@@ -73,35 +79,25 @@ export class NavBarListComponent implements OnInit {
   }
 
  getText(valor: string) {
-  
     const regex = /^[a-zA-Z0-9]+$/;
     console.log('Texto ingresado:', valor);
-
-    if (this.user?.id != null) {
-
+    if (this.userId != null) {
       if (valor.trim() !== '' && !/\s/.test(valor)) {
-
-        if (this.user?.lists.find((lista) => lista.name === valor)) 
+        if (this.listsNames.find((lista) => lista === valor)) 
         {
-
           alert('A list with that name already exists');
           this.newList = false; //no se ve mas el input de agregar lista
-
         }else if(regex.test(valor)) {
-          this.userService.createNewList(this.user?.id, valor);
-          //actualizo la session storage
-          const newList = { name: valor, id: this.user.lists.length + 1, idMovies: [] }; // Crear un nuevo objeto con la con
-          this.user.lists.push(newList);
-          this.newList = false; //no se ve mas el input de agregar lista
-          this.userService.setUserSessionStorage(this.user);
-          this.eventsService.emitEvent('updateLists', null);
-
+          this.userService.createNewList(this.userId, valor);
+          if (this.listsNames.length < 6) {
+            this.listsNames.push(valor);
+            this.eventsService.emitEvent('updateLists', null);
+            this.newList = false; //no se ve mas el input de agregar lista
+          }  
         }else
         {
           alert( "The list name can't contain special characters, only letters and numbers")
-        
         }
-
       } else 
       {
         alert("The list name can't be empty or contain spaces");

@@ -3,7 +3,7 @@
   <div d="menuDesplegable" *ngIf="visibleDropdownMenu">
     <span id="span"><span style="color: black;">_</span>Select your list</span>
     <select [(ngModel)]="selectedListId" (change)="addMovie()" >
-      <option id="option" *ngFor="let list of user?.lists" [value]="list.id">{{list.name}}</option>
+      <option id="option" *ngFor="let list of listsNames" [value]="list">{{list}}</option>
     </select>
   </div>
 

@@ -45,7 +45,8 @@ export class MoviesAllComponent implements OnInit {
   listClicked: boolean = false;
   messageLoad: string = '';
   listName : string| undefined  = ' ';
-  list: IList | null = null;
+  idMovies: number[] = [];
+
   constructor(
     private moviesService: PeliculasService,
     private router: Router,
@@ -56,6 +57,7 @@ export class MoviesAllComponent implements OnInit {
 
   ngOnInit() {
     this.movies = [];
+    this.idMovies = [];
     this.messageLoad = 'Loading movies...';
     if (this.router.url.includes('list')) {
       if (this.movies.length == 0) {
@@ -63,20 +65,15 @@ export class MoviesAllComponent implements OnInit {
           "Hey! No movies on your list yet. Let's fix that—time to add some films!";
       }
     }
-
-
     //levanto el nombre de la lista para hacer la comprobacion
     this.route.url.subscribe(urlSegments => {
       if (urlSegments.some(segment => segment.path === 'list')) {
-        this.list = JSON.parse(sessionStorage.getItem('listClicked')!);
-
-        if(this.listName !== undefined)
-        {
-          this.listName = this.list?.name
-        }
+        this.listName = JSON.parse(sessionStorage.getItem('listClicked')!);
+        this.listClicked = true;
       }
     });
     
+
 
 
     if (this.router.url === '/home' && this.searchLoadMore === false) {
@@ -95,6 +92,8 @@ export class MoviesAllComponent implements OnInit {
     this.showMoviesByIdList();
 
     this.eventsService.getEvent('movieDeleted').subscribe((event) => {
+      this.movies = [];
+      this.idMovies = [];
       this.showMoviesByIdList();
     });
 
@@ -148,23 +147,27 @@ export class MoviesAllComponent implements OnInit {
 
   showMoviesByIdList() {
     // Comprobamos si la URL incluye 'list', lo que indica que estamos en la vista de lista
+    this.movies = [];
+    this.idMovies = [];
     this.route.url.subscribe((urlSegments) => {
       if (urlSegments.some((segment) => segment.path === 'list')) {
-        // Obtenemos el objeto 'listClicked' de sessionStorage y lo almacenamos en la variable 'list'
-        let user = this.userService.getUserSessionStorage();
-        if (user != null) {
-          let list = user.lists.find(
-            (list) => list.name === this.router.url.split('/')[3]
-          );
-          console.log(list);
-          this.movies = []; // Reiniciamos la lista de películas
-          this.page = 1;
-          this.listClicked = true;
-          // Llamamos a la función 'loadMoviesForID' pasando el array de IDs de películas de 'list.idMovies'
-          // Usamos 'subscribe' para manejar las películas una vez que todas las solicitudes se completen
-          if (list != undefined) {
-            this.loadMoviesForID(list.idMovies).subscribe((movies) => {
-              this.movies = movies; // Almacena las películas recuperadas en 'this.movies'
+        // Obtenemos el nombre de la lista de sessionStorage
+        const listName = JSON.parse(sessionStorage.getItem('listClicked')!);
+        let id = sessionStorage.getItem('user') || null;
+        if (id !== null) {
+          id = id.replace(/[^0-9]/g, '');
+          let numberId = parseInt(id);
+          if (numberId != null) {
+            this.userService.getMoviesForList(numberId, listName).subscribe((data: any) => {
+              if (data != undefined) {
+                for (let i = 0; i < data.length; i++) {
+                  this.idMovies.push(<number>data[i].id_movie);
+                }
+                this.loadMoviesForID(this.idMovies).subscribe((movies) => {
+                  this.movies = movies;
+                  this.idMovies = [];
+                });
+              }
             });
           }
         }
@@ -329,6 +332,8 @@ export class MoviesAllComponent implements OnInit {
 
   // Función que carga películas por sus IDs
   loadMoviesForID(idMovies: number[] | undefined): Observable<Movie[]> {
+    this.idMovies = [];
+    this.movies = [];
     // Comprobamos si 'idMovies' es 'undefined'
     if (!idMovies) {
       return of([]); // Retornamos un Observable vacío si 'idMovies' no está definido
