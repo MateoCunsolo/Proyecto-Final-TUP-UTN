@@ -73,6 +73,8 @@ export class DeleteMovieComponent implements OnInit
         { 
           this.userService.deleteMovieFromList(this.userId, this.listName, this.movieId);
           this.eventService.emitEvent("movieDeleted", {movieDeleted: this.movieId}); 
+          this.router.navigate(['/home/list/' + this.listName]);
+          alert('Movie successfully removed.');
         }      
       }
        catch (error) {

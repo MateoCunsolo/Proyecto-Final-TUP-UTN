@@ -105,7 +105,7 @@ export class MovieDetailComponent implements OnInit {
     'Lionsgate Plus': 'assets/lionsgate-plus.webp',
     'Magellan TV': 'assets/magellan-tv.webp',
     'MGM Amazon Channel': 'assets/MGM-amazon-channel.webp',
-    'Movistar Play': 'assets/movistar-play.webp',
+    'MovistarTV': 'assets/movistar-play.webp',
     'Mubi': 'assets/mubi.webp',
     'OnDemandKorea': 'assets/ondemandkorea.webp',
     'Paramount Plus Apple TV Channel ': 'assets/paramount-plus-apple-tv-channel.webp',
@@ -153,6 +153,7 @@ toggleImgClicked() {
     this.movieService.getAvaliableStreaming(id).subscribe((data: any) => {
       for (let i = 0; i < data.results.AR.flatrate.length; i++) {
         const providerName = data.results.AR.flatrate[i].provider_name;
+          alert(providerName);        
           if (this.logos.hasOwnProperty(providerName)) {
           this.availableStreaming.push({
             name: providerName,

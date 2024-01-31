@@ -8,10 +8,10 @@ import { User } from '../core/Interfaces';
   providedIn: 'root',
 })
 export class UserService {
-  private url = 'http://localhost:3000/api/users';
+  private url = 'http://localhost:3000/api/users/';
   flag: boolean = false;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router) {}  
 
   getUsers(): Observable<IUser[]> {
     return from(fetch(this.url).then((response) => response.json()));
@@ -194,7 +194,7 @@ export class UserService {
   public async changeUsername(id: number, newUsername: string){
     try {
       const body = JSON.stringify({id: id, newUsername: newUsername});
-      await fetch(`${this.url}/${id}/${newUsername}`, {
+      await fetch(`${this.url}/${id}/name/${newUsername}`, {
         method: 'PATCH',
         body: body, 
         headers: { 'Content-type': 'application/json' },
