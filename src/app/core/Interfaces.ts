@@ -25,7 +25,7 @@ export interface IUser {
 
 
 export interface User {
-    username: string | null;
+    userName: string | null;
     email: string | null;
     password: string | null;
 }

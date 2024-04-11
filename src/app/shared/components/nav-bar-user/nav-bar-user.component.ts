@@ -10,7 +10,7 @@ import { UserService } from 'src/app/services/user.service';
 export class NavBarUserComponent implements OnInit {
   isMenuOpen = false;
   confirmLogOut: boolean = false;
-  username: string = '';
+  userName: string = '';
   userEmail: string = '';
   userId: number = 0;
   showDelete: boolean = false;
@@ -26,7 +26,7 @@ export class NavBarUserComponent implements OnInit {
       this.userId = parseInt(id);
 
       this.userService.getUserName(this.userId).then((user) => {
-        this.username = user.username;
+        this.userName = user.userName;
         this.userEmail = user.email;
       });
     }

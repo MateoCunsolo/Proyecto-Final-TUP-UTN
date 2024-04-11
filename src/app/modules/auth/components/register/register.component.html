@@ -5,15 +5,15 @@
             <p id="embark">Embark on your cinematic journey !</p>
             </div>
             
-            <input class="inputs-all inputs-values" type="text" id="username" formControlName="username" placeholder="User Name" pattern="^(?!\s*$).+" title="It cannot be blank">
-            <span *ngIf=" getControl('username')?.touched && getControl('username')?.errors?.['minlength']">
+            <input class="inputs-all inputs-values" type="text" id="userName" formControlName="userName" placeholder="User Name" pattern="^(?!\s*$).+" title="It cannot be blank">
+            <span *ngIf=" getControl('userName')?.touched && getControl('userName')?.errors?.['minlength']">
             <span class="cross-error">X</span>Minimum 4 characters</span> 
 
-            <span *ngIf="getControl('username')?.touched && getControl('username')?.errors?.['required']">
+            <span *ngIf="getControl('userName')?.touched && getControl('userName')?.errors?.['required']">
             <span class="cross-error">X</span>The field is required</span>
 
 
-            <span *ngIf="getControl('username')?.touched && getControl('username')?.errors?.['usernameTaken']">
+            <span *ngIf="getControl('userName')?.touched && getControl('userName')?.errors?.['usernameTaken']">
             <span class="cross-error">X</span>Username already exists </span>
 
 

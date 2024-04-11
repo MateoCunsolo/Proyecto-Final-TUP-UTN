@@ -15,7 +15,7 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./change-name.component.css'],
 })
 export class ChangeNameComponent implements OnInit {
-  username: string = '';
+  userName: string = '';
   userId: number = 0;
 
   changeUsernameForm: FormGroup = this.fb.group({
@@ -51,8 +51,8 @@ export class ChangeNameComponent implements OnInit {
         if (!isAvailable) {
           //El nombre de usuario está disponible y hay un usuario en sesión
           this.userService.getUserName(this.userId).then((user) => {
-            this.username = user.username;
-            let oldUsername: string = '' || this.username;
+            this.userName = user.userName;
+            let oldUsername: string = '' || this.userName;
             if (oldUsername !== '') {
               this.userService.changeUsername(this.userId, usernameNew);
               alert('Username changed successfully');

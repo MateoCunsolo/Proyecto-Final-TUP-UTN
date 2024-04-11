@@ -13,7 +13,7 @@ export class LoginComponent implements OnInit {
 
   
   loginForm: FormGroup = this.fb.group({
-    username: new FormControl('', [Validators.required]), 
+    userName: new FormControl('', [Validators.required]), 
     password: new FormControl('',[Validators.required])
   })
   
@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
     if(this.loginForm.invalid) return;
 
     const user : IUser = {
-      username: this.loginForm.controls['username'].value,
+      username: this.loginForm.controls['userName'].value,
       email: null,
       password: this.loginForm.controls['password'].value,
       lists: [],
