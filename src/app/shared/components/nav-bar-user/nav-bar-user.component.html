@@ -1,10 +1,10 @@
 <div id="user-image" (click)="toggleMenu()">
-  <h3 id="user-name">{{userName}}</h3>
+  <h3 id="user-name">{{username}}</h3>
   <img src="assets/logo-user-small.png" alt="user avatar" />
 </div>
 <div class="contenedor-menu" [class.active]="isMenuOpen">
   <div class="user-data">
-    <h2 id="user-name">Hello {{ userName}}!</h2>
+    <h2 id="user-name">Hello {{ username}}!</h2>
     <p id="user-email">{{ userEmail}}</p>
   </div>
 

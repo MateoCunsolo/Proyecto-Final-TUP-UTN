@@ -87,7 +87,7 @@ export class RegisterComponent implements OnInit {
             };
             
             const user: IUser = {
-              userName: this.registerForm.controls['userName'].value,
+              username: this.registerForm.controls['userName'].value,
               email: this.registerForm.controls['email'].value,
               password: this.registerForm.controls['password'].value,
               lists: [ToWatch, Watched],

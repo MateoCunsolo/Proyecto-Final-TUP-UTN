@@ -13,7 +13,7 @@ export class LoginComponent implements OnInit {
 
   
   loginForm: FormGroup = this.fb.group({
-    userName: new FormControl('', [Validators.required]), 
+    username: new FormControl('', [Validators.required]), 
     password: new FormControl('',[Validators.required])
   })
   
@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
     if(this.loginForm.invalid) return;
 
     const user : IUser = {
-      userName: this.loginForm.controls['userName'].value,
+      username: this.loginForm.controls['username'].value,
       email: null,
       password: this.loginForm.controls['password'].value,
       lists: [],
@@ -37,7 +37,8 @@ export class LoginComponent implements OnInit {
     } //capturo los datos del formulario y creo el objeto con ellos
     
     this.userService.getUsers().subscribe((listUsers: IUser[]) => {
-      const users = listUsers.filter(u => u.userName === user.userName && u.password === user.password)
+      const users = listUsers.filter((u: IUser) => u.username === user.username && u.password === user.password);
+      
       if (users.length > 0) {
         if(users[0].id)
         {

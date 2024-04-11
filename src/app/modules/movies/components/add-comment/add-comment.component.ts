@@ -13,7 +13,7 @@ export class AddCommentComponent implements OnInit {
   flag: boolean = false;
   userId: number = 0;
   movieId: number = 0;
-  userName: string = '';
+  username: string = '';
   constructor(
     public userService: UserService,
     private route: ActivatedRoute,
@@ -27,7 +27,7 @@ export class AddCommentComponent implements OnInit {
       this.userId = parseInt(id);
 
       this.userService.getUserName(this.userId).then((user) => {
-        this.userName = user.userName;
+        this.username = user.username;
       });
     }
       this.route.params.subscribe((params) => {
@@ -51,7 +51,7 @@ export class AddCommentComponent implements OnInit {
     const area = document.getElementById(`textarea`) as HTMLTextAreaElement;
 
     const comment: IComment = {
-      username: this.userName ?? null,
+      username: this.username ?? null,
       text: area.value ?? null,
       idMovie: this.movieId,
     };

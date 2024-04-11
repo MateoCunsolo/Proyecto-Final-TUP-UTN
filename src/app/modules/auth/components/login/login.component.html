@@ -14,12 +14,12 @@
       type="text"
       name=""
       id="username"
-      formControlName="userName"
+      formControlName="username"
       placeholder="User Name"
       pattern="^(?!\s*$).+"
       title="It cannot be blank"
     />
-    <span class="error-message" *ngIf="validate('userName', 'required')">
+    <span class="error-message" *ngIf="validate('username', 'required')">
       <span class="cross-error">X</span>The field is required</span
     >
     <label for="pass"></label>

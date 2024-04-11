@@ -1,20 +1,20 @@
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
-import { IComment, IList, IUser } from '../core/Interfaces';
+import { HttpClient } from '@angular/common/http';
+import { IUser } from '../core/Interfaces';
 import { Observable, from } from 'rxjs';
-import { User } from '../core/Interfaces';
+import { IComment, IList } from '../core/Interfaces';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
   private url = 'https://api-rest-postgresql-5tis.onrender.com/users';
-  flag: boolean = false;
 
-  constructor(private router: Router) {}  
+  constructor(private http: HttpClient,private router: Router) {}
 
   getUsers(): Observable<IUser[]> {
-    return from(fetch(this.url).then((response) => response.json()));
+    return this.http.get<IUser[]>(this.url);
   }
   
   getOneUser(userId: number): Observable<IUser> {
@@ -39,7 +39,7 @@ export class UserService {
           }
           return response.json();
         })
-        .then((users: IUser[]) => users.some(user => user.userName === username))
+        .then((users: IUser[]) => users.some(user => user.username === username))
     );
   }
   
@@ -72,7 +72,7 @@ export class UserService {
   public async postUser(user: IUser) {
     try {
 
-      const body = JSON.stringify({userName: user.userName, email: user.email, password: user.password, lists: user.lists, comments: user.comments})
+      const body = JSON.stringify({userName: user.username, email: user.email, password: user.password, lists: user.lists, comments: user.comments})
       await fetch(this.url, {
         method: 'POST',
         body: body, 
@@ -279,7 +279,7 @@ export class UserService {
   getUsernameAvailability(username: string): Observable<boolean> {
     return from(fetch(this.url)
       .then((response) => response.json())
-      .then((users: IUser[]) => !users.find((user) => user.userName === username)));
+      .then((users: IUser[]) => !users.find((user) => user.username === username)));
   }
 
   getEmailAvailability(email: string): Observable<boolean> {

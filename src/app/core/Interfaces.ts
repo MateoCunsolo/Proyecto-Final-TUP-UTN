@@ -15,7 +15,7 @@ export interface IComment
 }
 
 export interface IUser {
-    userName: string | null;
+    username: string | null;
     email: string | null;
     password: string | null;
     lists: IList[];
@@ -25,7 +25,7 @@ export interface IUser {
 
 
 export interface User {
-    userName: string | null;
+    username: string | null;
     email: string | null;
     password: string | null;
 }
