@@ -8,7 +8,7 @@ import { User } from '../core/Interfaces';
   providedIn: 'root',
 })
 export class UserService {
-  private url = 'http://localhost:3000/api/users/';
+  private url = 'https://api-rest-postgresql-5tis.onrender.com/users';
   flag: boolean = false;
 
   constructor(private router: Router) {}  
