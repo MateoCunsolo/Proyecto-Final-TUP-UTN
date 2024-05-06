@@ -76,6 +76,8 @@ export class AddlistComponent implements OnInit {
           this.movieId
         );
 
+        alert('Movie added to ' + this.selectedListId + ' list!');
+
         sessionStorage.removeItem('listClicked');
         this.selectedListId = "";
         this.showDropdownMenu();

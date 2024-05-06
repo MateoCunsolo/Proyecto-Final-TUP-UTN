@@ -35,9 +35,13 @@ export class CommentsComponent implements OnInit {
         username: event.comment?.username ?? null,
         text: event.comment?.text ?? null,
         idMovie: event.comment?.idMovie ?? null
-      }  
+      }
       this.comments.unshift(comment);
-      
+      if(this.comments.length == 1)
+      {
+        this.comment = this.comments[0].text!;
+        this.name = this.comments[0].username!;
+      }
     });
     
     this.indexComments = 0;
@@ -56,10 +60,8 @@ export class CommentsComponent implements OnInit {
         for (const comment of commentsData) {
           this.comments.push(comment);
         }
-        console.log(this.comments);
         this.comment = this.comments[this.indexComments].text!;
         this.name = this.comments[this.indexComments].username!;
-        console.log(this.comment);
       });
       });
   }

@@ -159,14 +159,20 @@ export class MoviesAllComponent implements OnInit {
           let numberId = parseInt(id);
           if (numberId != null) {
             this.userService.getMoviesForList(numberId, listName).subscribe((data: any) => {
+              console.log(data);
               if (data != undefined) {
                 for (let i = 0; i < data.length; i++) {
                   this.idMovies.push(<number>data[i].id_movie);
                 }
-                this.loadMoviesForID(this.idMovies).subscribe((movies) => {
-                  this.movies = movies;
-                  this.idMovies = [];
-                });
+                if (this.idMovies[0] !== null) {
+                  this.loadMoviesForID(this.idMovies).subscribe((movies) => {
+                    this.movies = movies;
+                    this.idMovies = [];
+                  });
+                }else {
+                    console.log('El id movies es null, por eso loadMoviesForID no se ejecuta');                  
+                }
+              
               }
             });
           }

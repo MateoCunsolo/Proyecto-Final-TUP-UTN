@@ -32,16 +32,16 @@ export class InputSearchComponent implements OnInit {
       this.inputSearch.nativeElement.focus();
     }
     
-    if(this.router.url != '/home')
-    {
-      inputSearch.value =  this.router.url.split('=')[1].replace(/%20/g, ' ');
-      if(inputSearch.value === "undefined")
-      {
-        this.enterPressed = false;
-        inputSearch.value = '';
-      }else
-      {
-        this.enterPressed = true;
+    if (this.router.url.includes('?search=')) {
+      const inputSearch = document.querySelector('#input-search') as HTMLInputElement;
+      if (inputSearch) {
+        inputSearch.value = this.router.url.split('=')[1].replace(/%20/g, ' ');
+        if (inputSearch.value === "undefined") {
+          this.enterPressed = false;
+          inputSearch.value = '';
+        } else {
+          this.enterPressed = true;
+        }
       }
     }
 

@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class UserService {
   private url = 'https://api-rest-postgresql-5tis.onrender.com/users';
-
+  //private url = 'http://localhost:3000/users';
   constructor(private http: HttpClient,private router: Router) {}
 
   getUsers(): Observable<IUser[]> {
@@ -18,12 +18,19 @@ export class UserService {
   }
   
   getOneUser(userId: number): Observable<IUser> {
-    return from(fetch(`${this.url}/${userId}`).then((response) => response.json()));
+    return this.http.get<IUser>(this.url);
   }
 
   getListsNamesForID(id: number): Observable<any> {
-    return from(fetch(`${this.url}/list/${id}`).then((response) => response.json()));
+    return this.http.get(`${this.url}/list/${id}`);
   }
+
+   
+  getMoviesForList(id:Number,list:String): Observable<any> {
+    console.log("URL: " + `${this.url}/list/${id}/${list}`);
+    return this.http.get(`${this.url}/list/${id}/${list}`);
+  }
+
 
   getPassword(id: number): Observable<string> {
     return from(fetch(`${this.url}/admin/${id}`).then((response) => response.json()));
@@ -85,10 +92,11 @@ export class UserService {
     this.router.navigate(['signin']);
   }
 
-  public async addCommentToUser(userId: number, comment: IComment) {
+
+  public async addCommentToUser(id: number, comment: IComment) {
     try {
-          let body = JSON.stringify({idUser: userId, text: comment.text, idMovie: comment.idMovie});
-         await fetch(`${this.url}/comments/${comment.idMovie}/${userId}`, {
+          let body = JSON.stringify({text: comment.text, idMovie: comment.idMovie});
+         await fetch(`${this.url}/${id}/AddComment`, {
             method: 'POST',
             body: body,
             headers: { 'Content-type': 'application/json' },
@@ -102,7 +110,7 @@ export class UserService {
   public async deleteList(id: number, list: string) {
     try {
       const body = JSON.stringify({id: id, list: list});
-      await fetch(`${this.url}/${id}/${list}`, {
+      await fetch(`${this.url}/${id}/deleteList`, {
         method: 'DELETE',
         body: body, 
         headers: { 'Content-type': 'application/json' },
@@ -115,7 +123,6 @@ export class UserService {
   public async addMovieToList(id: number, list: string, idMovie: number) { 
     try {
       const body = JSON.stringify({id: id, list: list, idMovie: idMovie});
-      alert(body);
   
       await fetch(`${this.url}/${id}/${list}/${idMovie}`, {
         method: 'POST',
@@ -129,6 +136,7 @@ export class UserService {
 
   public async deleteMovieFromList(id: number, list: string, idMovie: number) {
     try {
+      console.log("ID: " + id + " LIST: " + list + " IDMOVIE: " + idMovie);
       const body = JSON.stringify({id: id, list: list, idMovie: idMovie});  
       await fetch(`${this.url}/${id}/${list}/${idMovie}`, {
         method: 'DELETE',
@@ -136,48 +144,23 @@ export class UserService {
         headers: { 'Content-type': 'application/json' },
       });
     } catch (error) {
-      console.log(error);
+      console.log("Error en deleteMovieFromList:", error);
     }
   }
+
+  
 
   
   public async getUserName(id: number): Promise<any> {
-    try {
-      const user = await fetch(`${this.url}/${id}/All`).then((response) => response.json());
-      console.log(user)
+    try {    
+      const user = await this.http.get<IUser>(`${this.url}/${id}`).toPromise(); // Espera la respuesta de la solicitud HTTP
       return user;
     } catch (error) {
-      console.log(error);
-    }
-    return "";
-  }
-
-  public async deleteListComplete(userId: number, listPosChoosen: number) {
-    try {
-      // Primero, obtengo el usuario desde el servidor
-      const user = await fetch(`${this.url}/${userId}`).then((response) => response.json());
-  
-      // Verifico si la lista existe en la posición especificada
-      if (user.lists[listPosChoosen]) {
-        // Elimino la lista de películas completa
-        user.lists.splice(listPosChoosen, 1);
-  
-        // Actualizo la información del usuario en el servidor
-        await fetch(`${this.url}/${userId}`, {
-          method: 'PATCH',
-          body: JSON.stringify(user),
-          headers: { 'Content-type': 'application/json' },
-        });
-  
-        alert('List successfully removed.');
-      } else {
-        // Si la lista no existe, muestro un mensaje de error
-        alert('The selected list does not exist.');
-      }
-    } catch (error) {
-      console.log(error);
+      console.log("Error en getUserName:", error); // Maneja el error adecuadamente
+      throw error; // Puedes lanzar el error o manejarlo de otra manera
     }
   }
+  
 
   public async checkIfUsernameAvailable(username: string): Promise<boolean> {
     try {
@@ -191,11 +174,12 @@ export class UserService {
     }
   }
   
+
   public async changeUsername(id: number, newUsername: string){
     try {
-      const body = JSON.stringify({id: id, newUsername: newUsername});
-      await fetch(`${this.url}/${id}/name/${newUsername}`, {
-        method: 'PATCH',
+      const body = JSON.stringify({newUsername: newUsername});
+      await fetch(`${this.url}/${id}/UpdateUserName`, {
+        method: 'PUT',
         body: body, 
         headers: { 'Content-type': 'application/json' },
       });
@@ -207,8 +191,8 @@ export class UserService {
   async changePassword(id: number, newPassword: string){
     try {
       const body = JSON.stringify({ newPassword: newPassword });
-      await fetch(`${this.url}/${id}`, {
-        method: 'PATCH',
+      await fetch(`${this.url}/${id}/UpdatedUserPassword`, {
+        method: 'PUT',
         body: body, 
         headers: { 'Content-type': 'application/json' },
       });
@@ -220,9 +204,9 @@ export class UserService {
 
   async changeEmail(id: number, newEmail: string){
     try {
-      const body = JSON.stringify({id: id, newEmail: newEmail});
-      await fetch(`${this.url}/${id}/${newEmail}`, {
-        method: 'PATCH',
+      const body = JSON.stringify({newEmail: newEmail});
+      await fetch(`${this.url}/${id}/UpdateUserEmail`, {
+        method: 'PUT',
         body: body, 
         headers: { 'Content-type': 'application/json' },
       });
@@ -237,18 +221,15 @@ export class UserService {
     return from(fetch(userUrl, { method: 'DELETE' }).then((response) => response.json()));
   }
 
-   setUserSessionStorage(user: IUser) {
-    sessionStorage.setItem('user', JSON.stringify(user));
+   setUserSessionStorage(id: number) {
+    sessionStorage.setItem('user', JSON.stringify(id));
   }
 
   getUserSessionStorage(): IUser | null {
     const user = sessionStorage.getItem('user');
     return user ? JSON.parse(user) : null;
   }
-  
-  getMoviesForList(userId:Number,nameList:String): Observable<Number> {
-    return from(fetch(`${this.url}/list/${userId}/${nameList}`).then((response) => response.json()));
-  }
+ 
 
   public async createNewList(id: number, list: string){
     try {
@@ -266,8 +247,8 @@ export class UserService {
   async updateNameList(id: number, list: string, newName: string){
     try {
       const body = JSON.stringify({id: id, list: list, newName: newName});
-      await fetch(`${this.url}/${id}/${list}/${newName}`, {
-        method: 'PATCH',
+      await fetch(`${this.url}/${id}/UpdateNameList`, {
+        method: 'PUT',
         body: body, 
         headers: { 'Content-type': 'application/json' },
       });

@@ -30,6 +30,18 @@ export class NavBarListComponent implements OnInit {
 
   ngOnInit(): void {
 
+    this.eventsService.getEvent('listDelete').subscribe((data) => {
+      this.listsNames = [];
+      this.userService.getListsNamesForID( this.userId ).subscribe((data) => {
+        for (let i = 0; i < data.length; i++) {
+          this.listsNames.push(data[i].name);
+        }
+    });
+    })
+
+
+
+
     this.eventsService.getEvent("listNameChanged").subscribe((data: any) => {
       this.listsNames = [];
       this.userService.getListsNamesForID( this.userId ).subscribe((data) => {
@@ -44,6 +56,7 @@ export class NavBarListComponent implements OnInit {
       id = id.replace(/[^0-9]/g, '');
       this.userId = parseInt(id);
       this.userService.getListsNamesForID( this.userId ).subscribe((data) => {
+        console.log(data);
           for (let i = 0; i < data.length; i++) {
             this.listsNames.push(data[i].name);
           }
@@ -92,6 +105,7 @@ export class NavBarListComponent implements OnInit {
           if (this.listsNames.length < 6) {
             this.listsNames.push(valor);
             this.eventsService.emitEvent('updateLists', null);
+            alert(valor + ' list created successfully!');
             this.newList = false; //no se ve mas el input de agregar lista
           }  
         }else

@@ -153,7 +153,7 @@ toggleImgClicked() {
     this.movieService.getAvaliableStreaming(id).subscribe((data: any) => {
       for (let i = 0; i < data.results.AR.flatrate.length; i++) {
         const providerName = data.results.AR.flatrate[i].provider_name;
-          alert(providerName);        
+         // alert(providerName); esta comentado para saber que nombre tiene la img      
           if (this.logos.hasOwnProperty(providerName)) {
           this.availableStreaming.push({
             name: providerName,

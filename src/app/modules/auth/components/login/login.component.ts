@@ -35,39 +35,31 @@ export class LoginComponent implements OnInit {
       lists: [],
       comments: null
     } //capturo los datos del formulario y creo el objeto con ellos
-    
+  
     this.userService.getUsers().subscribe((listUsers: IUser[]) => {
-      const users = listUsers.filter((u: IUser) => u.username === user.username && u.password === user.password);
-      
+      const users = listUsers.filter(userAux => {
+        return userAux.username === user.username && userAux.password === user.password;
+      });
       if (users.length > 0) {
-        if(users[0].id)
-        {
-          this.userService.getOneUser(users[0].id).subscribe((user: IUser | undefined) => {
-            if (user) {
-              this.userService.setUserSessionStorage(user);
+        const foundUser = users[0];
+        if (foundUser.id) {
+              this.userService.setUserSessionStorage(foundUser.id);
               this.router.navigate(['home']);
-            }
-          });
         }
       } else {
-      {
         let p: HTMLElement | null = document.getElementById("msj-login");
-        if(p != null)
-        {
+        if (p != null) {
           p.classList.add("show");
-          
-          let formAfterSumbit : HTMLElement | null = document.getElementById("login-form");
-          if(formAfterSumbit != null)
-          {
-            formAfterSumbit.addEventListener("click", function(){
+          let formAfterSubmit: HTMLElement | null = document.getElementById("login-form");
+          if (formAfterSubmit != null) {
+            formAfterSubmit.addEventListener("click", function(){
               p?.classList.remove("show");
             });
           }
         }
       }
-      }
     });
-  }
+  }    
 
   validate(field: string, error: string){
     return this.loginForm.controls[field].getError(error)

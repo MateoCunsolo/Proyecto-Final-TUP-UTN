@@ -50,8 +50,8 @@ export class ChangeNameComponent implements OnInit {
       .subscribe((isAvailable) => {
         if (!isAvailable) {
           //El nombre de usuario está disponible y hay un usuario en sesión
-          this.userService.getUserName(this.userId).then((user) => {
-            this.userName = user.userName;
+          this.userService.getUserName(this.userId).then((data) => {
+            this.userName = data[0].username;
             let oldUsername: string = '' || this.userName;
             if (oldUsername !== '') {
               this.userService.changeUsername(this.userId, usernameNew);

@@ -18,7 +18,7 @@ export class DeleteListComponent implements OnInit {
   listName: string  = ' ';
   list: IList | null = null;
 
-  constructor(private router: Router, private userService: UserService, private renderer: Renderer2, private route: ActivatedRoute, private el: ElementRef, private cdRef: ChangeDetectorRef) { }
+  constructor(private eventsService: eventsService,private router: Router, private userService: UserService, private renderer: Renderer2, private route: ActivatedRoute, private el: ElementRef, private cdRef: ChangeDetectorRef) { }
 
   ngOnInit(): void {
      
@@ -60,7 +60,9 @@ export class DeleteListComponent implements OnInit {
   deleteList() {
     try {
       this.userService.deleteList(this.userId,this.listName);
+      this.eventsService.emitEvent('listDelete', "OK");
       this.router.navigate(['home']);
+      
     } catch (error) {
       console.error(error);
     }

@@ -1,8 +1,8 @@
 footer{
     bottom: 0; 
     width: 100%;
-    height: auto;
-    background-color: black;
+    height: 4.4rem;
+    background-color: rgb(0, 0, 0);
     color: var(--color-gris-claro);
     text-align: center;
     align-items: center; 

@@ -27,7 +27,7 @@ export class AddCommentComponent implements OnInit {
       this.userId = parseInt(id);
 
       this.userService.getUserName(this.userId).then((user) => {
-        this.userName = user.userName;
+        this.userName = user[0].username;
       });
     }
       this.route.params.subscribe((params) => {
@@ -55,11 +55,13 @@ export class AddCommentComponent implements OnInit {
       text: area.value ?? null,
       idMovie: this.movieId,
     };
+    
 
     if (this.userId !== undefined) {
-      this.commentsService.emitEvent({ comment: comment });
       this.userService.addCommentToUser(this.userId, comment);
+      this.commentsService.emitEvent({ comment: comment });
       area.value = '';
+      alert('Comment posted!');
       this.visibility();
     }
   }
